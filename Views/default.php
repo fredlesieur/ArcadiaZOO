@@ -15,6 +15,8 @@
             <a href="/service">Service</a>
             <a href="/animal">Animaux</a>
             <a href="/contact">Contact</a>
+            <a href="/habitat">Habitats</a>
+
         </nav>
     </header>
 
