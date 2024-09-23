@@ -36,6 +36,9 @@ jaguarElements.forEach(function(imgElement) {
   // Lancer l'animation toutes les 70 ms pour chaque jaguar
   setInterval(animerJaguar, 60);
 });
+
+
+//cacher les images en fonction des ecrans
 document.addEventListener('DOMContentLoaded', function() {
   // Sélectionner tous les éléments représentant des animaux
   const animals = document.querySelectorAll('.row .col-lg-3');
