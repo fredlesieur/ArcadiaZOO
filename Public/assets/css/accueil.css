@@ -1,0 +1,161 @@
+
+/* couleurs des sessions*/
+.colorSection{
+  background-color: #FAF4ED;
+}
+
+/* couleurs de la police et front*/
+h2{
+    font-family: "risque";
+    font-size: 2rem; 
+    color: #F8B941; 
+    -webkit-text-stroke: 1px #492200;
+    text-align: center;   
+}
+
+p{
+  font-family: "roboto";
+  font-size: 1rem;
+  color:#492200;
+  text-align:center;
+  max-width: 50rem;
+  margin:0 auto;
+}
+h3{
+  font-family: "risque"; 
+  font-size: 1.5rem; 
+  color:#492200;
+  text-align:center;
+}
+.card-title { 
+  font-family: "risque"; 
+  font-size: 1.2rem; 
+  color:#492200;
+}
+
+/* design des boutons*/
+.button{
+  background-color: #492200; 
+  color: #F8B941; 
+  border: none; 
+  box-shadow: 5px 2px 10px #F8B941;
+  border-radius: 10px;
+  padding:8px;
+}
+
+/* centrer les images des sessions*/
+.image{
+display:flex;
+justify-content: center;
+}
+
+/* design des bouton de menu du bas*/
+.circle{
+  display: flex;
+  flex-direction: column;
+ 
+  align-items: center;
+  justify-content: center;
+  width: 15rem; 
+  height: 9rem;
+  border: 0.125rem solid #492200;
+  border-radius:6rem;
+  background-color: #FAF4ED;
+  text-align: center;
+  padding: 20px;
+
+}
+/* couleurs des icones du caroussel(fleche)*/
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #492200; /* Couleur des icônes */
+    border-radius:50%;
+}
+/* espace et retour à la ligne des boutons de menu du bas*/
+.custom-gap{
+  gap:4rem;
+  flex-wrap: wrap;
+}
+
+/* design des cards*/
+.cards {
+  border: 2px solid #492200;
+  background-color: #FAF4ED;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-title, .card-text {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/*formulaire avis*/
+.form-container {
+  border: 2px solid #492200;
+  border-radius: 10px; 
+  background-color: #FAF4ED; 
+  max-width: 22rem; 
+  min-width: 15rem; 
+}
+.form-control {
+  font-family: "Roboto", sans-serif;
+}
+
+.form-label {
+  font-family: "Roboto", sans-serif!important;
+  color: #492200!important;
+  text-align: center!important;
+}
+/*animation de séparation*/
+.jaguar {
+  width: 4rem; 
+  height: 3rem;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: moveRight 5s linear infinite;
+}
+
+@keyframes moveRight {
+  from {
+      left: 0;
+  }
+  to {
+      left: 100%;
+  }
+}
+.jaguar-container{
+position: relative;
+height: 5rem;
+margin-top: 20px;
+}
+/* masquer les images selon les ecrans*/
+@media (max-width: 992px) {
+  .gallery-item:nth-child(n+13) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-item:nth-child(n+10) {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-item:nth-child(n+7) {
+    display: none;
+  }
+}

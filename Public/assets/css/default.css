@@ -1,0 +1,100 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing : border-box;
+    list-style: none;
+}
+
+.navbar{
+    background: rgb(155,101,7);
+    background: linear-gradient(90deg, rgba(155,101,7,1) 0%, rgba(53,35,2,1) 100%);
+}
+
+.navbar-toggler-icon{
+    color: #FAF4ED;
+    background-color: #F8B941;
+    border-radius: 5px;
+}
+.navbar button{
+    background-color: #F8B941;
+    border:solid 2px #FAF4ED;
+}
+
+.collapse ul a {
+    color: #FAF4ED;
+    font-size: 1.25rem;
+    font-family: "Risque";
+    transition: 0.2s ease-in;
+}
+.collapse ul a:hover {
+    color: #F8B941;
+    font-size: 1.25rem;
+    font-family: "Risque";
+    border-top: 2px solid #FAF4ED;
+}
+
+.nav-item button{
+    background-color: #FAF4ED;
+    box-shadow: 0.8rem 0.4rem 0.4rem #F8B941;
+    border-radius:20px;
+    transition: 0.2s ease-in ;
+    color: #492200;
+    font-family: "Risque";
+    font-size: 20px;
+
+}
+.nav-item button:hover{
+    background-color:#F8B941 ;
+    color:#492200;
+    box-shadow:10px 5px 5px #FAF4ED;
+    font-family: "Risque";
+     
+}
+.banner{
+    background: rgb(248,185,65);
+    background: linear-gradient(90deg, rgba(248,185,65,1) 0%, rgba(146,109,38,1) 100%); 
+    max-height: 13rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #492200;
+    font-size: 2.5rem;
+    font-family: "Risque";
+  
+}
+footer {
+    width: 100%;
+    background-color: #9b6507;
+    padding: 1rem 0;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.first-line {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.second-line {
+    width: 100%;
+}
+.second-line p, .second-line a {
+    margin: 0;
+    color: #492200;
+}
+.logo {
+    width:10vh;
+    height :auto;;
+}
+.fa-brands{
+    color: #faf4ed;
+    font-size: 2rem;
+
+}
+
+
+

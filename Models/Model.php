@@ -15,7 +15,7 @@ class Model extends Db
 
     public function findAll()
     {
-        $query = $this->req('SELECT * FROM ' . $this->table);
+        $query = $this->req("SELECT * FROM {$this->table}");
         return $query->fetchAll();
         
     }
@@ -47,7 +47,7 @@ public function find(int $id)
 
 public function create()
 {
-    $champs =[];
+    $champs = [];
     $inter = [];
     $valeurs = [];
 

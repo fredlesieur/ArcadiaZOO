@@ -1,7 +1,8 @@
 <?php
 
+
 namespace App\Config;
-use App\Controllers\MainController;
+use App\Controllers\AccueilController;
 
 /**
  * Routeur principal
@@ -10,6 +11,8 @@ class Main
 {
     public function start()
     {
+        session_start();
+        
         // Retirer le trailing slash de l'URL si présent
         $uri = $_SERVER['REQUEST_URI'];
 
@@ -23,7 +26,8 @@ class Main
 
         // Gestion des paramètres d'URL
         $params = isset($_GET['p']) ? explode('/', $_GET['p']) : []; 
-
+        
+        
         if (!empty($params[0])) {
             // Récupération du contrôleur à instancier
             $controllerName = ucfirst(array_shift($params)) . 'Controller';
@@ -49,7 +53,7 @@ class Main
 
         } else {
             // Instanciation du contrôleur par défaut
-            $controller = new MainController();
+            $controller = new AccueilController();
             $controller->index();
         }
     }

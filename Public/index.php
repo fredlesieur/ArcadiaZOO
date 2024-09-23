@@ -13,5 +13,5 @@ require_once ROOT . '/Autoloader.php';
 Autoloader::register();
 
 // Démarrer l'application
-$main = new Main;
-$main->start();
+$app = new Main;
+$app->start();

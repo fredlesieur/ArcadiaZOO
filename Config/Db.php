@@ -19,7 +19,7 @@ class Db extends PDO
         $dsn = 'mysql:host=' . self::DBHOST . ';dbname=' . self::DBNAME;
         parent::__construct($dsn, self::DBUSER, self::DBPASS);
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
             
         
