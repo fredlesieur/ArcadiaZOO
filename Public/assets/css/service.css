@@ -1,0 +1,101 @@
+/* Couleurs des sections */
+.colorSection {
+    background-color: #FAF4ED;
+}
+
+/*design BANNER*/
+.banner{
+    background: rgb(248,185,65);
+    background: linear-gradient(90deg, rgba(248,185,65,1) 0%, rgba(146,109,38,1) 100%); 
+    max-height: 13rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #492200;
+    font-size: 2.5rem;
+    font-family: "Risque";
+  
+  }
+  h2{
+    font-family: "risque";
+    font-size: 2rem; 
+    color: #F8B941; 
+    -webkit-text-stroke: 1px #492200;
+    text-align: center;   
+}
+
+p{
+  font-family: "roboto";
+  font-size: 1rem;
+  color:#492200;
+  text-align:center;
+  max-width: 50rem;
+  margin:0 auto;
+}
+h3{
+  font-family: "risque"; 
+  font-size: 1.5rem; 
+  color:#492200;
+  text-align:center;
+}
+
+/* Contrôles du carrousel */
+.btn-prev,
+.btn-next {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #492200;
+    border: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.btn-prev {
+    left: 10px; /* Place le bouton à gauche du carrousel */
+}
+
+.btn-next {
+    right: 10px; /* Place le bouton à droite du carrousel */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #492200; /* Couleur des icônes */
+    border-radius: 50%;
+}
+
+/* Ajuste le conteneur autour de l'image */
+.carousel-item {
+    text-align: center;
+    height: 500px; /* Fixe la hauteur du carrousel */
+}
+
+/*animation de séparation*/
+.jaguar {
+    width: 4rem; 
+    height: 3rem;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: moveRight 5s linear infinite;
+  }
+  
+  @keyframes moveRight {
+    from {
+        left: 0;
+    }
+    to {
+        left: 100%;
+    }
+  }
+  .jaguar-container{
+  position: relative;
+  height: 5rem;
+  margin-top: 20px;
+  }
+
