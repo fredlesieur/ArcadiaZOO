@@ -38,34 +38,3 @@ jaguarElements.forEach(function(imgElement) {
 });
 
 
-//cacher les images en fonction des ecrans
-document.addEventListener('DOMContentLoaded', function() {
-  // Sélectionner tous les éléments représentant des animaux
-  const animals = document.querySelectorAll('.row .col-lg-3');
-
-  function displayAnimals() {
-      let itemsToShow = 12; // Par défaut, on affiche 12 images sur les grands écrans
-
-      // Vérifier la largeur de la fenêtre
-      if (window.innerWidth < 768) {
-          itemsToShow = 6; // 6 images sur les petits écrans (mobile)
-      }
-
-      animals.forEach(function(animal, index) {
-          // Masquer tous les animaux au départ
-          animal.classList.add('hidden');
-
-          // Afficher seulement le nombre d'animaux voulu
-          if (index < itemsToShow) {
-              animal.classList.remove('hidden');
-          }
-      });
-  }
-
-  // Exécuter la fonction pour la première fois au chargement
-  displayAnimals();
-
-  // Ré-exécuter la fonction lorsque la taille de la fenêtre change
-  window.addEventListener('resize', displayAnimals);
-});
-

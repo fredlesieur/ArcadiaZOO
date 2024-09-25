@@ -43,10 +43,8 @@
                 </div>
             </div>
         </nav>
-        <div class= "container-fluid banner pt-5 pb-5"> ACCUEIL
-
-        </div>
     </header>
+    
     <main id="main-page w-auto">
     <?= $contenu ?>
     </main>
