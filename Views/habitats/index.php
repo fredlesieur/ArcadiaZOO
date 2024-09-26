@@ -1,7 +1,7 @@
 <?php $link = '<link rel="stylesheet" href="assets/css/habitats.css">'; ?>
 
 <!-- Banniere de présentation des Habitats -->
-<div class="container-fluid banner pt-5 pb-5">HABITATS</div>
+<h1 class="container-fluid banner pt-5 pb-5">HABITATS</h1>
 
 <!-- Carrousel Section -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
@@ -34,7 +34,7 @@
 <?php foreach ($habitats as $index => $habitat): ?>
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div>
-      <h2 class="p-3"><?= htmlspecialchars($habitat["name"]); ?></h2>
+      <h2 class="p-3"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
       <div class="image d-flex justify-content-center">
         <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>">
       </div>

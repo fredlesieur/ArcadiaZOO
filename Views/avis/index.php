@@ -1,5 +1,5 @@
 <!-- caroussel pour déposer les avis des visiteurs -->
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+<h1 id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel"></h1>
   <div class="carousel-inner">
     <?php if (isset($Avis) && !empty($Avis)): ?>
         <?php 
@@ -29,7 +29,7 @@
       <p>il n y pas d'avis pour le moment.</p>
     <?php endif; ?>
   </div>
-</div>
+</h1>
 
 <!-- formulaire pour soumettre un avis-->
 <div class="container d-flex justify-content-center my-5">

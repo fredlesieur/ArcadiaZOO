@@ -1,6 +1,6 @@
 <?php $link = '<link rel="stylesheet" href="assets/css/service.css">' ?>
 
-<div class= "container-fluid banner pt-5 pb-5"> SERVICES</div>
+<h1 class= "container-fluid banner pt-5 pb-5"> SERVICES</h1>
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">

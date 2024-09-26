@@ -6,8 +6,10 @@ class AnimalModel extends Model
 {
     protected $id;
     protected $nom;
+    protected $race;
     protected $age;
     protected $image;
+    protected $habitat;
     protected $id_habitats;
 
     public function __construct() {
@@ -30,6 +32,15 @@ class AnimalModel extends Model
     public function getImage() {
         return $this->image;
     }
+    public function getRace()
+    {
+        return $this->race;
+    }
+    public function getHabitat()
+    {
+        return $this->habitat;
+    }
+
     public function getId_habitats()
     {
         return $this->id_habitats;
@@ -57,5 +68,17 @@ class AnimalModel extends Model
 
         return $this;
     }
-    
+    public function setRace($race)
+    {
+        $this->race = $race;
+
+        return $this;
+    }
+    public function setHabitat($habitat)
+    {
+        $this->habitat = $habitat;
+
+        return $this;
+    }
+
 }

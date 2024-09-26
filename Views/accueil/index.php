@@ -1,6 +1,6 @@
 <?php $link = '<link rel="stylesheet" href="/assets/css/accueil.css">' ?>
 
-<div class="container-fluid banner pt-5 pb-5"> ACCUEIL</div>
+<h1 class="container-fluid banner pt-5 pb-5"> ACCUEIL</h1>
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
   <div id="serviceCarousel" class="carousel slide carousel-images" data-bs-ride="carousel">
@@ -78,6 +78,28 @@
   <img class="jaguar" src="assets/images/jaquar1.jpg" alt="Jaguar en course">
 </div>
 
+<section class="colorSection p-3 p-lg-4 p-xl-5">
+  <div>
+    <h2>Les Services</h2>
+  </div>
+  <?php foreach ($accueilModel as $accueil): ?>
+
+    <div>
+      <h3 class="p-3"><?= $accueil["name"]; ?></h3>
+      <p class="p-1"> <?= $accueil["description"]; ?></p>
+      <div class="d-flex justify-content-center">
+        <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="p-2 img-fluid"
+          alt="<?= htmlspecialchars($accueil['name']) ?>">
+      </div>
+    </div>
+  <?php endforeach; ?>
+
+</section>
+
+<div class="jaguar-container">
+  <!-- Image du jaguar qui change pour chaque étape de la course -->
+  <img class="jaguar" src="assets/images/jaquar1.jpg" alt="Jaguar en course">
+</div>
 <section>
 
 <div id="carouselExampleSlidesOnly" class="carousel slide carousel-avis" data-bs-ride="carousel">

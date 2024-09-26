@@ -32,23 +32,8 @@
     font-family: "Risque";
     border-top: 2px solid #FAF4ED;
 }
-
-.nav-item button{
-    background-color: #FAF4ED;
-    box-shadow: 0.8rem 0.4rem 0.4rem #F8B941;
-    border-radius:20px;
-    transition: 0.2s ease-in ;
-    color: #492200;
-    font-family: "Risque";
-    font-size: 20px;
-
-}
-.nav-item button:hover{
-    background-color:#F8B941 ;
-    color:#492200;
-    box-shadow:10px 5px 5px #FAF4ED;
-    font-family: "Risque";
-     
+.connexion:hover {
+    border-bottom: 2px solid #FAF4ED;
 }
 .banner{
     background: rgb(248,185,65);
@@ -87,8 +72,11 @@ footer {
     color: #492200;
 }
 .logo {
-    width:10vh;
-    height :auto;;
+    width:12vh;
+    height :auto;
+    border-radius: 100%;
+    border: solid 5px #F8B941;
+   
 }
 .fa-brands{
     color: #faf4ed;
