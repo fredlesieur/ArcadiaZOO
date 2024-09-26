@@ -19,12 +19,12 @@ class AccueilController extends Controller
         $animaux = $AnimalModel->findAll();
 
         $HabitatsModel = new HabitatsModel();
-        $Habitats = $HabitatsModel->findAll();
+        $habitats = $HabitatsModel->findAll();
 
         $AccueilModel = new AccueilModel();
         $accueilModel = $AccueilModel->findAll();
 
         // Affiche la page d'accueil avec les images d'animaux
-        $this->render("accueil/index", compact("animaux", "Habitats", "accueilModel", "Avis"));
+        $this->render("accueil/index", compact("animaux", "habitats", "accueilModel", "Avis"));
     }
 }

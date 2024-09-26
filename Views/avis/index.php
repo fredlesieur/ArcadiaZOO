@@ -26,7 +26,7 @@
           <?php $activeClass = '';?>
         <?php endforeach; ?>
     <?php else: ?>
-      <p>Aucun avis pour le moment.</p>
+      <p>il n y pas d'avis pour le moment.</p>
     <?php endif; ?>
   </div>
 </div>

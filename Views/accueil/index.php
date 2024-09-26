@@ -1,4 +1,4 @@
-<?php $link = '<link rel="stylesheet" href="assets/css/accueil.css">' ?>
+<?php $link = '<link rel="stylesheet" href="/assets/css/accueil.css">' ?>
 
 <div class="container-fluid banner pt-5 pb-5"> ACCUEIL</div>
 
@@ -59,7 +59,7 @@
   <div>
     <h2>Les Habitats</h2>
   </div>
-  <?php foreach ($Habitats as $habitat): ?>
+  <?php foreach ($habitats as $habitat): ?>
 
     <div>
       <h3 class="p-3"><?= $habitat["name"]; ?></h3>
@@ -137,15 +137,31 @@
       </div>
       <button type="submit" class="btn button w-100">Envoyer</button>
     </form>
+
+    <!-- message d erreur ou de reussite de l avis-->
+
+    <?php if (isset($_SESSION['success'])): ?>
+      <div id="message-success" class="alert alert-success">
+        <?php
+        echo $_SESSION['success'];
+        unset($_SESSION['success']);
+        ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['error'])): ?>
+      <div id="message-error" class="alert alert-danger">
+        <?php
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+        ?>
+      </div>
+    <?php endif; ?>
+
   </div>
 </div>
 
-<?php if (isset($_SESSION['error'])): ?>
-  <div class="alert alert-danger">
-    <?php
-    echo $_SESSION['error'];
-    unset($_SESSION['error']); // Supprime le message après l'affichage
-    ?>
-  </div>
-<?php endif; ?>
+  
+
+
 <script src="assets/javascript/accueil.js"></script>

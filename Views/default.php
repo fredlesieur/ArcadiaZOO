@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Risque&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Risque&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/default.css">
+    <link rel="stylesheet" href="/assets/css/default.css">
     <?php if(isset($link)){echo $link;}?>
 
     
@@ -18,7 +18,7 @@
     <header >
         <nav class="navbar navbar-expand-xl" data-bs-theme="secondary">
             <div class="container-fluid m-3">
-                <img src="assets\logo\logo.jpg" alt="logo"><a class="navbar-brand img-fluid logo" href="/"></a>
+                <img src="/assets/logo/logo.jpg" alt="logo"><a class="navbar-brand img-fluid logo" href="/"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon m-2"></span>
                 </button>
@@ -28,7 +28,7 @@
                             <a class="nav-link" href="/">Accueil</a>
                         </li>
                         <li class="nav-item ms-5">
-                            <a class="nav-link" href="/habitat">Habitats</a>
+                            <a class="nav-link" href="/habitats">Habitats</a>
                         </li>
                         <li class="nav-item ms-5">
                             <a class="nav-link" href="/service">Services</a>
@@ -52,7 +52,7 @@
 <footer>
 <div class="footer">
           <div class="first-line">
-              <a href=""><img src="assets/logo/logo.jpg" alt="Logo" class="logo ms-3"></a>
+              <a href=""><img src="/assets/logo/logo.jpg" alt="Logo" class="logo ms-3"></a>
               <a href=""><i class="fa-brands fa-instagram"></i></a>
               <a href=""><i class="fa-brands fa-facebook"></i></a>
           </div>

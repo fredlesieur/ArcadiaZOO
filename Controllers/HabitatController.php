@@ -1,22 +1,27 @@
 <?php
-
 namespace App\Controllers;
+
 use App\Models\HabitatsModel;
-class HabitatController extends AccueilController
-{
-    public function index()
-    {
-        $HabitatsModel = new HabitatsModel();
-        $Habitats = $HabitatsModel->findAll();
+use App\Models\AnimalModel;
 
-        $HabitatsModel = new HabitatsModel();
-        $habitat = $HabitatsModel->findAll();
+class HabitatController extends Controller {
 
-        $HabitatsModel = new HabitatsModel();
-        $habitation = $HabitatsModel->findAll();
+    public function decouvrir($id) {
+        // Récupérer l'habitat spécifique
+        $habitatsModel = new HabitatsModel();
+        $habitat = $habitatsModel->find($id);
 
+        // Récupérer les animaux liés à cet habitat
+        $AnimalModel = new AnimalModel();
+        $animaux = $AnimalModel->findBy(['id_habitats' => $id]);
 
-
-        $this->render("habitats/index", compact("Habitats", "habitat", "habitation"));
+        // Si l'habitat existe, on passe les données à la vue
+        if ($habitat) {
+            $this->render('habitat/index', compact('habitat', 'animaux'));
+        } else {
+            echo "Habitat non trouvé.";
+        }
     }
 }
+
+

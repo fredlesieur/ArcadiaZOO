@@ -7,7 +7,7 @@ use PDO;
 class Db extends PDO
 {
     
-    private static $instance = null;
+    private static $instance;
 
     private const DBHOST = 'localhost';
     private const DBNAME = 'arcadia';

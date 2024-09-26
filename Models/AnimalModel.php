@@ -8,6 +8,7 @@ class AnimalModel extends Model
     protected $nom;
     protected $age;
     protected $image;
+    protected $id_habitats;
 
     public function __construct() {
         $this->table = "animaux";
@@ -29,6 +30,10 @@ class AnimalModel extends Model
     public function getImage() {
         return $this->image;
     }
+    public function getId_habitats()
+    {
+        return $this->id_habitats;
+    }
 
     // Setters
     public function setId($id) {
@@ -46,4 +51,11 @@ class AnimalModel extends Model
     public function setImage($image) {
         $this->image = $image;
     }
+    public function setId_habitats($id_habitats)
+    {
+        $this->id_habitats = $id_habitats;
+
+        return $this;
+    }
+    
 }

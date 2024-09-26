@@ -13,8 +13,11 @@ class AvisController extends AccueilController
         
             $maxCommentLength = 400;
             if (!empty($pseudo) && !empty($comment) && strlen($comment) <= $maxCommentLength){
-            $AvisModel = new AvisModel();
+            
+                $AvisModel = new AvisModel();
             $result = $AvisModel->saveAvis($pseudo, $comment);
+
+            $_SESSION['success'] = "Votre avis a été pris en compte !";
         }else {
             $_SESSION['error'] = "L'avis est trop long il ne doit pas dépasser 400 caractères.";
         }

@@ -4,10 +4,9 @@ namespace App\Models;
 
 class HabitatsModel extends Model
 {
-    protected $Id_habitats;
+    protected $id;
     protected $name;
     protected $description;
-
     protected $description_accueil;
     protected $image;
     protected $image2;
@@ -21,8 +20,8 @@ class HabitatsModel extends Model
     }
 
     // Getters
-    public function getIdHabitats() {
-        return $this->Id_habitats;
+    public function getId() {
+        return $this->id;
     }
 
 
@@ -52,8 +51,8 @@ class HabitatsModel extends Model
     }
 
     // Setters
-    public function setIdHabitats($Id_habitats) {
-        $this->Id_habitats = $Id_habitats;
+    public function setIdHabitats($id) {
+        $this->id=$id;
     }
 
     public function setName($name) {
@@ -78,4 +77,6 @@ class HabitatsModel extends Model
     public function setCommentaire($commentaire) {
        $this->commentaire=$commentaire;
     }
+
+      
 }
