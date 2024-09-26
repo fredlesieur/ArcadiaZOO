@@ -1,24 +1,34 @@
 <?php
+
 namespace App\Models;
 
-use App\Config\Db;
 
 class ConnexionModel extends Model
 {
-    
- 
     protected $id;
     protected $email;
-    protected $mdp;
+    protected $password;
     protected $role;
 
     public function __construct() {
-        $this->table = "users";
+        $this->table = "users"; // Table des utilisateurs
     }
-    public function getUserByEmail(string $email)
-    {
-        return $this->findBy(['username' => $email]);
-    }
-    
- 
+
+    // Méthode pour créer un compte administrateur
+    public function createAdmin($email, $password, $role_id)
+{
+    // Hasher le mot de passe
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Préparer la requête d'insertion avec role_id
+    $sql = "INSERT INTO " . $this->table . " (email, password, role_id) VALUES (:email, :password, :role_id)";
+    $query = $this->req($sql, [
+        'email' => $email,
+        'password' => $hashedPassword,
+        'role_id' => $role_id // L'ID du rôle (1 pour administrateur par exemple)
+    ]);
+
+    return $query;
+}
+
 }

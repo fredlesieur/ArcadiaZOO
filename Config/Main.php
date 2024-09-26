@@ -4,61 +4,55 @@ namespace App\Config;
 
 use App\Controllers\AccueilController;
 
-/**
- * Routeur principal
- */
 class Main
 {
     public function start()
     {
+        // Démarrage de la session
         session_start();
 
         // Retirer le trailing slash de l'URL si présent
         $uri = $_SERVER['REQUEST_URI'];
-
+        
         if (!empty($uri) && $uri != '/' && $uri[-1] === "/") {
             $uri = substr($uri, 0, -1);
             // Redirection permanente sans le / de fin (301)
             http_response_code(301);
             header('Location: ' . $uri);
-            exit(); // Assurez-vous que le script ne continue pas après la redirection
+            exit();
         }
 
         // Gestion des paramètres d'URL
         $params = isset($_GET['p']) ? explode('/', $_GET['p']) : [];
 
+        // Si des paramètres sont présents dans l'URL
         if (!empty($params[0])) {
             // Récupération du contrôleur à instancier
-            $controllerName = ucfirst(array_shift($params)) . 'Controller';
-            $controllerClass = '\\App\\Controllers\\' . $controllerName;
+            $controllerName = ucfirst(array_shift($params)) . 'Controller'; // Le nom du contrôleur
+            $controllerClass = '\\App\\Controllers\\' . $controllerName; // Chemin complet vers le contrôleur
 
+            // Vérification si le contrôleur existe
             if (class_exists($controllerClass)) {
-                $controller = new $controllerClass();
+                $controller = new $controllerClass(); // Instanciation du contrôleur
             } else {
                 http_response_code(404);
                 echo "Le contrôleur $controllerName n'existe pas.";
                 exit();
             }
 
-            // Récupération du nom de la méthode d'action
-            $action = isset($params[0]) ? array_shift($params) : 'index';
+            // Récupération du nom de la méthode (action)
+            $action = isset($params[0]) ? array_shift($params) : 'index'; // Méthode par défaut : index
 
-            // Extraire les paramètres GET supplémentaires (comme id)
-            $id = isset($_GET['id']) ? $_GET['id'] : null;
-
+            // Vérification si la méthode existe dans le contrôleur
             if (method_exists($controller, $action)) {
-                if ($id) {
-                    call_user_func_array([$controller, $action], [$id]); // Passe l'id en paramètre
-                } else {
-                    call_user_func_array([$controller, $action], $params);
-                }
+                // Appel de la méthode avec les paramètres restants
+                call_user_func_array([$controller, $action], $params);
             } else {
                 http_response_code(404);
-                echo "La méthode demandée n'existe pas dans le contrôleur $controllerName.";
+                echo "La méthode $action n'existe pas dans le contrôleur $controllerName.";
             }
-
         } else {
-            // Instanciation du contrôleur par défaut
+            // Si aucun paramètre dans l'URL, on instancie le contrôleur par défaut (AccueilController)
             $controller = new AccueilController();
             $controller->index();
         }

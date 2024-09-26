@@ -16,34 +16,48 @@
 </head>
 <body class="m-5">
     <header >
-        <nav class="navbar navbar-expand-xl" data-bs-theme="secondary">
-            <div class="container-fluid m-3">
-                <img class="logo" src="/assets/logo/logo.jpg" alt="logo"><a href="/"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon m-2"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-center align-items-center">
+    <header>
+    <nav class="navbar navbar-expand-xl" data-bs-theme="secondary">
+        <div class="container-fluid m-3">
+            <img class="logo" src="/assets/logo/logo.jpg" alt="logo"><a href="/"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon m-2"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-center align-items-center">
+                    <li class="nav-item ms-5">
+                        <a class="nav-link" href="/">Accueil</a>
+                    </li>
+                    <li class="nav-item ms-5">
+                        <a class="nav-link" href="/habitats">Habitats</a>
+                    </li>
+                    <li class="nav-item ms-5">
+                        <a class="nav-link" href="/service">Services</a>
+                    </li>
+                    <li class="nav-item ms-5 me-5">
+                        <a class="nav-link" href="/contact">Contacts</a>
+                    </li>
+
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <!-- Afficher Déconnexion et lien vers le tableau de bord -->
                         <li class="nav-item ms-5">
-                            <a class="nav-link" href="/">Accueil</a>
+                            <a class="nav-link me-5" href="/dashboard">Mon Tableau de bord</a>
                         </li>
                         <li class="nav-item ms-5">
-                            <a class="nav-link" href="/habitats">Habitats</a>
+                            <a class="nav-link me-5" href="/connexion/logout">Se déconnecter</a>
                         </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link" href="/service">Services</a>
-                        </li>
-                        <li class="nav-item ms-5 me-5">
-                            <a class="nav-link" href="/contact">Contacts</a>
-                        </li>
+                    <?php else: ?>
+                        <!-- Afficher Connexion si non connecté -->
                         <li class="nav-item ms-5">
                             <a class="nav-link me-5 connexion" href="/connexion">Se connecter</a>
                         </li>
-
-                    </ul>
-                </div>
+                    <?php endif; ?>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
+</header>
+
     </header>
     
     <main id="main-page w-auto">
