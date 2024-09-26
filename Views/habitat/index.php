@@ -1,7 +1,7 @@
 <?php $link = '<link rel="stylesheet" href="/assets/css/habitat.css">'; ?>
 
 
-<section class="colorSection p-3 p-lg-4 p-xl-5 ">
+<section class="colorSection p-3 p-lg-4 p-xl-5">
     <h2 class="text-center"><?= htmlspecialchars($habitat['name']); ?></h2><br>
     <p><?= htmlspecialchars($habitat['description']); ?></p><br>
     <div class="image d-flex justify-content-center">
@@ -10,28 +10,21 @@
     <p>Rapport Vétérinaire : <?= htmlspecialchars($habitat['commentaire']); ?></p>
 </section>
 
-
-<section class="colorSection p-3 p-lg-4 p-xl-5">
-    <h3>Les animaux dans cet habitat :</h3>
-    <div id="animalCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <?php foreach ($animaux as $index => $animal): ?>
-                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($animal['nom']); ?>">
+<!-- Section pour afficher les animaux dans une galerie d'images -->
+<section class="container p-3 p-lg-4 p-xl-5">
+    <h3 class="text-center">Les animaux de cet habitat</h3>
+    <div class="row">
+        <?php foreach ($animaux as $animal): ?>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card mb-4">
+                    <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($animal['nom']); ?>">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><?= htmlspecialchars($animal['nom']); ?></h5>
+                        <a href="/animaux/fiche?id=<?= $animal['id'] ?>" class="btn btn-primary">Voir la fiche</a>
                     </div>
-                    <p><?= htmlspecialchars($animal['nom']); ?> (Age : <?= htmlspecialchars($animal['age']); ?> ans)</p>
                 </div>
-            <?php endforeach; ?>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#animalCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Précédent</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#animalCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Suivant</span>
-        </button>
+            </div>
+        <?php endforeach; ?>
     </div>
 </section>
 
