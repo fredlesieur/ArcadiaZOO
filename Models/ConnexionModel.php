@@ -31,4 +31,15 @@ class ConnexionModel extends Model
     return $query;
 }
 
+
+public function findUserByEmail($email)
+{
+    // On utilise la méthode req pour faire une jointure avec la table roles
+    $sql = "SELECT users.*, roles.role_name AS role 
+            FROM users 
+            JOIN roles ON users.role_id = roles.id 
+            WHERE users.email = ?";
+    
+    return $this->req($sql, [$email])->fetch();
+}
 }

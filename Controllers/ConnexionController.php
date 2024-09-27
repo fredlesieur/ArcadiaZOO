@@ -13,48 +13,39 @@ class ConnexionController extends Controller
         $this->render("connexion/index", compact("title"));
     }
 
-    public function login()
-    {
-        // Récupérer les données du formulaire
-        $email = $_POST['email'];
-        $password = $_POST['mdp'];
+    public function login(): void
+{
+    $email = $_POST['email'];
+    $password = $_POST['mdp'];
 
-        // Modèle de connexion
-        $connexionModel = new ConnexionModel();
-        $user = $connexionModel->findBy(['email' => $email]);
+    // Modèle de connexion
+    $connexionModel = new ConnexionModel();
+    $user = $connexionModel->findUserByEmail($email);
 
-        // Si l'utilisateur existe et que le mot de passe est correct
-        if ($user && password_verify($password, $user[0]['password'])) {
-            // Vérifier le rôle de l'utilisateur
-            if (in_array($user[0]['role'], ['administrateur', 'veterinaire', 'employe'])) {
-                // Démarrer la session et stocker les informations de l'utilisateur
-                session_start();
-                $_SESSION['user_id'] = $user[0]['id'];
-                $_SESSION['role'] = $user[0]['role'];
+    // Si l'utilisateur existe et que le mot de passe est correct
+    if ($user && password_verify($password, $user['password'])) {
+        // Vérification stricte du rôle
+        if ($user['role'] === 'administrateur' || $user['role'] === 'veterinaire' || $user['role'] === 'employe') {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
 
-                // Rediriger vers le tableau de bord approprié
-                header("Location: /dashboard");
-                exit();
-            } else {
-                // Afficher un message d'erreur pour un rôle non valide
-                $error = "Accès refusé. Rôle non valide.";
-                $this->render("connexion/index", compact("error"));
+            // Redirection selon le rôle
+            if ($user['role'] === 'administrateur') {
+                header("Location: /admin/dashboard");
+            } elseif ($user['role'] === 'veterinaire') {
+                header("Location: /veterinaire/dashboard");
+            } elseif ($user['role'] === 'employe') {
+                header("Location: /employe/dashboard");
             }
+            exit;
         } else {
-            // Afficher un message d'erreur pour email ou mot de passe incorrect
-            $error = "Email ou mot de passe incorrect.";
-            $this->render("connexion/index", compact("error"));
+            $error = "Accès refusé. Rôle non valide.";
+            $this->render('connexion/index', compact('error'));
         }
-    }
-    public function logout()
-    {
-        session_start();
-        session_unset(); // Supprime toutes les variables de session
-        session_destroy(); // Détruit la session
-
-        // Rediriger vers la page d'accueil (ou page de ton choix)
-        header("Location: /");
-        exit();
+    } else {
+        $error = "Email ou mot de passe incorrect.";
+        $this->render('connexion/index', compact('error'));
     }
 }
 
+}

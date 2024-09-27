@@ -16,7 +16,10 @@
                     <input type="password" class="form-control" id="mdp" name="mdp" required>
                 </div>
                 <button type="submit" class="btn button w-100">Envoyer</button>
+                <?php if (isset($error)): ?>
+                    <p style="color: red;" class="text-center"><?= $error; ?></p>
+                <?php endif; ?>
             </form>
         </div>
     </div>
-</on>
+</section>

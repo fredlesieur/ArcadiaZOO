@@ -23,7 +23,7 @@
                     <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($animal['nom']); ?>">
                     <div class="card-body text-center">
                         <h5 class="card-title"><?= htmlspecialchars (ucwords($animal['nom'])); ?></h5>
-                        <a href="/animal/fiche?id=<?= $animal['id'] ?>" class="btn button">Voir la fiche</a>
+                        <a href="/animal/fiche/<?= $animal['id'] ?>" class="btn button">Voir la fiche</a>
                     </div>
                 </div>
             </div>

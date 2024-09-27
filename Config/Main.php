@@ -13,7 +13,7 @@ class Main
 
         // Retirer le trailing slash de l'URL si présent
         $uri = $_SERVER['REQUEST_URI'];
-        
+
         if (!empty($uri) && $uri != '/' && $uri[-1] === "/") {
             $uri = substr($uri, 0, -1);
             // Redirection permanente sans le / de fin (301)
