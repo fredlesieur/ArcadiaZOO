@@ -17,11 +17,11 @@
         </div>
 
         <!-- Boutons Précédent et Suivant -->
-        <button class="btn btn-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Précédent</span>
         </button>
-        <button class="btn btn-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Suivant</span>
         </button>
@@ -34,9 +34,9 @@
 <?php foreach ($habitats as $index => $habitat): ?>
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div>
-      <h2 class="p-3"><?=ucwords($habitat["name"]); ?></h2>
+      <h2 class="p-3"><?= ucwords($habitat["name"]); ?></h2>
       <div class="image d-flex justify-content-center">
-        <img src="/assets/images/<?= $habitat['image'] ?>" class="p-2 img-fluid" alt="<?= $habitat['name'] ?>">
+        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>">
       </div>
     </div>
     <div class="d-flex justify-content-center m-5">

@@ -6,6 +6,7 @@ use App\Models\ConnexionModel;
 use App\Models\VeterinaireModel;
 class VeterinaireController extends Controller {
 
+    
     // Affiche le tableau de bord vétérinaire
     public function index() {
         // Définir le titre de la page
@@ -21,6 +22,4 @@ class VeterinaireController extends Controller {
     $title = "Ajouter un rapport";
     $this->render('/veterinaire/ajouterRapport', compact('title'));
 }
-
-
 }

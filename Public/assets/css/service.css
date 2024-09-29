@@ -1,101 +1,129 @@
+/* Mobile-first design */
 /* Couleurs des sections */
 .colorSection {
     background-color: #FAF4ED;
 }
 
-/*design BANNER*/
-.banner{
+/* Design BANNER */
+.banner {
     background: rgb(248,185,65);
-    background: linear-gradient(90deg, rgba(248,185,65,1) 0%, rgba(146,109,38,1) 100%); 
+    background: linear-gradient(90deg, rgba(248,185,65,1) 0%, rgba(146,109,38,1) 100%);
     max-height: 13rem;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #492200;
-    font-size: 2.5rem;
+    font-size: 2rem; /* Ajustement en rem pour être fluide */
     font-family: "Risque";
-  
-  }
-  h2{
-    font-family: "risque";
-    font-size: 2rem; 
-    color: #F8B941; 
-    -webkit-text-stroke: 1px #492200;
-    text-align: center;   
 }
 
-p{
-  font-family: "roboto";
-  font-size: 1rem;
-  color:#492200;
-  text-align:center;
-  max-width: 50rem;
-  margin:0 auto;
+h2 {
+    font-family: "risque";
+    font-size: 1.75rem; /* Ajustement en rem */
+    color: #F8B941;
+    -webkit-text-stroke: 1px #492200;
+    text-align: center;
 }
-h3{
-  font-family: "risque"; 
-  font-size: 1.5rem; 
-  color:#492200;
-  text-align:center;
+
+p {
+    font-family: "roboto";
+    font-size: 1rem; /* Ajustement en rem pour le texte courant */
+    color: #492200;
+    text-align: center;
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+h3 {
+    font-family: "risque";
+    font-size: 1.5rem; /* Ajustement en rem */
+    color: #492200;
+    text-align: center;
 }
 
 /* Contrôles du carrousel */
-.btn-prev,
-.btn-next {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #492200;
-    border: none;
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Taille réduite sur mobile */
+    height: 5%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1000;
 }
 
-.btn-prev {
-    left: 10px; /* Place le bouton à gauche du carrousel */
+.carousel-control-prev {
+    left: 0.5rem; /* Positionné légèrement à gauche */
 }
 
-.btn-next {
-    right: 10px; /* Place le bouton à droite du carrousel */
+.carousel-control-next {
+    right: 0.5rem; /* Positionné légèrement à droite */
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: #492200; /* Couleur des icônes */
+    background-color: #492200;
     border-radius: 50%;
 }
 
-/* Ajuste le conteneur autour de l'image */
+/* Ajustement du conteneur autour de l'image */
 .carousel-item {
     text-align: center;
-    height: 500px; /* Fixe la hauteur du carrousel */
+    height: auto; /* Retirer la hauteur fixe pour une meilleure responsivité */
 }
 
-/*animation de séparation*/
+/* Animation du jaguar */
 .jaguar {
-    width: 4rem; 
+    width: 4rem;
     height: 3rem;
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     animation: moveRight 5s linear infinite;
-  }
-  
-  @keyframes moveRight {
+}
+
+@keyframes moveRight {
     from {
         left: 0;
     }
     to {
         left: 100%;
     }
-  }
-  .jaguar-container{
-  position: relative;
-  height: 5rem;
-  margin-top: 20px;
-  }
+}
 
+.jaguar-container {
+    position: relative;
+    height: 5rem;
+    margin-top: 20px;
+}
+
+/* Ajustements pour les écrans plus larges */
+@media (min-width: 768px) {
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 2.5rem; /* Ajuster les flèches pour les grands écrans */
+        height: 2.5rem;
+    }
+
+    .carousel-item {
+        height: 30rem; /* Ajustement de la hauteur pour les grands écrans */
+    }
+
+    .banner {
+        font-size: 2.5rem; /* Taille plus grande pour la bannière sur grand écran */
+    }
+
+    h2 {
+        font-size: 2rem; /* Augmente légèrement la taille des titres sur grand écran */
+    }
+
+    h3 {
+        font-size: 1.75rem; /* Ajuste les sous-titres */
+    }
+
+    p {
+        font-size: 1.125rem; /* Augmente légèrement la taille du texte courant */
+    }
+}

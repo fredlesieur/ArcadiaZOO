@@ -46,7 +46,7 @@
     border-radius: 5px;
 }
 .logo {
-    width: 3.5rem; /* Adapt size based on rem */
+    width: 5rem; /* Adapt size based on rem */
     height: auto;
     margin-bottom: 1rem;
     border-radius: 100%;
@@ -124,13 +124,13 @@ footer {
 }
 
 .footer .logo {
-    width: 4rem;
+    width: 5rem;
     height: auto;
     border-radius: 100%;
     border: solid 0.25rem #F8B941;
 }
 
-.fa-brands {
+.fab {
     font-size: 1.5rem;
     color: #FAF4ED;
 }

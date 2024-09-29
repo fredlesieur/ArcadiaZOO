@@ -1,5 +1,4 @@
-<h2>Liste des rapports vétérinaires</h2>
-
+<h2 class="container-fluid banner pt-5 pb-5"><?= $title; ?></h2>
 <ul>
     <?php foreach ($rapports as $rapport): ?>
         <li>
