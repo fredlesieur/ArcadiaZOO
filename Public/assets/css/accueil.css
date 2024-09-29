@@ -209,7 +209,6 @@ h3 {
   animation: moveRight 5s linear infinite;
   background-color: #FAF4ED;
 }
-
 @keyframes moveRight {
   from {
     left: 0;

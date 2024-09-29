@@ -2,7 +2,7 @@
 
 namespace App\Models;
 use App\Config\Db;
-use PDO;
+
 class AvisModel extends Model
 {
     protected $id;
@@ -37,5 +37,20 @@ class AvisModel extends Model
         $query = $db->query ('SELECT pseudo, comment FROM avis WHERE valid = 1');
         return $query->fetchAll();
     }
+    public function getAvisValides()
+{
+    return $this->req("SELECT pseudo, comment FROM {$this->table} WHERE valid = 1")->fetchAll();
+}
+
+public function validerAvis($id)
+{
+    return $this->req("UPDATE {$this->table} SET valid = 1 WHERE id = ?", [$id]);
+}
+
+public function invaliderAvis($id)
+{
+    return $this->req("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+}
+
 }
 

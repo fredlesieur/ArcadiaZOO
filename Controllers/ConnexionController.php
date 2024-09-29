@@ -31,11 +31,11 @@ class ConnexionController extends Controller
 
             // Redirection selon le rôle
             if ($user['role'] === 'administrateur') {
-                header("Location: /admin/dashboard");
+                header("Location: /admin/index");
             } elseif ($user['role'] === 'veterinaire') {
-                header("Location: /veterinaire/dashboard");
+                header("Location: /veterinaire/index");
             } elseif ($user['role'] === 'employe') {
-                header("Location: /employe/dashboard");
+                header("Location: /employe/index");
             }
             exit;
         } else {
@@ -47,5 +47,23 @@ class ConnexionController extends Controller
         $this->render('connexion/index', compact('error'));
     }
 }
+public function logout()
+{
+    // Démarrer la session si elle n'est pas déjà démarrée
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Détruire toutes les variables de session
+    $_SESSION = [];
+
+    // Détruire la session
+    session_destroy();
+
+    // Redirection vers la page d'accueil des visiteurs
+    header("Location: /");
+    exit;
+}
 
 }
+
