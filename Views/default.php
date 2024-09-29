@@ -13,50 +13,49 @@
     <title>Zoo Arcadia</title>
 </head>
 <body class="m-5">
-    <header>
-        <nav class="navbar navbar-expand-xl" data-bs-theme="secondary">
-            <div class="container-fluid m-3">
+<header>
+        <nav class="navbar navbar-expand-xl">
+            <div class="container-fluid">
                 <img class="logo" src="/assets/logo/logo.jpg" alt="logo">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon m-2"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-center align-items-center">
-                        <li class="nav-item ms-5">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
                             <a class="nav-link" href="/">Accueil</a>
                         </li>
-                        <li class="nav-item ms-5">
+                        <li class="nav-item">
                             <a class="nav-link" href="/habitats">Habitats</a>
                         </li>
-                        <li class="nav-item ms-5">
+                        <li class="nav-item">
                             <a class="nav-link" href="/service">Services</a>
                         </li>
-                        <li class="nav-item ms-5 me-5">
+                        <li class="nav-item">
                             <a class="nav-link" href="/contact">Contacts</a>
                         </li>
 
+                        <!-- Dynamic content based on user role -->
                         <?php if (isset($_SESSION['user_id'])): ?>
-                            <!-- Afficher Déconnexion et lien vers le tableau de bord en fonction du rôle -->
                             <?php if ($_SESSION['role'] == 'administrateur'): ?>
-                                <li class="nav-item ms-5">
-                                    <a class="nav-link me-5" href="/admin/index">Mon Tableau de bord Admin</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin/index">Tableau de bord Administrateur</a>
                                 </li>
                             <?php elseif ($_SESSION['role'] == 'employe'): ?>
-                                <li class="nav-item ms-5">
-                                    <a class="nav-link me-5" href="/employe/index">Mon Tableau de bord Employé</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/employe/index">Tableau de bord Employé</a>
                                 </li>
                             <?php elseif ($_SESSION['role'] == 'veterinaire'): ?>
-                                <li class="nav-item ms-5">
-                                    <a class="nav-link me-5" href="/veterinaire/index">Mon Tableau de bord Vétérinaire</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/veterinaire/index">Tableau de bord Vétérinaire</a>
                                 </li>
                             <?php endif; ?>
-                            <li class="nav-item ms-5">
-                                <a class="nav-link me-5" href="/connexion/logout">Se déconnecter</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/connexion/logout">Déconnexion</a>
                             </li>
                         <?php else: ?>
-                            <!-- Afficher Connexion si non connecté -->
-                            <li class="nav-item ms-5">
-                                <a class="nav-link me-5 connexion" href="/connexion">Se connecter</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/connexion">Connexion</a>
                             </li>
                         <?php endif; ?>
                     </ul>
@@ -72,13 +71,15 @@
     <footer>
         <div class="footer">
             <div class="first-line">
-                <a href=""><img src="/assets/logo/logo.jpg" alt="Logo" class="logo ms-3"></a>
-                <a href=""><i class="fa-brands fa-instagram"></i></a>
-                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href="/"><img src="/assets/logo/logo.jpg" alt="Logo Zoo" class="logo"></a>
+                <div>
+                    <a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com"><i class="fa-brands fa-facebook"></i></a>
+                </div>
             </div>
             <div class="second-line">
-                <p>&copy; Frédéric LESIEUR 2024</p>
-                <a href="">Mentions légales</a>
+                <p>&copy; Zoo Arcadia 2024</p>
+                <a href="/mentions-legales">Mentions légales</a>
             </div>
         </div>
     </footer>

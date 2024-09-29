@@ -42,4 +42,13 @@ public function findUserByEmail($email)
     
     return $this->req($sql, [$email])->fetch();
 }
+public function createUser($email, $password, $role_id)
+{
+    $sql = "INSERT INTO users (email, password, role_id) VALUES (:email, :password, :role_id)";
+    return $this->req($sql, [
+        'email' => $email,
+        'password' => $password,
+        'role_id' => $role_id
+    ]);
+}
 }

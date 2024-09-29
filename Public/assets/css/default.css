@@ -5,21 +5,6 @@
     list-style: none;
 }
 
-.navbar{
-    background: rgb(155,101,7);
-    background: linear-gradient(90deg, rgba(155,101,7,1) 0%, rgba(53,35,2,1) 100%);
-}
-
-.navbar-toggler-icon{
-    color: #FAF4ED;
-    background-color: #F8B941;
-    border-radius: 5px;
-}
-.navbar button{
-    background-color: #F8B941;
-    border:solid 2px #FAF4ED;
-}
-
 .collapse ul a {
     color: #FAF4ED;
     font-size: 1.25rem;
@@ -48,41 +33,108 @@
     font-family: "Risque";
   
 }
+
+/* Mobile-first approach with rem units */
+.navbar {
+    background: rgb(155,101,7);
+    background: linear-gradient(90deg, rgba(155,101,7,1) 0%, rgba(53,35,2,1) 100%);
+    padding: 1rem;
+}
+.navbar-toggler-icon{
+    color: #FAF4ED;
+    background-color: #F8B941;
+    border-radius: 5px;
+}
+.logo {
+    width: 3.5rem; /* Adapt size based on rem */
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 100%;
+    border: solid 5px #F8B941;
+}
+.navbar button{
+    background-color: #F8B941;
+    border:solid 2px #FAF4ED;
+}
+.navbar-toggler {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-left: auto;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.75rem 0;
+    font-size: 1rem; /* Use rem for responsive text sizing */
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 768px) {
+    .navbar-nav .nav-item {
+        margin: 0 1.5rem; /* Ajoute de l'espace horizontal entre chaque lien */
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.85rem 0; /* Ajuste la taille du padding */
+        font-size: 1.2rem; /* Légère augmentation de la taille du texte pour desktop */
+    }
+
+    .navbar-collapse {
+        max-height: 400px; /* Pour garantir une bonne apparence sur les grands écrans */
+    }
+}
+/* Footer styles */
 footer {
     width: 100%;
     background-color: #9b6507;
-    padding: 1rem 0;
-    margin-top: 1.5rem;
-    text-align: center;
+    padding: 1.5rem 0;
+    color: #FAF4ED;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .first-line {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .second-line {
-    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
 }
-.second-line p, .second-line a {
-    margin: 0;
-    color: #492200;
-}
-.logo {
-    width:12vh;
-    height :auto;
-    border-radius: 100%;
-    border: solid 5px #F8B941;
-   
-}
-.fa-brands{
-    color: #faf4ed;
-    font-size: 2rem;
 
+.footer a {
+    color: #FAF4ED;
+    text-decoration: none;
 }
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer .logo {
+    width: 4rem;
+    height: auto;
+    border-radius: 100%;
+    border: solid 0.25rem #F8B941;
+}
+
+.fa-brands {
+    font-size: 1.5rem;
+    color: #FAF4ED;
+}
+
 
 
 

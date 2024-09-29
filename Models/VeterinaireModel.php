@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+
+
 class VeterinaireModel extends Model {
     protected $table = 'rapports_veterinaires'; // Nom de la table contenant les rapports vétérinaires
 

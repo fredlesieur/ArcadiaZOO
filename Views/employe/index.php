@@ -1,4 +1,4 @@
-<h1><?= $title; ?></h1>
+<h1 class="container-fluid banner pt-5 pb-5"><?= $title; ?></h1>
 
 <!-- Menu de navigation du dashboard Employé -->
 <nav>
