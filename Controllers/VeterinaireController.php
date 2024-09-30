@@ -7,19 +7,28 @@ use App\Models\VeterinaireModel;
 class VeterinaireController extends Controller {
 
     
-    // Affiche le tableau de bord vétérinaire
-    public function index() {
-        // Définir le titre de la page
-        $title = "Tableau de bord vétérinaire";
-    
-        // Passer la variable à la vue
-        $this->render('/veterinaire/index', compact('title'));
+    private $veterinaireModel;
+
+    public function __construct() {
+        $this->veterinaireModel = new VeterinaireModel(); // Instanciation du modèle
     }
 
-    public function ajouterRapport()
-{
-    // Logique pour gérer la nourriture des animaux
-    $title = "Ajouter un rapport";
-    $this->render('/veterinaire/ajouterRapport', compact('title'));
-}
+    public function saveRapport() {
+        // Récupérer les données du formulaire
+        $data = [
+            'animal_id' => $_POST['animal_id'],
+            'etat' => $_POST['etat'],
+            'nourriture' => $_POST['nourriture'],
+            'grammage' => $_POST['grammage'],
+            'date_passage' => $_POST['date_passage'],
+            'detail_ett' => $_POST['detail_ett'] ?? null, // facultatif
+        ];
+
+        // Appeler la méthode du modèle pour ajouter un rapport
+        $this->veterinaireModel->ajouterRapport($data);
+
+        // Redirection après ajout réussi
+        header("Location: /veterinaire/rapports");
+        exit;
+    }
 }

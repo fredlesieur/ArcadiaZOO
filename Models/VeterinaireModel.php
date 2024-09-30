@@ -3,8 +3,15 @@
 namespace App\Models;
 
 class VeterinaireModel extends Model {
+
+        protected $table = 'rapports_veterinaires'; // Nom de la table
     
-    protected $table = 'rapports_veterinaires'; // Nom de la table contenant les rapports vétérinaires
+        public function __construct() {
+            // Appel au constructeur parent si nécessaire
+            parent::__construct(); 
+            // Initialisation des propriétés si besoin
+            $this->table = 'rapports_veterinaires'; 
+        }
 
     // Méthode pour ajouter un rapport vétérinaire (en utilisant create)
     public function ajouterRapport($data) {
@@ -22,4 +29,24 @@ class VeterinaireModel extends Model {
     public function getRapportsByAnimal($animal_id) {
         return $this->findBy(['animal_id' => $animal_id]); // Utilisation de findBy existant
     }
+
+    public function saveRapport() {
+        // Récupérer les données du formulaire
+        $data = [
+            'animal_id' => $_POST['animal_id'],
+            'etat' => $_POST['etat'],
+            'nourriture' => $_POST['nourriture'],
+            'grammage' => $_POST['grammage'],
+            'date_passage' => $_POST['date_passage'],
+            'detail_ett' => $_POST['detail_ett'] ?? null, // facultatif
+        ];
+    
+        // Appeler la méthode du modèle pour ajouter un rapport
+        $this->VeterinaireModel->ajouterRapport($data);
+    
+        // Redirection après ajout réussi
+        header("Location: /veterinaire/rapports");
+        exit;
+    }
+    
 }
