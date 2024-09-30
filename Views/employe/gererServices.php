@@ -1,4 +1,4 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/employeService.css">' ?>
+<?php $link = '<link rel="stylesheet" href="/assets/css/employe.css">' ?>
 
 <h1 class="container-fluid banner pt-5 pb-5">Gérer les Services</h1>
 
