@@ -15,7 +15,11 @@ class AnimalModel extends Model
     public function __construct() {
         $this->table = "animaux";
     }
-
+    public function findAllOrderedByName() {
+        $sql = "SELECT * FROM animaux ORDER BY nom ASC";
+        return $this->req($sql)->fetchAll();
+    }
+    
     // Getters
     public function getId() {
         return $this->id;

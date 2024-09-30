@@ -1,13 +1,12 @@
 <h2>Ajouter un rapport vétérinaire</h2>
 
 <form action="/veterinaire/saveRapport" method="post">
-    <label for="animal_id">Animal :</label>
+    <label for="animal_id">Choisir un animal :</label>
     <select name="animal_id" id="animal_id">
-        <?php foreach ($animal as $animals): ?>
-            <option value="<?= $animals['id']; ?>"><?= $animals['nom']; ?></option>
+        <?php foreach ($animaux as $animal): ?>
+            <option value="<?= $animal['id']; ?>"><?= $animal['nom']; ?></option>
         <?php endforeach; ?>
-    </select><br>
-
+    </select>
     <label for="etat">État de l'animal :</label>
     <input type="text" name="etat" id="etat"><br>
 
