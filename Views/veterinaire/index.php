@@ -5,8 +5,8 @@
 <!-- Menu de navigation du dashboard Employé -->
 <nav class="veterinaire-nav">
     <ul>
-        <li><a href="/veterinaire/ajouterRapport">Gérer les Avis</a></li>
-        <li><a href="/veterinaire/rapports">Gérer la Nourriture des Animaux</a></li>
-        <li><a href="/veterinaire/rapportEmploye">Gérer les services</a></li>
+        <li><a href="/veterinaire/ajouterRapport">AjouterRapport</a></li>
+        <li><a href="/veterinaire/rapports">Rapport</a></li>
+        <li><a href="/veterinaire/rapportEmploye">rapportEmploye</a></li>
     </ul>
 </nav>

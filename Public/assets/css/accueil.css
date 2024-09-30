@@ -6,7 +6,7 @@
 /* design BANNER */
 .banner {
   background: rgb(248, 185, 65);
-  background: linear-gradient(90deg, rgba(248, 185, 65, 1) 0%, rgba(146, 109, 38, 1) 100%);
+  background: linear-gradient(90deg, rgba(248, 185, 65, 1) 0%, rgb(146, 109, 38) 100%);
   max-height: 13rem;
   display: flex;
   justify-content: center;

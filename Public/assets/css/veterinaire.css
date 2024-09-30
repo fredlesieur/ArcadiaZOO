@@ -40,39 +40,6 @@ p {
     max-width: 50rem;
     margin: 0 auto;
 }
-.avi{
-    border:solid 2px #492200;
-    background-color: #FAF4ED;
-}
-.btn-success{
-    background-color:#7AA95C ;
-    color: white;
-    border: solid 2px #492200;
-    box-shadow: 5px 2px 10px #7aa80b;
-    border-radius: 10px;
-    padding: 10px;
-    width: 5rem;
-    
-}
-.btn-danger{
-    background-color:#9e2f07 ;
-    color: white;
-    border: solid 2px #492200;
-    box-shadow: 5px 2px 10px #621e05;
-    border-radius: 10px;
-    padding: 10px;
-    width: 6rem;
-    
-}
-.btn-warning{
-    background-color:rgb(146, 109, 38) ;
-    color: white;
-    border: solid 2px #492200;
-    box-shadow: 5px 2px 10px #b47705;
-    border-radius: 10px;
-    padding: 10px;
-    width: 6rem;  
-}
 /* Form container */
 form {
     background-color: #FAF4ED;
@@ -132,9 +99,7 @@ input, select {
     font-family: "Risque", cursive;
     font-size: 2.5rem;
 }
-
-/* Menu de navigation du dashboard employé */
-.employee-nav {
+.veterinaire-nav {
     background-color: #FAF4ED;
     border: 2px solid #492200;
     border-radius: 10px;
@@ -144,21 +109,21 @@ input, select {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.employee-nav ul {
+.veterinaire-nav ul {
     list-style: none;
     padding: 0;
 }
 
-.employee-nav ul li {
+.veterinaire-nav ul li {
     margin-bottom: 1rem;
 }
 
-.employee-nav ul li:last-child {
+.veterinaire-nav ul li:last-child {
     margin-bottom: 0;
 }
 
 /* Liens du menu employé */
-.employee-nav ul li a {
+.veterinaire-nav ul li a {
     text-decoration: none;
     color: #492200;
     font-size: 1.25rem;
@@ -171,31 +136,31 @@ input, select {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.employee-nav ul li a:hover {
+.veterinaire-nav ul li a:hover {
     background-color: #492200;
     color: #FAF4ED;
 }
 
 /* Responsive mobile-first */
 @media (max-width: 576px) {
-    .employee-nav {
+    .veterinaire-nav {
         max-width: 100%;
         padding: 1rem;
     }
 
-    .employee-nav ul li a {
+    .veterinaire-nav ul li a {
         font-size: 1rem;
     }
 }
 
 @media (min-width: 768px) {
-    .employee-nav ul li a {
+    .veterinaire-nav ul li a {
         font-size: 1.25rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .employee-nav {
+    .veterinaire-nav {
         max-width: 35rem;
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\ConnexionModel;
 use App\Models\VeterinaireModel;
 use App\Models\AnimalModel;
 class VeterinaireController extends Controller
@@ -56,6 +55,11 @@ public function saveRapport()
     $title = "Rapport Employes";
     $this->render('veterinaire/rapportEmploye', compact('title'));
 }
-
+public function rapports()
+{
+  
+    $title = "Rapports vétérinaires";
+    $this->render('veterinaire/rapports', compact('title'));
+}
     
 }

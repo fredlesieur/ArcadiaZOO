@@ -19,6 +19,6 @@
                 <option value="veterinaire">Vétérinaire</option>
             </select>
         </div>
-        <button type="submit" class="btn button w-100">Créer le compte</button>
+        <button type="submit" class="btn button w-100 mt-2">Créer le compte</button>
     </form>
 </div>

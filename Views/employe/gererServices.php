@@ -33,7 +33,7 @@
         <label for="horaires">Horaires :</label>
         <input type="text" name="horaires" id="horaires" value="<?= isset($service['horaires']) ? $service['horaires'] : '' ?>" required><br>
 
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" class="btn btn-success w-100">Ajouter</button>
     </form>
 </div>
 

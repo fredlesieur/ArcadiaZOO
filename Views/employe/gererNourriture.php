@@ -22,6 +22,6 @@
         <label for="date_passage">Date de passage :</label>
         <input type="date" name="date_passage" id="date_passage"><br>
 
-        <button type="submit">Ajouter</button>
+        <button type="submit" class="btn btn-success w-100 mt-2">Ajouter</button>
     </form>
 </div>
