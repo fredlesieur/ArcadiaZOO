@@ -37,7 +37,7 @@ class AdminController extends Controller
             $connexionModel->createUser($email, $passwordHash, $roleId);
 
             $_SESSION['success'] = "Le compte utilisateur a été créé avec succès.";
-            header("Location: /admin/index");
+            header("Location: admin/index");
             exit;
         }
     }

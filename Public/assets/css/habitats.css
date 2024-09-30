@@ -26,14 +26,22 @@ h3{
   text-align:center;
 }
 /* design des boutons*/
-.button{
-    background-color: #492200; 
-    color: #F8B941; 
-    border: none; 
-    box-shadow: 5px 2px 10px #F8B941;
-    border-radius: 10px;
-    padding:8px;
-  }
+.button {
+  background-color: #492200;
+  color: #F8B941;
+  border: solid 2px #F8B941;
+  box-shadow: 5px 2px 10px #F8B941;
+  border-radius: 10px;
+  padding: 8px;
+}
+.button:hover{
+  background-color: #F8B941; 
+  color: #492200;
+  border:solid 2px #492200 ;
+  box-shadow: 5px 2px 10px #492200;
+  border-radius: 10px;
+  padding: 8px;
+}
   /* espace pour separer le carrousel des sections*/
   .space{
 

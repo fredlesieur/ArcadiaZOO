@@ -16,7 +16,8 @@ class VeterinaireController extends Controller
         $title = "Tableau de bord vétérinaire";
 
         // Passer la variable à la vue
-        $this->render('/veterinaire/index', compact('title'));
+        $this->render('veterinaire/index', compact('title'));
+
     }
 
     public function ajouterRapport()
@@ -29,7 +30,7 @@ class VeterinaireController extends Controller
 
     // Rendre la vue avec la liste des animaux triés
     $title = "Ajouter un rapport";
-    $this->render('/veterinaire/ajouterRapport', compact('title', 'animaux'));
+    $this->render('veterinaire/ajouterRapport', compact('title', 'animaux'));
 }
 public function saveRapport()
 {
@@ -55,6 +56,12 @@ public function saveRapport()
         // Gérer l'erreur
         echo "Une erreur s'est produite lors de l'ajout du rapport.";
     }
+}
+ public function rapportEmploye()
+{
+  
+    $title = "Rapport Employes";
+    $this->render('veterinaire/rapportEmploye', compact('title'));
 }
 
     

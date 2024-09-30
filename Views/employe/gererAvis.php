@@ -1,9 +1,15 @@
-<h2>Gestion des avis en attente</h2>
+<?php $link = '<link rel="stylesheet" href="/assets/css/employe.css">' ?>
+
+<div class="mx-auto p-4">
+    <h2 class="text-center">Gérer les avis</h2>
 <?php foreach ($avisEnAttente as $avis): ?>
-    <div>
+    <div class=" avi mx-auto p-4 m-3">
         <h3><?= htmlspecialchars($avis['pseudo']); ?></h3>
-        <p><?= htmlspecialchars($avis['comment']); ?></p>
-        <a href="/employe/validerAvis/<?= $avis['id']; ?>" class="btn btn-success">Valider</a>
-        <a href="/employe/invaliderAvis/<?= $avis['id']; ?>" class="btn btn-danger">Invalider</a>
+        <p><?= htmlspecialchars($avis['comment']); ?></p><br>
+        <div class=" d-flex justify-content-center">
+            <a href="/employe/validerAvis/<?= $avis['id']; ?>" class="btn btn-success mx-2">Valider</a>
+            <a href="/employe/invaliderAvis/<?= $avis['id']; ?>" class="btn btn-danger">Refuser</a>
+        </div>
     </div>
 <?php endforeach; ?>
+</div>

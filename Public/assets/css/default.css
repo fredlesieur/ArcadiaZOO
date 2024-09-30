@@ -52,10 +52,6 @@
     border-radius: 100%;
     border: solid 5px #F8B941;
 }
-.navbar button{
-    background-color: #F8B941;
-    border:solid 2px #FAF4ED;
-}
 .navbar-toggler {
     display: flex;
     align-items:center;
