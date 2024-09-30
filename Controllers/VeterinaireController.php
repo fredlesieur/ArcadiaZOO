@@ -8,13 +8,12 @@ use App\Models\AnimalModel;
 class VeterinaireController extends Controller
 {
 
-
+    
     // Affiche le tableau de bord vétérinaire
-    public function index()
-    {
+    public function index() {
         // Définir le titre de la page
         $title = "Tableau de bord vétérinaire";
-
+    
         // Passer la variable à la vue
         $this->render('veterinaire/index', compact('title'));
 
@@ -22,13 +21,7 @@ class VeterinaireController extends Controller
 
     public function ajouterRapport()
 {
-    // Charger le modèle pour les animaux
-    $animalModel = new AnimalModel();
-
-    // Récupérer tous les animaux triés par ordre alphabétique
-    $animaux = $animalModel->findAllOrderedByName();
-
-    // Rendre la vue avec la liste des animaux triés
+    // Logique pour gérer la nourriture des animaux
     $title = "Ajouter un rapport";
     $this->render('veterinaire/ajouterRapport', compact('title', 'animaux'));
 }
