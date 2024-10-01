@@ -54,7 +54,7 @@
                     <td><?= htmlspecialchars($service['name']); ?></td>
                     <td><?= htmlspecialchars($service['categorie']); ?></td>
                     <td>
-                        <a href="/employe/modifierService/<?= $service['id']; ?>" class="btn btn-warning">Modifier</a>
+                        <a href="/employe/modifierService/<?= $service['id']; ?>" class="btn btn-warning mx-2">Modifier</a>
                         <a href="/employe/supprimerService/<?= $service['id']; ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?')">Supprimer</a>
                     </td>
                 </tr>

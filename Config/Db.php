@@ -6,7 +6,6 @@ use PDO;
 
 class Db extends PDO
 {
-    
     private static $instance;
 
     private const DBHOST = 'localhost';
@@ -21,8 +20,6 @@ class Db extends PDO
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
-            
-        
 
     public static function getInstance(): self
     {

@@ -25,6 +25,32 @@ h3{
   color:#492200;
   text-align:center;
 }
+/* Animation du jaguar */
+.jaguar {
+  width: 4rem;
+  height: 3rem;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: moveRight 5s linear infinite;
+}
+
+@keyframes moveRight {
+  from {
+      left: 0;
+  }
+  to {
+      left: 100%;
+  }
+}
+
+.jaguar-container {
+  position: relative;
+  height: 5rem;
+  margin-top: 20px;
+}
+
 /* design des boutons*/
 .button {
   background-color: #492200;
@@ -77,67 +103,3 @@ h3{
       text-align: center;
       height: auto; /* Retirer la hauteur fixe pour une meilleure responsivité */
   }
-.jaguar {
-    width: 4rem; 
-    height: 3rem;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    animation: moveRight 5s linear infinite;
-  }
-  
-  @keyframes moveRight {
-    from {
-        left: 0;
-    }
-    to {
-        left: 100%;
-    }
-  }
-  .jaguar-container{
-  position: relative;
-  height: 5rem;
-  margin-top: 20px;
-  }
-  /* Animation du jaguar pour les écrans plus larges (desktop) */
-.jaguar {
-  width: 4rem;
-  height: 3rem;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: moveRight 5s linear infinite;
-}
-
-@keyframes moveRight {
-  from {
-      left: 0;
-  }
-  to {
-      left: 100%;
-  }
-}
-
-.jaguar-container {
-  position: relative;
-  height: 5rem;
-  margin-top: 20px;
-}
-
-/* Media query pour désactiver l'animation sur mobile (max-width: 768px) */
-@media (max-width: 768px) {
-  .jaguar {
-      position: static !important;
-      width: auto !important; 
-      height: auto !important;
-      animation: none !important; 
-      display: block !important;
-      margin: 0 auto !important; 
-  }
-
-  .jaguar-container {
-      height: auto !important;
-  }
-}

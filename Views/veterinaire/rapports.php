@@ -7,7 +7,7 @@
             <li>
                 Animal ID: <?= $rapport['animal_id']; ?>, État: <?= $rapport['etat']; ?>, Nourriture:
                 <?= $rapport['nourriture']; ?>, Grammage: <?= $rapport['grammage']; ?>g, Date:
-                <?= $rapport['date_passage']; ?>
+                <?= $rapport['date_passage']; ?>, Détail État: <?= $rapport['detail_etat']; ?> 
             </li>
         <?php endforeach; ?>
     </ul>
