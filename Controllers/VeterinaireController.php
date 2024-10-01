@@ -22,34 +22,29 @@ class VeterinaireController extends Controller
         $this->render('veterinaire/ajouterRapport', compact('title', 'animaux'));
     }
 
-    public function saveRapport()
-    {
-        $data = [
-            'animal_id' => $_POST['animal_id'],
-            'etat' => $_POST['etat'],
-            'nourriture' => $_POST['nourriture'],
-            'grammage' => $_POST['grammage'],
-            'date_passage' => $_POST['date_passage'],
-            'detail_etat' => $_POST['detail_etat'] ?? null,
-            'user_id' => $_SESSION['user_id'],
-        ];
-
-        $veterinaireModel = new VeterinaireModel();
-
-        if ($veterinaireModel->ajouterRapport($data)) {
-            header("Location: /veterinaire/rapports");
-            exit;
-        } else {
-            echo "Une erreur s'est produite lors de l'ajout du rapport.";
-        }
-    }
-
     public function rapports()
     {
         $title = "Rapports vétérinaires";
         $veterinaireModel = new VeterinaireModel();
         $rapports = $veterinaireModel->findAll();
 
-        $this->render('veterinaire/rapports', compact('title', 'rapports'));
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $user_id = $_SESSION['user_id'];
+            $animal_id = $_POST['animal_id'];
+            $etat = $_POST['etat'];
+            $nourriture = $_POST['nourriture'];
+            $grammage = $_POST['grammage'];
+            $date_passage = $_POST['date_passage'];
+            $detail_etat = $_POST['detail_etat'];
+
+            if ($veterinaireModel->ajouterRapport($user_id, $animal_id, $etat, $nourriture, $grammage, $date_passage, $detail_etat)) {
+                header("Location: /veterinaire");
+                exit();
+            } else {
+            echo "Une erreur s'est produite";
+            }
+        }
+
+        $this->render('veterinaire/rapports/index', compact('title', 'rapports'));
     }
 }

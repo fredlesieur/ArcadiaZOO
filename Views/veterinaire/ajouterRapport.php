@@ -1,6 +1,6 @@
 <?php $link = '<link rel="stylesheet" href="/assets/css/veterinaire.css">' ?>
 
-<form action="/veterinaire/saveRapport" method="POST">
+<form action="/veterinaire/rapports" method="POST">
     <div class="form-group">
         <label for="animal_id">Animal</label>
         <select name="animal_id" class="form-control" required>
@@ -29,5 +29,5 @@
         <label for="detail_etat">Détails sur l'état</label>
         <textarea name="detail_etat" class="form-control"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button type="submit" class="btn button">Enregistrer</button>
 </form>
