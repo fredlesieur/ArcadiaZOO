@@ -17,10 +17,10 @@ class ServiceController extends Controller
 
         $servModel = new ServModel();
         $Critere= ['categorie' => 'visite'];
-        $visite = $ServModel->findBy($Critere);
+        $visites = $ServModel->findBy($Critere);
 
         $services = new ServModel();
         $services =$ServModel->findAll();
-        $this->render("service/index", compact("restaurant", "services", "train", "visite",));
+        $this->render("service/index", compact("restaurant", "services", "train", "visites",));
     }  
 }

@@ -31,7 +31,7 @@
 <!-- Liste des habitats -->
 <div class="space"></div>
 
-<?php foreach ($habitats as $index => $habitat): ?>
+<?php foreach ($habitats as $habitat): ?>
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div>
       <h2 class="p-3"><?= ucwords($habitat["name"]); ?></h2>

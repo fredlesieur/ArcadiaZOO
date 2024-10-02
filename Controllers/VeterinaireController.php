@@ -4,8 +4,7 @@ namespace App\Controllers;
 
 use App\Models\VeterinaireModel;
 use App\Models\AnimalModel;
-use App\Models\ConnexionModel;
-use App\Models;
+
 
 class VeterinaireController extends Controller
 {

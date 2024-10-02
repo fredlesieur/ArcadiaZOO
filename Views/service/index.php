@@ -64,4 +64,17 @@
     <?php endforeach; ?>
 </section>
 
+<section class="colorSection p-3 p-lg-4 p-xl-5">
+    <?php foreach ($visites as $visite): ?>
+        <h2><?= htmlspecialchars($visite["name"]); ?></h2>
+        <p id="presentation-text" class="d-none d-lg-block p-5">
+            <?= htmlspecialchars($visite["description"]); ?>
+        </p>
+        <p class="p-1">Tarif : <?= htmlspecialchars($visite["tarifs"]); ?></p>
+        <p class="p-1">Ouvert de : <?= htmlspecialchars($visite["horaires"]); ?></p>
+        <div class="image d-flex justify-content-center">
+            <img src="/assets/images/<?= htmlspecialchars($visite['image2']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($visite['name']) ?>">
+        </div>
+    <?php endforeach; ?>
+</section>
 <script src="assets/javascript/jaguar.js"></script>
