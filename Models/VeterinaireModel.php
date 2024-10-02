@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Config\Db;
+use Exception;
+use App\Models\AnimalModel;
 
 class VeterinaireModel extends Model
 {
@@ -19,19 +21,43 @@ class VeterinaireModel extends Model
         $this->table = 'rapports_veterinaires';
     }
 
-    public function ajouterRapport($user_id, $animal_id, $etat, $nourriture, $grammage, $date_passage, $detail_etat)
+    public function ajouterRapport($data)
     {
-        $this->req("INSERT INTO " .$this->table. "(user_id, animal_id, etat, nourriture, grammage, date_passage, detail_etat) 
-                VALUES (:user_id, :animal_id, :etat, :nourriture, :grammage, :date_passage, :detail_etat)",
-                [
-                    'user_id' => $user_id,
-                    'animal_id' => $animal_id,
-                    'etat' => $etat,
-                    'nourriture' => $nourriture,
-                    'grammage' => $grammage,
-                    'date_passage' => $date_passage,
-                    'detail_etat' => $detail_etat
-                ]
+        return $this->req(
+            "INSERT INTO " . $this->table . " (user_id, animal_id, etat, nourriture, grammage, date_passage, detail_etat) 
+            VALUES (:user_id, :animal_id, :etat, :nourriture, :grammage, :date_passage, :detail_etat)",
+            [
+                'user_id' => $data['user_id'],
+                'animal_id' => $data['animal_id'],
+                'etat' => $data['etat'],
+                'nourriture' => $data['nourriture'],
+                'grammage' => $data['grammage'],
+                'date_passage' => $data['date_passage'],
+                'detail_etat' => $data['detail_etat']
+            ]
         );
     } 
+
+    public function selectRapportsWithAnimals()
+    {
+        return $this->req(
+            "SELECT r.*, a.nom AS animal_nom, u.nom_prenom AS user_nom_prenom 
+            FROM " . $this->table . " r
+            JOIN animaux a ON r.animal_id = a.id
+            JOIN users u ON r.user_id = u.id"
+        );
+    }
+    public function selectRapportsWithAnimalsById($id)
+    {
+        return $this->req(
+            "SELECT r.*, a.nom AS animal_nom, u.nom_prenom AS user_nom_prenom 
+            FROM " . $this->table . " r
+            JOIN animaux a ON r.animal_id = a.id
+            JOIN users u ON r.user_id = u.id
+            WHERE r.id = :id",
+            ['id' => $id]
+        )->fetch();
+    }
+
+
 }

@@ -12,7 +12,7 @@
         <input type="text" name="name" id="name" value="<?= isset($service['name']) ? $service['name'] : '' ?>" required><br>
 
         <label for="description">Description :</label>
-        <textarea name="description" id="description" required><?= isset($service['description']) ? $service['description'] : '' ?></textarea><br>
+        <textarea class="w-100" name="description" id="description" required><?= isset($service['description']) ? $service['description'] : '' ?></textarea><br>
 
         <label for="image">Image :</label>
         <input type="file" name="image" id="image"><br>
@@ -51,8 +51,8 @@
         <tbody>
             <?php foreach ($services as $service): ?>
                 <tr>
-                    <td><?= htmlspecialchars($service['name']); ?></td>
-                    <td><?= htmlspecialchars($service['categorie']); ?></td>
+                    <td><?= $service['name']; ?></td>
+                    <td><?= $service['categorie']; ?></td>
                     <td>
                         <a href="/employe/modifierService/<?= $service['id']; ?>" class="btn btn-warning mx-2">Modifier</a>
                         <a href="/employe/supprimerService/<?= $service['id']; ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?')">Supprimer</a>

@@ -20,6 +20,27 @@ class AnimalModel extends Model
         $sql = "SELECT * FROM animaux ORDER BY nom ASC";
         return $this->req($sql)->fetchAll();
     }
+    public function getRapportByAnimalId($id) {
+        $sql = "SELECT rv.*, 
+                       a.nom AS animal_nom, 
+                       a.image AS animal_image, 
+                       a.age AS animal_age, 
+                       a.race AS animal_race, 
+                       h.name AS animal_habitat, 
+                       u.nom_prenom AS user_nom_prenom
+                FROM animaux a
+                LEFT JOIN rapports_veterinaires rv ON rv.animal_id = a.id
+                LEFT JOIN habitats h ON a.id_habitats = h.id
+                LEFT JOIN users u ON rv.user_id = u.id
+                WHERE a.id = :id"; 
+    
+        $stmt = $this->req($sql, ['id' => $id]);
+        $result = $stmt->fetch();
+        
+        return $result;
+    }
+    
+    
     
     // Getters
     public function getId() {
