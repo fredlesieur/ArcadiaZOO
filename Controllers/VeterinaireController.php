@@ -64,4 +64,58 @@ class VeterinaireController extends Controller
 
         $this->render('veterinaire/rapports', compact('title', 'rapports'));
     }
+    public function listeRapports() {
+        $veterinaireModel = new VeterinaireModel();
+        
+        // Récupérer tous les rapports sans filtre
+        $rapports = $veterinaireModel->getAllRapports();
+    
+        // Passer les rapports à la vue
+        $this->render('veterinaire/rapports', compact('rapports'));
+    }
+    
+    public function modifierRapport() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Hydrater les données envoyées via le formulaire
+            $data = [
+                'etat' => $_POST['etat'],
+                'nourriture' => $_POST['nourriture'],
+                'grammage' => $_POST['grammage'],
+                'date_passage' => $_POST['date_passage'],
+                'detail_etat' => $_POST['detail_etat']
+            ];
+    
+            // Récupérer l'ID du rapport à modifier
+            $rapportId = $_POST['id'];
+    
+            // Hydrate le modèle et utilise la méthode update
+            $VeterinaireModel = new VeterinaireModel();
+            $VeterinaireModel->hydrate($data);
+            $VeterinaireModel->update($rapportId);
+    
+            // Redirection après modification
+            header('Location: /veterinaire/rapports');
+        } else {
+            // Si c'est une requête GET, on affiche le formulaire de modification
+            $rapportId = $_GET['id'];
+            $VeterinaireModel = new VeterinaireModel();
+            $rapport = $VeterinaireModel->find($rapportId);
+    
+            // Afficher le formulaire avec les données du rapport
+            $this->render('veterinaire/modifierRapport', compact('rapport'));
+        }
+    }
+    public function supprimerRapport() {
+        if (isset($_GET['id'])) {
+            $rapportId = $_GET['id'];
+    
+            // Utiliser la méthode delete de ton modèle pour supprimer
+            $VeterinaireModel = new VeterinaireModel();
+            $VeterinaireModel->delete($rapportId);
+    
+            // Redirection après suppression
+            header('Location: /veterinaire/rapports');
+        }
+    }
+    
 }

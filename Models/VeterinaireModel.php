@@ -58,6 +58,9 @@ class VeterinaireModel extends Model
             ['id' => $id]
         )->fetch();
     }
-
-
+    public function getAllRapports() {
+        $sql = "SELECT * FROM rapports_veterinaires";
+        return $this->req($sql)->fetchAll();
+    }
+    
 }
