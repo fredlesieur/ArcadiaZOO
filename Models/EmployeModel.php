@@ -2,33 +2,35 @@
 
 namespace App\Models;
 use App\Models\Model;
-
-
+    
 class EmployeModel extends Model
 {
+    protected $id;
+    protected $user_id;
+    protected $animal_id;
+    protected $nourriture;
+    protected $quantite;
+    protected $date;
+    protected $observations; 
+
     protected $table = 'nourrir_employe';
 
-    // Méthode pour enregistrer un nourrissage
-    public function enregistrerNourrissage($user_id, $animal_id, $etat, $nourriture, $grammage, $date_passage)
+    public function __construct() {
+        $this->table = "nourrir_employe";
+    }
+    public function enregistrerRapportEmploye($user_id, $animal_id, $nourriture, $quantite, $date, $observations)
     {
         $sql = "INSERT INTO {$this->table} (user_id, animal_id, nourriture, quantite, date, observations) 
-                VALUES (:user_id, :animal_id, :nourriture, :quantite, :date_passage, :etat)";
+                VALUES (:user_id, :animal_id, :nourriture, :quantite, :date, :observations)";
 
         // Exécuter la requête avec les valeurs passées
         $this->req($sql, [
             'user_id' => $user_id,
             'animal_id' => $animal_id,
             'nourriture' => $nourriture,
-            'quantite' => $grammage,
-            'date_passage' => $date_passage,
-            'etat' => $etat
+            'quantite' => $quantite,
+            'date' => $date,
+            'observations' => $observations
         ]);
-    }
-
-    // Récupérer la liste des animaux
-    public function getAnimaux()
-    {
-        $sql = "SELECT * FROM animaux";
-        return $this->req($sql)->fetchAll();
     }
 }
