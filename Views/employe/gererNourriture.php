@@ -5,8 +5,8 @@
     <form action="/employe/gererNourriture" method="post">
         <label for="animal_id">Animal :</label>
         <select name="animal_id" id="animal_id">
-            <?php foreach ($animal as $animals): ?>
-                <option value="<?= $animals['id']; ?>"><?= $animals['nom']; ?></option>
+            <?php foreach ($animaux as $animal): ?>
+                <option value="<?= $animal['id']; ?>"><?= $animal['nom']; ?></option>
             <?php endforeach; ?>
         </select><br>
 
@@ -17,10 +17,10 @@
         <input type="text" name="nourriture" id="nourriture"><br>
 
         <label for="grammage">Grammage donné:</label>
-        <input type="number" name="grammage" id="grammage"><br>
+        <input type="text" name="grammage" id="grammage"><br>
 
         <label for="date_passage">Date de passage :</label>
-        <input type="date" name="date_passage" id="date_passage"><br>
+        <input type="datetime-local" name="date_passage" id="date_passage" class="form-control" value="<?= isset($animal['date_passage']) ? date('Y-m-d\TH:i', strtotime($animal['date_passage'])) : ''; ?>" required>
 
         <button type="submit" class="btn btn-success w-100 mt-2">Ajouter</button>
     </form>

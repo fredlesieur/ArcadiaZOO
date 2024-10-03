@@ -13,7 +13,7 @@ class AccueilController extends Controller
     {   
        
         $avisModel = new AvisModel();
-        $Avis = $avisModel->findAll();
+        $Avis = $avisModel->getAvisValides();
 
         $AnimalModel = new AnimalModel();
         $animaux = $AnimalModel->findAll();

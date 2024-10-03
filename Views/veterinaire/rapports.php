@@ -1,3 +1,4 @@
+
 <?php $link = '<link rel="stylesheet" href="/assets/css/veterinaire.css">' ?>
 <div class="container">
     <h2 class="text-center">Rapports Vétérinaire</h2>
@@ -42,5 +43,4 @@
         </tbody>
     </table>
 </div>
-
 <?php $script = '<script src="/assets/javascript/rapport.js"></script>'; ?>

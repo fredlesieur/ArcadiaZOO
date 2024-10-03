@@ -28,6 +28,6 @@
     <div class="form-group">
         <label for="detail_etat">Détails de l'état</label>
         <textarea name="detail_etat" id="detail_etat" class="form-control"></textarea>
-    </div>
+    </div><br>
     <button type="submit" class="btn button">Enregistrer le Rapport</button>
 </form>

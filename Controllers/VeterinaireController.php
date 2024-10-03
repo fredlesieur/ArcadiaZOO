@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\VeterinaireModel;
 use App\Models\AnimalModel;
 
-
 class VeterinaireController extends Controller
 {
     public function index()
@@ -44,7 +43,6 @@ class VeterinaireController extends Controller
                 'date_passage' => $_POST['date_passage'],
                 'detail_etat' => $_POST['detail_etat']
             ];
-
            
             if ($veterinaireModel->ajouterRapport($data)) {
                 header("Location: /veterinaire/rapports");
@@ -64,7 +62,8 @@ class VeterinaireController extends Controller
 
         $this->render('veterinaire/rapports', compact('title', 'rapports'));
     }
-    public function listeRapports() {
+    
+   public function listeRapports() {
         $veterinaireModel = new VeterinaireModel();
         
         // Récupérer tous les rapports sans filtre
@@ -74,48 +73,69 @@ class VeterinaireController extends Controller
         $this->render('veterinaire/rapports', compact('rapports'));
     }
     
-    public function modifierRapport() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Hydrater les données envoyées via le formulaire
-            $data = [
-                'etat' => $_POST['etat'],
-                'nourriture' => $_POST['nourriture'],
-                'grammage' => $_POST['grammage'],
-                'date_passage' => $_POST['date_passage'],
-                'detail_etat' => $_POST['detail_etat']
-            ];
-    
-            // Récupérer l'ID du rapport à modifier
-            $rapportId = $_POST['id'];
-    
-            // Hydrate le modèle et utilise la méthode update
-            $VeterinaireModel = new VeterinaireModel();
-            $VeterinaireModel->hydrate($data);
-            $VeterinaireModel->update($rapportId);
-    
-            // Redirection après modification
-            header('Location: /veterinaire/rapports');
-        } else {
-            // Si c'est une requête GET, on affiche le formulaire de modification
-            $rapportId = $_GET['id'];
-            $VeterinaireModel = new VeterinaireModel();
-            $rapport = $VeterinaireModel->find($rapportId);
-    
-            // Afficher le formulaire avec les données du rapport
-            $this->render('veterinaire/modifierRapport', compact('rapport'));
+     
+    // Version mise à jour avec une redirection appropriée après modification
+    public function modifierRapport()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!isset($_POST['animal_id'], $_POST['etat'], $_POST['nourriture'], $_POST['grammage'], $_POST['date_passage'], $_POST['detail_etat'])) {
+            echo "Données manquantes dans le formulaire.";
+            exit();
         }
-    }
-    public function supprimerRapport() {
-        if (isset($_GET['id'])) {
-            $rapportId = $_GET['id'];
-    
-            // Utiliser la méthode delete de ton modèle pour supprimer
-            $VeterinaireModel = new VeterinaireModel();
-            $VeterinaireModel->delete($rapportId);
-    
-            // Redirection après suppression
-            header('Location: /veterinaire/rapports');
+        // Hydrater les données envoyées via le formulaire
+        $data = [
+            'animal_id' => $_POST['animal_id'],
+            'etat' => $_POST['etat'],
+            'nourriture' => $_POST['nourriture'],
+            'grammage' => $_POST['grammage'],
+            'date_passage' => $_POST['date_passage'],
+            'detail_etat' => $_POST['detail_etat']
+        ];
+
+        // Récupérer l'ID du rapport à modifier
+        $rapportId = $_POST['id'];
+        // Hydrate le modèle et utilise la méthode update
+        $VeterinaireModel = new VeterinaireModel();
+        $VeterinaireModel->hydrate($data);
+        $VeterinaireModel->update($rapportId);
+
+        // Redirection après modification
+        header('Location: /veterinaire/rapports');
+        exit();
+    } else {
+        // Si c'est une requête GET, on affiche le formulaire de modification
+        $rapportId = $_GET['id'];
+        $VeterinaireModel = new VeterinaireModel();
+        $rapport = $VeterinaireModel->find($rapportId);
+
+        if (!$rapport) {
+            echo "Rapport non trouvé";
+            exit();
         }
+
+        // Récupérer l'animal lié au rapport
+        $animalModel = new AnimalModel();
+        $animal = $animalModel->find($rapport['animal_id']); // Récupérer l'animal lié au rapport
+
+        // Passer les informations du rapport et de l'animal à la vue
+        $this->render('veterinaire/modifierRapport', compact('rapport', 'animal'));
     }
-    
+}
+public function supprimerRapport() {
+    if (isset($_GET['id'])) {
+        $rapportId = $_GET['id'];
+
+        // Utiliser la méthode delete de ton modèle pour supprimer
+        $VeterinaireModel = new VeterinaireModel();
+        $VeterinaireModel->delete($rapportId);
+
+        // Redirection après suppression
+        header('Location: /veterinaire/rapports');
+        exit();
+    } else {
+        echo "Aucun ID fourni pour supprimer le rapport.";
+        exit();
+    }
+}
+
 }

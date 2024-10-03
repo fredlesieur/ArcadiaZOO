@@ -16,6 +16,8 @@ class VeterinaireModel extends Model
     protected $date_passage;
     protected $detail_etat;
 
+    protected $table = 'nourrir_employe';
+
     public function __construct()
     {
         $this->table = 'rapports_veterinaires';
@@ -62,5 +64,25 @@ class VeterinaireModel extends Model
         $sql = "SELECT * FROM rapports_veterinaires";
         return $this->req($sql)->fetchAll();
     }
+    public function update($id)
+    {
+        $champs = [];
+        $valeurs = [];
     
+        // Parcours des champs du modèle pour construire la requête SQL
+        foreach ($this as $champ => $valeur) {
+            if ($valeur != null && $champ != 'db' && $champ != 'table') {
+                $champs[] = "$champ = ?";
+                $valeurs[] = $valeur;
+            }
+        }
+    
+        $valeurs[] = $id; // Ajouter l'ID à la fin des valeurs
+    
+        // Construction et exécution de la requête SQL
+        $liste_champs = implode(', ', $champs);
+        $sql = "UPDATE {$this->table} SET $liste_champs WHERE id = ?";
+        return $this->req($sql, $valeurs);
+    } 
+   
 }

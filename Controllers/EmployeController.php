@@ -3,10 +3,17 @@
 namespace App\Controllers;
 use App\Models\AvisModel;
 use App\Models\ServModel;
+use App\Models\AnimalModel;
+use App\Models\EmployeModel;
+use App\Models\VeterinaireModel;
+
 class EmployeController extends Controller
 {
     public function index()
-    {
+    {   
+        $animalModel = new AnimalModel();
+        $animaux = $animalModel->findAll(); // Récupère tous les animaux
+        $this->render('employe/gererNourriture', compact('animaux'));
         $title = "Tableau de bord employé";
         $this->render('employe/index', compact('title'));
     }
@@ -96,5 +103,44 @@ public function gererServices()
         header("Location: /employe/gererServices");
     }
 
-    
+    public function saveRapports() 
+    {
+        $animalModel = new AnimalModel();
+        $animal = $animalModel->findAll(); // Récupère tous les animaux pour les afficher dans la liste déroulante
+
+       
+
+}
+
+
+// Méthode pour enregistrer les données du formulaire
+public function enregistrer()
+{
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupérer les données du formulaire
+    $animal_id = $_POST['animal_id'] ?? null;
+    $etat = $_POST['etat'] ?? '';
+    $nourriture = $_POST['nourriture'] ?? '';
+    $grammage = $_POST['grammage'] ?? 0;
+    $date_passage = $_POST['date_passage'] ?? '';
+
+    // Vérifier que les champs sont bien remplis
+    if ($animal_id && $nourriture && $grammage > 0 && $date_passage) {
+        $nourrirModel = new EmployeModel();
+        $user_id = $_SESSION['user_id']; // Récupérer l'ID de l'utilisateur connecté
+
+        // Appel de la méthode pour enregistrer le nourrissage
+        $nourrirModel->enregistrerNourrissage($user_id, $animal_id, $etat, $nourriture, $grammage, $date_passage);
+
+        // Message de succès et redirection
+        $_SESSION['success'] = 'Rapport de nourrissage enregistré avec succès.';
+    } else {
+        $_SESSION['error'] = 'Veuillez remplir tous les champs correctement.';
+    }
+
+    // Redirection après l'enregistrement
+    header('Location: /employe/gererNourriture');
+    exit;
+}
+}
 }
