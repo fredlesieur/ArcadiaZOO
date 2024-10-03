@@ -25,7 +25,7 @@
                     <h4 class="card-text text-center"><strong>Etat : </strong> <?= ucwords($animal['etat']); ?></h4>
                     <h4 class="card-text text-center"><strong>Nourritture préconisée : </strong> <?= ucwords($animal['nourriture']); ?></h4>
                     <h4 class="card-text text-center"><strong>Grammage (g) : </strong> <?= ucwords($animal['grammage']); ?></h4>
-                    <h4 class="card-text text-center"><strong>Date : </strong> <?= ucwords($animal['date_passage']); ?></h4>
+                    <h4 class="card-text text-center"><strong>Date et Heure: <?= isset($animal['date_passage']) ? date('d-m-Y H:i:s', strtotime($animal['date_passage'])) : 'Date non disponible'; ?></h4>
                     <h4 class="card-text text-center"><strong>Détail état : </strong> <?= ucwords($animal['detail_etat']); ?></h4>
                 </div>
             </div>

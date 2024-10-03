@@ -5,9 +5,13 @@
     <ul>
         <?php foreach ($rapports as $rapport): ?>
             <li>
-                Vétérinaire: <?= $rapport['user_nom_prenom']; ?> Animal: <?= $rapport['nom']; ?>, État: <?= $rapport['etat']; ?>, Nourriture:
-                <?= $rapport['nourriture']; ?>, Grammage: <?= $rapport['grammage']; ?>g, Date:
-                <?= $rapport['date_passage']; ?>, Détail État: <?= $rapport['detail_etat']; ?> 
+                Vétérinaire: <?= $rapport['user_nom_prenom']; ?>,
+                Animal: <?= $rapport['animal_nom']; ?>,
+                État: <?= $rapport['etat']; ?>,
+                Nourriture:<?= $rapport['nourriture']; ?>,
+                Grammage(gr) : <?= $rapport['grammage']; ?>
+                Date et Heure: <?= isset($rapport['date_passage']) ? date('d-m-Y H:i', strtotime($rapport['date_passage'])) : 'Date non disponible'; ?>,
+                Détail État: <?= $rapport['detail_etat']; ?> 
             </li>
         <?php endforeach; ?>
     </ul>
