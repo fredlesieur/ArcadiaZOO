@@ -129,5 +129,11 @@ public function gererServices()
 
     $this->render('employe/gererNourriture', compact('animaux'));
 }
+public function listeRapport()
+{
+    $employeModel = new EmployeModel(); // Instancie le modèle
+    $rapports = $employeModel->getRapports(); // Récupère tous les rapports de nourrissage via le modèle
 
+    $this->render('employe/listeRapport', compact('rapports')); // Passe les rapports à la vue 'listeRapport'
+}
 }

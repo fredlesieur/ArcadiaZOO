@@ -33,4 +33,15 @@ class EmployeModel extends Model
             'observations' => $observations
         ]);
     }
+    public function getRapports()
+{
+    $sql = "SELECT r.id, r.nourriture, r.quantite, r.date, r.observations, 
+                   a.nom AS nom_animal, 
+                   u.nom_prenom AS nom_employe
+            FROM nourrir_employe r
+            JOIN animaux a ON r.animal_id = a.id
+            JOIN users u ON r.user_id = u.id";  // Jointure avec la table users pour récupérer le nom de l'employé
+    
+    return $this->req($sql)->fetchAll();
+}
 }
