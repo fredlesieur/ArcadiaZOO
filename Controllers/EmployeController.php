@@ -108,6 +108,7 @@ public function gererServices()
     public function enregistrerRapport()
 {
     $employeModel = new EmployeModel();
+    $rapports=$employeModel->getRapports();
     $animalModel = new AnimalModel();
     $animaux = $animalModel->findAll(); // Récupère tous les animaux pour les afficher dans la liste déroulante
 
@@ -135,5 +136,12 @@ public function listeRapport()
     $rapports = $employeModel->getRapports(); // Récupère tous les rapports de nourrissage via le modèle
 
     $this->render('employe/listeRapport', compact('rapports')); // Passe les rapports à la vue 'listeRapport'
+}
+public function modifierRapport($id)
+{
+    $employeModel = new EmployeModel();
+    $rapport = $employeModel->find($id); // Récupère les détails du rapport à partir de son ID
+
+    $this->render('employe/modifierRapport', compact('rapport')); // Affiche la vue pour modifier le rapport
 }
 }
