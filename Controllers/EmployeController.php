@@ -108,7 +108,6 @@ public function gererServices()
     public function enregistrerRapport()
 {
     $employeModel = new EmployeModel();
-    $rapports=$employeModel->getRapports();
     $animalModel = new AnimalModel();
     $animaux = $animalModel->findAll(); // Récupère tous les animaux pour les afficher dans la liste déroulante
 
@@ -140,8 +139,32 @@ public function listeRapport()
 public function modifierRapport($id)
 {
     $employeModel = new EmployeModel();
-    $rapport = $employeModel->find($id); // Récupère les détails du rapport à partir de son ID
+    $rapport = $employeModel->getRapportById($id); // Récupère les détails du rapport à partir de son ID
 
-    $this->render('employe/modifierRapport', compact('rapport')); // Affiche la vue pour modifier le rapport
+    // Vérification si le rapport existe
+    if (!$rapport) {
+        header('Location: /employe/listeRapport');
+        exit();
+    }
+
+    // Affiche la vue avec le rapport à modifier
+    $this->render('employe/modifierRapport', compact('rapport'));
+}
+public function enregistrerModification($id)
+{
+    $employeModel = new EmployeModel();
+    
+    // Récupérer les valeurs du formulaire
+    $nourriture = $_POST['nourriture'];
+    $quantite = $_POST['quantite'];
+    $date = $_POST['date'];
+    $observations = $_POST['observations'];
+
+    // Mettre à jour le rapport dans la base de données
+    $employeModel->updateRapport($id, $nourriture, $quantite, $date, $observations);
+
+    // Rediriger vers la liste des rapports après la mise à jour
+    header('Location: /employe/listeRapport');
+    exit();
 }
 }
