@@ -167,4 +167,17 @@ public function enregistrerModification($id)
     header('Location: /employe/listeRapport');
     exit();
 }
+
+public function supprimerRapport($id)
+{
+    $employeModel = new EmployeModel();
+
+    // Supprime le rapport en appelant la méthode du modèle
+    $employeModel->deleteRapport($id);
+
+    // Rediriger vers la liste des rapports après la suppression
+    header('Location: /employe/listeRapport');
+    exit();
+}
+
 }

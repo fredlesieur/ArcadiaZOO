@@ -74,4 +74,10 @@ public function getRapportById($id)
     $stmt = $this->req($sql, ['id' => $id]);
     return $stmt->fetch(); // Retourner un seul rapport
 }
+public function deleteRapport($id)
+{
+    $sql = "DELETE FROM nourrir_employe WHERE id = :id";
+    $this->req($sql, ['id' => $id]);
+}
+
 }
