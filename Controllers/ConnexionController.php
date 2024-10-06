@@ -26,8 +26,10 @@ class ConnexionController extends Controller
     if ($user && password_verify($password, $user['password'])) {
         // Vérification stricte du rôle
         if ($user['role'] === 'administrateur' || $user['role'] === 'veterinaire' || $user['role'] === 'employe') {
+            // Stocker les informations nécessaires dans la session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['user_nom_prenom'] = $user['nom_prenom']; // Stocker le nom complet
 
             // Redirection selon le rôle
             if ($user['role'] === 'administrateur') {
@@ -47,6 +49,7 @@ class ConnexionController extends Controller
         $this->render('connexion/index', compact('error'));
     }
 }
+
 public function logout()
 {
     // Démarrer la session si elle n'est pas déjà démarrée

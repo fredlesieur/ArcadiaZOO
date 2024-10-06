@@ -1,5 +1,5 @@
 <?php $link = '<link rel="stylesheet" href="/assets/css/employe.css">' ?>
-<br><h2>Liste des Rapports de Nourrissage</h2><br>
+<br><h2>Rapports Nourriture</h2><br>
 
 <table class="table table-bordered">
     <thead>

@@ -115,6 +115,7 @@ public function delete(int $id)
             // requete préparée
             $query = $this->db->prepare($sql); 
             $query->execute($attributs);
+            var_dump($query->errorInfo());
             return $query;
         }else{
             //requete simple

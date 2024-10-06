@@ -1,9 +1,26 @@
 <?php $link = '<link rel="stylesheet" href="/assets/css/admin.css">' ?>
 
+<?php if (isset($_SESSION['error'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['error']; ?>
+    </div>
+    <?php unset($_SESSION['error']); ?> <!-- Détruire la session après affichage -->
+<?php endif; ?>
+
+<?php if (isset($_SESSION['success'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success']; ?>
+    </div>
+    <?php unset($_SESSION['success']); ?> <!-- Détruire la session après affichage -->
+<?php endif; ?>
+
 
 <div class="form-container mx-auto p-4">
     <h2 class="text-center">Créer un compte utilisateur</h2>
     <form action="/admin/creerUtilisateur" method="POST">
+        <div class="mb-3">
+            <label for="nom_prenom" class="form-label text-center"><Minuscule>Nom et prenom de l'utilisateur</Minuscule></label>
+            <input type="text" class="form-control" id="nom_prenom" name="nom_prenom" required>
         <div class="mb-3">
             <label for="email" class="form-label text-center">Email de l'utilisateur</label>
             <input type="email" class="form-control" id="email" name="email" required>

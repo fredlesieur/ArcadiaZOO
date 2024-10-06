@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 use App\Models\VeterinaireModel;
 use App\Models\AnimalModel;
-
+use App\Models\HabitatsModel;
 class VeterinaireController extends Controller
+
 {
     public function index()
     {
@@ -137,6 +138,94 @@ public function supprimerRapport() {
         exit();
     }
 }
+public function create()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $data = [
+            'habitat_id' => $_POST['habitat_id'],
+            'commentaire' => $_POST['rapport'],
+            'user_id' => $_SESSION['user_id']  // Utiliser l'ID du vétérinaire connecté
+        ];
 
+        // Appeler le modèle pour créer le rapport
+        $habitatModel = new HabitatsModel();
+        $habitatModel->createReport($data);
+
+        // Rediriger vers la page des rapports habitats après succès
+        header('Location: /veterinaire/listeRapportHabitat');
+        exit;
+    }
+
+    // Charger la liste des habitats pour le formulaire
+    $habitatModel = new HabitatsModel();
+    $habitats = $habitatModel->findAll();
+
+    // Afficher le formulaire pour ajouter un rapport
+    $this->render('veterinaire/rapportHabitat', compact('habitats'));
+}
+
+public function listeRapportHabitat()
+{
+    $title = "Liste des rapports sur les habitats";
+
+    // Récupérer les rapports sur les habitats
+    $habitatModel = new HabitatsModel();
+    $rapportsHabitats = $habitatModel->getRapportsHabitats();
+
+    // Afficher la vue avec les rapports sur les habitats
+    $this->render('veterinaire/listeRapportHabitat', compact('title', 'rapportsHabitats'));
+}
+
+
+//modification d un rapportHabitat
+public function edit($id)
+{
+    $habitatModel = new HabitatsModel();
+    $habitat = $habitatModel->find($id);
+
+    // Récupérer le nom du vétérinaire depuis la session
+    $veterinaire_nom = $_SESSION['user_nom_prenom'];  // Assurez-vous que 'user_nom_prenom' est bien stocké lors de la connexion
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les nouvelles données du formulaire
+        $data = [
+            'commentaire' => $_POST['rapport'],
+            'user_id' => $_SESSION['user_id']  // ID du vétérinaire connecté
+        ];
+
+        // Mettre à jour le rapport
+        $habitatModel->updateReport($id, $data);
+
+        // Rediriger vers la page des rapports habitats
+        header('Location: /veterinaire/listeRapportHabitat'); // Vérifie que cette route existe
+        exit;
+    }
+
+    // Passer les données actuelles à la vue
+    $this->render('veterinaire/modifierRapportHabitat', compact('habitat', 'veterinaire_nom'));
+}
+
+public function delete($id)
+{
+    $habitatModel = new HabitatsModel();
+    $habitatModel->deleteReport($id);
+
+    // Rediriger après suppression
+    header('Location: /veterinaire/index'); // Change cette route selon tes besoins
+    exit;
+}
+
+public function rapportsHabitats()
+{
+    $title = "Liste des rapports sur les habitats";
+
+    // Utiliser la méthode du modèle HabitatsModel pour récupérer les rapports sur les habitats
+    $habitatModel = new HabitatsModel();
+    $rapportsHabitats = $habitatModel->getRapportsHabitats();  // Récupérer les rapports sur les habitats
+
+    // Afficher la vue avec les rapports sur les habitats
+    $this->render('veterinaire/rapportsHabitats', compact('title', 'rapportsHabitats'));
+}
 
 }

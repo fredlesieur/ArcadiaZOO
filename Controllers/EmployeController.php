@@ -99,9 +99,13 @@ public function gererServices()
 {
     $animalModel = new AnimalModel();  // Instancie le modèle des animaux
     $animaux = $animalModel->findAll(); // Récupère tous les animaux pour les afficher dans la liste déroulante
+    
+    $rapportModel = new VeterinaireModel();
+    $rapport = $rapportModel->getRapportByAnimalId($animal_id);
 
-    // Passe la liste des animaux à la vue 'gererNourriture'
-    $this->render('employe/gererNourriture', compact('animaux'));
+
+    $this->render('employe/gererNourriture', compact('rapport', 'animaux'));
+
 }
 
 

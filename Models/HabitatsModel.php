@@ -18,12 +18,53 @@ class HabitatsModel extends Model
     public function __construct() {
         $this->table = "habitats";
     }
+    
+    public function createReport(array $data)
+{
+    $sql = "UPDATE habitats SET commentaire = :rapport, user_id = :user_id WHERE id = :habitat_id";
+    $stmt = $this->req($sql, [
+        ':rapport' => $data['commentaire'],
+        ':user_id' => $data['user_id'],  // Ajouter l'ID du vétérinaire
+        ':habitat_id' => $data['habitat_id']
+    ]);
+    return $stmt;
+}
+public function getRapportsHabitats()
+{
+    $sql = "SELECT h.*, u.nom_prenom AS veterinaire_nom 
+            FROM habitats h
+            JOIN users u ON h.user_id = u.id";  // Associer l'ID du vétérinaire
 
-    // Getters
-    public function getId() {
-        return $this->id;
-    }
+    return $this->req($sql)->fetchAll();
+}
 
+    //mettre a jours un rapportHabitat
+
+    public function updateReport(int $id, array $data)
+{
+    $sql = "UPDATE habitats SET commentaire = :rapport WHERE id = :id";
+    $result = $this->req($sql, [
+        ':rapport' => $data['commentaire'],
+        ':id' => $id
+    ]);
+    return $result;
+}
+
+//supprimer un rapportHabitat
+public function deleteReport(int $id)
+{
+    $sql = "DELETE FROM habitats WHERE id = :id";
+    $stmt = $this->req($sql, [':id' => $id]);
+    return $stmt;
+}
+
+public function getRapportsWithVeterinaire()
+{
+    $sql = "SELECT h.*, u.nom_prenom AS veterinaire_nom 
+            FROM habitats h
+            JOIN users u ON h.user_id = u.id";  // Associer l'ID du vétérinaire
+    return $this->req($sql)->fetchAll();
+}
 
     public function getName() {
         return $this->name;

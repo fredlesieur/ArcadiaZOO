@@ -84,5 +84,6 @@ class VeterinaireModel extends Model
         $sql = "UPDATE {$this->table} SET $liste_champs WHERE id = ?";
         return $this->req($sql, $valeurs);
     } 
-   
+    //inserer un nouveau rapportHabitat
+    
 }
