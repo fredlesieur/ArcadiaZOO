@@ -10,6 +10,7 @@
         <li><a href="/admin/gererHabitats">Gérer les habitats</a></li>
         <li><a href="/admin/gererAnimaux">Gérer les animaux</a></li>
         <li><a href="/admin/voirRapportsVeterinaires">Voir les rapports vétérinaires</a></li>
+        <li><a href="/admin/listUsers">Liste des utilisateurs</a></li>
         <!-- D'autres sections peuvent être ajoutées ici -->
     </ul>
 </nav>
