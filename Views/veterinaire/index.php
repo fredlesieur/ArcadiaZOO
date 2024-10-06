@@ -7,6 +7,7 @@
     <ul>
         <li><a href="/veterinaire/ajouterRapport">Ajouter Rapport</a></li>
         <li><a href="/veterinaire/rapports">Liste des Rapports</a></li>
-        <li><a href="/veterinaire/rapportEmploye">rapport Employe</a></li>
+        <li><a href="/veterinaire/rapportEmploye">Rapport Employe</a></li>
+        <li><a href="/veterinaire/rapportHabitat">Rapport Habitat</a></li>
     </ul>
 </nav>
