@@ -174,7 +174,7 @@ public function listeRapportHabitat()
     $rapportsHabitats = $habitatModel->getRapportsHabitats();
 
     // Afficher la vue avec les rapports sur les habitats
-    $this->render('veterinaire/listeRapportHabitat', compact('title', 'rapportsHabitats'));
+    $this->render('veterinaire/rapportHabitat', compact('title', 'rapportsHabitats'));
 }
 
 

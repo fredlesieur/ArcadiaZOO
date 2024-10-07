@@ -5,6 +5,7 @@ use App\Models\AvisModel;
 use App\Models\ServModel;
 use App\Models\AnimalModel;
 use App\Models\EmployeModel;
+use App\Models\Model;
 
 
 class EmployeController extends Controller
@@ -100,12 +101,17 @@ public function gererServices()
     $animalModel = new AnimalModel();  // Instancie le modèle des animaux
     $animaux = $animalModel->findAll(); // Récupère tous les animaux pour les afficher dans la liste déroulante
     
-    $rapportModel = new VeterinaireModel();
-    $rapport = $rapportModel->getRapportByAnimalId($animal_id);
-
+    $rapportModel = new AnimalModel();
+    
+    // Assurez-vous que $id est défini
+    $id = $_GET['animal_id'] ?? null; // Par exemple, récupérez l'ID de l'animal depuis les paramètres GET
+    if ($id) {
+        $rapport = $rapportModel->getRapportByAnimalId($id);
+    } else {
+        $rapport = []; // Ou gérez l'absence d'ID d'animal comme vous le souhaitez
+    }
 
     $this->render('employe/gererNourriture', compact('rapport', 'animaux'));
-
 }
 
 
