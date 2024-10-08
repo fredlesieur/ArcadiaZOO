@@ -51,18 +51,8 @@ class EmployeController extends Controller
     // Récupérer tous les services directement sans les organiser par catégorie
     $services = $ServModel->findAll();
 
-    // Debug pour vérifier les services récupérés
-    if (empty($services)) {
-        echo '<p>Aucun service récupéré depuis la base de données.</p>';
-    } else {
-        echo '<pre>';
-        print_r($services); // Afficher les données récupérées pour vérifier qu'elles sont bien là
-        echo '</pre>';
-    }
-    exit; // Arrêter l'exécution ici pour voir les données
-
     // Transmettre directement les services à la vue sans les organiser
-    $this->render("service/index", compact("title", "services"));
+    $this->render("employe/gererServices", compact("title", "services"));
 }
 
 
