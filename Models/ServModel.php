@@ -44,7 +44,7 @@ class ServModel extends Model
             'id' => $id
         ]);
     }
-
+   
     // Getters
     public function getId() {
         return $this->id;

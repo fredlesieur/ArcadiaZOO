@@ -72,6 +72,25 @@ public function updateService($id, $data)
     ]);
 }
 
+public function updateRapport($id, $data)
+{
+    // Requête SQL pour mettre à jour le rapport employé
+    $sql = "UPDATE " . $this->table . " 
+            SET nourriture = :nourriture,
+                quantite = :quantite, 
+                date = :date, 
+                observations = :observations
+            WHERE id = :id";
+
+    // Exécuter la requête en utilisant la méthode req du modèle
+    return $this->req($sql, [
+        'nourriture' => $data['nourriture'],
+        'quantite' => $data['quantite'],
+        'date' => $data['date'],
+        'observations' => $data['observations'],
+        'id' => $id
+    ]);
+}
 public function getRapportById($id)
 {
     $sql = "SELECT r.id, r.nourriture, r.quantite, r.date, r.observations, 

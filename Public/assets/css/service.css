@@ -99,6 +99,19 @@ h3 {
     margin-top: 20px;
 }
 
+/* Classes spécifiques pour la taille des images */
+.image-large {
+    width: 800px !important;
+    height: 600px !important;
+    object-fit: cover; /* Garde les proportions tout en remplissant le cadre */
+}
+
+.image-small {
+    width: 400px !important;
+    height: 400px !important;
+    object-fit: cover; /* Garde les proportions tout en remplissant le cadre */
+}
+
 /* Ajustements pour les écrans plus larges */
 @media (min-width: 768px) {
     .carousel-control-prev,

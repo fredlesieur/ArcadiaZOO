@@ -43,48 +43,61 @@ class EmployeController extends Controller
     }
 
 
+    public function gererServices()
+{
+    $title = "Gérer les services";
+    $ServModel = new ServModel();
 
+    // Récupérer tous les services directement sans les organiser par catégorie
+    $services = $ServModel->findAll();
 
-public function gererServices()
-    {   
-        $title = "Gérer les services";
-        $ServModel = new ServModel();
-        $services = $ServModel->findAll();
-        $this->render("employe/gererServices", compact("title","services"));
+    // Debug pour vérifier les services récupérés
+    if (empty($services)) {
+        echo '<p>Aucun service récupéré depuis la base de données.</p>';
+    } else {
+        echo '<pre>';
+        print_r($services); // Afficher les données récupérées pour vérifier qu'elles sont bien là
+        echo '</pre>';
     }
+    exit; // Arrêter l'exécution ici pour voir les données
+
+    // Transmettre directement les services à la vue sans les organiser
+    $this->render("service/index", compact("title", "services"));
+}
+
 
     public function ajouterService()
 {
     $ServModel = new ServModel();
     if ($_POST) {
+        $categorie = !empty($_POST['new-category']) ? $_POST['new-category'] : $_POST['categorie'];
+
         $ServModel->setName($_POST['name']);
         $ServModel->setDescription($_POST['description']);
-        $ServModel->setCategorie($_POST['categorie']);
+        $ServModel->setCategorie($categorie);
         $ServModel->setDuree($_POST['duree']);
         $ServModel->setTarifs($_POST['tarifs']);
         $ServModel->setHoraires($_POST['horaires']);
 
         if (!empty($_FILES['image']['name'])) {
-            // Spécifier le chemin complet de l'image
             $imageName = time() . '_' . $_FILES['image']['name'];
             $imagePath = 'assets/images/' . $imageName;
             move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
-            $ServModel->setImage($imageName); // Enregistrer le nom de l'image en base
+            $ServModel->setImage($imageName);
         }
+
         if (!empty($_FILES['image2']['name'])) {
             $imageName2 = time() . '_2_' . $_FILES['image2']['name'];
             $imagePath2 = 'assets/images/' . $imageName2;
             move_uploaded_file($_FILES['image2']['tmp_name'], $imagePath2);
-            $ServModel->setImage2($imageName2); // Enregistrer le nom de la deuxième image en base
+            $ServModel->setImage2($imageName2);
         }
-        if (isset($_POST['id']) && $_POST['id'] != '') {
-            $ServModel->update($_POST['id']);
-        } else {
-            $ServModel->create();
-        }
+
+        $ServModel->create();
     }
     header("Location: /employe/gererServices");
 }
+
 
 
     public function supprimerService($id)
@@ -93,59 +106,55 @@ public function gererServices()
         $ServModel->delete($id);
         header("Location: /employe/gererServices");
     }
-    public function modifierService($id)
+
+
+
+  public function modifierService($id)
 {
     $ServModel = new ServModel();
     $service = $ServModel->find($id);
-    
-    // Vérifier si le service existe
+
     if (!$service) {
         header('Location: /employe/gererServices');
         exit();
     }
 
-    // Vérifier si la requête est de type POST pour traiter la soumission du formulaire
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Préparer les données envoyées via le formulaire sous forme de tableau
+        $categorie = !empty($_POST['new-category']) ? $_POST['new-category'] : $_POST['categorie'];
+
         $data = [
-            'name' => $_POST['name'] ?? $service['name'],
-            'description' => $_POST['description'] ?? $service['description'],
-            'image' => $service['image'], // Image existante
-            'image2' => $service['image2'], // Deuxième image existante
-            'categorie' => $_POST['categorie'] ?? $service['categorie'],
-            'duree' => $_POST['duree'] ?? $service['duree'],
-            'tarifs' => $_POST['tarifs'] ?? $service['tarifs'],
-            'horaires' => $_POST['horaires'] ?? $service['horaires']
+            'name' => $_POST['name'],
+            'description' => $_POST['description'],
+            'image' => $service['image'],
+            'image2' => $service['image2'],
+            'categorie' => $categorie,
+            'duree' => $_POST['duree'],
+            'tarifs' => $_POST['tarifs'],
+            'horaires' => $_POST['horaires']
         ];
 
-        // Vérifier si de nouvelles images ont été téléchargées
         if (!empty($_FILES['image']['name'])) {
             $imageName = time() . '_' . $_FILES['image']['name'];
             $imagePath = 'assets/images/' . $imageName;
             move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
-            $data['image'] = $imageName; // Mettre à jour l'image
+            $data['image'] = $imageName;
         }
 
         if (!empty($_FILES['image2']['name'])) {
             $imageName2 = time() . '_2_' . $_FILES['image2']['name'];
             $imagePath2 = 'assets/images/' . $imageName2;
             move_uploaded_file($_FILES['image2']['tmp_name'], $imagePath2);
-            $data['image2'] = $imageName2; // Mettre à jour la deuxième image
+            $data['image2'] = $imageName2;
         }
 
-        // Mise à jour du service dans la base de données
         $ServModel->updateService($id, $data);
-
-        // Redirection après modification
         header('Location: /employe/gererServices');
         exit();
     }
 
-    // Afficher la vue avec le service à modifier
     $this->render('employe/modifierService', compact('service'));
 }
 
-    
     
     public function gererNourriture()
 {
