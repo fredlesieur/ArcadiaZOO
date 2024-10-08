@@ -3,9 +3,9 @@ $(document).ready(function() {
         "ordering": true,
         "searching": true, // Activer la recherche
         "paging": true, // Activer la pagination
-        "order": [[5, 'desc']], // Trier par la colonne Date et Heure par défaut (colonne 5)
+        "order": [[6, 'desc']], // Trier par la colonne Date et Heure par défaut (colonne 5)
         "columnDefs": [
-            { "orderable": true, "targets": [1, 5] }, // Activer le tri sur Animal et Date
+            { "orderable": true, "targets": [2, 6] }, // Activer le tri sur Animal et Date
             { "orderable": false, "targets": '_all' } // Désactiver le tri sur les autres colonnes
         ],
         "language": {

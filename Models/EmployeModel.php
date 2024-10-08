@@ -44,23 +44,34 @@ class EmployeModel extends Model
     
     return $this->req($sql)->fetchAll();
 }
-public function updateRapport($id, $nourriture, $quantite, $date, $observations)
+public function updateService($id, $data)
 {
-    $sql = "UPDATE nourrir_employe 
-            SET nourriture = :nourriture, 
-                quantite = :quantite, 
-                date = :date, 
-                observations = :observations 
+    // Requête SQL pour mettre à jour le service
+    $sql = "UPDATE " . $this->table . " 
+            SET name = :name,
+                description = :description, 
+                image = :image, 
+                image2 = :image2, 
+                categorie = :categorie, 
+                duree = :duree,
+                tarifs = :tarifs,
+                horaires = :horaires
             WHERE id = :id";
-    
-    $this->req($sql, [
-        'nourriture' => $nourriture,
-        'quantite' => $quantite,
-        'date' => $date,
-        'observations' => $observations,
+
+    // Exécuter la requête en utilisant la méthode req du modèle
+    return $this->req($sql, [
+        'name' => $data['name'],
+        'description' => $data['description'],
+        'image' => $data['image'],
+        'image2' => $data['image2'],
+        'categorie' => $data['categorie'],
+        'duree' => $data['duree'],
+        'tarifs' => $data['tarifs'],
+        'horaires' => $data['horaires'],
         'id' => $id
     ]);
 }
+
 public function getRapportById($id)
 {
     $sql = "SELECT r.id, r.nourriture, r.quantite, r.date, r.observations, 

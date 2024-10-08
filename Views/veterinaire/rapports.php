@@ -7,6 +7,7 @@
     <table id="rapportTable" class="table table-striped">
         <thead>
             <tr>
+                <th>id rapport</th>
                 <th>Vétérinaire</th>
                 <th>Animal</th>
                 <th>État</th>
@@ -20,6 +21,7 @@
         <tbody>
             <?php foreach ($rapports as $rapport): ?>
                 <tr>
+                    <td><?= $rapport['id']; ?></td>
                     <td><?= $rapport['user_nom_prenom']; ?></td>
                     <td><?= $rapport['animal_nom']; ?></td>
                     <td><?= $rapport['etat']; ?></td>
@@ -29,10 +31,10 @@
                     <td><?= $rapport['detail_etat']; ?></td>
                     <td>
                         <!-- Bouton de modification -->
-                        <a href="/veterinaire/modifierRapport?id=<?= $rapport['id']; ?>" class="btn btn-warning">Modifier</a>
+                        <a href="/veterinaire/modifierRapport/<?= $rapport['id']; ?>" class="btn btn-warning">Modifier</a>
                         
                         <!-- Bouton de suppression avec une confirmation -->
-                        <a href="/veterinaire/supprimerRapport?id=<?= $rapport['id']; ?>" 
+                        <a href="/veterinaire/supprimerRapport/<?= $rapport['id']; ?>" 
                            class="btn btn-danger"
                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce rapport ?');">
                             Supprimer

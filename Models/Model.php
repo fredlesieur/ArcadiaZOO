@@ -71,32 +71,37 @@ public function create()
     
 } 
 
-
-
-public function update(int $id,)
+public function update(int $id)
 {
-    $champs =[];
+    $champs = [];
     $valeurs = [];
 
-    //on boucle pour eclater le tableau
-    foreach($this as $champ => $valeur)
-    {
-        // Update annonce SET titre = ?, description = ?, prix = ?, WHERE id= ?)
-        if($valeur != null && $champ != 'db' && $champ != 'table'){
-        $champs[] = "$champ = ?";
-        $valeurs[] = $valeur;
+    // On boucle pour éclater le tableau
+    foreach ($this as $champ => $valeur) {
+        if ($valeur != null && $champ != 'db' && $champ != 'table') {
+            $champs[] = "$champ = ?";
+            $valeurs[] = $valeur;
         }
     }
     $valeurs[] = $id;
 
+    // Vérifier s'il y a des champs à mettre à jour
+    if (empty($champs)) {
+        throw new \Exception('Aucun champ à mettre à jour');
+    }
 
-    // on transforme le tableau champ en une chaine de caractères
+    // On transforme le tableau champ en une chaîne de caractères
     $liste_champs = implode(', ', $champs);
 
-    // on exécute la requete
-    return $this->req('UPDATE '.$this->table. ' SET '. $liste_champs.' WHERE id = ?', $valeurs);
-    
-} 
+    // Loguer la requête SQL avant l'exécution
+    $sql = 'UPDATE ' . $this->table . ' SET ' . $liste_champs . ' WHERE id = ?';
+    error_log('Requête SQL : ' . $sql);
+    error_log('Valeurs : ' . print_r($valeurs, true));
+
+    // Exécuter la requête
+    return $this->req($sql, $valeurs);
+}
+
 
 public function delete(int $id)
 {
@@ -115,7 +120,7 @@ public function delete(int $id)
             // requete préparée
             $query = $this->db->prepare($sql); 
             $query->execute($attributs);
-            var_dump($query->errorInfo());
+
             return $query;
         }else{
             //requete simple

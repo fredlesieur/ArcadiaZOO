@@ -1,11 +1,8 @@
 <?php $link = '<link rel="stylesheet" href="/assets/css/employe.css">' ?>
 
-<h1 class="container-fluid banner pt-5 pb-5">Gérer les Services</h1>
-
-<div class="container my-5">
-    <!-- Formulaire pour ajouter un service -->
-    <h2>Ajouter un Service</h2>
-    <form action="/employe/ajouterService" method="post" enctype="multipart/form-data">
+<h1 class="container-fluid banner pt-5 pb-5">Modifier les Services</h1>
+<form action="/employe/modifierService/<?= $service['id'] ?>" method="post" enctype="multipart/form-data">
+  
         <input type="hidden" name="id" value="<?= isset($service['id']) ? $service['id'] : '' ?>">
         
         <label for="name">Nom du service :</label>
@@ -14,12 +11,12 @@
         <label for="description">Description :</label>
         <textarea class="w-100" name="description" id="description" required><?= isset($service['description']) ? $service['description'] : '' ?></textarea><br>
 
-        <label for="image">Image :</label>
+        <label for="image">Image pour caroussel :</label>
         <input type="file" name="image" id="image"><br>
 
         <label for="image2">Image pour service:</label>
         <input type="file" name="image2" id="image2"><br>
-        
+
         <label for="categorie">Catégorie :</label>
         <select name="categorie" id="categorie" required>
             <option value="restaurant" <?= isset($service['categorie']) && $service['categorie'] == 'restaurant' ? 'selected' : '' ?>>Restaurant</option>
@@ -36,32 +33,6 @@
         <label for="horaires">Horaires :</label>
         <input type="text" name="horaires" id="horaires" value="<?= isset($service['horaires']) ? $service['horaires'] : '' ?>" required><br>
 
-        <button type="submit" class="btn btn-success w-100">Ajouter</button>
+        <button type="submit" class="btn btn-success w-100">Modifier</button>
     </form>
-</div>
-
-<div class="container my-5">
-    <!-- Liste des services existants avec boutons de modification et suppression -->
-    <h2>Liste des Services</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Catégorie</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($services as $service): ?>
-                <tr>
-                    <td><?= $service['name']; ?></td>
-                    <td><?= $service['categorie']; ?></td>
-                    <td>
-                        <a href="/employe/modifierService/<?= $service['id']; ?>" class="btn btn-warning mx-2">Modifier</a>
-                        <a href="/employe/supprimerService/<?= $service['id']; ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?')">Supprimer</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
 </div>

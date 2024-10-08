@@ -22,5 +22,6 @@ class ServiceController extends Controller
         $services = new ServModel();
         $services =$ServModel->findAll();
         $this->render("service/index", compact("restaurant", "services", "train", "visites",));
-    }  
+    } 
+     
 }

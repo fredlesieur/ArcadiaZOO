@@ -9,8 +9,7 @@
         <li><a href="/veterinaire/rapports">Liste des Rapports animaux</a></li>
         <li><a href="/veterinaire/rapportEmploye">liste des Rapports des Employés</a></li>
         <li><a href="/veterinaire/create">Ajouter un Rapport sur un Habitat</a></li>
-        <li><a href="/veterinaire/edit">Modifier les rapports habitats</a></li>
-        <li><a href="/veterinaire/rapportsHabitats">Liste des Rapports sur les Habitats</a></li>
+        <li><a href="/veterinaire/listeRapportHabitat">Liste des Rapports sur les Habitats</a></li>
 
     </ul>
 </nav>

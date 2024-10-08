@@ -1,11 +1,18 @@
 <h1>Modifier le Rapport</h1>
-<form method="post" action="">
+
+<form method="post" action="/veterinaire/modifierRapport/<?= $rapport['id'] ?>">
     <input type="hidden" name="id" value="<?= $rapport['id'] ?>">
 
     <div class="form-group">
-        <label for="animal_id">Animal</label>
-        <input type="text" class="form-control" value="<?= $animal['nom'] ?>" readonly> <!-- Afficher le nom de l'animal -->
-        <input type="hidden" name="animal_id" value="<?= $animal['id'] ?>"> <!-- Garder l'ID de l'animal -->
+        <label for="id_animal">Animal</label>
+        <select class="form-control" id="id_animal" name="id_animal" required>
+        <?php foreach ($animaux as $animal): ?>
+            <option value="<?= $rapport['id_animal'] ?>" <?= ($rapport['id_animal'] == $animal['id']) ? 'selected' : '' ?>>
+                <?= $animal['nom'] ?>
+            </option>
+            
+        <?php endforeach; ?>
+        </select>
     </div>
 
     <div class="form-group">
@@ -35,3 +42,5 @@
 
     <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
 </form>
+
+

@@ -8,6 +8,7 @@ class ServModel extends Model
     protected $name;
     protected $description;
     protected $image;
+    protected $image2;
     protected $categorie;
     protected $duree;
     protected $tarifs;
@@ -15,6 +16,33 @@ class ServModel extends Model
 
     public function __construct() {
         $this->table = "services";
+    }
+    public function updateService($id, $data)
+    {
+        // Requête SQL pour mettre à jour le rapport vétérinaire
+        $sql = "UPDATE " . $this->table . " 
+                SET name = :name,
+                    description = :description, 
+                    image = :image, 
+                    image2 = :image2, 
+                    categorie = :categorie, 
+                    duree = :duree,
+                    tarifs = :tarifs,
+                    horaires = :horaires
+                WHERE id = :id";
+
+        // Exécuter la requête en utilisant la méthode req du modèle
+        return $this->req($sql, [
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'image' => $data['image'],
+            'image2' => $data['image2'],
+            'categorie' => $data['categorie'],
+            'duree' => $data['duree'],
+            'tarifs' => $data['tarifs'],
+            'horaires' => $data['horaires'],
+            'id' => $id
+        ]);
     }
 
     // Getters
@@ -80,6 +108,26 @@ class ServModel extends Model
     public function setHoraires($horaires)
     {
         $this->horaires = $horaires;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of image2
+     */ 
+    public function getImage2()
+    {
+        return $this->image2;
+    }
+
+    /**
+     * Set the value of image2
+     *
+     * @return  self
+     */ 
+    public function setImage2($image2)
+    {
+        $this->image2 = $image2;
 
         return $this;
     }
