@@ -1,3 +1,6 @@
+<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">' ?>
+
+
 <form action="/habitats/editHabitat/<?= $habitat['id'] ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= $habitat['id'] ?>">
 

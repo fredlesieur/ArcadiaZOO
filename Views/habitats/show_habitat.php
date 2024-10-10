@@ -1,3 +1,6 @@
+<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">' ?>
+
+
 <h1 class="container-fluid banner pt-5 pb-5">HABITATS</h1>
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
