@@ -17,34 +17,19 @@ class ServiceModel extends Model
     public function __construct() {
         $this->table = "services";
     }
-    public function updateService($id, $data)
-    {
-        // Requête SQL pour mettre à jour le rapport vétérinaire
-        $sql = "UPDATE " . $this->table . " 
-                SET name = :name,
-                    description = :description, 
-                    image = :image, 
-                    image2 = :image2, 
-                    categorie = :categorie, 
-                    duree = :duree,
-                    tarifs = :tarifs,
-                    horaires = :horaires
-                WHERE id = :id";
+    
 
-        // Exécuter la requête en utilisant la méthode req du modèle
-        return $this->req($sql, [
-            'name' => $data['name'],
-            'description' => $data['description'],
-            'image' => $data['image'],
-            'image2' => $data['image2'],
-            'categorie' => $data['categorie'],
-            'duree' => $data['duree'],
-            'tarifs' => $data['tarifs'],
-            'horaires' => $data['horaires'],
-            'id' => $id
-        ]);
+    public function getUniqueCategories()
+    {
+        $sql = "SELECT DISTINCT categorie FROM " . $this->table . " WHERE categorie IS NOT NULL";
+        return $this->req($sql)->fetchAll();
     }
-   
+    public function getAllCategories()
+{
+    $sql = "SELECT DISTINCT categorie FROM " . $this->table;
+    $result = $this->req($sql)->fetchAll();
+    return array_column($result, 'categorie');
+}
     // Getters
     public function getId() {
         return $this->id;

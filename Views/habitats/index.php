@@ -1,7 +1,7 @@
 <?php $link = '<link rel="stylesheet" href="assets/css/habitats.css">'; ?>
 
 <!-- Banniere de présentation des Habitats -->
-<h1 class="container-fluid banner pt-5 pb-5">HABITATS</h1>
+<h1 class="container-fluid banner pt-5 pb-5 mb-0">HABITATS</h1>
 
 <!-- Carrousel Section -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">

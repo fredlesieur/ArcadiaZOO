@@ -36,6 +36,8 @@
 <?php endif; ?>
 
 <!-- Inclusion du script JavaScript pour l'animation du jaguar -->
-<script src="assets/javascript/jaguar.js"></script>
+<?php $script = '<script src="assets/javascript/jaguar.js"></script>'; ?>
+<?php $script = '<script src="/assets/javascript/modifServ.js"></script>'; ?>
+
 
 

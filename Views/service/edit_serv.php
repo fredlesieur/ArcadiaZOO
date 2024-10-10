@@ -5,20 +5,22 @@
 <div class="container my-5">
     <!-- Formulaire pour modifier un service -->
     <h2>Modifier un Service</h2>
-    <form action="/service/editServ/<?= $services['id'] ?>" method="post" enctype="multipart/form-data">
+    <form action="/service/editServ/<?= $service['id'] ?>" method="post" enctype="multipart/form-data">
 
         <label for="name">Nom du service :</label>
-        <input type="text" name="name" id="name" value="<?= htmlspecialchars($services['name']) ?>" required><br>
+        <input type="text" name="name" id="name" value="<?= htmlspecialchars($service['name']) ?>" required><br>
 
         <label for="description">Description :</label>
-        <textarea class="w-100" name="description" id="description" required><?= htmlspecialchars($services['description']) ?></textarea><br>
+        <textarea class="w-100" name="description" id="description" required><?= htmlspecialchars($service['description']) ?></textarea><br>
 
         <label for="categorie">Catégorie :</label>
         <select name="categorie" id="categorie" onchange="toggleNewCategoryField(this)" required>
             <option value="">Sélectionnez une catégorie</option>
-            <option value="restaurant" <?= $services['categorie'] == 'restaurant' ? 'selected' : '' ?>>Restaurant</option>
-            <option value="train" <?= $services['categorie'] == 'train' ? 'selected' : '' ?>>Train</option>
-            <option value="visite" <?= $services['categorie'] == 'visite' ? 'selected' : '' ?>>Visite</option>
+            <?php foreach ($allCategories as $category): ?>
+                <option value="<?= htmlspecialchars($category) ?>" <?= $service['categorie'] == $category ? 'selected' : '' ?>>
+                    <?= htmlspecialchars(ucfirst($category)) ?>
+                </option>
+            <?php endforeach; ?>
             <option value="autre">Ajouter une nouvelle catégorie</option>
         </select><br>
 
@@ -34,13 +36,13 @@
         <input type="file" name="image2" id="image2"><br>
 
         <label for="duree">Durée :</label>
-        <input type="text" class="w-100" name="duree" id="duree" value="<?= htmlspecialchars($services['duree']) ?>"><br>
+        <input type="text" class="w-100" name="duree" id="duree" value="<?= htmlspecialchars($service['duree']) ?>"><br>
 
         <label for="tarifs">Tarifs :</label>
-        <input type="text" class="w-100" name="tarifs" id="tarifs" value="<?= htmlspecialchars($services['tarifs']) ?>"><br>
+        <input type="text" class="w-100" name="tarifs" id="tarifs" value="<?= htmlspecialchars($service['tarifs']) ?>"><br>
 
         <label for="horaires">Horaires :</label>
-        <input type="text" class="w-100" name="horaires" id="horaires" value="<?= htmlspecialchars($services['horaires']) ?>"><br>
+        <input type="text" class="w-100" name="horaires" id="horaires" value="<?= htmlspecialchars($service['horaires']) ?>"><br>
 
         <button type="submit" class="btn btn-success w-100 mt-2">Modifier</button>
     </form>

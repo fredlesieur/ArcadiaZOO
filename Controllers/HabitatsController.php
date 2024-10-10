@@ -38,7 +38,7 @@ class HabitatsController extends Controller
     public function addHabitat()
     {
         $habitatModel = new HabitatsModel();
-
+        $habitats = $habitatModel->findAll();
         // Vérifier si la requête est de type POST pour traiter la soumission du formulaire
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Préparer les données envoyées via le formulaire sous forme de tableau  
@@ -66,7 +66,7 @@ class HabitatsController extends Controller
             //vue du formulaire d'ajout  
         }
         $title = "Créer un habitat";
-        $this->render('habitats/add_habitat', compact('title')); 
+        $this->render('habitats/add_habitat', compact('title', 'habitats')); 
     }
 
     public function editHabitat($id)

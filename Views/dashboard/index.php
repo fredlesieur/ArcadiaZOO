@@ -25,7 +25,6 @@
             <!-- contact par email -->
         <?php elseif($_SESSION['role'] && $_SESSION['role'] == 'veterinaire'): ?>
             <li><a href="/habitats/addHabitat">Créer un commentaire sur un habitat</a></li>
-            <li><a href="/habitats/editHabitat">Modifier ou supprimer un commentaire sur un habitat</a></li>
             <li><a href="/habitats/listHabitats">Liste des commentaires sur les habitats</a></li>
             <li><a href="/rapport/liste_rapports">Voir la liste des rapports </a></li>
             <li><a href="/rapport/add_rapport">Ajouter un rapports</a></li>
