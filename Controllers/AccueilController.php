@@ -13,7 +13,7 @@ class AccueilController extends Controller
     {   
        
         $avisModel = new AvisModel();
-        $Avis = $avisModel->getAvisValides();
+        $Avis = $avisModel->getAllValidatedReviews();
 
         $AnimalModel = new AnimalModel();
         $animaux = $AnimalModel->findAll();
@@ -64,7 +64,7 @@ class AccueilController extends Controller
 
     public function editaccueil($id)
     {
-        $accueilModel = new accueilsModel();
+        $accueilModel = new accueilModel();
         $accueils= $accueilModel->find($id);
     
         // Vérifier si la requête est de type POST pour traiter la soumission du formulaire
@@ -99,7 +99,7 @@ class AccueilController extends Controller
     public function listaccueils()
 {
     // Utilisation du modèle pour récupérer tous les accueils
-    $accueilModel = new accueilsModel();
+    $accueilModel = new accueilModel();
     $animaux = $accueilModel->findAll(); // Récupérer tous les accueils
 
     $title = "Liste des accueils";
@@ -109,7 +109,7 @@ class AccueilController extends Controller
 
 public function deleteaccueil($id)
     {
-        $accueilModel = new accueilsModel();
+        $accueilModel = new accueilModel();
         $accueilModel->delete($id);
 
         // Redirection après suppression

@@ -3,23 +3,28 @@
 namespace App\Controllers;
 use App\Models\ServiceModel;
 
+
 class ServiceController extends Controller
 {
     public function index()
     {
         $serviceModel = new ServiceModel();
 
-        // Récupère tous les services
+        // Récupère tous les services et les classe par catégorie
         $services = $serviceModel->findAll();
+        $servicesByCategory = [];
 
-        // Récupérer les services par catégorie si nécessaire
-        $restaurant = $serviceModel->findBy(['categorie' => 'restaurant']);
-        $train = $serviceModel->findBy(['categorie' => 'train']);
-        $visites = $serviceModel->findBy(['categorie' => 'visite']);
+        // Organise les services par catégorie
+        foreach ($services as $service) {
+            $category = $service['categorie'];
+            $servicesByCategory[$category][] = $service;
+        }
 
-        // Passer les données à la vue
-        $this->render("service/index", compact("services", "restaurant", "train", "visites"));
+        // Passer les données organisées à la vue
+        $this->render("service/index", compact("servicesByCategory"));
     }
+
+
 
     public function addServ()
     {
