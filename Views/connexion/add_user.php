@@ -17,7 +17,7 @@
 
 <div class="form-container mx-auto p-4">
     <h2 class="text-center">Créer un compte utilisateur</h2>
-    <form action="/admin/creerUtilisateur" method="POST">
+    <form action="/connexion/addUser" method="POST">
         <div class="mb-3">
             <label for="nom_prenom" class="form-label text-center"><Minuscule>Nom et prenom de l'utilisateur</Minuscule></label>
             <input type="text" class="form-control" id="nom_prenom" name="nom_prenom" required>

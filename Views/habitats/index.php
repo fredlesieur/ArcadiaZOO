@@ -41,7 +41,7 @@
     </div>
     <div class="d-flex justify-content-center m-5">
         <!-- Lien vers les détails de l'habitat -->
-        <a href="/habitat/decouvrir/<?=$habitat['id']; ?>" class="btn button">Découvrir</a>
+        <a href="/habitats/showHabitat/<?=$habitat['id']; ?>" class="btn button">Découvrir</a>
     </div>
 </section>
 

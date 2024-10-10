@@ -200,7 +200,8 @@ public function modifierRapport($id)
 {
     $employeModel = new EmployeModel();
     $rapport = $employeModel->getRapportById($id); // Récupère les détails du rapport à partir de son ID
-
+    $animalmodel= new AnimalModel();
+    $animaux = $animalmodel->getRapportByAnimalId($id); // Récupère tous les animaux pour les afficher dans la liste déroulante
     // Vérification si le rapport existe
     if (!$rapport) {
         header('Location: /employe/listeRapport');
@@ -215,13 +216,15 @@ public function enregistrerModification($id)
     $employeModel = new EmployeModel();
     
     // Récupérer les valeurs du formulaire
+    $user_id = $_SESSION['user_id'];
+    $animal_id = $_POST['animal_id'];
     $nourriture = $_POST['nourriture'];
     $quantite = $_POST['quantite'];
     $date = $_POST['date'];
     $observations = $_POST['observations'];
 
     // Mettre à jour le rapport dans la base de données
-    $employeModel->updateRapport($id, $nourriture, $quantite, $date, $observations);
+    $employeModel->updateRapport($id, $user_id, $animal_id, $nourriture, $quantite, $date, $observations);
 
     // Rediriger vers la liste des rapports après la mise à jour
     header('Location: /employe/listeRapport');

@@ -35,7 +35,7 @@
 <div class="container d-flex justify-content-center my-5">
   <div class="form-container p-4">
     <h2 class="text-center">Laisser un avis</h2>
-    <form action="/Avis/ajouterAvis" method="POST">
+    <form action="/avis/addAvis" method="POST">
       <div class="mb-3">
         <label for="pseudo" class="form-label">Pseudo</label>
         <input type="text" class="form-control" id="pseudo" name="pseudo" required>

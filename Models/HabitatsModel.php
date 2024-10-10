@@ -12,21 +12,13 @@ class HabitatsModel extends Model
     protected $image2;
     protected $image3;
     protected $commentaire;
+    protected $user_id;
 
     public function __construct() {
         $this->table = "habitats";
     }
     
-    public function createReport(array $data)
-    {
-        $sql = "UPDATE habitats SET commentaire = :rapport, user_id = :user_id WHERE id = :habitat_id";
-        $stmt = $this->req($sql, [
-            ':rapport' => $data['commentaire'],
-            ':user_id' => $data['user_id'],  // Ajouter l'ID du vétérinaire
-            ':habitat_id' => $data['habitat_id']
-        ]);
-        return $stmt;
-    }
+
 
     public function getRapportsHabitats()
     {
@@ -35,26 +27,6 @@ class HabitatsModel extends Model
                 JOIN users u ON h.user_id = u.id";  // Associer l'ID du vétérinaire
 
         return $this->req($sql)->fetchAll();
-    }
-
-    //mettre a jours un rapportHabitat
-
-    public function updateReport(int $id, array $data)
-    {
-        $sql = "UPDATE habitats SET commentaire = :rapport WHERE id = :id";
-        $stmt = $this->req($sql, [
-            ':rapport' => $data['commentaire'],
-            ':id' => $id
-        ]);
-        return $stmt->rowCount(); // Par exemple, retourner le nombre de lignes affectées
-    }
-
-    //supprimer un rapportHabitat
-    public function deleteReport(int $id)
-    {
-        $sql = "DELETE FROM habitats WHERE id = :id";
-        $stmt = $this->req($sql, [':id' => $id]);
-        return $stmt->rowCount(); // Par exemple, retourner le nombre de lignes affectées
     }
 
     public function getRapportsWithVeterinaire()
@@ -124,5 +96,45 @@ class HabitatsModel extends Model
 
     public function setCommentaire($commentaire) {
         $this->commentaire = $commentaire;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user_id
+     */ 
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set the value of user_id
+     *
+     * @return  self
+     */ 
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
+
+        return $this;
     }
 }

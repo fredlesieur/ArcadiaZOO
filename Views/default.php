@@ -41,19 +41,12 @@
 
                         <!-- Dynamic content based on user role -->
                         <?php if (isset($_SESSION['user_id'])): ?>
-                            <?php if ($_SESSION['role'] == 'administrateur'): ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/admin/index">Tableau de bord Administrateur</a>
-                                </li>
-                            <?php elseif ($_SESSION['role'] == 'employe'): ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/employe/index">Tableau de bord Employé</a>
-                                </li>
-                            <?php elseif ($_SESSION['role'] == 'veterinaire'): ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/veterinaire/index">Tableau de bord Vétérinaire</a>
+                                    <a class="nav-link" href="/dashboard/index">Tableau de bord <?= $_SESSION['role'] ?></a>
                                 </li>
                             <?php endif; ?>
+
+                            <?php if(!empty($_SESSION['user_id'])): ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="/connexion/logout">Déconnexion</a>
                             </li>

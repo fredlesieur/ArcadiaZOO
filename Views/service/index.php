@@ -9,7 +9,7 @@
                 <?php foreach ($services as $index => $service): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($service['image']) ?>" class="p-2 img-fluid image-large" alt="Image du service">
+                            <img src="/assets/images/<?= htmlspecialchars($service['image']) ?>" class="p-2 img-fluid image-large" alt="<?= htmlspecialchars($service['name']) ?>">
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -29,19 +29,12 @@
     </div>
 </section>
 
-<!-- Section jaguar animation -->
-<div class="jaguar-container">
-    <img class="jaguar" src="assets/images/jaquar1.jpg" alt="Jaguar en course">
-</div>
-
-<!-- Section pour afficher les services sans les organiser par catégorie -->
-<?php if (isset($services) && !empty($services)): ?>
+<!-- Section pour afficher les services sous forme de liste -->
+<?php if (!empty($services)): ?>
     <?php foreach ($services as $service): ?>
         <section class="colorSection p-3 p-lg-4 p-xl-5">
             <h3 class="p-3"><?= htmlspecialchars($service["name"]); ?></h3>
-            <p id="presentation-text" class="d-none d-lg-block p-5">
-                <?= htmlspecialchars($service["description"]); ?>
-            </p>
+            <p class="p-1">Description : <?= htmlspecialchars($service["description"]); ?></p>
             <p class="p-1">Tarif : <?= htmlspecialchars($service["tarifs"]); ?></p>
             <p class="p-1">Ouvert de : <?= htmlspecialchars($service["horaires"]); ?></p>
             <div class="image d-flex justify-content-center">
@@ -55,4 +48,3 @@
 
 <!-- Inclusion du script JavaScript pour l'animation du jaguar -->
 <script src="assets/javascript/jaguar.js"></script>
-

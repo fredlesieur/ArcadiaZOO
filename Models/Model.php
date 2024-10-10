@@ -76,30 +76,16 @@ public function update(int $id)
     $champs = [];
     $valeurs = [];
 
-    // On boucle pour éclater le tableau
     foreach ($this as $champ => $valeur) {
-        if ($valeur != null && $champ != 'db' && $champ != 'table') {
+        if ($valeur !== null && $champ != 'db' && $champ != 'table') {
             $champs[] = "$champ = ?";
             $valeurs[] = $valeur;
         }
     }
     $valeurs[] = $id;
+    $listChamps = implode(', ', $champs);
 
-    // Vérifier s'il y a des champs à mettre à jour
-    if (empty($champs)) {
-        throw new \Exception('Aucun champ à mettre à jour');
-    }
-
-    // On transforme le tableau champ en une chaîne de caractères
-    $liste_champs = implode(', ', $champs);
-
-    // Loguer la requête SQL avant l'exécution
-    $sql = 'UPDATE ' . $this->table . ' SET ' . $liste_champs . ' WHERE id = ?';
-    error_log('Requête SQL : ' . $sql);
-    error_log('Valeurs : ' . print_r($valeurs, true));
-
-    // Exécuter la requête
-    return $this->req($sql, $valeurs);
+    return $this->req('UPDATE ' . $this->table . ' SET ' . $listChamps . ' WHERE id = ?', $valeurs);
 }
 
 

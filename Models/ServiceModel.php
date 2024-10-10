@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class ServModel extends Model
+class ServiceModel extends Model
 {
     protected $id;
     protected $name;
@@ -131,4 +131,5 @@ class ServModel extends Model
 
         return $this;
     }
+
 }

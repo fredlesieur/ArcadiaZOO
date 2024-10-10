@@ -76,14 +76,19 @@ public function updateRapport($id, $data)
 {
     // Requête SQL pour mettre à jour le rapport employé
     $sql = "UPDATE " . $this->table . " 
-            SET nourriture = :nourriture,
-                quantite = :quantite, 
-                date = :date, 
-                observations = :observations
+            SET 
+            user_id = :user_id,
+            animal_id = :animal_id,
+            nourriture = :nourriture,
+            quantite = :quantite, 
+            date = :date, 
+            observations = :observations
             WHERE id = :id";
 
     // Exécuter la requête en utilisant la méthode req du modèle
     return $this->req($sql, [
+        'user_id' => $data['user_id'],
+        'animal_id' => $data['animal_id'],
         'nourriture' => $data['nourriture'],
         'quantite' => $data['quantite'],
         'date' => $data['date'],

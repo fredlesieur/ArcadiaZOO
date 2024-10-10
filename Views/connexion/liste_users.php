@@ -22,10 +22,10 @@
                 <td><?= $user['role_id'] == 2 ? 'Vétérinaire' : 'Employé' ?></td>
                 <td>
                     <!-- Bouton de modification -->
-                    <a href="/admin/editUser/<?= $user['id'] ?>" class="btn btn-warning">Modifier</a>
+                    <a href="/connexion/editUser/<?= $user['id'] ?>" class="btn btn-warning">Modifier</a>
                     
                     <!-- Bouton de suppression avec confirmation -->
-                    <a href="/admin/deleteUser/<?= $user['id'] ?>" class="btn btn-danger"
+                    <a href="/connexion/deleteUser/<?= $user['id'] ?>" class="btn btn-danger"
                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
                         Supprimer
                     </a>
