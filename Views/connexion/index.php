@@ -1,5 +1,3 @@
-<?php $link = '<link rel="stylesheet" href="assets/css/connexion.css">'; ?>
-
 <h1 class="container-fluid banner pt-5 pb-5"> CONNEXION</h1>
 
 <section>
@@ -31,4 +29,4 @@
     </div>
 </section>
 
-<?php $script = '<script src="/assets/javascript/passwordhide.js"></script>' ?> 
+<?php $script = '<script src="/assets/javascript/passwordhide.js"></script>' ?>

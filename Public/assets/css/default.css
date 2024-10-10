@@ -1,92 +1,166 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing : border-box;
+/* Reset global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     list-style: none;
 }
+
+/* TYPOGRAPHIE GÉNÉRALE */
+body, h1, h2, h3, p, a, li {
+    font-family: "Roboto", sans-serif;
+    color: #492200;
+    text-align: center;
+}
+
+/* TITRES GÉNÉRAUX */
+h1, h2, h3 {
+    font-family: "Risque", cursive;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
 h2 {
-    font-family: "risque";
     font-size: 2rem;
     color: #F8B941;
     -webkit-text-stroke: 1px #492200;
-    text-align: center;
-  }
-  
-  p {
-    font-family: "roboto";
-    font-size: 1rem;
-    color: #492200;
-    text-align: center;
-    max-width: 50rem;
-    margin: 0 auto;
-  }
-  
-  h3 {
-    font-family: "risque";
+}
+
+h3 {
     font-size: 1.5rem;
     color: #492200;
-    text-align: center;
-  }
-  
-  .button {
+}
+
+/* Fond de chaque section */
+.colorSection {
+    background-color: #FAF4ED;
+    padding: 2rem;
+}
+
+/*formulaire et tableaux */
+.avi{
+    border:solid 2px #492200;
+    background-color: #FAF4ED;
+}
+
+form {
+    background-color: #FAF4ED;
+    border: 2px solid #492200;
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 30rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels et Inputs */
+label {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: #492200;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input, select {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: #492200;
+    border: 2px solid #492200;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: white;
+}
+/* Styles des boutons */
+.button, .btn {
     background-color: #492200;
     color: #F8B941;
-    border: solid 2px #F8B941;
+    border: 2px solid #F8B941;
     box-shadow: 5px 2px 10px #F8B941;
     border-radius: 10px;
     padding: 8px;
-  }
+    transition: background-color 0.3s, color 0.3s;
+}
 
-.collapse ul a {
-    color: #FAF4ED;
-    font-size: 1.25rem;
-    font-family: "Risque";
-    transition: 0.2s ease-in;
-}
-.collapse ul a:hover {
-    color: #F8B941;
-    font-size: 1.25rem;
-    font-family: "Risque";
-    border-top: 2px solid #FAF4ED;
-}
-.connexion:hover {
-    border-bottom: 2px solid #FAF4ED;
-}
-.banner{
-    background: rgb(248,185,65);
-    background: linear-gradient(90deg, rgba(248,185,65,1) 0%, rgba(146,109,38,1) 100%); 
-    max-height: 13rem;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.button:hover, .btn:hover {
+    background-color: #F8B941;
     color: #492200;
-    font-size: 2.5rem;
-    font-family: "Risque";
-  
+    border: 2px solid #492200;
+    box-shadow: 5px 2px 10px #492200;
+}
+/* BOUTONS GÉNÉRAUX */
+.btn, .button {
+    background-color: #492200;
+    color: #F8B941;
+    border: 2px solid #F8B941;
+    box-shadow: 5px 2px 10px #F8B941;
+    border-radius: 10px;
+    padding: 8px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Mobile-first approach with rem units */
+.btn:hover, .button:hover {
+    background-color: #F8B941;
+    color: #492200;
+    border: 2px solid #492200;
+    box-shadow: 5px 2px 10px #492200;
+}
+.success{
+    background-color:#7AA95C ;
+    color: white;
+    border: solid 2px #492200;
+    box-shadow: 5px 2px 10px #7aa80b;
+    border-radius: 10px;
+    padding: 10px;
+    width: 5rem;
+    
+}
+.danger{
+    background-color:#9e2f07 ;
+    color: white;
+    border: solid 2px #492200;
+    box-shadow: 5px 2px 10px #621e05;
+    border-radius: 10px;
+    padding: 10px;
+    width: 6rem;
+    
+}
+.warning{
+    background-color:rgb(146, 109, 38)!important ;
+    color: white;
+    border: solid 2px #492200;
+    box-shadow: 5px 2px 10px #b47705;
+    border-radius: 10px;
+    padding: 10px;
+    width: 6rem;  
+}
+/* Styles de la barre de navigation */
 .navbar {
-    background: rgb(155,101,7);
     background: linear-gradient(90deg, rgba(155,101,7,1) 0%, rgba(53,35,2,1) 100%);
     padding: 1rem;
 }
-.navbar-toggler-icon{
+
+.navbar-toggler-icon {
     color: #FAF4ED;
     background-color: #F8B941;
     border-radius: 5px;
 }
+
 .logo {
-    width: 5rem; /* Adapt size based on rem */
+    width: 5rem;
     height: auto;
     margin-bottom: 1rem;
     border-radius: 100%;
     border: solid 5px #F8B941;
 }
+
 .navbar-toggler {
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
     width: 3rem;
     height: 3rem;
@@ -94,29 +168,106 @@ h2 {
 }
 
 .navbar-nav .nav-link {
+    color: #FAF4ED;
     padding: 0.75rem 0;
-    font-size: 1rem; /* Use rem for responsive text sizing */
+    font-size: 1rem; /* Taille par défaut pour les petits écrans */
+    font-family: "Risque";
+    transition: color 0.2s ease-in;
 }
 
-/* Adjustments for larger screens */
-@media (min-width: 768px) {
-    .navbar-nav .nav-item {
-        margin: 0 1.5rem; /* Ajoute de l'espace horizontal entre chaque lien */
-    }
-
-    .navbar-nav .nav-link {
-        padding: 0.85rem 0; /* Ajuste la taille du padding */
-        font-size: 1.2rem; /* Légère augmentation de la taille du texte pour desktop */
-    }
-
-    .navbar-collapse {
-        max-height: 400px; /* Pour garantir une bonne apparence sur les grands écrans */
-    }
+.navbar-nav .nav-link:hover {
+    color: #F8B941;
 }
+
+
+/* Styles pour la bannière */
+.banner {
+    background: linear-gradient(90deg, rgba(248, 185, 65, 1) 0%, rgba(146, 109, 38, 1) 100%);
+    max-height: 13rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #492200;
+    font-size: 2.5rem;
+    font-family: "Risque", cursive;
+}
+
+/* Styles du formulaire */
+.form-container {
+    background-color: #FAF4ED;
+    border: 2px solid #492200;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 30rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+th, td{
+    text-align: center;
+    color: #492200;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: #492200;
+    text-align: center;
+    margin: 0 auto;
+}
+/* Couleur de la première ligne (en-tête) */
+th {
+    background-color: #f2f2f2;
+}
+
+/* Couleur des lignes paires */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Couleur des lignes impaires */
+tr:nth-child(odd) {
+    background-color: #eaeaea;
+}
+
+/* Carrousel des images */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #492200;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    opacity: 0.8;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #F8B941;
+    opacity: 1;
+}
+
+
+.carousel .img-fluid {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-width: 800px; /* Largeur maximale pour les images du carrousel */
+    max-height: 600px; /* Hauteur maximale pour les images du carrousel */
+}
+.description {
+    max-width: 50rem;
+    margin:auto;
+  }
+/* Ajustement des autres images pour qu'elles soient responsives et uniformes */
+.img-fluid {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-width: 400px; /* Largeur maximale pour les autres images */
+    max-height: 400px; /* Hauteur maximale pour les autres images */
+}
+
 /* Footer styles */
 footer {
     width: 100%;
-    background-color: #9b6507;
+    background: linear-gradient(90deg, rgba(155,101,7,1) 0%, rgba(53,35,2,1) 100%);
     padding: 1.5rem 0;
     color: #FAF4ED;
 }
@@ -142,15 +293,6 @@ footer {
     font-size: 0.85rem;
 }
 
-.footer a {
-    color: #FAF4ED;
-    text-decoration: none;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
-
 .footer .logo {
     width: 5rem;
     height: auto;
@@ -162,7 +304,63 @@ footer {
     font-size: 1.5rem;
     color: #FAF4ED;
 }
+/* Animation du jaguar */
+.jaguar {
+    width: 4rem;
+    height: 3rem;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: moveRight 5s linear infinite;
+  }
+  
+  @keyframes moveRight {
+    from {
+        left: 0;
+    }
+    to {
+        left: 100%;
+    }
+  }
+  
+  .jaguar-container {
+    position: relative;
+    height: 5rem;
+    margin-top: 20px;
+  }
+@media (min-width: 768px) {
+ 
 
+    .banner {
+        font-size: 2.5rem; /* Taille plus grande pour la bannière sur grand écran */
+    }
 
+    h2 {
+        font-size: 2rem; /* Augmente légèrement la taille des titres sur grand écran */
+    }
 
+    h3 {
+        font-size: 1.75rem; /* Ajuste les sous-titres */
+    }
 
+    p {
+        font-size: 1.125rem; /* Augmente légèrement la taille du texte courant */
+    }
+}
+/* Ajustements pour les écrans plus grands */
+@media (min-width: 768px) {
+    .navbar-nav .nav-item {
+        margin: 0 1.5rem; /* Ajoute de l'espace horizontal entre chaque lien */
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 1.2rem; /* Taille augmentée pour les écrans de bureau */
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+        font-size: 1.4rem; /* Taille encore augmentée pour les très grands écrans */
+    }
+}

@@ -8,7 +8,7 @@ class ServiceController extends Controller
     public function index()
     {
         $serviceModel = new ServiceModel();
-
+        $services = $serviceModel->findAll();
         // Récupère tous les services et les classe par catégorie
         $services = $serviceModel->findAll();
         $servicesByCategory = [];
@@ -20,7 +20,7 @@ class ServiceController extends Controller
         }
 
         // Passer les données organisées à la vue
-        $this->render("service/index", compact("servicesByCategory"));
+        $this->render("service/index", compact("servicesByCategory", "services"));
     }
 
     public function addServ()

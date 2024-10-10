@@ -6,18 +6,19 @@
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <?php if (isset($habitat)): ?>
         <h2 class="text-center"><?= htmlspecialchars($habitat['name']); ?></h2><br>
-        <p><?= htmlspecialchars($habitat['description']); ?></p><br>
+        <p class="description text-center"><?= htmlspecialchars($habitat['description']); ?></p><br><br>
         <div class="image d-flex justify-content-center">
-            <img src="/assets/images/<?= htmlspecialchars($habitat['image3']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($habitat['name']); ?>">
+            <img src="/assets/images/<?= htmlspecialchars($habitat['image3']) ?>" class="p-2 img-fluid3" alt="<?= htmlspecialchars($habitat['name']); ?>">
         </div><br>
-        <p>Rapport Habitat : <?= htmlspecialchars($habitat['commentaire']); ?></p>
+        <h3>Rapport du vétérinaire sur l'habitat :</h3>
+        <p class="description text-center"><?= htmlspecialchars(ucfirst($habitat['commentaire'])); ?></p>
     <?php else: ?>
         <p>Informations sur l'habitat non disponibles.</p>
     <?php endif; ?>
 </section>
 
 <!-- Section pour afficher les animaux dans une galerie d'images -->
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="colorSection p-3 p-lg-4 p-xl-5 ">
     <h3 class="text-center">Les animaux de cet habitat</h3><br>
     <div class="row">
         <?php if (!empty($animaux)): ?>

@@ -10,7 +10,7 @@
             <?php foreach ($habitats as $index => $habitat): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($habitat['image3']) ?>" class="p-2 img-fluid" alt="Image du service">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image3']) ?>" class="img-fluid p-2" alt="Image du service">
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -34,20 +34,19 @@
 <?php foreach ($habitats as $habitat): ?>
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div>
-      <h2 class="p-3"><?= ucwords($habitat["name"]); ?></h2>
-      <div class="image d-flex justify-content-center">
-        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>">
-      </div>
+        <h2 class="p-3"><?= ucwords($habitat["name"]); ?></h2>
+        <div class="image d-flex justify-content-center">
+            <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+        </div>
     </div>
     <div class="d-flex justify-content-center m-5">
-        <!-- Lien vers les détails de l'habitat -->
         <a href="/habitats/showHabitat/<?=$habitat['id']; ?>" class="btn button">Découvrir</a>
     </div>
 </section>
 
 <!-- Jaguar Container -->
 <div class="jaguar-container">
-  <img class="jaguar" src="assets/images/jaquar1.jpg" alt="Jaguar en course">
+    <img class="jaguar" src="assets/images/jaquar1.jpg" alt="Jaguar en course">
 </div>
 <?php endforeach; ?>
 

@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <img src="/assets/images/<?=$animal['animal_image'] ?>" class="card-img-top img-fluid" alt="<?=$animal['animal_nom']; ?>">
+                <img src="/assets/images/<?=$animal['animal_image'] ?>" class="card-img-top img-fluid2" alt="<?=$animal['animal_nom']; ?>">
                 <div class="card-body">
                     <h2 class="card-title text-center"><?=ucfirst($animal['animal_nom']); ?></h2>
                     <h4 class="card-text text-center"><strong>Âge : </strong> <?= ucfirst($animal['animal_age']); ?> ans</h4>
