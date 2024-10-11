@@ -11,3 +11,12 @@
 .card:hover {
     transform: translateY(-5px);
 }
+h5 {
+    color: #492200 !important;
+    font-size: 1.25rem;
+    font-weight: bold;
+    
+}
+.card-body {
+    min-height:18rem ;
+}

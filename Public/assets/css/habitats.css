@@ -17,3 +17,32 @@
     max-width: 600px; /* Largeur maximale pour les autres images */
     max-height: 600px; 
 }
+
+.card {
+  height: 100%; /* Assurez-vous que la carte prend toute la hauteur */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Assure que le contenu de la carte est distribué uniformément */
+}
+
+.card-img-top {
+  flex-grow: 1; /* L'image prend tout l'espace vertical disponible */
+  width: 100%;
+  height: 400px; /* Fixe une hauteur uniforme pour toutes les images */
+  object-fit: cover; /* S'assure que l'image remplit la zone sans déformation */
+  border-top-left-radius: 10px; /* Arrondit les coins supérieurs de l'image */
+  border-top-right-radius: 10px; /* Arrondit les coins supérieurs de l'image */
+}
+
+.img-fluid2 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Remplit l'image tout en gardant son ratio */
+}
+
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre le texte verticalement dans la carte */
+}

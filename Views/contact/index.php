@@ -2,7 +2,7 @@
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
   <div class="container d-flex justify-content-center">
-    <div class="form-container p-4">
+    <div class="container p-4">
       <h2 class="text-center mb-3">Formulaire de contact</h2>
       <form id="contactForm" action="/Contact/sendMail" method="POST">
         <div class="mb-3 text-center">

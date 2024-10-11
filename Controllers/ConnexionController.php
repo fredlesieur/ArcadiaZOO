@@ -14,37 +14,37 @@ class ConnexionController extends Controller
     }
 
     public function login(): void
-    {
-        $email = $_POST['email'];
-        $password = $_POST['mdp'];
+{
+    $email = $_POST['email'] ?? null;
+    $password = $_POST['mdp'] ?? null;
 
-        // Modèle de connexion
-        $connexionModel = new ConnexionModel();
-        $user = $connexionModel->findUserByEmail($email);
+    // Modèle de connexion
+    $connexionModel = new ConnexionModel();
+    $user = $connexionModel->findUserByEmail($email);
 
-        // Si l'utilisateur existe et que le mot de passe est correct
-        if ($user && password_verify($password, $user['password'])) {
-            // Vérification stricte du rôle
-            if ($user['role'] === 'administrateur' || $user['role'] === 'veterinaire' || $user['role'] === 'employe') {
-                // Stocker les informations nécessaires dans la session
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['role'] = $user['role'];
-                $_SESSION['user_nom_prenom'] = $user['nom_prenom']; // Stocker le nom complet
+    // Si l'utilisateur existe et que le mot de passe est correct
+    if ($user && password_verify($password, $user['password'])) {
+        // Vérification stricte du rôle
+        if ($user['role'] === 'administrateur' || $user['role'] === 'veterinaire' || $user['role'] === 'employe') {
+            // Stocker les informations nécessaires dans la session
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['user_nom_prenom'] = $user['nom_prenom']; // Stocker le nom complet
 
-                // Redirection selon le rôle
-                if ($user['role'] === 'administrateur' || $user['role'] === 'veterinaire' || $user['role'] === 'employe') {
-                    header("Location: /dashboard/index");
-                    exit;
-                } else {
-                    $error = "Accès refusé. Rôle non valide.";
-                    $this->render('connexion/index', compact('error'));
-                }
-            } else {
-                $error = "Email ou mot de passe incorrect.";
-                $this->render('connexion/index', compact('error'));
-            }
+            // Redirection selon le rôle
+            header("Location: /dashboard/index");
+            exit;
+        } else {
+            $error = "Accès refusé. Rôle non valide.";
+            $this->render('connexion/index', compact('error'));
         }
+    } else {
+        // Si l'utilisateur n'existe pas ou que le mot de passe est incorrect
+        $error = "Email ou mot de passe incorrect.";
+        $this->render('connexion/index', compact('error'));
     }
+}
+
 
     public function logout()
     {

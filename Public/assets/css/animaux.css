@@ -1,14 +1,12 @@
-.card {
-    border: 1px solid #492200;
-    border-radius: 10px;
-}
 
-.card-body {
-    padding: 10px;
-}
+.card-body{
 
-.img-fluid2 {
-    width: 100%;
-    height: auto;
+    border: 3px solid #492200;
+    background-color: #FAF4ED;
 }
-
+h3{
+    color: rgb(146, 109, 38)!important;
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 700;
+}

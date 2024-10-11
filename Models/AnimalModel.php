@@ -15,10 +15,12 @@ class AnimalModel extends Model
         $this->table = "animaux";
     }
 
+    //requete SQL pour récupérer les animaux par ordre alphabetique
     public function findAllOrderedByName() {
         $sql = "SELECT * FROM animaux ORDER BY nom ASC";
         return $this->req($sql)->fetchAll();
     }
+    //requete SQL pour récupérer les rapports par animal et les informations de l'animal et l'utilisateur
     public function getRapportByAnimalId($id) {
         $sql = "SELECT rv.*, 
                        a.nom AS animal_nom, 
@@ -38,12 +40,19 @@ class AnimalModel extends Model
         
         return $result;
     }
+    //requete SQL pour récupérer les animaux avec leur habitat
     public function findAllWithHabitats()
 {
     $sql = "SELECT a.*, h.name AS habitat_name
             FROM animaux a
             LEFT JOIN habitats h ON a.id_habitats = h.id";
     return $this->req($sql)->fetchAll();
+}
+
+// requete SQL pour incrémenter le nombre de vues de l'animal correspondant
+public function incrementViews(int $id)
+{
+    return $this->req("UPDATE {$this->table} SET views = views + 1 WHERE id = ?", [$id]);
 }
 
     // Getters

@@ -88,4 +88,30 @@ class AnimalController extends Controller {
         header("Location: /animal/listAnimals");
         exit;
     }
+    public function incrementViews($id)
+{
+    header('Content-Type: application/json');
+
+    // Valider l'ID
+    if (!is_numeric($id)) {
+        echo json_encode(['success' => false, 'message' => 'ID invalide']);
+        exit;
+    }
+
+    $animalModel = new AnimalModel();
+
+    // Appele la méthode incrementViews de mon model pour mettre à jour le compteur de vues
+    $result = $animalModel->incrementViews((int)$id);
+
+    // Vérifie la requête qui a été exécutée
+    if ($result) {
+        echo json_encode(['success' => true, 'message' => 'Compteur de vues mis à jour']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Échec de la mise à jour du compteur de vues']);
+    }
+
+    exit;
+}
+
+
 }

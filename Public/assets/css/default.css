@@ -7,7 +7,7 @@
 }
 
 /* TYPOGRAPHIE GÉNÉRALE */
-body, h1, h2, h3, p, a, li {
+body, h1, h2, h3, h4, h5,  p, a, li {
     font-family: "Roboto", sans-serif;
     color: #492200;
     text-align: center;
@@ -32,7 +32,10 @@ h3 {
     font-size: 1.5rem;
     color: #492200;
 }
-
+h5 {
+    font-size: 1.25rem;
+    color: #492200;
+}
 /* Fond de chaque section */
 .colorSection {
     background-color: #FAF4ED;
@@ -138,6 +141,22 @@ input, select {
     padding: 10px;
     width: 6rem;  
 }
+.input-group-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px; 
+    width: 40px; 
+    padding: 0;
+    background-color: #fff; 
+    border: none;
+    border:1px solid rgba(0, 0, 0, 0.1);
+}
+
+#togglePasswordIcon {
+    font-size: 1.2rem;
+}
+
 /* Styles de la barre de navigation */
 .navbar {
     background: linear-gradient(90deg, rgba(155,101,7,1) 0%, rgba(53,35,2,1) 100%);

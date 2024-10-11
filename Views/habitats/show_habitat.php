@@ -24,20 +24,19 @@
         <?php if (!empty($animaux)): ?>
             <?php foreach ($animaux as $animal): ?>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card mb-4">
-                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($animal['nom']); ?>">
+                    <div class="card mb-4 animal-card" data-animal-id="<?= $animal['id']; ?>"> <!-- Ajout de "data-animal-id" pour le compteur javascript au click sur un animal-->
+                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid2" alt="<?= htmlspecialchars($animal['nom']); ?>">
                         <div class="card-body text-center">
                             <h5 class="card-title"><?= htmlspecialchars(ucwords($animal['nom'])); ?></h5>
                             <a href="/animal/viewAnimal/<?= $animal['id'] ?>" class="btn button">Voir la fiche</a>
                         </div>
                     </div>
                 </div>
+
             <?php endforeach; ?>
         <?php else: ?>
             <p class="text-center">Aucun animal n'est associé à cet habitat pour le moment.</p>
         <?php endif; ?>
     </div>
 </section>
-
-
-
+<?php $script = '<script src="/assets/javascript/compteur.js"></script>'; ?>
