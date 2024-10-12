@@ -235,7 +235,7 @@ select:hover {
 
 /* Cible l'élément select pour définir une couleur de fond de base */
 select {
-    background-color: #492200; /* Couleur de fond du champ select */
+    background-color: #49220075; /* Couleur de fond du champ select */
     color: #FAF4ED; /* Couleur du texte dans le champ select */
 }
 

@@ -1,44 +1,37 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">' ?>
-<h1 class="container-fluid banner pt-5 pb-5">Ajouter un (commentaire ou habitat)</h1>
+<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">'; ?>
+
+<h1 class="container-fluid banner pt-5 pb-5">Ajouter un Habitat</h1>
 <section class="colorSection">
-    <div class="mx-auto p-4">
-        <form action="/habitats/addHabitat" method="post">
+    <div class="container my-5">
+    <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'administrateur') : ?>
+        <h2>Commentaire vétérinaire sur l habitat :</label></h2>
+        <textarea class="form-control" name="commentaire" id="commentaire" ></textarea><br>
+        <button type="submit" class="btn btn-success w-100 mt-2">Ajouter</button>
+        <?php endif; ?>
+        <?php if ($_SESSION['role'] === 'administrateur') : ?>
 
-            <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'administrateur') : ?>
-                <label for="id_habitat">Sélectionner l'habitat :</label>
-                <select name="id_habitat" id="id_habitat" required>
-                    <option value="">Choisir un habitat</option>
-                    <?php foreach ($habitats as $habitat): ?>
-                        <option value="<?= $habitat['id']; ?>"><?= htmlspecialchars($habitat['name']); ?></option>
-                    <?php endforeach; ?>
-                </select><br>
+        <form action="/habitats/addHabitat" method="post" enctype="multipart/form-data">
+            <label for="name">Nom de l'habitat :</label>
+            <input type="text" class="form-control" name="name" id="name" required><br>
 
-                <label class="fs-4 fw-bold" for="commentaire">Commentaire Habitat vétérinaire : </label><br>
-                <textarea type="textarea" name="commentaire" id="commentaire" class="form-control"></textarea><br>
-            <?php endif; ?>
+            <label for="description">Description :</label>
+            <textarea class="form-control" name="description" id="description" required></textarea><br>
 
-            <?php if ($_SESSION['role'] === 'administrateur') : ?>
+            <label for="image">Image caroussel :</label>
+            <input type="file" class="form-control" name="image" id="image" required><br>
 
-                <label for="name">Nom :</label>
-                <input type="text" name="name" id="name"><br>
+            <label for="image2">Image de présentaion habitats :</label>
+            <input type="file" class="form-control" name="image2" id="image2"><br>
 
-                <label for="description">Description :</label>
-                <textarea type="textarea" name="description" id="description" class="form-control"></textarea><br>
+            <label for="image3">Image caroussel :</label>
+            <input type="file" class="form-control" name="image3" id="image3"><br>
 
-                <label for="description_courte">Description courte : </label>
-                <textarea type="textarea" name="description_courte" id="description_courte" class="form-control"></textarea><br>
-
-                <label for="image">Image</label>
-                <input type="file" name="image" id="image"><br>
-
-                <label for="image2">Image</label>
-                <input type="file" name="image2" id="image2"><br>
-
-                <label for="image3">Image</label>
-                <input type="file" name="image3" id="image3"><br>
-
-                <button type="submit" class="btn success w-100 mt-2">Ajouter</button>
+            <label for="description_courte">Description courte :</label>
+            <textarea class="form-control" name="description_courte" id="description_courte"></textarea><br>
+    
         </form>
+        <?php endif; ?>
     </div>
 </section>
-<?php endif; ?>
+
+<?php $script = '<script src="/assets/javascript/habitat.js"></script>'; ?>

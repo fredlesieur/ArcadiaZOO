@@ -7,7 +7,6 @@ use App\Models\RapportModel;
 
 class RapportController extends Controller
 {
-
     public function liste_rapports()
     {
         $rapportModel = new RapportModel();
@@ -19,48 +18,45 @@ class RapportController extends Controller
 
     public function add_rapport()
     {
-
         $rapportModel = new RapportModel();
-
         $animauxModel = new AnimalModel();
-        $animaux = $animauxModel->findAll();
+        $animaux = $animauxModel->findAll(); // Récupère tous les animaux
 
-        if (isset($_SESSION['user_id'])) {
-            $currentUserId = $_SESSION['user_id'];
-        } else {
-            http_response_code(404);
-            exit();
-        }
-
-        // Vérifier si la requête est de type POST pour traiter la soumission du formulaire
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Préparer les données envoyées via le formulaire sous forme de tableau
+        // Traitement du formulaire
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             $data = [
-                'user_id' => $currentUserId,
+                'user_id' => $_SESSION['user_id'],
                 'animal_id' => $_POST['animal_id'],
-                'etat' => $_POST['etat'] ?? null,
-                'nourriture' => $_POST['nourriture'] ?? null,
-                'grammage' => $_POST['grammage'] ?? null,
-                'date_passage' => $_POST['date_passage'] ?? null,
-                'detail_etat' => $_POST['detail_etat'] ?? null,
-                'date_heure' => $_POST['date_heure'] ?? null,
-                'grammage_preconise' => $_POST['grammage_preconise'] ?? null
+                'etat' => !empty($_POST['etat']) ? $_POST['etat'] : null,
+                'nourriture_preconisee' => !empty($_POST['nourriture_preconisee']) ? $_POST['nourriture_preconisee'] : null,
+                'grammage_preconise' => !empty($_POST['grammage_preconise']) ? $_POST['grammage_preconise'] : null,
+                'date_passage' => !empty($_POST['date_passage']) ? $_POST['date_passage'] : null,
+                'detail_etat' => !empty($_POST['detail_etat']) ? $_POST['detail_etat'] : null,
+                'date_heure' => !empty($_POST['date_heure']) ? $_POST['date_heure'] : null,
+                'grammage_donne' => !empty($_POST['grammage_donne']) ? $_POST['grammage_donne'] : null,
+                'nourriture_donnee' => !empty($_POST['nourriture_donnee']) ? $_POST['nourriture_donnee'] : null
             ];
 
-            // Hydratation de l'objet rapport avec les données du formulaire
+            // Hydratation du modèle et création du rapport
             $rapportModel->hydrate($data);
-
-            // Mise à jour du rapport dans la base de données
             $rapportModel->create();
 
-            // Redirection après ajout
+            // Redirection vers la liste des rapports après la création
             header('Location: /rapport/liste_rapports');
             exit();
         }
 
-        //vue du formulaire d'ajout
+        // Vue du formulaire d'ajout
         $title = "Ajouter un rapport";
         $this->render('rapport/add_rapport', compact('title', 'animaux'));
+    }
+
+    public function get_last_rapport($animalId)
+    {
+        $rapportModel = new RapportModel();
+        $rapport = $rapportModel->findLastRapportByAnimalId($animalId);
+
+        echo json_encode($rapport);
     }
 
     public function edit_rapport($id)
@@ -88,15 +84,16 @@ class RapportController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Préparer les données envoyées via le formulaire sous forme de tableau
             $data = [
-                'user_id' => $currentUserId,
+                'user_id' => $_SESSION['user_id'],
                 'animal_id' => $_POST['animal_id'],
-                'etat' => $_POST['etat'] ?? null,
-                'nourriture' => $_POST['nourriture'] ?? null,
-                'grammage' => $_POST['grammage'] ?? null,
-                'date_passage' => $_POST['date_passage'] ?? null,
-                'detail_etat' => $_POST['detail_etat'] ?? null,
-                'date_heure' => $_POST['date_heure'] ?? null,
-                'grammage_preconise' => $_POST['grammage_preconise'] ?? null
+                'etat' => !empty($_POST['etat']) ? $_POST['etat'] : null,
+                'nourriture_preconisee' => !empty($_POST['nourriture_preconisee']) ? $_POST['nourriture_preconisee'] : null,
+                'grammage_preconise' => !empty($_POST['grammage_preconise']) ? $_POST['grammage_preconise'] : null,
+                'date_passage' => !empty($_POST['date_passage']) ? $_POST['date_passage'] : null,
+                'detail_etat' => !empty($_POST['detail_etat']) ? $_POST['detail_etat'] : null,
+                'date_heure' => !empty($_POST['date_heure']) ? $_POST['date_heure'] : null,
+                'grammage_donne' => !empty($_POST['grammage_donne']) ? $_POST['grammage_donne'] : null,
+                'nourriture_donnee' => !empty($_POST['nourriture_donnee']) ? $_POST['nourriture_donnee'] : null
             ];
 
             // Hydratation de l'objet rapport avec les données du formulaire
@@ -124,3 +121,4 @@ class RapportController extends Controller
         exit();
     }
 }
+

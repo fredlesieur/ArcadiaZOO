@@ -44,7 +44,7 @@
             <?php foreach ($services as $service): ?>
                 <div class="service-block p-3 my-3">
                     <h3 class="p-3"><?= htmlspecialchars($service["name"]); ?></h3>
-                    <p class="p-1 description">Description : <?= htmlspecialchars($service["description"]); ?></p><br>
+                    <p class="p-1 description"><?= htmlspecialchars($service["description"]); ?></p><br>
                     <p class="p-1">Tarif : <?= htmlspecialchars($service["tarifs"]); ?></p>
                     <p class="p-1">Ouvert de : <?= htmlspecialchars($service["horaires"]); ?></p><br>
                     <div class="image d-flex justify-content-center">

@@ -8,12 +8,13 @@ class RapportModel extends Model
     protected $user_id;
     protected $animal_id;
     protected $etat;
-    protected $nourriture;
-    protected $grammage;
+    protected $nourriture_preconisee;
     protected $date_passage;
     protected $detail_etat;
     protected $date_heure;
-    protected $grammage_preconise;
+    protected $grammage_preconisee;
+    protected $nourriture_donnee;
+    protected $grammage_donne;
 
     public function __construct()
     {
@@ -45,9 +46,18 @@ class RapportModel extends Model
         )->fetchAll();
     }
 
+    public function findLastRapportByAnimalId($animalId)
+    {
+        return $this->req(
+            "SELECT * FROM " . $this->table . " 
+            WHERE animal_id = :animal_id 
+            ORDER BY date_passage DESC LIMIT 1",
+            ['animal_id' => $animalId]
+        )->fetch();
+    }
     /**
      * Get the value of id
-     */
+     */ 
     public function getId()
     {
         return $this->id;
@@ -57,7 +67,7 @@ class RapportModel extends Model
      * Set the value of id
      *
      * @return  self
-     */
+     */ 
     public function setId($id)
     {
         $this->id = $id;
@@ -67,7 +77,7 @@ class RapportModel extends Model
 
     /**
      * Get the value of user_id
-     */
+     */ 
     public function getUser_id()
     {
         return $this->user_id;
@@ -77,7 +87,7 @@ class RapportModel extends Model
      * Set the value of user_id
      *
      * @return  self
-     */
+     */ 
     public function setUser_id($user_id)
     {
         $this->user_id = $user_id;
@@ -87,7 +97,7 @@ class RapportModel extends Model
 
     /**
      * Get the value of animal_id
-     */
+     */ 
     public function getAnimal_id()
     {
         return $this->animal_id;
@@ -97,7 +107,7 @@ class RapportModel extends Model
      * Set the value of animal_id
      *
      * @return  self
-     */
+     */ 
     public function setAnimal_id($animal_id)
     {
         $this->animal_id = $animal_id;
@@ -107,7 +117,7 @@ class RapportModel extends Model
 
     /**
      * Get the value of etat
-     */
+     */ 
     public function getEtat()
     {
         return $this->etat;
@@ -117,7 +127,7 @@ class RapportModel extends Model
      * Set the value of etat
      *
      * @return  self
-     */
+     */ 
     public function setEtat($etat)
     {
         $this->etat = $etat;
@@ -126,48 +136,28 @@ class RapportModel extends Model
     }
 
     /**
-     * Get the value of nourriture
-     */
-    public function getNourriture()
+     * Get the value of nourriture_preconisee
+     */ 
+    public function getNourriture_preconisee()
     {
-        return $this->nourriture;
+        return $this->nourriture_preconisee;
     }
 
     /**
-     * Set the value of nourriture
+     * Set the value of nourriture_preconisee
      *
      * @return  self
-     */
-    public function setNourriture($nourriture)
+     */ 
+    public function setNourriture_preconisee($nourriture_preconisee)
     {
-        $this->nourriture = $nourriture;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of grammage
-     */
-    public function getGrammage()
-    {
-        return $this->grammage;
-    }
-
-    /**
-     * Set the value of grammage
-     *
-     * @return  self
-     */
-    public function setGrammage($grammage)
-    {
-        $this->grammage = $grammage;
+        $this->nourriture_preconisee = $nourriture_preconisee;
 
         return $this;
     }
 
     /**
      * Get the value of date_passage
-     */
+     */ 
     public function getDate_passage()
     {
         return $this->date_passage;
@@ -177,7 +167,7 @@ class RapportModel extends Model
      * Set the value of date_passage
      *
      * @return  self
-     */
+     */ 
     public function setDate_passage($date_passage)
     {
         $this->date_passage = $date_passage;
@@ -187,7 +177,7 @@ class RapportModel extends Model
 
     /**
      * Get the value of detail_etat
-     */
+     */ 
     public function getDetail_etat()
     {
         return $this->detail_etat;
@@ -197,7 +187,7 @@ class RapportModel extends Model
      * Set the value of detail_etat
      *
      * @return  self
-     */
+     */ 
     public function setDetail_etat($detail_etat)
     {
         $this->detail_etat = $detail_etat;
@@ -226,21 +216,61 @@ class RapportModel extends Model
     }
 
     /**
-     * Get the value of grammage_preconise
+     * Get the value of grammage_preconisee
      */ 
-    public function getGrammage_preconise()
+    public function getGrammage_preconisee()
     {
-        return $this->grammage_preconise;
+        return $this->grammage_preconisee;
     }
 
     /**
-     * Set the value of grammage_preconise
+     * Set the value of grammage_preconisee
      *
      * @return  self
      */ 
-    public function setGrammage_preconise($grammage_preconise)
+    public function setGrammage_preconisee($grammage_preconisee)
     {
-        $this->grammage_preconise = $grammage_preconise;
+        $this->grammage_preconisee = $grammage_preconisee;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nourriture_donnee
+     */ 
+    public function getNourriture_donnee()
+    {
+        return $this->nourriture_donnee;
+    }
+
+    /**
+     * Set the value of nourriture_donnee
+     *
+     * @return  self
+     */ 
+    public function setNourriture_donnee($nourriture_donnee)
+    {
+        $this->nourriture_donnee = $nourriture_donnee;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of grammage_donne
+     */ 
+    public function getGrammage_donne()
+    {
+        return $this->grammage_donne;
+    }
+
+    /**
+     * Set the value of grammage_donne
+     *
+     * @return  self
+     */ 
+    public function setGrammage_donne($grammage_donne)
+    {
+        $this->grammage_donne = $grammage_donne;
 
         return $this;
     }

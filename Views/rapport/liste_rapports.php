@@ -4,17 +4,18 @@
         <table class="table table-bordered table-striped table-hover">
             <thead class="thead-dark">
                 <tr>
-                    <th class="align-content-center">État</th>
-                    <th class="align-content-center">Nourriture</th>
-                    <th class="align-content-center">Grammage (g)</th>
-                    <th class="align-content-center">Date et Heure</th>
-                    <th class="align-content-center">Détail État</th>
-                    <th class="align-content-center">Animal</th>
                     <th class="align-content-center">Rapport rédigé par</th>
-                    <th class="align-content-center">grammage préconisé</th>
-                    <?php if ($_SESSION['role'] === 'veterinaire'): ?>
-                        <th class="align-content-center">date de passage</th>
-                    <?php endif; ?>
+                    <th class="align-content-center">Animal</th>
+                    <th class="align-content-center">État</th>
+                    <th class="align-content-center">Détail État</th>
+                    <th class="align-content-center">Date et Heure employé</th>
+                    <th class="align-content-center">Date de passage vétérinaire</th>
+                    <th class="align-content-center">Nourriture préconisée</th>
+                    <th class="align-content-center">Nourriture donnée</th>
+                    <th class="align-content-center">Quantité préconisée</th>
+                    <th class="align-content-center">Quantité donnée</th>
+
+
                     <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'employe') : ?>
                         <th class="align-content-center">Actions</th>
                     <?php endif; ?>
@@ -23,18 +24,16 @@
             <tbody>
                 <?php foreach ($rapport as $r): ?>
                     <tr>
-                        <td class="align-content-center"><?= $r['detail_etat']; ?></td>
-                        <td class="align-content-center"><?= $r['nourriture']; ?></td>
-                        <td class="align-content-center"><?= $r['grammage']; ?></td>
-                        <td class="align-content-center"><?= $r['date_heure']; ?></td>
-                        <td class="align-content-center"><?= $r['etat']; ?></td>
-                        <td class="align-content-center"><?= $r['animal_nom']; ?></td>
                         <td class="align-content-center"><?= $r['user_nom_prenom']; ?></td>
-                        <td class="align-content-center"><?= isset($r['grammage_preconiser']) ? ($r['grammage_preconiser']) : 'pas de grammage'; ?></td>
-                        <?php if ($_SESSION['role'] === 'veterinaire') : ?>
-                            <td class="align-content-center"><?= isset($r['date_passage']) ? date('d-m-Y H:i:s', strtotime($r['date_passage'])) : 'Date non disponible'; ?></td>
-                        <?php endif; ?>
-
+                        <td class="align-content-center"><?= $r['animal_nom']; ?></td>
+                        <td class="align-content-center"><?= $r['etat']; ?></td>
+                        <td class="align-content-center"><?= $r['detail_etat']; ?></td>
+                        <td class="align-content-center"><?= $r['date_heure']; ?></td>
+                        <td class="align-content-center"><?= isset($r['date_passage']) ? date('d-m-Y H:i:s', strtotime($r['date_passage'])) : 'Date non disponible'; ?></td>
+                        <td class="align-content-center"><?= isset($r['nourriture_preconisee']) ? ($r['grammage_preconise']) : 'pas indiqué';?></td>
+                        <td class="align-content-center"><?= $r['nourriture_donnee']; ?></td>
+                        <td class="align-content-center"><?= isset($r['grammage_preconise']) ? ($r['grammage_preconise']) : 'pas indiqué'; ?></td>
+                        <td class="align-content-center"><?= $r['grammage_donne']; ?></td>
                         <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'employe') : ?>
                             <td class="align-content-center">
                                 <a href="/rapport/edit_rapport/<?= $r['id']; ?>" class="btn warning">Modifier</a>

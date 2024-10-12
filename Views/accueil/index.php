@@ -1,4 +1,4 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/accueil.css">' ?>
+<?php $link = '<link rel="stylesheet" href="/assets/css/accueil.css">'; ?>
 
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">ACCUEIL</h1>
 
@@ -26,12 +26,28 @@
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <h2>Présentation du zoo</h2>
-    <p id="presentation-text " class="d-none d-lg-block p-5 w-50 m-auto">
-    Bienvenue au Zoo Arcadia, un lieu d'émerveillement et de découverte, près de la forêt de Brocéliande, en Bretagne, depuis 1960. Engagé dans une démarche écologique et respectueuse de l'environnement, notre zoo se distingue par son approche durable et ses efforts pour la préservation de la biodiversité. Le zoo se porte très bien financièrement, les animaux sont heureux. Cela fait la fierté de son directeur, José, qui a de grandes ambitions. Trois Espaces  pour nos animaux et pour enrichir votre visite, le Zoo Arcadia propose plusieurs services conçus pour le confort et le plaisir des petits et des grands.
-    Venez vivre une expérience inoubliable au Zoo Arcadia, où la nature reprend ses droits et où chaque visiteur devient un ambassadeur de la protection de notre planète.
+    <p id="presentation-text" class="d-none d-lg-block p-1 mx-auto">
+
+        Bienvenue au Zoo Arcadia, un lieu d'émerveillement et de découverte niché près de la forêt de Brocéliande, en Bretagne, depuis 1960. Engagé dans une démarche écologique et durable, notre zoo se distingue par son respect de l’environnement et ses efforts pour la préservation de la biodiversité. Le bien-être des animaux et l'épanouissement de la nature sont au cœur de notre mission.
+
+        Sous la direction de José, qui nourrit de grandes ambitions pour l'avenir, le zoo prospère et devient un modèle de réussite. Avec ses quatre espaces uniques, chaque habitat vous transporte dans un écosystème fascinant :
+        
+        La Jungle, où les créatures exotiques et majestueuses règnent dans un cadre luxuriant.
+        Le Marais, un sanctuaire pour les oiseaux et reptiles rares.
+        La Savane, qui évoque la beauté sauvage des grands espaces africains.
+        Les Montagnes Rocheuses, un nouvel habitat qui vous plonge dans l'univers des animaux alpins et des hautes altitudes.
+        
+        En plus des animaux, nous proposons plusieurs services conçus pour le plaisir des petits et des grands, dont :
+        
+        Des restaurants offrant une cuisine savoureuse.
+        Des visites guidées pour découvrir nos animaux en détail.
+        Des spectacles captivants, dont nos célèbres représentations avec les singes.
+        Des espaces de détente pour une pause bien méritée.
+        
+        Venez vivre une expérience inoubliable au Zoo Arcadia, où la nature reprend ses droits et chaque visiteur devient un ambassadeur de la protection de notre planète.
     </p>
     <div class="d-flex justify-content-center">
-        <button id="show-text-btn" class="button d-lg-none" onclick="showText()">Afficher le texte</button>
+        <button id="show-text-btn" class="button d-lg-none">Afficher le texte</button>
     </div>
 </section>
 
@@ -46,7 +62,7 @@
     <?php foreach ($habitats as $habitat): ?>
         <div class="text-center">
             <h3 class="p-3"><?= htmlspecialchars($habitat["name"]); ?></h3>
-            <p class="p-1 w-50 m-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
+            <p class="p-1 m-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
             <div class="d-flex justify-content-center">
                 <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>">
             </div>
@@ -64,8 +80,8 @@
     </div>
     <?php foreach ($accueilModel as $accueil): ?>
         <div class="text-center">
-            <h3 class="p-3"><?= htmlspecialchars($accueil["name"]); ?></h3>
-            <p class="p-1 w-50 m-auto"><?= htmlspecialchars($accueil["description"]); ?></p>
+            <h3 class="p-1"><?= htmlspecialchars($accueil["name"]); ?></h3>
+            <p class="p-1 w-100 w-md-75 w-lg-50 mx-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
             <div class="d-flex justify-content-center">
                 <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($accueil['name']) ?>">
             </div>
@@ -77,6 +93,7 @@
     <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
 </div><br>
 
+<!-- Avis des visiteurs -->
 <section>
     <div id="carouselExampleSlidesOnly" class="carousel slide carousel-avis" data-bs-ride="carousel">
     <h2 class="text-center mb-3">Les avis des visiteurs</h2>
@@ -118,6 +135,7 @@
     </div>
 </section>
 
+<!-- Laisser un avis -->
 <div class="container d-flex justify-content-center my-5">
     <div class="container p-4">
         <h2 class="text-center mb-3">Laisser un avis</h2>
@@ -147,4 +165,6 @@
     </div>
 </div>
 
-<script src="assets/javascript/accueil.js"></script>
+
+<?php $script = '<script src="/assets/javascript/accueil.js"></script>'; ?>
+

@@ -7,7 +7,7 @@ class HabitatsModel extends Model
     protected $id;
     protected $name;
     protected $description;
-    protected $description_accueil;
+    protected $description_courte;
     protected $image;
     protected $image2;
     protected $image3;
@@ -45,9 +45,6 @@ class HabitatsModel extends Model
         return $this->description;
     }
 
-    public function getDescription_accueil() {
-        return $this->description_accueil;
-    }
 
     public function getImage() {
         return $this->image;
@@ -78,9 +75,6 @@ class HabitatsModel extends Model
         $this->description = $description;
     }
 
-    public function setDescription_accueil($description_accueil) {
-        $this->description = $description_accueil;
-    }
 
     public function setImage($image) {
         $this->image = $image;
@@ -134,6 +128,26 @@ class HabitatsModel extends Model
     public function setUser_id($user_id)
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description_courte
+     */ 
+    public function getDescription_courte()
+    {
+        return $this->description_courte;
+    }
+
+    /**
+     * Set the value of description_courte
+     *
+     * @return  self
+     */ 
+    public function setDescription_courte($description_courte)
+    {
+        $this->description_courte = $description_courte;
 
         return $this;
     }

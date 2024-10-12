@@ -25,7 +25,6 @@ class AnimalController extends Controller {
     $habitatModel = new HabitatsModel();
     $habitats = $habitatModel->findAll();
 
-    echo "Le script a commencé.<br>";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -51,8 +50,8 @@ class AnimalController extends Controller {
         $animalModel->create();
 
         $_SESSION['success'] = "L'animal a été créé avec succès.";
-        // header("Location: /animal/listAnimals");
-        // exit();
+        header("Location: /animal/listAnimals");
+        exit();
     }
 
     $title = "Créer un animal";

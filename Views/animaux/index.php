@@ -20,13 +20,14 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-center">Rapport Vétérinaire </h3>
-                    <h4 class="card-text text-center"><strong>Rapport de : </strong> <?= ucfirst($animal['user_nom_prenom']); ?>
-                        <h4 class="card-text text-center"><strong>Etat : </strong> <?= ucfirst($animal['etat']); ?></h4>
-                        <h4 class="card-text text-center"><strong>Nourritture préconisée : </strong> <?= ucfirst($animal['nourriture']); ?></h4>
-                        <h4 class="card-text text-center"><strong>Quantité : </strong> <?= ucfirst($animal['grammage']); ?></h4>
-                        <h4 class="card-text text-center"><strong>Date et Heure : <?= isset($animal['date_passage']) ? date('d-m-Y H:i:s', strtotime($animal['date_passage'])) : 'Date non disponible'; ?></h4>
-                        <h4 class="card-text text-center"><strong>Détail état : </strong> <?= ucfirst($animal['detail_etat']); ?></h4>
+                <h3 class="card-title text-center">Rapport Vétérinaire </h3>
+<h4 class="card-text text-center"><strong>Rapport de : </strong> <?= isset($animal['user_nom_prenom']) ? ucfirst($animal['user_nom_prenom']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Etat : </strong> <?= isset($animal['etat']) ? ucfirst($animal['etat']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Nourritture préconisée : </strong> <?= isset($animal['nourriture']) ? ucfirst($animal['nourriture']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Quantité : </strong> <?= isset($animal['grammage']) ? ucfirst($animal['grammage']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Date et Heure : <?= isset($animal['date_passage']) ? date('d-m-Y H:i:s', strtotime($animal['date_passage'])) : 'Date non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Détail état : </strong> <?= isset($animal['detail_etat']) ? ucfirst($animal['detail_etat']) : 'Information non disponible'; ?></h4>
+
                 </div>
             </div>
         </div>

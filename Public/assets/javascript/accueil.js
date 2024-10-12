@@ -1,15 +1,23 @@
-document.getElementById('show-text-btn').addEventListener('click', function() {
-  const presentationText = document.getElementById('presentation-text');
-  if (presentationText.classList.contains('d-none')) {
-      // Montrer le texte si caché
-      presentationText.classList.remove('d-none');
-      this.textContent = 'Cacher le texte'; // Changer le texte du bouton
-  } else {
-      // Cacher le texte
-      presentationText.classList.add('d-none');
-      this.textContent = 'Afficher le texte'; // Changer le texte du bouton
-  }
+document.addEventListener("DOMContentLoaded", function() {
+    const showTextBtn = document.getElementById('show-text-btn');
+    const presentationText = document.getElementById('presentation-text');
+
+    if (showTextBtn && presentationText) {
+        showTextBtn.addEventListener('click', function() {
+            // Affiche ou cache le texte
+            if (presentationText.classList.contains('d-none')) {
+                presentationText.classList.remove('d-none');
+                showTextBtn.textContent = 'Cacher le texte';
+            } else {
+                presentationText.classList.add('d-none');
+                showTextBtn.textContent = 'Afficher le texte';
+            }
+        });
+    } else {
+        console.error("L'élément n'a pas été trouvé dans le DOM.");
+    }
 });
+
 
     // Liste des images du jaguar en course
 const imagesJaguar = [

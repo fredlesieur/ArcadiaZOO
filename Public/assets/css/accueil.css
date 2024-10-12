@@ -20,3 +20,18 @@ h5 {
 .card-body {
     min-height:18rem ;
 }
+#presentation-text {
+    width: 100%;
+}
+
+@media (min-width: 768px) { /* Pour les écrans moyens */
+    #presentation-text {
+        width: 75%;
+    }
+}
+
+@media (min-width: 1200px) { /* Pour les écrans larges */
+    #presentation-text {
+        width: 50%;
+    }
+}
