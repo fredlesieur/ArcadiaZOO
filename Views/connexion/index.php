@@ -2,7 +2,7 @@
 
 <section>
     <div class="container d-flex justify-content-center my-5">
-        <div class="form-container p-4 col-md-6 w-100">
+        <div class="container p-4 col-md-6 w-100">
             <h2 class="text-center mb-3">Formulaire de connexion</h2>
             <form action="/connexion/login" method="POST">
                 <div class="mb-3 text-center">

@@ -7,6 +7,8 @@
             <?php if ($_SESSION['role'] && $_SESSION['role'] == 'administrateur'): ?>
                 <li><a class="btn button w-50" href="/connexion/addUser">Créer un utilisateur</a></li>
                 <li><a class="btn button w-50" href="/connexion/listUsers">Liste des utilisateurs</a></li>
+                <li><a class="btn button w-50" href="/accueil/listAccueils">Eléments de l'accueil</a></li>
+                <li><a class="btn button w-50" href="/accueil/addAccueil">Ajouter un élément à l'accueil</a></li>
                 <li><a class="btn button w-50" href="/service/addServ">Créer un service</a></li>
                 <li><a class="btn button w-50" href="/service/listServices">Liste des services</a></li>
                 <li><a class="btn button w-50" href="/habitats/addHabitat">Créer un habitat</a></li>

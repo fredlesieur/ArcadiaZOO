@@ -18,18 +18,19 @@ class ServiceModel extends Model
         $this->table = "services";
     }
     
-
     public function getUniqueCategories()
     {
         $sql = "SELECT DISTINCT categorie FROM " . $this->table . " WHERE categorie IS NOT NULL";
         return $this->req($sql)->fetchAll();
     }
+
     public function getAllCategories()
-{
-    $sql = "SELECT DISTINCT categorie FROM " . $this->table;
-    $result = $this->req($sql)->fetchAll();
-    return array_column($result, 'categorie');
-}
+    {
+        $sql = "SELECT DISTINCT categorie FROM " . $this->table;
+        $result = $this->req($sql)->fetchAll();
+        return array_column($result, 'categorie');
+    }
+
     // Getters
     public function getId() {
         return $this->id;
@@ -42,24 +43,27 @@ class ServiceModel extends Model
     public function getImage() {
         return $this->image;
     }
+
     public function getDescription() {
         return $this->description;
     }
+
     public function getCategorie() {
         return $this->categorie;
     }
-    public function getDuree()
-    {
+
+    public function getDuree() {
         return $this->duree;
     }
-    public function getTarifs()
-    {
+
+    public function getTarifs() {
         return $this->tarifs;
     }
-    public function getHoraires()
-    {
+
+    public function getHoraires() {
         return $this->horaires;
     }
+
     // Setters
     public function setId($id) {
         $this->id = $id;
@@ -68,6 +72,7 @@ class ServiceModel extends Model
     public function setName($name) {
         $this->name = $name;
     }
+
     public function setImage($image) {
         $this->image = $image;
     }
@@ -75,46 +80,34 @@ class ServiceModel extends Model
     public function setDescription($description) {
         $this->description = $description;
     }
+
     public function setCategorie($categorie) {
-        $this->categorie= $categorie;
+        $this->categorie = $categorie;
     }
-       public function setDuree($duree)
-    {
+
+    public function setDuree($duree) {
         $this->duree = $duree;
-
         return $this;
     }
-    public function setTarifs($tarifs)
-    {
+
+    public function setTarifs($tarifs) {
         $this->tarifs = $tarifs;
-
         return $this;
     }
-    public function setHoraires($horaires)
-    {
+
+    public function setHoraires($horaires) {
         $this->horaires = $horaires;
-
         return $this;
     }
 
-    /**
-     * Get the value of image2
-     */ 
     public function getImage2()
     {
         return $this->image2;
     }
 
-    /**
-     * Set the value of image2
-     *
-     * @return  self
-     */ 
     public function setImage2($image2)
     {
         $this->image2 = $image2;
-
         return $this;
     }
-
 }

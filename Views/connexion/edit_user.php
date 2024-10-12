@@ -1,6 +1,6 @@
-<div class="form-container mx-auto p-4">
-        <section class="colorSection">
-        <h1 class="container-fluid banner pt-5 pb-5">Modifier un compte utilisateur</h1>
+<h1 class="container-fluid banner pt-5 pb-5">Modifier un compte utilisateur</h1>
+<section class="colorSection">
+<div class="container mx-auto p-4">
         <form action="/connexion/editUser/<?= $users['id'] ?>" method="POST">
             <input type="hidden" name="id" value="<?= $users['id'] ?>">
 

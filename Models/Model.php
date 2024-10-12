@@ -2,7 +2,7 @@
 namespace App\Models;
 
 use App\Config\Db;
-
+use Exception;
 
 class Model extends Db
 {
@@ -130,4 +130,44 @@ public function delete(int $id)
     }
     return $this;
    }
+   public function uploadImage(array $file, string $directory = 'assets/images/')
+   {
+       // Vérifie si le fichier a bien été uploadé
+       if (!isset($file['tmp_name']) || $file['error'] != 0) {
+           echo "Erreur : Fichier non téléchargé ou problème lors du transfert.<br>";
+           var_dump($file);  // Affiche les informations du fichier pour debug
+           return false;
+       }
+   
+       // Génère un nom unique pour l'image
+       $fileName = uniqid() . '_' . basename($file['name']);
+       
+       // Ajuste le chemin pour ton dossier correct
+       $targetDir = 'C:/formation_codage/MVC/Public/assets/images/'; // Chemin exact
+       $targetFilePath = $targetDir . $fileName;
+   
+       // Vérifie si le répertoire cible existe, sinon le crée
+       if (!is_dir($targetDir)) {
+           echo "Création du répertoire cible : " . $targetDir . "<br>";
+           if (!mkdir($targetDir, 0755, true)) {
+               echo "Erreur lors de la création du répertoire.<br>";
+               return false;
+           }
+       } else {
+           echo "Le répertoire existe déjà : " . $targetDir . "<br>";
+       }
+   
+       // Déplace le fichier temporaire vers le répertoire final
+       if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
+           echo "Fichier déplacé avec succès vers : " . $targetFilePath . "<br>";
+           return $fileName;  // Retourne le nom du fichier à enregistrer dans la base
+       } else {
+           echo "Erreur lors du déplacement du fichier.<br>";
+           var_dump($file);
+           return false;
+       }
+   }
+   
+   
+   
 }

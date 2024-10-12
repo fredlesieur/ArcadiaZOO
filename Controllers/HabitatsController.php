@@ -46,12 +46,21 @@ class HabitatsController extends Controller
                 'name' => $_POST['name'],
                 'description' => $_POST['description'],
                 'description_courte' => $_POST['description_courte'],
-                'image' => $_POST['image'],
-                'image2' => $_POST['image2'],
-                'image3' => $_POST['image3'],
                 'commentaire' => $_POST['commentaire'],
                 'user_id' => $_POST['user_id']
             ];
+
+             // Utilisation de la fonction d'upload pour ajouter des images
+            if (!empty($_FILES['image']['name'])) {
+                $data['image'] = $habitatModel->uploadImage($_FILES['image'], 'assets/images/');
+            }
+            if (!empty($_FILES['image2']['name'])) {
+                $data['image2'] = $habitatModel->uploadImage($_FILES['image2'], 'assets/images/');
+            }
+            if (!empty($_FILES['image3']['name'])) {
+                $data['image3'] = $habitatModel->uploadImage($_FILES['image3'], 'assets/images/');
+            }
+    
             // Hydratation de l'objet rapport avec les données du formulaire
             $habitatModel->hydrate($data);
 
@@ -81,12 +90,21 @@ class HabitatsController extends Controller
                 'name' => $_POST['name'],
                 'description' => $_POST['description'],
                 'description_courte' => $_POST['description_courte'],
-                'image' => $_POST['image'],
-                'image2' => $_POST['image2'],
-                'image3' => $_POST['image3'],
                 'commentaire' => $_POST['commentaire'],
                 'user_id' => $_POST['user_id']
             ];
+
+            // Utilisation de la fonction d'upload pour chaque image pour les mettre à jour
+        if (!empty($_FILES['image']['name'])) {
+            $data['image'] = $habitatModel->uploadImage($_FILES['image'], 'assets/images/');
+        }
+        if (!empty($_FILES['image2']['name'])) {
+            $data['image2'] = $habitatModel->uploadImage($_FILES['image2'], 'assets/images/');
+        }
+        if (!empty($_FILES['image3']['name'])) {
+            $data['image3'] = $habitatModel->uploadImage($_FILES['image3'], 'assets/images/');
+        }
+
             // Hydratation de l'objet connexion avec les données du formulaire
             $habitatModel->hydrate($data);
     

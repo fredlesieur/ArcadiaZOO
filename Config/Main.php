@@ -22,6 +22,15 @@ class Main
             exit();
         }
 
+        // ** Nouvelle condition pour gérer les fichiers statiques **
+        $filePath = __DIR__ . '/../../public' . $uri;
+        if (file_exists($filePath) && is_file($filePath)) {
+            // Le fichier existe, on le sert directement
+            header('Content-Type: ' . mime_content_type($filePath));
+            readfile($filePath);
+            exit();
+        }
+
         // Gestion des paramètres d'URL
         $params = isset($_GET['p']) ? explode('/', $_GET['p']) : [];
 

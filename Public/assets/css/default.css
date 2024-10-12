@@ -222,29 +222,46 @@ input, select {
     max-width: 30rem;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
 }
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+textarea:hover,
+select:hover {
+    border-color: #492200; /* Change la couleur de la bordure au survol (hover) */
+    box-shadow: 0 0 5px rgba(61, 42, 0, 0.5); /* Ajoute un effet d'ombre */
+    outline: none; /* Supprime le contour par défaut */
+}
+   
+
+/* Cible l'élément select pour définir une couleur de fond de base */
+select {
+    background-color: #492200; /* Couleur de fond du champ select */
+    color: #FAF4ED; /* Couleur du texte dans le champ select */
+}
+
+/* Centrer le texte dans toutes les cellules du tableau */
+table {
+    width: 100%; /* Ajuste le tableau pour occuper toute la largeur */
+    border-collapse: collapse; /* Supprime les espaces entre les cellules */
+}
+
+
+table th {
+    background-color: rgba(155,101,7,1) !important; /* Couleur de fond pour les en-têtes */
+    font-weight: bold; /* Met le texte des en-têtes en gras */
+    color: #ffffff !important;
+}
 th, td{
     text-align: center;
-    color: #492200;
+    vertical-align: middle;
+    color: #492200 !important;
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
-    color: #492200;
     text-align: center;
     margin: 0 auto;
-}
-/* Couleur de la première ligne (en-tête) */
-th {
-    background-color: #f2f2f2;
+    padding: 10px;
 }
 
-/* Couleur des lignes paires */
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-/* Couleur des lignes impaires */
-tr:nth-child(odd) {
-    background-color: #eaeaea;
-}
 
 /* Carrousel des images */
 .carousel-control-prev-icon,

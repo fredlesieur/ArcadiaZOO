@@ -1,6 +1,6 @@
 <h1 class="container-fluid banner pt-5 pb-5">Modifier un animal</h1>
 <section class="colorSection">
-    <div class="form-container mx-auto p-4">
+    <div class="container mx-auto p-4">
 
         <?php if ($_SESSION['role'] === 'administrateur') : ?>
             <form action="/animal/editAnimal/<?= $animaux['id'] ?>" method="post" enctype="multipart/form-data">

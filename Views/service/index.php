@@ -19,7 +19,6 @@
             <?php endif; ?>
         </div>
 
-
         <!-- Boutons Précédent et Suivant -->
         <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -31,7 +30,7 @@
         </button>
     </div>
 </section>
-</section>
+
 <!-- Vérifie s'il y a des services classés par catégorie -->
 <?php if (!empty($servicesByCategory)): ?>
     <?php foreach ($servicesByCategory as $category => $services): ?>
@@ -67,7 +66,8 @@
 
 <!-- Inclusion du script JavaScript pour l'animation du jaguar -->
 <?php $script = '<script src="/assets/javascript/modifServ.js"></script>'; ?>
-<?php $script = '<script src="assets/javascript/jaguar.js"></script>'; ?>
+<?php $script .= '<script src="/assets/javascript/jaguar.js"></script>'; ?>
+
 
 
 

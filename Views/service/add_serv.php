@@ -9,11 +9,11 @@
             <textarea class="form-control" name="description" id="description" required></textarea><br>
 
             <label for="categorie">Catégorie :</label>
-            <select class="form-control" name="categorie" id="categorie" onchange="toggleNewCategoryField(this)" required>
+            <select class="form-control" name="categorie" id="categorie" required>
                 <option value="">Sélectionnez une catégorie</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="train">Train</option>
-                <option value="visite">Visite</option>
+                <?php foreach ($categories as $cat): ?>
+                    <option value="<?= htmlspecialchars($cat['categorie']) ?>"><?= htmlspecialchars($cat['categorie']) ?></option>
+                <?php endforeach; ?>
                 <option value="autre">Ajouter une nouvelle catégorie</option>
             </select><br>
 
@@ -22,7 +22,7 @@
                 <input type="text" class="form-control" name="new-category" id="new-category" placeholder="Entrez une nouvelle catégorie">
             </div>
 
-            <label for="image">Image :</label>
+            <label for="image">Image pour carrousel :</label>
             <input type="file" class="form-control" name="image" id="image"><br>
 
             <label for="image2">Image pour service :</label>
@@ -41,4 +41,5 @@
         </form>
     </div>
 </section>
+
 <?php $script = '<script src="/assets/javascript/modifServ.js"></script>'; ?>
