@@ -96,23 +96,24 @@ public function delete(int $id)
 
 
 
-   public function req(string $sql, array $attributs = null)
-   {
-        // on récupère l'instance de DB
-        $this->db = Db::getInstance();
+public function req(string $sql, array $attributs = null)
+{
+    $this->db = Db::getInstance();
 
-        //on verifie si on a des attributs
-        if($attributs !== null){
-            // requete préparée
-            $query = $this->db->prepare($sql); 
+    try {
+        if ($attributs !== null) {
+            $query = $this->db->prepare($sql);
             $query->execute($attributs);
-
             return $query;
-        }else{
-            //requete simple
+        } else {
             return $this->db->query($sql);
         }
-   }
+    } catch (Exception $e) {
+        // Journalisez l'erreur dans un fichier
+        file_put_contents('error_log.txt', date('Y-m-d H:i:s') . ' - ' . $e->getMessage() . "\n", FILE_APPEND);
+        return false; // ou gérez l'erreur comme vous le souhaitez
+    }
+}
 
 
    public function hydrate(array $donnees)
