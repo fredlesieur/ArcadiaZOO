@@ -262,7 +262,25 @@ th, td{
     padding: 10px;
 }
 
+.dataTables_filter {
+    text-align: center; /* Centre le bloc de recherche */
+    margin-bottom: 20px; /* Ajoute un espacement sous la barre de recherche */
+}
 
+.dataTables_filter label {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centre le label */
+}
+
+.dataTables_filter input {
+    display: inline-block;
+    width: auto; /* Ajuste la largeur du champ de recherche */
+}
+.dataTables_length select {
+    background-color: #FFFFFF; /* Couleur de fond blanche */
+    color: #492200; /* Couleur du texte visible */
+}
 /* Carrousel des images */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {

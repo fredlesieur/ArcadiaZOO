@@ -24,17 +24,26 @@ class RapportController extends Controller
 
         // Traitement du formulaire
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+            // Vérifier si un rapport existe déjà pour cet animal
+            $existingRapport = $rapportModel->findLastRapportByAnimalId($_POST['animal_id']);
+            if ($existingRapport) {
+                // Ouvrir une session avec le message d'erreur
+                $_SESSION['message'] = "Un rapport existe déjà pour cet animal. Veuillez le modifier.";
+                header('Location: /rapport/add_rapport');
+                exit();
+            }
+
             $data = [
                 'user_id' => $_SESSION['user_id'],
                 'animal_id' => $_POST['animal_id'],
-                'etat' => !empty($_POST['etat']) ? $_POST['etat'] : null,
-                'nourriture_preconisee' => !empty($_POST['nourriture_preconisee']) ? $_POST['nourriture_preconisee'] : null,
-                'grammage_preconise' => !empty($_POST['grammage_preconise']) ? $_POST['grammage_preconise'] : null,
-                'date_passage' => !empty($_POST['date_passage']) ? $_POST['date_passage'] : null,
-                'detail_etat' => !empty($_POST['detail_etat']) ? $_POST['detail_etat'] : null,
-                'date_heure' => !empty($_POST['date_heure']) ? $_POST['date_heure'] : null,
-                'grammage_donne' => !empty($_POST['grammage_donne']) ? $_POST['grammage_donne'] : null,
-                'nourriture_donnee' => !empty($_POST['nourriture_donnee']) ? $_POST['nourriture_donnee'] : null
+                'etat' => $_POST['etat'] ?? null,
+                'nourriture_preconisee' => $_POST['nourriture_preconisee'] ?? null,
+                'grammage_preconise' => $_POST['grammage_preconise'] ?? null,
+                'date_passage' => $_POST['date_passage'] ?? null,
+                'detail_etat' => $_POST['detail_etat'] ?? null,
+                'date_heure' => $_POST['date_heure'] ?? null,
+                'grammage_donne' => $_POST['grammage_donne'] ?? null,
+                'nourriture_donnee' => $_POST['nourriture_donnee'] ?? null,
             ];
 
             // Hydratation du modèle et création du rapport
@@ -86,14 +95,14 @@ class RapportController extends Controller
             $data = [
                 'user_id' => $_SESSION['user_id'],
                 'animal_id' => $_POST['animal_id'],
-                'etat' => !empty($_POST['etat']) ? $_POST['etat'] : null,
-                'nourriture_preconisee' => !empty($_POST['nourriture_preconisee']) ? $_POST['nourriture_preconisee'] : null,
-                'grammage_preconise' => !empty($_POST['grammage_preconise']) ? $_POST['grammage_preconise'] : null,
-                'date_passage' => !empty($_POST['date_passage']) ? $_POST['date_passage'] : null,
-                'detail_etat' => !empty($_POST['detail_etat']) ? $_POST['detail_etat'] : null,
-                'date_heure' => !empty($_POST['date_heure']) ? $_POST['date_heure'] : null,
-                'grammage_donne' => !empty($_POST['grammage_donne']) ? $_POST['grammage_donne'] : null,
-                'nourriture_donnee' => !empty($_POST['nourriture_donnee']) ? $_POST['nourriture_donnee'] : null
+                'etat' => $_POST['etat'] ?? null,
+                'nourriture_preconisee' => $_POST['nourriture_preconisee'] ?? null,
+                'grammage_preconise' => $_POST['grammage_preconise'] ?? null,
+                'date_passage' => $_POST['date_passage'] ?? null,
+                'detail_etat' => $_POST['detail_etat'] ?? null,
+                'date_heure' => $_POST['date_heure'] ?? null,
+                'grammage_donne' => $_POST['grammage_donne'] ?? null,
+                'nourriture_donnee' => $_POST['nourriture_donnee'] ?? null,
             ];
 
             // Hydratation de l'objet rapport avec les données du formulaire
@@ -107,7 +116,7 @@ class RapportController extends Controller
             exit();
         }
 
-        //vue du formulaire de modification
+        // Vue du formulaire de modification
         $title = "Modifier un rapport";
         $this->render('rapport/edit_rapport', compact('title', 'rapport', 'animaux'));
     }
@@ -121,4 +130,3 @@ class RapportController extends Controller
         exit();
     }
 }
-

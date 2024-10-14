@@ -1,7 +1,10 @@
+<?php $script = '<script src="/assets/javascript/filtre.js"></script>'; ?>
+
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 mb-4 text-center">Liste des rapports</h1>
 <section class="colorSection">
     <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
+    <table class="datatable table table-bordered table-striped table-hover">
+
             <thead class="thead-dark">
                 <tr>
                     <th class="align-content-center">Rapport rédigé par</th>
