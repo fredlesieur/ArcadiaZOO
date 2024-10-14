@@ -1,31 +1,37 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0"> NOUS CONTACTER</h1>
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
-  <div class="container d-flex justify-content-center">
-    <div class="container p-4">
-      <h2 class="text-center mb-3">Formulaire de contact</h2>
-      <form id="contactForm" action="/Contact/sendMail" method="POST">
-        <div class="mb-3 text-center">
-          <label for="nom" class="form-label">Nom</label>
-          <input type="text" class="form-control" id="nom" name="nom" required>
-        </div>
-        <div class="mb-3 text-center">
-          <label for="prenom" class="form-label">Prénom</label>
-          <input type="text" class="form-control" id="prenom" name="prenom" required>
-        </div>
-        <div class="mb-3 text-center">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="mb-3 text-center">
-          <label for="message" class="form-label">Votre message</label>
-          <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
-        </div>
-        <button type="submit" class="btn button w-100">Envoyer</button>
-      </form>
+    <div class="container mx-auto p-4">
+        <h2 class="text-center mb-3">Formulaire de contact</h2>
+
+        <?php if (isset($message)): ?>
+            <div class="alert alert-success">
+                <?= $message; ?>
+            </div>
+        <?php endif; ?>
+
+        <form id="contactForm" action="/Contact/sendMail" method="POST">
+            <div class="mb-3 text-center">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" name="nom" required>
+            </div>
+            <div class="mb-3 text-center">
+                <label for="prenom" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" required>
+            </div>
+            <div class="mb-3 text-center">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3 text-center">
+                <label for="message" class="form-label">Votre message</label>
+                <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+            </div>
+            <button type="submit" class="btn button w-100">Envoyer</button>
+        </form>
     </div>
-  </div>
 </section>
+
 
 <div class="jaguar-container">
   <!-- Image du jaguar qui change pour chaque étape de la course -->
