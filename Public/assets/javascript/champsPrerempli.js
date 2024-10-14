@@ -14,3 +14,4 @@ document.getElementById('animal_id').addEventListener('change', function() {
             .catch(error => console.error('Erreur:', error));
     }
 });
+

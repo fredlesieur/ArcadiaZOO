@@ -40,13 +40,12 @@ class RapportController extends Controller
             $existingRapport = $rapportModel->findLastRapportByAnimalId($_POST['animal_id']);
             
             if ($existingRapport) {
-                // Affiche un message d'erreur si un rapport existe déjà
                 $_SESSION['message'] = "Un rapport existe déjà pour cet animal.";
-                return $this->render('rapport/add_rapport', compact('animaux')); // Affiche le formulaire avec le message d'erreur
+                return $this->render('rapport/add_rapport', compact('animaux'));
             }
 
-            $rapportModel->create(); // Créer le rapport
-            header('Location: /rapport/liste_rapports'); // Redirection vers la liste des rapports
+            $rapportModel->create();
+            header('Location: /rapport/liste_rapports');
             exit();
         }
 
@@ -80,7 +79,9 @@ class RapportController extends Controller
                 'nourriture_donnee' => ($_SESSION['role'] === 'employe') ? $_POST['nourriture_donnee'] : null,
             ];
             $rapportModel->hydrate($data);
-            $rapportModel->update($id); // Mise à jour du rapport
+           
+
+            $rapportModel->update($id);
             header('Location: /rapport/liste_rapports');
             exit();
         }
@@ -94,6 +95,16 @@ class RapportController extends Controller
         $rapportModel = new RapportModel();
         $rapportModel->delete($id);
         header('Location: /rapport/liste_rapports');
+        exit();
+    }
+
+    public function get_last_rapport($animalId)
+    {
+        $rapportModel = new RapportModel();
+        $lastRapport = $rapportModel->findLastRapportByAnimalId($animalId);
+
+        header('Content-Type: application/json');
+        echo json_encode($lastRapport);
         exit();
     }
 }

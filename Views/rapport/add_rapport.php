@@ -1,8 +1,8 @@
 <?php
 // Définir le fuseau horaire de la France
 date_default_timezone_set('Europe/Paris');
-$currentDate = date('d-m-Y');
-$currentDateTime = date('d-m-Y\TH:i');
+$currentDate = date('Y-m-d');
+$currentDateTime = date('Y-m-d\TH:i');
 ?>
 
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">Ajouter un rapport</h1>
@@ -19,7 +19,7 @@ $currentDateTime = date('d-m-Y\TH:i');
 
         <form action="/rapport/add_rapport" method="post">
             <label for="animal_id">Animal :</label>
-            <select name="animal_id" id="animal_id">
+            <select name="animal_id" id="animal_id" required>
                 <option value="">Sélectionnez un animal</option>
                 <?php foreach ($animaux as $animal): ?>
                     <option value="<?= $animal['id']; ?>"><?= $animal['nom']; ?></option>
@@ -54,6 +54,16 @@ $currentDateTime = date('d-m-Y\TH:i');
 
                 <label for="grammage_donne">Quantité donnée :</label>
                 <input type="text" name="grammage_donne" id="grammage_donne" required><br>
+
+                <!-- Champs préconisés pour afficher les recommandations du vétérinaire -->
+                <label for="nourriture_preconisee">Nourriture préconisée :</label>
+                <input type="text" name="nourriture_preconisee" id="nourriture_preconisee" readonly><br>
+
+                <label for="grammage_preconise">Grammage préconisé :</label>
+                <input type="text" name="grammage_preconise" id="grammage_preconise" readonly><br>
+
+                <label for="detail_etat">Détail état :</label>
+                <input type="text" name="detail_etat" id="detail_etat" readonly><br>
             <?php endif; ?>
 
             <button type="submit" name="submit" class="btn success w-100 mt-2">Ajouter</button>
@@ -63,6 +73,7 @@ $currentDateTime = date('d-m-Y\TH:i');
 
 <!-- Inclure le fichier JavaScript -->
 <?php $script = '<script src="/assets/javascript/champsPrerempli.js"></script>'; ?>
+
 
 
 
