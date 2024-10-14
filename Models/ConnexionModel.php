@@ -10,6 +10,7 @@ class ConnexionModel extends Model
     protected $password;
     protected $role;
     protected $nom_prenom;
+    protected $role_id;
 
     public function __construct() {
         $this->table = "users"; // Table des utilisateurs
@@ -44,6 +45,17 @@ public function findUserByEmail($email)
     
     return $this->req($sql, [$email])->fetch();
 }
+
+public function findAllWithRoles()
+{
+    // Effectuer une jointure avec la table roles pour récupérer le nom du rôle
+    $sql = "SELECT users.*, roles.role_name AS role 
+            FROM users
+            LEFT JOIN roles ON users.role_id = roles.id";
+    
+    return $this->req($sql)->fetchAll();
+}
+
 public function emailExists($email)
 {
     $sql = "SELECT COUNT(*) FROM users WHERE email = :email";
@@ -147,6 +159,26 @@ public function emailExists($email)
     public function setNom_prenom($nom_prenom)
     {
         $this->nom_prenom = $nom_prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role_id
+     */ 
+    public function getRole_id()
+    {
+        return $this->role_id;
+    }
+
+    /**
+     * Set the value of role_id
+     *
+     * @return  self
+     */ 
+    public function setRole_id($role_id)
+    {
+        $this->role_id = $role_id;
 
         return $this;
     }

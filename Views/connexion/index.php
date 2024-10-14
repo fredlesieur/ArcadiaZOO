@@ -13,8 +13,8 @@
                     <label for="mdp" class="form-label">Mot de passe</label>
                     <div class="input-group">
                         <input type="password" class="form-control" id="mdp" name="mdp" required>
-                        <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
-                            <i class="fas fa-eye" id="togglePasswordIcon"></i>
+                        <span class="input-group-text togglePassword" style="cursor: pointer;">
+                            <i class="fas fa-eye togglePasswordIcon"></i>
                         </span>
                     </div>
                 </div>

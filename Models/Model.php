@@ -51,25 +51,26 @@ public function create()
     $inter = [];
     $valeurs = [];
 
-    //on boucle pour eclater le tableau
+    //on boucle pour éclater le tableau
     foreach($this as $champ => $valeur)
     {
         // INSERT INTO annonce (titre, description, prix, ...) VALUES (?, ?, ?)
         if($valeur != null && $champ != 'db' && $champ != 'table'){
-        $champs[] = $champ;
-        $inter[] = "?";
-        $valeurs[] = $valeur;
+            $champs[] = $champ;
+            $inter[] = "?";
+            $valeurs[] = $valeur;
         }
     }
 
-    // on transforme le tableau champ en une chaine de caractères
+    // on transforme le tableau champ en une chaîne de caractères
     $liste_champs = implode(', ', $champs);
     $liste_inter = implode(', ', $inter);
 
-    // on exécute la requete
+    // on exécute la requête
     return $this->req('INSERT INTO '.$this->table. ' ('. $liste_champs.') VALUES('.$liste_inter.')', $valeurs);
-    
-} 
+}
+
+
 
 public function update(int $id)
 {

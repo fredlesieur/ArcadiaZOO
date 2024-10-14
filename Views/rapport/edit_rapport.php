@@ -67,4 +67,3 @@ $currentDateTime = date('Y-m-d\TH:i');
 
 <!-- Inclure le fichier JavaScript -->
 <?php $script = '<script src="/assets/javascript/champsPrerempli.js"></script>'; ?>
-

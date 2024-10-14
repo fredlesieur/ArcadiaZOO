@@ -36,14 +36,21 @@ class RapportModel extends Model
     }
 
     public function findAllRapport()
-    {
-        return $this->req(
-            "SELECT r.*, a.nom AS animal_nom, u.nom_prenom AS user_nom_prenom 
-            FROM " . $this->table . " r
-            JOIN animaux a ON r.animal_id = a.id
-            JOIN users u ON r.user_id = u.id"
-        )->fetchAll();
-    }
+{
+    return $this->req(
+        "SELECT r.*, 
+                a.nom AS animal_nom, 
+                u.nom_prenom AS user_nom_prenom, 
+                e.nom_prenom AS employe_nom_prenom,
+                v.nom_prenom AS veterinaire_nom_prenom 
+         FROM " . $this->table . " r
+         JOIN animaux a ON r.animal_id = a.id
+         JOIN users u ON r.user_id = u.id
+         LEFT JOIN users e ON r.employe_id = e.id
+         LEFT JOIN users v ON r.veterinaire_id = v.id"
+    )->fetchAll();
+}
+
 
     public function findLastRapportByAnimalId($animalId)
     {

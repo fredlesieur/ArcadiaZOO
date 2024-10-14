@@ -24,7 +24,6 @@ class RapportController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             $data = [
-                'user_id' => $_SESSION['user_id'],
                 'animal_id' => $_POST['animal_id'],
                 'etat' => $_POST['etat'] ?? null,
                 'nourriture_preconisee' => $_POST['nourriture_preconisee'] ?? null,
@@ -32,9 +31,15 @@ class RapportController extends Controller
                 'date_passage' => $_POST['date_passage'] ?? null,
                 'detail_etat' => $_POST['detail_etat'] ?? null,
                 'date_heure' => ($_SESSION['role'] === 'employe') ? $_POST['date_heure'] : null,
-                'grammage_donne' => ($_SESSION['role'] === 'employe') ? $_POST['grammage_donne'] : null,
                 'nourriture_donnee' => ($_SESSION['role'] === 'employe') ? $_POST['nourriture_donnee'] : null,
+                'grammage_donne' => ($_SESSION['role'] === 'employe') ? $_POST['grammage_donne'] : null,
+            
+                // Remplir employe_id ou veterinaire_id selon qui a créé le rapport
+                'employe_id' => ($_SESSION['role'] === 'employe') ? $_SESSION['user_id'] : null,
+                'veterinaire_id' => ($_SESSION['role'] === 'veterinaire') ? $_SESSION['user_id'] : null
             ];
+            
+            
 
             $rapportModel->hydrate($data);
             $existingRapport = $rapportModel->findLastRapportByAnimalId($_POST['animal_id']);
@@ -66,21 +71,27 @@ class RapportController extends Controller
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'user_id' => $_SESSION['user_id'],
-                'animal_id' => $_POST['animal_id'],
-                'etat' => $_POST['etat'] ?? null,
-                'nourriture_preconisee' => $_POST['nourriture_preconisee'] ?? null,
-                'grammage_preconise' => $_POST['grammage_preconise'] ?? null,
-                'date_passage' => $_POST['date_passage'] ?? null,
-                'detail_etat' => $_POST['detail_etat'] ?? null,
-                'date_heure' => ($_SESSION['role'] === 'employe') ? $_POST['date_heure'] : null,
-                'grammage_donne' => ($_SESSION['role'] === 'employe') ? $_POST['grammage_donne'] : null,
-                'nourriture_donnee' => ($_SESSION['role'] === 'employe') ? $_POST['nourriture_donnee'] : null,
-            ];
-            $rapportModel->hydrate($data);
-           
+          
+                $data = [
+                    'animal_id' => $_POST['animal_id'],
+                    'etat' => $_POST['etat'] ?? null,
+                    'nourriture_preconisee' => $_POST['nourriture_preconisee'] ?? null,
+                    'grammage_preconise' => $_POST['grammage_preconise'] ?? null,
+                    'date_passage' => $_POST['date_passage'] ?? null,
+                    'detail_etat' => $_POST['detail_etat'] ?? null,
+                    'date_heure' => ($_SESSION['role'] === 'employe') ? $_POST['date_heure'] : $rapport['date_heure'],
+                    'nourriture_donnee' => ($_SESSION['role'] === 'employe') ? $_POST['nourriture_donnee'] : $rapport['nourriture_donnee'],
+                    'grammage_donne' => ($_SESSION['role'] === 'employe') ? $_POST['grammage_donne'] : $rapport['grammage_donne'],
+                
+                    // Mettre à jour employe_id ou veterinaire_id selon qui a fait la modification
+                    'employe_id' => ($_SESSION['role'] === 'employe') ? $_SESSION['user_id'] : $rapport['employe_id'],
+                    'veterinaire_id' => ($_SESSION['role'] === 'veterinaire') ? $_SESSION['user_id'] : $rapport['veterinaire_id']
+                ];
+                
+       
+            
 
+            $rapportModel->hydrate($data);
             $rapportModel->update($id);
             header('Location: /rapport/liste_rapports');
             exit();

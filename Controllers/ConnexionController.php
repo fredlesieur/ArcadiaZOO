@@ -65,59 +65,52 @@ class ConnexionController extends Controller
     }
     public function addUser()
     {
-        $connexionModel = new ConnexionModel();
-
-        
-
-        // Déterminer le rôle : 3 pour employé, 2 pour vétérinaire
-        $roleId = ('role' === 'employe') ? 3 : 2;
-        //verifie qu'il n y ai pas le même mail
-        if ($connexionModel->emailExists('email')) {
-            // Si l'email existe, afficher un message d'erreur
-            $_SESSION['error'] = "L'email est déjà utilisé.";
-            header("Location: /connexion/addUser");
-            exit();
-        }
-
-        // Vérifier si la requête est de type POST pour traiter la soumission du formulaire
+        // Vérifier que la requête est bien de type POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-           // Si l'email n'existe pas, continuer la création
-            $passwordhash = $_POST['password']; // Préparer les données envoyées via le formulaire sous forme de tableau
-            $passwordHash = password_hash('password', PASSWORD_DEFAULT); // Préparer les données envoyées via le formulaire sous forme de tableau  
-
-            $data = [
-                'nom_prenom' => $_POST['nom_prenom'],
-                'email' => $_POST['email'],
-                'password' => $passwordHash,
-                'role_id' => $_POST['role']
-            ];
-
-
-            // Hydratation de l'objet rapport avec les données du formulaire
-            $connexionModel->hydrate($data);
-
-            // Mise à jour du rapport dans la base de données
-            $connexionModel->create();
-
-            // Redirection vers la liste des utilisateurs après l'ajout
-            $_SESSION['success'] = "Le compte utilisateur a été créé avec succès.";
-            header("Location: /connexion/listUsers");
-            exit();
+            $connexionModel = new ConnexionModel();
+        
+            // Vérifier que l'email est présent dans $_POST avant de l'utiliser
+            if (isset($_POST['email'])) {
+                // Vérifier si l'email existe déjà
+                if ($connexionModel->emailExists($_POST['email'])) {
+                    $_SESSION['error'] = "L'email est déjà utilisé.";
+                    header("Location: /connexion/addUser");
+                    exit();
+                }
+    
+                // Récupération et conversion du role_id
+                $roleId = (int)$_POST['role_id'];
+    
+                // Hacher le mot de passe
+                $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    
+                // Préparer les données envoyées via le formulaire sous forme de tableau
+                $data = [
+                    'nom_prenom' => $_POST['nom_prenom'],
+                    'email' => $_POST['email'],
+                    'password' => $passwordHash,
+                    'role_id' => $roleId
+                ];
+    
+                // Hydratation de l'objet avec les données du formulaire
+                $connexionModel->hydrate($data);
+    
+                // Insertion dans la base de données
+                $connexionModel->create();
+    
+                $_SESSION['success'] = "Le compte utilisateur a été créé avec succès.";
+                header("Location: /connexion/listUsers");
+                exit();
+            } else {
+                // Gérer le cas où l'email n'est pas présent dans $_POST
+                $_SESSION['error'] = "Le champ email est requis.";
+            }
         }
-         //vue du formulaire d'ajout
-         $title = "Créer un utilisateur";
-         $this->render('connexion/add_user', compact('title'));
+    
+        $title = "Créer un utilisateur";
+        $this->render('connexion/add_user', compact('title'));
     }
-    public function listUsers()
-    {
-        // Utilisation du modèle pour récupérer tous les utilisateurs
-        $connexionModel = new ConnexionModel();
-        $users = $connexionModel->findAll(); // Récupérer tous les utilisateurs
-
-        $title = "Liste des utilisateurs";
-        // Passer les utilisateurs à la vue
-        $this->render('connexion/liste_users', compact('users', 'title'));
-    }
+    
     
     public function editUser($id)
 {
@@ -159,5 +152,14 @@ class ConnexionController extends Controller
         exit;
     }
 
-
+    public function listUsers()
+    {
+        // Utilisation du modèle pour récupérer tous les utilisateurs
+        $connexionModel = new ConnexionModel();
+        $users = $connexionModel->findAll(); // Récupérer tous les utilisateurs
+    
+        $title = "Liste des utilisateurs";
+        // Passer les utilisateurs à la vue
+        $this->render('connexion/liste_users', compact('users', 'title'));
+    }
 }
