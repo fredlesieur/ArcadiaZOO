@@ -6,10 +6,38 @@
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <?php foreach ($habitats as $index => $habitat): ?>
+            <?php
+            // Création d'un tableau contenant toutes les images
+            $allImages = [];
+            foreach ($habitats as $habitat) {
+                if (!empty($habitat['image'])) {
+                    $allImages[] = [
+                        'src' => $habitat['image'],
+                        'alt' => $habitat['name']
+                    ];
+                }
+                if (!empty($habitat['image2'])) {
+                    $allImages[] = [
+                        'src' => $habitat['image2'],
+                        'alt' => $habitat['name']
+                    ];
+                }
+                if (!empty($habitat['image3'])) {
+                    $allImages[] = [
+                        'src' => $habitat['image3'],
+                        'alt' => $habitat['name']
+                    ];
+                }
+            }
+
+            // Mélange le tableau des images
+            shuffle($allImages);
+
+            // Affiche les images dans le carrousel 
+            foreach ($allImages as $index => $image): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                        <img src="/assets/images/<?= htmlspecialchars($image['src']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($image['alt']) ?>">
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -26,6 +54,9 @@
         </button>
     </div>
 </section>
+
+
+
 
 <!-- Liste des habitats -->
 <div class="space"></div>

@@ -78,6 +78,18 @@ input, select {
     margin-bottom: 1rem;
     background-color: white;
 }
+.input-group-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px; 
+    width: 40px; 
+    padding: 0;
+    background-color: #fff; 
+    border: none;
+    border:1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* Styles des boutons */
 .button, .btn {
     background-color: #492200;
@@ -141,18 +153,25 @@ input, select {
     padding: 10px;
     width: 6rem;  
 }
-.input-group-text {
+
+/* design des bouton de menu du bas*/
+.circle{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 38px; 
-    width: 40px; 
-    padding: 0;
-    background-color: #fff; 
-    border: none;
-    border:1px solid rgba(0, 0, 0, 0.1);
-}
+    width: 15rem; 
+    height: 9rem;
+    border: 0.125rem solid #492200;
+    border-radius:6rem;
+    background-color: #FAF4ED;
+    text-align: center;
+    padding: 20px;
+  
+  }
+  
 
+/*oeil de mot de passe*/
 .togglePasswordIcon {
     font-size: 1.2rem;
 }
@@ -400,6 +419,7 @@ footer {
     position: relative;
     height: 5rem;
     margin-top: 20px;
+    background-color: white;
   }
 @media (min-width: 768px) {
  
