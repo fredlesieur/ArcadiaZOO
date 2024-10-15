@@ -41,6 +41,7 @@
             <input type="text" class="form-control" name="horaires" id="horaires" value="<?= htmlspecialchars($service['horaires']) ?>"><br>
 
             <button type="submit" class="btn warning w-100 mt-2">Modifier</button>
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         </form>
     </div>
 </section>

@@ -45,6 +45,7 @@
         <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
       </div>
       <button type="submit" class="btn button w-100">Envoyer</button>
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     </form>
   </div>
 </div>

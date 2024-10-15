@@ -56,7 +56,7 @@
 
         <!-- Bouton "Ajouter" : Il doit être placé à la fin -->
         <button type="submit" class="btn btn-success w-100 mt-2">Ajouter</button>
-
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     </form>
 
     </div>

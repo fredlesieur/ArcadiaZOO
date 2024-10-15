@@ -67,6 +67,7 @@ $currentDateTime = date('Y-m-d\TH:i');
             <?php endif; ?>
 
             <button type="submit" name="submit" class="btn success w-100 mt-2">Ajouter</button>
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         </form>
     </div>
 </section>

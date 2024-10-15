@@ -14,6 +14,7 @@
             <input type="file" name="image" id="image" class="form-control" required>
         </div>
         <button type="submit" class="btn success">Ajouter</button>
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     </form>
 </section>
 

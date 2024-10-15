@@ -21,6 +21,7 @@
 
 
                 <button type="submit" class="btn button w-100">Envoyer</button>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <?php if (isset($error)): ?>
                     <p class="text-center"><?= $error; ?></p>
                 <?php endif; ?>

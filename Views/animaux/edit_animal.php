@@ -38,6 +38,7 @@
                 </div>
 
                 <button type="submit" class="btn warning w-100 mt-2">Modifier l'animal</button>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             </form>
         <?php endif; ?>
     </div>

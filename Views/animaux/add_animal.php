@@ -26,6 +26,7 @@
                 </select><br>
 
                 <button type="submit" class="btn success w-100 mt-2">Ajouter</button>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             </form>
         </div>
     </section>
