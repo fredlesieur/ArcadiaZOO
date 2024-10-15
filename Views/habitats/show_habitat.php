@@ -3,26 +3,26 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0">HABITAT</h1>
 
 <!-- Carrousel Section -->
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="colorSection p-2 p-lg-4 p-xl-5">
     <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <?php if (isset($habitat)): ?>
                 <div class="carousel-item active">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
                     </div>
                 </div>
                 <?php if (!empty($habitat['image2'])): ?>
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($habitat['image2']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                            <img src="/assets/images/<?= htmlspecialchars($habitat['image2']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
                         </div>
                     </div>
                 <?php endif; ?>
                 <?php if (!empty($habitat['image3'])): ?>
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($habitat['image3']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                            <img src="/assets/images/<?= htmlspecialchars($habitat['image3']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
                         </div>
                     </div>
                 <?php endif; ?>
@@ -43,9 +43,12 @@
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <?php if (isset($habitat)): ?>
+       
         <h2 class="text-center"><?= htmlspecialchars($habitat['name']); ?></h2>
         <p class="text-center w-50 m-auto"><?= htmlspecialchars($habitat['description']); ?></p><br>
-        <h3 class="mt-4">Les animaux de cet habitat</h3><br>
+        <h2>Commentaire</h2><br>
+        <p class="text-center"><?= htmlspecialchars(ucfirst($habitat['commentaire'])); ?> </p><br>
+        <h2 class="mt-4">Les animaux de cet habitat</h2><br>
         <div class="row">
             <?php if (!empty($animaux)): ?>
                 <?php foreach ($animaux as $animal): ?>

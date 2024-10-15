@@ -12,10 +12,11 @@
 /* photo plus grande */
 .img-fluid3 {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    max-width: 600px; /* Largeur maximale pour les autres images */
-    max-height: 600px; 
+    max-width: 70rem;
+    max-height: 50rem;
+   
 }
 
 .card {

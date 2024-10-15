@@ -8,7 +8,7 @@
             <?php foreach ($animaux as $index => $animal): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($animal['nom']) ?>">
+                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 img-fluid3" alt="<?= htmlspecialchars($animal['nom']) ?>">
                     </div>
                 </div>
             <?php endforeach; ?>

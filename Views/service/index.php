@@ -10,7 +10,7 @@
                 <?php foreach ($services as $index => $service): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>">
+                            <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>">
                         </div>
                     </div>
                 <?php endforeach; ?>

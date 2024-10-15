@@ -9,7 +9,7 @@
             <?php foreach ($habitats as $index => $habitat): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
                     </div>
                 </div>
             <?php endforeach; ?>
