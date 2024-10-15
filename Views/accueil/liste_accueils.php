@@ -1,10 +1,8 @@
-<?php $script = '<script src="/assets/javascript/filtre.js"></script>'; ?>
-
-<h1 class="container-fluid banner pt-5 pb-5">Liste des éléments de l'accueil</h1>
-<section class="colorSection p-3 p-lg-4 p-xl-5">
-    <div class="container my-5"></div>
-        <div class="table-responsive">
-            <table class="datatable table table-bordered table-striped table-hover">
+<h1 class="banner pt-5 pb-5">Liste des éléments de l'accueil</h1>
+<section class="colorSection  p-3 p-lg-4 p-xl-5">
+    <div class="container"></div>
+        <div class="table-responsive col-lg-6 mx-auto">
+            <table class="table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th>Nom</th>

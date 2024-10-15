@@ -1,10 +1,8 @@
-<?php $script = '<script src="/assets/javascript/filtre.js"></script>'; ?>
-
 <?php $link = '<link rel="stylesheet" href="/assets/css/animaux.css">'; ?>
 
-<h1 class="container-fluid banner pt-5 pb-5">Liste des animaux</h1>
+<h1 class="banner pt-5 pb-5">Liste des animaux</h1>
 <section class="colorSection">
-    <div class="container my-5">
+    <div class="container">
         <!-- Vérifier s'il y a des messages de succès ou d'erreur -->
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success">
@@ -14,7 +12,7 @@
         <?php endif; ?>
 
         <div class="table-responsive">
-            <table class="datatable table table-bordered table-striped table-hover">
+            <table class="datatable1 table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th>Nom</th>
@@ -58,3 +56,4 @@
     </div>
 </section>
 <?php $script = '<script src="/assets/javascript/compteur.js"></script>'; ?>
+<?php $script = '<script src="/assets/javascript/filtreAnimaux.js"></script>'; ?>

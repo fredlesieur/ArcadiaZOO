@@ -1,12 +1,13 @@
-<h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">Liste des services</h1>
+<h1 class="banner pt-5 pb-5 mb-0 text-center">Liste des services</h1>
 <section class="colorSection">
-    <div class="container my-5">
+    <div class="container ">
         <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th>Nom</th>
                         <th>Catégorie</th>
+                        <th>Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -16,6 +17,7 @@
                             <tr>
                                 <td><?= htmlspecialchars($service['name']); ?></td>
                                 <td><?= htmlspecialchars($service['categorie']); ?></td>
+                                <td><img src="/assets/images/<?= htmlspecialchars($service['image']); ?>" alt="<?= htmlspecialchars($service['name']); ?>" width="100"></td>
                                 <td>
                                     <a href="/service/editServ/<?= $service['id']; ?>" class="btn warning mx-2">Modifier</a>
                                     <a href="/service/deleteServ/<?= $service['id']; ?>" class="btn danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?')">Supprimer</a>

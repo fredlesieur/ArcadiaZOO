@@ -1,10 +1,8 @@
-<?php $script = '<script src="/assets/javascript/filtre.js"></script>'; ?>
-
 <?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">' ?>
 
-<h1 class="container-fluid banner pt-5 pb-5">Liste des habitats</h1>
+<h1 class="banner pt-5 pb-5">Liste des habitats</h1>
 <section class="colorSection">
-    <div class="container my-5">
+    <div class="container">
         <div class="table-responsive">
             <table class="datatable table table-bordered table-striped table-hover">
                 <thead class="thead-dark">

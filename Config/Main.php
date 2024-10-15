@@ -11,6 +11,11 @@ class Main
         // Démarrage de la session
         session_start();
 
+        // creation de token CSRF
+        if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
         // Retirer le trailing slash de l'URL si présent
         $uri = $_SERVER['REQUEST_URI'];
 
@@ -31,10 +36,20 @@ class Main
             exit();
         }
 
+         // Vérification du token CSRF et nettoyage des données POST si la requête est de type POST
+         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $csrfToken = $_POST['csrf_token'] ?? '';
+            $this->checkCsrfToken($csrfToken);
+
+            // Nettoyage des données POST
+            $_POST = $this->sanitizeFormData($_POST);
+        }
+
+
         // Gestion des paramètres d'URL
         $params = isset($_GET['p']) ? explode('/', $_GET['p']) : [];
 
-        // Si des paramètres sont présents dans l'URL
+        // vérifie Si des paramètres sont présents dans l'URL
         if (!empty($params[0])) {
             // Récupération du contrôleur à instancier
             $controllerName = ucfirst(array_shift($params)) . 'Controller'; // Le nom du contrôleur
@@ -66,4 +81,47 @@ class Main
             $controller->index();
         }
     }
+
+    // Vérification du token CSRF
+    public function checkCsrfToken($token)
+    {
+        if (!isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']) {
+            // Token invalide
+            http_response_code(403);
+            echo 'Invalid CSRF token.';
+            exit();
+        }
+    }
+
+
+    // Nettoyage des données POST
+    private function sanitizeFormData(array $data)
+    {
+        $sanitizedData = [];
+        foreach ($data as $key => $value) {
+            // Si la valeur est un tableau, on applique récursivement la fonction
+            if (is_array($value)) {
+                $sanitizedData[$key] = $this->sanitizeFormData($value);
+            } else {
+                // Nettoyage de la valeur
+                if (is_string($value)) {
+                    $sanitizedData[$key] = strip_tags($value);
+                } else {
+                    // On conserve les autres types de données sans les nettoyer
+                    $sanitizedData[$key] = $value;
+                }
+            }
+        }
+        return $sanitizedData;
+    }
+
+    // Gestion des erreurs 404
+
+    private function error404($message)
+    {
+        http_response_code(404);
+        echo $message;
+    }
 }
+
+
