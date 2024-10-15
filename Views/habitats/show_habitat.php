@@ -54,7 +54,7 @@
                 <?php foreach ($animaux as $animal): ?>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                         <div class="card">
-                            <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid3" alt="<?= htmlspecialchars($animal['nom']); ?>">
+                            <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid4" alt="<?= htmlspecialchars($animal['nom']); ?>">
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= htmlspecialchars(ucwords($animal['nom'])); ?></h5>
                                 <a href="/animal/viewAnimal/<?= $animal['id'] ?>" class="btn btn-info">Voir la fiche</a>

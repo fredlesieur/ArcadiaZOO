@@ -10,14 +10,7 @@
 }
 
 /* photo plus grande */
-.img-fluid3 {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    max-width: 70rem;
-    max-height: 50rem;
-   
-}
+
 
 .card {
   height: 100%; /* Assurez-vous que la carte prend toute la hauteur */
@@ -35,11 +28,6 @@
   border-top-right-radius: 10px; /* Arrondit les coins supérieurs de l'image */
 }
 
-.img-fluid2 {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Remplit l'image tout en gardant son ratio */
-}
 
 .card-body {
   padding: 15px;

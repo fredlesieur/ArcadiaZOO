@@ -62,11 +62,11 @@
     <?php foreach ($habitats as $habitat): ?>
         <div class="text-center">
             <h3 class="p-3"><?= htmlspecialchars($habitat["name"]); ?></h3>
-            <p class="p-1 m-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
+            <p class="p-1 m-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p><br>
             <div class="d-flex justify-content-center">
-                <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>"><br>
             </div>
-        </div>
+        </div><br>
     <?php endforeach; ?>
 </section>
 
@@ -81,11 +81,11 @@
     <?php foreach ($accueilModel as $accueil): ?>
         <div class="text-center">
             <h3 class="p-1"><?= htmlspecialchars($accueil["name"]); ?></h3>
-            <p class="p-1 w-100 w-md-75 w-lg-50 mx-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
+            <p class="p-1 w-100 w-md-75 w-lg-50 mx-auto"><?= htmlspecialchars($accueil["description"]); ?></p>
             <div class="d-flex justify-content-center">
-                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($accueil['name']) ?>">
+                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($accueil['name']) ?>"><br>
             </div>
-        </div>
+        </div><br>
     <?php endforeach; ?>
 </section>
 

@@ -2,8 +2,8 @@
 
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 mb-4 text-center">Liste des rapports</h1>
 <section class="colorSection">
-    <div class="table-responsive">
-        <table class="datatable table table-bordered table-striped table-hover">
+    <div class="table-responsive container">
+        <table class="datatable1 table table-bordered table-striped table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th class="align-content-center">Rapport rédigé par</th>
@@ -30,14 +30,14 @@
                         <td class="align-content-center"><?= $r['animal_nom']; ?></td>
                         <td class="align-content-center"><?= $r['etat']; ?></td>
                         <td class="align-content-center"><?= $r['detail_etat']; ?></td>
-                        <td class="align-content-center"><?= $r['date_heure']; ?></td>
-                        <td class="align-content-center"><?= isset($r['date_passage']) ? date('d-m-Y H:i:s', strtotime($r['date_passage'])) : 'Non disponible'; ?></td>
-                        <td class="align-content-center"><?= isset($r['nourriture_preconisee']) ? $r['nourriture_preconisee'] : 'pas indiqué'; ?></td>
+                        <td class="align-content-center"><?= isset($r['date_heure']) ? date('d-m-Y H:i', strtotime($r['date_heure'])) : ''; ?></td>
+                        <td class="align-content-center"><?= isset($r['date_passage']) ? date('d-m-Y', strtotime($r['date_passage'])) : ''; ?></td>
+                        <td class="align-content-center"><?= isset($r['nourriture_preconisee']) ? $r['nourriture_preconisee'] : ''; ?></td>
                         <td class="align-content-center"><?= $r['nourriture_donnee']; ?></td>
-                        <td class="align-content-center"><?= isset($r['grammage_preconise']) ? $r['grammage_preconise'] : 'pas indiqué'; ?></td>
+                        <td class="align-content-center"><?= isset($r['grammage_preconise']) ? $r['grammage_preconise'] : ''; ?></td>
                         <td class="align-content-center"><?= $r['grammage_donne']; ?></td>
-                        <td class="align-content-center"><?= $r['employe_nom_prenom'] ?? 'Non attribué'; ?></td>
-                        <td class="align-content-center"><?= $r['veterinaire_nom_prenom'] ?? 'Non attribué'; ?></td>
+                        <td class="align-content-center"><?= $r['employe_nom_prenom'] ?? ''; ?></td>
+                        <td class="align-content-center"><?= $r['veterinaire_nom_prenom'] ?? ''; ?></td>
 
                         <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'employe') : ?>
                             <td class="align-content-center">

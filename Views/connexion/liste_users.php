@@ -1,8 +1,11 @@
+<?php $script = '<script src="/assets/javascript/filtre.js"></script>'; ?>
+
 <h1 class="text-center banner pt-5 pb-5">Liste des utilisateurs</h1>
-<div class="container my-5">
-        <section class="colorSection">
+<section class="colorSection">
+    <div class="container my-5">
+
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table class="datatable table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>

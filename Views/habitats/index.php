@@ -34,7 +34,7 @@
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div>
         <h2 class="p-3"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
-        <p class="text-center w-50 m-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
+        <p class="text-center w-50 m-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p><br>
         <div class="image d-flex justify-content-center">
             <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
         </div>

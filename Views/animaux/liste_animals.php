@@ -1,4 +1,7 @@
+<?php $script = '<script src="/assets/javascript/filtre.js"></script>'; ?>
+
 <?php $link = '<link rel="stylesheet" href="/assets/css/animaux.css">'; ?>
+
 <h1 class="container-fluid banner pt-5 pb-5">Liste des animaux</h1>
 <section class="colorSection">
     <div class="container my-5">
@@ -11,7 +14,7 @@
         <?php endif; ?>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table class="datatable table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th>Nom</th>

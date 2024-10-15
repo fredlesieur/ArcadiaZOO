@@ -35,48 +35,86 @@ class HabitatsController extends Controller
     }
     
 
-    public function addHabitat()
-    {
-        $habitatModel = new HabitatsModel();
-        $habitats = $habitatModel->findAll();
-        // Vérifier si la requête est de type POST pour traiter la soumission du formulaire
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Préparer les données envoyées via le formulaire sous forme de tableau  
-            $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-                'description_courte' => $_POST['description_courte'],
-                'commentaire' => $_POST['commentaire'],
-                'user_id' => $_POST['user_id']
-            ];
+   public function addHabitat()
+{
+    $habitatModel = new HabitatsModel();
+    $habitats = $habitatModel->findAll(); // Récupère tous les habitats
 
-             // Utilisation de la fonction d'upload pour ajouter des images
-            if (!empty($_FILES['image']['name'])) {
-                $data['image'] = $habitatModel->uploadImage($_FILES['image'], 'assets/images/');
-            }
-            if (!empty($_FILES['image2']['name'])) {
-                $data['image2'] = $habitatModel->uploadImage($_FILES['image2'], 'assets/images/');
-            }
-            if (!empty($_FILES['image3']['name'])) {
-                $data['image3'] = $habitatModel->uploadImage($_FILES['image3'], 'assets/images/');
-            }
-    
-            // Hydratation de l'objet rapport avec les données du formulaire
-            $habitatModel->hydrate($data);
+    // Initialisation de la variable $habitat (pour éviter les erreurs dans la vue)
+    $habitat = null;
 
-            // Mise à jour du rapport dans la base de données
-            $habitatModel->create();
+    // Si c'est un vétérinaire, on vérifie si un habitat est sélectionné et on récupère ses données
+    if ($_SESSION['role'] === 'veterinaire' && !empty($_POST['id_habitat'])) {
+        $id_habitat = $_POST['id_habitat'];
+        $habitat = $habitatModel->find($id_habitat); // Récupère l'habitat sélectionné
+    }
 
-            // Redirection vers la liste des habitats après l'ajout
-            $_SESSION['success'] = "L'habitat a été créé avec succès.";
+    // Traitement des requêtes POST pour l'ajout d'habitat ou de commentaire
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        // Si c'est un vétérinaire qui soumet le formulaire
+        if ($_SESSION['role'] === 'veterinaire') {
+            // On vérifie à nouveau si un habitat est sélectionné et récupéré
+            if (!empty($habitat) && !empty($habitat['commentaire'])) {
+                $_SESSION['error'] = "Un commentaire existe déjà pour cet habitat. Utilisez la modification.";
+                header("Location: /habitats/addHabitat");
+                exit();
+            }
+
+            // Ajouter le commentaire si aucun n'existe
+            $commentaire = $_POST['commentaire'];
+            $habitatModel->hydrate(['commentaire' => $commentaire]);
+            $habitatModel->update($id_habitat);
+
+            $_SESSION['success'] = "Commentaire ajouté avec succès.";
             header("Location: /habitats/listHabitats");
             exit();
-
-            //vue du formulaire d'ajout  
         }
-        $title = "Créer un habitat";
-        $this->render('habitats/add_habitat', compact('title', 'habitats')); 
+
+        // Si c'est un administrateur qui soumet le formulaire
+        if ($_SESSION['role'] === 'administrateur') {
+            $name = $_POST['name'];
+            $existingHabitat = $habitatModel->findBy(['name' => $name]);
+
+            // Si un habitat avec ce nom existe déjà, empêcher la création
+            if (!empty($existingHabitat)) {
+                $_SESSION['error'] = "Cet habitat existe déjà.";
+                header("Location: /habitats/addHabitat");
+                exit();
+            }
+
+            // Ajouter un nouvel habitat
+            $data = [
+                'name' => $name,
+                'description' => $_POST['description'],
+                'description_courte' => $_POST['description_courte'],
+                'user_id' => $_SESSION['user_id']
+            ];
+
+            // Gestion des images
+            if (!empty($_FILES['image']['name'])) {
+                $data['image'] = $habitatModel->uploadImage($_FILES['image']);
+            }
+            if (!empty($_FILES['image2']['name'])) {
+                $data['image2'] = $habitatModel->uploadImage($_FILES['image2']);
+            }
+            if (!empty($_FILES['image3']['name'])) {
+                $data['image3'] = $habitatModel->uploadImage($_FILES['image3']);
+            }
+
+            // Hydrater et créer l'habitat
+            $habitatModel->hydrate($data);
+            $habitatModel->create();
+
+            $_SESSION['success'] = "Habitat ajouté avec succès.";
+            header("Location: /habitats/listHabitats");
+            exit();
+        }
     }
+
+    // Rendre la vue avec les habitats et l'habitat sélectionné (si applicable)
+    $this->render('habitats/add_habitat', compact('habitats', 'habitat'));
+}
 
     public function editHabitat($id)
     {
