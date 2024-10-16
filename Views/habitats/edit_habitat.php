@@ -37,4 +37,3 @@
     </div>
 </section>
 
-<?php $script = '<script src="/assets/javascript/habitat.js"></script>'; ?>

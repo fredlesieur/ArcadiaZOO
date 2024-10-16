@@ -55,9 +55,6 @@
     </div>
 </section>
 
-
-
-
 <!-- Liste des habitats -->
 <div class="space"></div>
 
@@ -65,13 +62,13 @@
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div>
         <h2 class="p-3"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
-        <p class="text-center w-50 m-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p><br>
+
         <div class="image d-flex justify-content-center">
             <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
         </div>
     </div>
     <div class="d-flex justify-content-center m-5">
-        <a href="/habitats/showHabitat/<?=$habitat['id']; ?>" class="btn btn-primary">Découvrir</a>
+        <a href="/habitats/showHabitat/<?=$habitat['id']; ?>" class="btn btn-primary w-25 py-3">Découvrir</a>
     </div>
 </section>
 

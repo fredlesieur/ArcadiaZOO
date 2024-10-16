@@ -2,6 +2,7 @@
 
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">ACCUEIL</h1>
 
+<!-- Carrousel Animaux -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -24,6 +25,7 @@
     </div>
 </section>
 
+<!-- Présentation du zoo -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <h2>Présentation du zoo</h2>
     <p id="presentation-text" class="d-none d-lg-block p-1 mx-auto">
@@ -51,10 +53,12 @@
     </div>
 </section>
 
+<!-- Animation separation -->
 <div class="jaguar-container">
     <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
 </div>
 
+<!-- Liste des habitats -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div>
         <h2>Les Habitats</h2>
@@ -75,13 +79,14 @@
             <a href="/habitats" class="btn btn-primary">Découvrir</a>
         </div>
     </div>
-<!-- Animation separation -->
-    <div class="jaguar-container">
-        <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
-    </div>
 </section>
 
+<!-- Animation separation -->
+<div class="jaguar-container">
+        <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
+    </div>
 
+<!-- Liste des services -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div>
         <h2>Les Services</h2>
@@ -108,6 +113,7 @@
     <div class="jaguar-container">
         <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
     </div>
+
 <!-- Avis des visiteurs -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
 
@@ -151,7 +157,7 @@
     </div>
 </section>
 
-<!-- Laisser un avis -->
+<!-- formulaire pour laisser un avis -->
 <section>
     <div class="container d-flex justify-content-center my-5">
         <div class="container p-4">
@@ -183,8 +189,10 @@
                 </div>
             <?php endif; ?>
         </div>
+    </div>
 </section>
-</div>
+<!-- boutons direction page contact -->
+
 <div class="d-flex justify-content-center custom-gap p-3 p-lg-4 p-xl-5">
     <div class="circle">
         <h3>Nous contacter</h3>
@@ -192,4 +200,9 @@
     </div>
 </div>
 
-<?php $script = '<script src="/assets/javascript/accueil.js"></script>'; ?>
+<?php
+$script = '<script src="/assets/javascript/jaguar.js"></script>';
+$script .= '<script src="/assets/javascript/accueil.js"></script>';
+echo $script;
+?>
+

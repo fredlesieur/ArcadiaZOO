@@ -68,9 +68,10 @@
       <p>Teléphone : <?= $coordonnee["telephone"]; ?></p> <br>
   </div>
 <?php endforeach; ?>
-<div class="d-flex justify-content-center bordure">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d85376.45845156394!2d-2.262041459790034!3d48.03275003507391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480faceab3587495%3A0xcdc883e818be2eb2!2sFor%C3%AAt%20de%20Broc%C3%A9liande!5e0!3m2!1sfr!2sfr!4v1727271537951!5m2!1sfr!2sfr" width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="iframe-container">
+    <iframe class="responsive-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d85376.45845156394!2d-2.262041459790034!3d48.03275003507391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480faceab3587495%3A0xcdc883e818be2eb2!2sFor%C3%AAt%20de%20Broc%C3%A9liande!5e0!3m2!1sfr!2sfr!4v1727271537951!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </div>
+
 </section>
 
-<script src="assets/javascript/jaguar.js"></script>
+<?php $script = '<script src="/assets/javascript/jaguar.js"></script>'; ?>

@@ -6,14 +6,14 @@
     list-style: none;
 }
 
-/* TYPOGRAPHIE GÉNÉRALE */
+/* typos générales */
 body, h1, h2, h3, h4, h5,  p, a, li {
     font-family: "Roboto", sans-serif;
     color: #492200;
     text-align: center;
 }
 
-/* TITRES GÉNÉRAUX */
+/* titres géneraux */
 h1, h2, h3 {
     font-family: "Risque", cursive;
 }
@@ -36,12 +36,22 @@ h5 {
     font-size: 1.25rem;
     color: #492200;
 }
+
 /* Fond de chaque section */
 .colorSection {
     background-color: #FAF4ED;
     padding: 2rem;
 }
-
+  
+  /* Espacement pour séparer les sections */
+  .space {
+    height: 2rem;
+  }
+  .separator {
+    width: 100%;
+    height: 3rem;
+    background-color: white;
+  }
 /*formulaire et tableaux */
 .avi{
     border:solid 2px #492200;
@@ -162,7 +172,7 @@ input, select {
     justify-content: center;
     width: 15rem; 
     height: 9rem;
-    border: 0.125rem solid #492200;
+    border: 0.3rem solid rgba(155,101,7,1);
     border-radius:6rem;
     background-color: #FAF4ED;
     text-align: center;
@@ -208,7 +218,7 @@ input, select {
 .navbar-nav .nav-link {
     color: #FAF4ED;
     padding: 0.75rem 0;
-    font-size: 1rem; /* Taille par défaut pour les petits écrans */
+    font-size: 1rem; 
     font-family: "Risque";
     transition: color 0.2s ease-in;
 }
@@ -321,8 +331,8 @@ th, td{
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-width: 50rem; /* Largeur maximale pour les images du carrousel */
-    max-height: 38rem; /* Hauteur maximale pour les images du carrousel */
+    max-width: 50rem;
+    max-height: 38rem; 
     border-radius: 10px;
     
 }
@@ -335,16 +345,16 @@ th, td{
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-width: 30rem; /* Largeur maximale pour les autres images */
-    max-height: 30rem; /* Hauteur maximale pour les autres images */
+    max-width: 30rem; 
+    max-height: 30rem; 
     clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
 }
 .img-fluid3 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    max-width: 70rem;
-    max-height: 50rem;
+    max-width: 85rem;
+    max-height: 60rem;
     clip-path: polygon(20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
 
    
@@ -353,6 +363,42 @@ th, td{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.card {
+    height: 100%; /* Assurez-vous que la carte prend toute la hauteur */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Assure que le contenu de la carte est distribué uniformément */
+  }
+  
+  .card-img-top {
+    flex-grow: 1; /* L'image prend tout l'espace vertical disponible */
+    width: 100%;
+    height: 400px; /* Fixe une hauteur uniforme pour toutes les images */
+    object-fit: cover; /* S'assure que l'image remplit la zone sans déformation */
+    border-top-left-radius: 10px; /* Arrondit les coins supérieurs de l'image */
+    border-top-right-radius: 10px; /* Arrondit les coins supérieurs de l'image */
+  }
+  
+  
+  .card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre le texte verticalement dans la carte */
+  }
+/* responsive iframe */
+
+.iframe-container {
+    width: 100%;
+    height: 19rem;
+    margin: 0 auto;
+}
+
+.responsive-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 /* Footer styles */
@@ -395,6 +441,7 @@ footer {
     font-size: 1.5rem;
     color: #FAF4ED;
 }
+
 /* Animation du jaguar */
 .jaguar {
     width: 4rem;
@@ -404,55 +451,88 @@ footer {
     top: 50%;
     transform: translateY(-50%);
     animation: moveRight 5s linear infinite;
-  }
-  
-  @keyframes moveRight {
+}
+
+@keyframes moveRight {
     from {
         left: 0;
     }
     to {
         left: 100%;
     }
-  }
-  
-  .jaguar-container {
+}
+
+/* Jaguar container */
+.jaguar-container {
     position: relative;
     height: 5rem;
     margin-top: 20px;
     background-color: white;
-  }
+}
+
+
+  /* Ajustements pour les écrans plus grands */
 @media (min-width: 768px) {
  
 
     .banner {
-        font-size: 2.5rem; /* Taille plus grande pour la bannière sur grand écran */
+        font-size: 2.5rem;
     }
 
     h2 {
-        font-size: 2rem; /* Augmente légèrement la taille des titres sur grand écran */
+        font-size: 2rem;
     }
 
     h3 {
-        font-size: 1.75rem; /* Ajuste les sous-titres */
+        font-size: 1.75rem; 
     }
 
     p {
-        font-size: 1.125rem; /* Augmente légèrement la taille du texte courant */
+        font-size: 1.125rem;
     }
-}
-/* Ajustements pour les écrans plus grands */
-@media (min-width: 768px) {
+
     .navbar-nav .nav-item {
-        margin: 0 1.5rem; /* Ajoute de l'espace horizontal entre chaque lien */
+        margin: 0 1.5rem; 
     }
 
     .navbar-nav .nav-link {
-        font-size: 1.2rem; /* Taille augmentée pour les écrans de bureau */
+        font-size: 1.2rem; 
+    }
+    .iframe-container {
+        width: 80%; /* Ajuste à 80% pour tablette */
+        height: 400px;
     }
 }
+/* Pour les écrans inférieurs ou égaux à 768px */
+@media (max-width: 768px) {
+    .jaguar {
+        width: 30%!important;
+        height: auto !important;
+        margin: 0 auto !important; 
+        position: static !important; 
+        transform: none !important;
+        animation: none !important; 
+    }
+
+    .jaguar-container {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: 6rem;
+        background-color: white !important;
+        margin: 0!important;
+    }
+}
+
+
 
 @media (min-width: 992px) {
     .navbar-nav .nav-link {
-        font-size: 1.4rem; /* Taille encore augmentée pour les très grands écrans */
+        font-size: 1.4rem; 
+    }
+
+    .iframe-container {
+        width: 60%; /* Ajuste à 60% pour desktop */
+        height: 500px;
     }
 }

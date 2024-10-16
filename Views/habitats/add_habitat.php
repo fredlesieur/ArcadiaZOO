@@ -64,14 +64,11 @@
             <textarea class="form-control" name="description_courte" id="description_courte"></textarea><br>
         <?php endif; ?>
 
-        <!-- Bouton "Ajouter" : Il doit être placé à la fin -->
         <button type="submit" class="btn btn-success w-100 mt-2">Ajouter</button>
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     </form>
 
     </div>
 </section>
-
-<?php $script = '<script src="/assets/javascript/habitat.js"></script>'; ?>
 
 

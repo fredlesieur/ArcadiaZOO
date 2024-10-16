@@ -23,6 +23,7 @@
                 <li><a class="btn button w-50" href="/service/listServices">Liste des services</a></li>
                 <li><a class="btn button w-50" href="/rapport/liste_rapports">Voir la liste des rapports </a></li>
                 <li><a class="btn button w-50" href="/rapport/add_rapport">Ajouter un rapports</a></li>
+                <li><a class="btn button w-50" href="/habitats/listHabitats">Liste des commentaires sur les habitats</a>
                 <!-- contact par email -->
             <?php elseif ($_SESSION['role'] && $_SESSION['role'] == 'veterinaire'): ?>
                 <li><a class="btn button w-50" href="/habitats/addHabitat">Créer un commentaire sur un habitat</a></li>

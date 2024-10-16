@@ -55,5 +55,9 @@
         </div>
     </div>
 </section>
-<?php $script = '<script src="/assets/javascript/compteur.js"></script>'; ?>
-<?php $script = '<script src="/assets/javascript/filtreAnimaux.js"></script>'; ?>
+
+<?php
+$script = '<script src="/assets/javascript/compteur.js"></script>';
+$script .= '<script src="/assets/javascript/filtreAnimaux.js"></script>';
+echo $script;
+?>

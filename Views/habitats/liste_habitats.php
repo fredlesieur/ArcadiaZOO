@@ -12,27 +12,32 @@
                         <th>Description</th>
                         <th>Commentaire</th>
                         <th>Image</th>
-                        <th>Actions</th>
+                        <?php if ($_SESSION['role'] !== 'employe'): ?>
+                            <th>Actions</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($habitats as $habitat): ?>
                         <tr>
                             <td><?= $habitat['id']; ?></td>
-                            <td><?= $habitat['name']; ?></td>
-                            <td><?= $habitat['description_courte']; ?></td>
-                            <td><?= $habitat['commentaire']; ?></td>
-                            <td><img src="/assets/images/<?= $habitat['image']; ?>" width="100" alt="Image de l'habitat"></td>
-                            <td>
-                                <!-- Bouton de modification -->
-                                <a href="/habitats/editHabitat/<?= $habitat['id'] ?>" class="btn warning">Modifier</a>
+                            <td><?= htmlspecialchars($habitat['name']); ?></td>
+                            <td><?= htmlspecialchars($habitat['description_courte']); ?></td>
+                            <td><?= htmlspecialchars($habitat['commentaire']); ?></td>
+                            <td><img src="/assets/images/<?= htmlspecialchars($habitat['image']); ?>" width="100" alt="Image de l'habitat"></td>
 
-                                <!-- Bouton de suppression avec confirmation -->
-                                <a href="/habitats/deleteHabitat/<?= $habitat['id'] ?>" class="btn danger"
-                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?');">
-                                    Supprimer
-                                </a>
-                            </td>
+                            <?php if ($_SESSION['role'] !== 'employe'): ?>
+                                <td>
+                                    <!-- Bouton de modification -->
+                                    <a href="/habitats/editHabitat/<?= $habitat['id'] ?>" class="btn warning">Modifier</a>
+
+                                    <!-- Bouton de suppression avec confirmation -->
+                                    <a href="/habitats/deleteHabitat/<?= $habitat['id'] ?>" class="btn danger"
+                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?');">
+                                        Supprimer
+                                    </a>
+                                </td>
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -40,3 +45,4 @@
         </div>
     </div>
 </section>
+

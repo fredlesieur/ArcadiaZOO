@@ -1,9 +1,7 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">'; ?>
-
 <h1 class="container-fluid banner pt-5 pb-5 mb-0">HABITAT</h1>
 
 <!-- Carrousel Section -->
-<section class="colorSection p-2 p-lg-4 p-xl-5">
+<section class="colorSection pt-2 pt-lg-4 pt-xl-5">
     <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <?php if (isset($habitat)): ?>
@@ -40,17 +38,24 @@
         </button>
     </div>
 </section>
-
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<!-- descriptif de l' habitat -->
+<section class="colorSection p-1 p-lg-2 p-xl-3">
     <?php if (isset($habitat)): ?>
        
-        <h2 class="text-center"><?= htmlspecialchars($habitat['name']); ?></h2>
+        <h2 class="text-center"><?= htmlspecialchars($habitat['name']); ?></h2><br>
+
         <p class="text-center w-50 m-auto"><?= htmlspecialchars($habitat['description']); ?></p><br>
-        <h2>Commentaire</h2><br>
-        <p class="text-center"><?= htmlspecialchars(ucfirst($habitat['commentaire'])); ?> </p><br>
+        
+<div class="separator">
+
+</div>
+
+<!-- Liste des animaux de l'habitat-->
+
         <h2 class="mt-4">Les animaux de cet habitat</h2><br>
         <div class="row">
-            <?php if (!empty($animaux)): ?>
+
+    <?php if (!empty($animaux)): ?>
                 <?php foreach ($animaux as $animal): ?>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                         <div class="card">
