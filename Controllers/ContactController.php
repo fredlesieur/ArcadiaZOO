@@ -63,7 +63,7 @@ class ContactController extends Controller
     }
 
     public function editHoraire($id) {
-        $mongoClient = new MongoClient("mongodb://localhost:27017");
+        $mongoClient = new MongoClient($_ENV['MONGO_URI']);
         $db = $mongoClient->arcadia;
         $horairesCollection = $db->horaires;
 
