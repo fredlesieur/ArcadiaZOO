@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controllers;
+/* namespace App\Controllers;
 
 use App\Models\HoraireModel;
-
+use Exception;
+use MongoDB\Client as MongoClient;
 class HoraireController extends Controller
 {
     public function index()
@@ -12,4 +13,4 @@ class HoraireController extends Controller
         $horaire = $HoraireModel->findAll();
         $this->render("contact/index", compact("horaire"));
     }
-}
+} */

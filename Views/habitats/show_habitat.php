@@ -46,9 +46,7 @@
 
         <p class="text-center w-50 m-auto"><?= htmlspecialchars($habitat['description']); ?></p><br>
         
-<div class="separator">
-
-</div>
+<div class="separator"></div>
 
 <!-- Liste des animaux de l'habitat-->
 

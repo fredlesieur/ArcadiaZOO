@@ -33,30 +33,25 @@
     </div>
 </section>
 
-
-<div class="jaguar-container">
-  <!-- Image du jaguar qui change pour chaque étape de la course -->
-  <img class="jaguar" src="assets/images/jaquar1.jpg" alt="Jaguar en course">
-</div>
-
+<div class="separator"></div>
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
 
   <div>
-    <h2>Nos horaires</h2><br>
-    <?php foreach ($horaires as $horaire): ?>
-      <h3><?= $horaire["saison"]; ?></h3><br>
-      <p>En semaine : <?= $horaire["semaine"]; ?></p>
-      <p>Le week-end : <?= $horaire["week_end"]; ?></p> <br>
+        <h2>Nos horaires</h2><br>
+        <?php if (!empty($horaires)): ?>
+            <?php foreach ($horaires as $horaire): ?>
+                <h3><?= htmlspecialchars($horaire["saison"]); ?></h3><br>
+                <p>En semaine : <?= htmlspecialchars($horaire["semaine"]); ?></p>
+                <p>Le week-end : <?= htmlspecialchars($horaire["week_end"]); ?></p><br>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Aucun horaire disponible pour le moment.</p>
+        <?php endif; ?>
   </div>
-<?php endforeach; ?>
 </section>
 
-<div class="jaguar-container">
-  <!-- Image du jaguar qui change pour chaque étape de la course -->
-  <img class="jaguar" src="assets/images/jaquar1.jpg" alt="Jaguar en course">
-</div>
-
+<div class="separator"></div>
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
   <div>

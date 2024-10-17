@@ -1,15 +1,13 @@
 <?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">'; ?>
 
-<h1 class="container-fluid banner pt-5 pb-5">
+
     <?php if ($_SESSION['role'] === 'veterinaire'): ?>
         Ajouter un commentaire
     <?php else: ?>
         Ajouter un Habitat
     <?php endif; ?>
-</h1>
 
-<section class="colorSection">
-    <div class="container my-5">
+
 
     <!-- Afficher les messages d'erreur et de succès -->
     <?php if (!empty($_SESSION['error'])): ?>
@@ -25,7 +23,9 @@
         </div>
         <?php unset($_SESSION['success']); ?>
     <?php endif; ?>
-
+    <h1 class="container-fluid banner pt-5 pb-5"></h1>
+<section class="colorSection">
+    <div class="container my-5">
     <form action="/habitats/addHabitat" method="post" enctype="multipart/form-data">
 
         <!-- Partie vétérinaire : Ajout d'un commentaire sur un habitat existant -->

@@ -31,6 +31,7 @@
             <label for="description_courte">Description courte :</label>
             <textarea class="form-control" name="description_courte" id="description_courte"><?= htmlspecialchars($habitat['description_courte']) ?></textarea><br>
             
+            <button type="submit" class="btn warning w-100 mt-2">Modifier</button>
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         </form>
         <?php endif; ?>
