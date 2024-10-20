@@ -14,7 +14,10 @@ class ContactController extends Controller
         try {
             $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
                 'ssl' => true,
-                'tlsAllowInvalidCertificates' => true
+                'tlsAllowInvalidCertificates' => true,
+                'tlsInsecure' => true,
+                'tlsCAFile' => '/etc/ssl/certs/ca-certificates.crt',
+                'tlsAllowInvalidHostnames' => true
             ]);
             $db = $mongoClient->arcadia;
             echo "Connexion à MongoDB réussie";
