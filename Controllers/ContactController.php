@@ -8,7 +8,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use MongoDB\Client as MongoClient;
 use MongoDB\BSON\ObjectId;
 
-
 class ContactController extends Controller
 {
     public function index() {
@@ -40,12 +39,10 @@ class ContactController extends Controller
         $this->render("contact/index", compact("horaires", "coordonnees"));
     }
 
-
-
     public function addHoraire() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                $mongoClient = new MongoClient($_ENV['MONGO_URI'], [], [
+                $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
                     'ssl' => true,
                     'tlsAllowInvalidCertificates' => true
                 ]);
@@ -74,7 +71,7 @@ class ContactController extends Controller
     }
 
     public function editHoraire($id) {
-        $mongoClient = new MongoClient($_ENV['MONGO_URI'], [], [
+        $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
             'ssl' => true,
             'tlsAllowInvalidCertificates' => true
         ]);
@@ -109,7 +106,7 @@ class ContactController extends Controller
     // Afficher la liste des horaires
     public function listHoraires() {
         try {
-            $mongoClient = new MongoClient($_ENV['MONGO_URI'], [], [
+            $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
                 'ssl' => true,
                 'tlsAllowInvalidCertificates' => true
             ]);
@@ -132,7 +129,7 @@ class ContactController extends Controller
     }
 
     public function deleteHoraire($id) {
-        $mongoClient = new MongoClient($_ENV['MONGO_URI'], [], [
+        $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
             'ssl' => true,
             'tlsAllowInvalidCertificates' => true
         ]);
