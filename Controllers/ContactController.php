@@ -11,6 +11,22 @@ use MongoDB\BSON\ObjectId;
 class ContactController extends Controller
 {
     public function index() {
+        try {
+            $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
+                'ssl' => true,
+                'tlsAllowInvalidCertificates' => true
+            ]);
+            $db = $mongoClient->arcadia;
+            echo "Connexion à MongoDB réussie";
+            // Récupérer les horaires
+            $horairesCollection = $db->horaires;
+            $horaires = [];
+            foreach ($horairesCollection->find() as $horaire) {
+                $horaires[] = (array) $horaire;
+            }
+        } catch (Exception $e) {
+            echo "Erreur MongoDB : " . $e->getMessage();
+        }
         // Récupération des horaires (MongoDB)
         try {
             $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
