@@ -10,43 +10,37 @@ use MongoDB\BSON\ObjectId;
 
 class ContactController extends Controller
 {
+    <?php
+
+namespace App\Controllers;
+
+use App\Models\CoordonneeModel;
+use Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use MongoDB\Client as MongoClient;
+use MongoDB\BSON\ObjectId;
+
+class ContactController extends Controller
+{
     public function index() {
         try {
-            $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
+            // Connexion à MongoDB sur Heroku
+            $mongoClient = new MongoClient(getenv('MONGO_URI'), [
                 'ssl' => true,
                 'tlsAllowInvalidCertificates' => true,
-                'tlsInsecure' => true,
-                'tlsCAFile' => '/etc/ssl/certs/ca-certificates.crt',
                 'tlsAllowInvalidHostnames' => true
             ]);
             $db = $mongoClient->arcadia;
             echo "Connexion à MongoDB réussie";
-            // Récupérer les horaires
-            $horairesCollection = $db->horaires;
-            $horaires = [];
-            foreach ($horairesCollection->find() as $horaire) {
-                $horaires[] = (array) $horaire;
-            }
-        } catch (Exception $e) {
-            echo "Erreur MongoDB : " . $e->getMessage();
-        }
-        // Récupération des horaires (MongoDB)
-        try {
-            $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
-                'ssl' => true,
-                'tlsAllowInvalidCertificates' => true
-            ]);//("mongodb://localhost:27017");
-            $db = $mongoClient->arcadia;
-            $horairesCollection = $db->horaires;
 
             // Récupérer les horaires
+            $horairesCollection = $db->horaires;
             $horaires = [];
             foreach ($horairesCollection->find() as $horaire) {
                 $horaires[] = (array) $horaire;
             }
         } catch (Exception $e) {
             echo "Erreur MongoDB : " . $e->getMessage();
-            return;
         }
 
         // Récupération des coordonnées (MySQL)
@@ -57,6 +51,8 @@ class ContactController extends Controller
         $this->render("contact/index", compact("horaires", "coordonnees"));
     }
 
+
+    
     public function addHoraire() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
