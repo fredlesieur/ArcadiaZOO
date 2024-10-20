@@ -8,17 +8,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use MongoDB\Client as MongoClient;
 use MongoDB\BSON\ObjectId;
 
-class ContactController extends Controller
-{
-    <?php
-
-namespace App\Controllers;
-
-use App\Models\CoordonneeModel;
-use Exception;
-use PHPMailer\PHPMailer\PHPMailer;
-use MongoDB\Client as MongoClient;
-use MongoDB\BSON\ObjectId;
 
 class ContactController extends Controller
 {
@@ -52,7 +41,7 @@ class ContactController extends Controller
     }
 
 
-    
+
     public function addHoraire() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
