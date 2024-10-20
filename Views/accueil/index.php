@@ -58,23 +58,46 @@
     <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
 </div>
 
-<!-- Liste des habitats -->
+<!-- Liste des habitats --> 
+
 <section class="colorSection p-3 p-lg-4 p-xl-5">
-    <div>
-        <h2>Les Habitats</h2>
-    </div>
-    <?php foreach ($habitats as $habitat): ?>
-        <div class="text-center">
-            <h3 class="p-3"><?= htmlspecialchars($habitat["name"]); ?></h3>
-            <p class="p-1 m-auto"><?= htmlspecialchars($habitat["description_courte"]); ?></p><br>
-            <div class="d-flex justify-content-center">
-                <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>"><br>
-            </div>
-        </div><br>
-    <?php endforeach; ?>
+        <div class="row  custom-width">
+        <h2 class="text-center mb-4">Les Habitats</h2>
+            <?php foreach ($habitats as $index => $habitat): ?>
+                <div class="col-12 col-lg-6 mb-5">
+                    <div class="card homewhite h-100 shadow-sm">
+                        <div class="row no-gutters">
+                            <?php if ($index % 2 == 0): ?>
+                                <!-- Texte au-dessus, image en-dessous pour les éléments pairs -->
+                                <div class="col-12">
+                                    <div class="card-body text-center">
+                                        <h3 class="card-title"><?= htmlspecialchars($habitat["name"]); ?></h3>
+                                        <p class="card-text"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                                </div>
+                            <?php else: ?>
+                                <!-- Image au-dessus, texte en-dessous pour les éléments impairs -->
+                                <div class="col-12 d-flex justify-content-center">
+                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                                </div>
+                                <div class="col-12">
+                                    <div class="card-body text-center">
+                                        <h3 class="card-title"><?= htmlspecialchars($habitat["name"]); ?></h3>
+                                        <p class="card-text"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
     <div class="d-flex justify-content-center custom-gap p-3 p-lg-4 p-xl-5">
-        <div class="circle ">
+        <div class="circle">
             <h3>Nos habitats</h3>
             <a href="/habitats" class="btn btn-primary">Découvrir</a>
         </div>
@@ -87,26 +110,57 @@
     </div>
 
 <!-- Liste des services -->
+
 <section class="colorSection p-3 p-lg-4 p-xl-5">
-    <div>
-        <h2>Les Services</h2>
-    </div>
-    <?php foreach ($accueilModel as $accueil): ?>
-        <div class="text-center">
-            <h3 class="p-1"><?= htmlspecialchars($accueil["name"]); ?></h3>
-            <p class="p-1 w-100 w-md-75 w-lg-50 mx-auto"><?= htmlspecialchars($accueil["description"]); ?></p>
-            <div class="d-flex justify-content-center">
-                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="p-2 img-fluid" alt="<?= htmlspecialchars($accueil['name']) ?>"><br>
+       
+<div class="row custom-width">
+    <h2 class="text-center mb-4">Les Services</h2>
+        <?php foreach ($accueilModel as $index => $accueil): ?>
+            <div class="col-12 col-lg-6 mb-5"> <!-- Chaque carte occupe 50% de la largeur (col-lg-6) -->
+                <div class="card homewhite h-100 shadow-sm">
+                    <div class="row no-gutters">
+                        <?php if ($index % 2 == 0): ?>
+                            <!-- Texte au-dessus, image en-dessous pour les éléments pairs -->
+                            <div class="col-12">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title"><?= htmlspecialchars($accueil["name"]); ?></h3>
+                                    <p class="card-text"><?= htmlspecialchars($accueil["description"]); ?></p>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($accueil['name']) ?>">
+                            </div>
+                        <?php else: ?>
+                            <!-- Image au-dessus, texte en-dessous pour les éléments impairs -->
+                            <div class="col-12 d-flex justify-content-center">
+                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($accueil['name']) ?>">
+                            </div>
+                            <div class="col-12">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title"><?= htmlspecialchars($accueil["name"]); ?></h3>
+                                    <p class="card-text"><?= htmlspecialchars($accueil["description"]); ?></p>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
-        </div><br>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
+
     <div class="d-flex justify-content-center custom-gap p-3 p-lg-4 p-xl-5">
         <div class="circle">
             <h3>Nos Services</h3>
             <a href="/service" class="btn btn-primary">Découvrir</a>
         </div>
-
     </div>
+</section>
+
+
+
+
+
+
 
 </section>
 <!-- Animation separation -->
@@ -129,9 +183,9 @@
                         <div class="row justify-content-center m-auto w-75">
                             <?php foreach ($avisGroup as $avis): ?>
                                 <div class="col-12 col-md-4 mb-3 mt-3">
-                                    <div class="card mb-3">
+                                    <div class="card homewhite mb-3">
                                         <div class="card-body text-center overflow-auto">
-                                            <h5 class="card-title"><?= htmlspecialchars($avis['pseudo'], ENT_QUOTES, 'UTF-8'); ?></h5>
+                                            <h4 class="card-title"><?= htmlspecialchars($avis['pseudo'], ENT_QUOTES, 'UTF-8'); ?></h4>
                                             <p class="card-text"><?= htmlspecialchars($avis['comment'], ENT_QUOTES, 'UTF-8'); ?></p>
                                         </div>
                                     </div>
@@ -159,8 +213,8 @@
 
 <!-- formulaire pour laisser un avis -->
 <section>
-    <div class="container d-flex justify-content-center my-5">
-        <div class="container p-4">
+    <div class="container d-flex justify-content-center my-5 custom-width">
+        <div class="container p-4 ">
             <h2 class="text-center mb-3">Laisser un avis</h2>
             <form action="/avis/addAvis" method="POST">
                 <div class="mb-3 text-center">

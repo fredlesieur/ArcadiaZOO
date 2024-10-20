@@ -8,16 +8,16 @@ class Db extends PDO {
 
     private static $instance;
 
- // Constructeur pour initialiser la connexion à la base de données
+    // Constructeur pour initialiser la connexion à la base de données
     private function __construct()
     {
-        $dsn = 'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'];
-        parent::__construct($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS']);
+        $dsn = 'mysql:host=localhost;dbname=arcadia';
+        parent::__construct($dsn, 'root', 'root');
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-   // Singleton
+    // Singleton
     public static function getInstance(): self 
     {
         if (self::$instance === null) {

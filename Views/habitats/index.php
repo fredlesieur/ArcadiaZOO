@@ -1,6 +1,6 @@
 <?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">'; ?>
 
-<h1 class="container-fluid banner pt-5 pb-5 mb-0">HABITATS</h1>
+<h1 class="container-fluid banner pt-5 pb-5 mb-0">LES HABITATS</h1>
 
 <!-- Carrousel Section -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
@@ -55,20 +55,33 @@
     </div>
 </section>
 
-<!-- Liste des habitats -->
+<!-- Liste des habitats avec disposition alternée (bouton à droite ou à gauche de l'image) -->
 <div class="space"></div>
 
-<?php foreach ($habitats as $habitat): ?>
+<?php foreach ($habitats as $index => $habitat): ?>
 <section class="colorSection p-3 p-lg-4 p-xl-5">
-    <div>
-        <h2 class="p-3"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
-
-        <div class="image d-flex justify-content-center">
-            <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+    <div class="container">
+        <div class="row align-items-center">
+            <?php if ($index % 2 == 0): ?>
+                <!-- Image à gauche, bouton + nom à droite -->
+                <div class="col-lg-6 d-flex justify-content-center">
+                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                </div>
+                <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="mb-3 title"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
+                    <a href="/habitats/showHabitat/<?= $habitat['id']; ?>" class="btn btn-primary w-50 py-4">Découvrir les animaux : <?= htmlspecialchars(ucwords($habitat["name"])); ?></a>
+                </div>
+            <?php else: ?>
+                <!-- Bouton + nom à gauche, image à droite -->
+                <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="mb-3 title"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
+                    <a href="/habitats/showHabitat/<?= $habitat['id']; ?>" class="btn btn-primary w-50 py-4">Découvrir les animaux : <?= htmlspecialchars(ucwords($habitat["name"])); ?></a>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-center">
+                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                </div>
+            <?php endif; ?>
         </div>
-    </div>
-    <div class="d-flex justify-content-center m-5">
-        <a href="/habitats/showHabitat/<?=$habitat['id']; ?>" class="btn btn-primary w-25 py-3">Découvrir</a>
     </div>
 </section>
 

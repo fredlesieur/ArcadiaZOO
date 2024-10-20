@@ -21,8 +21,14 @@ class ServiceModel extends Model
     public function getUniqueCategories()
     {
         $sql = "SELECT DISTINCT categorie FROM " . $this->table . " WHERE categorie IS NOT NULL";
-        return $this->req($sql)->fetchAll();
+        $result = $this->req($sql)->fetchAll();
+        
+        // Extraire uniquement les valeurs de catégorie
+        $categories = array_column($result, 'categorie');
+        
+        return $categories;
     }
+    
 
     public function getAllCategories()
     {

@@ -13,12 +13,12 @@
 }
 h5 {
     color: #492200 !important;
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-weight: bold;
     
 }
 .card-body {
-    min-height:18rem ;
+    min-height:rem ;
 }
 #presentation-text {
     width: 100%;

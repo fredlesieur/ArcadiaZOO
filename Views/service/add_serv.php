@@ -1,66 +1,64 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">'; ?>
+<h1 class="container-fluid banner pt-5 pb-5">Ajouter un Service</h1>
 
-<h1 class="container-fluid banner pt-5 pb-5">Ajouter un Habitat</h1>
 <section class="colorSection">
-    <h2>Ajouter un Commentaire Vétérinaire</h2>
     <div class="container my-5">
+        <form action="/service/addServ" method="post" enctype="multipart/form-data">
 
-    <form action="/habitats/addHabitat" method="post" enctype="multipart/form-data">
+            <!-- Nom du service -->
+            <label for="name">Nom du service :</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nom du service" required><br>
 
-        <!-- Partie vétérinaire : Il peut ajouter un commentaire uniquement si aucun n'existe -->
-        <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'administrateur') : ?>
-            <label for="id_habitat">Sélectionner un habitat existant :</label>
-            <select name="id_habitat" id="id_habitat" required>
-                <option value="">Sélectionner un habitat</option>
-                <?php foreach ($habitats as $habitat): ?>
-                    <option value="<?= htmlspecialchars($habitat['id']); ?>"><?= htmlspecialchars($habitat['name']); ?></option>
+            <!-- Description du service -->
+            <label for="description">Description :</label>
+            <textarea class="form-control w-100" name="description" id="description" placeholder="Description du service" required></textarea><br>
+
+            <!-- Catégorie -->
+            <label for="categorie">Catégorie :</label>
+            <select class="form-control" name="categorie" id="categorie" required>
+                <option value="">Sélectionnez une catégorie</option>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= htmlspecialchars($category) ?>">
+                        <?= htmlspecialchars(ucfirst($category)) ?>
+                    </option>
                 <?php endforeach; ?>
+                <option value="autre">Ajouter une nouvelle catégorie</option>
             </select><br>
 
-            <!-- Afficher le champ de commentaire pour le vétérinaire si aucun commentaire n'existe -->
-            <?php if ($_SESSION['role'] === 'veterinaire') : ?>
-                <?php if (empty($habitat['commentaire'])) : ?>
-                    <label for="commentaire">Ajouter un commentaire :</label>
-                    <textarea class="form-control" name="commentaire" id="commentaire"></textarea><br>
-                <?php else : ?>
-                    <div class="alert alert-warning">Un commentaire existe déjà pour cet habitat. Utilisez la modification.</div>
-                <?php endif; ?>
-            <?php endif; ?>
-        <?php endif; ?>
+            <!-- Champ pour nouvelle catégorie (caché par défaut) -->
+            <div id="new-category-field" style="display: none;">
+                <label for="new-category">Nouvelle catégorie :</label>
+                <input type="text" class="form-control" name="new-category" id="new-category" placeholder="Entrez une nouvelle catégorie">
+            </div>
 
-        <!-- Partie administrateur : Il peut ajouter un nouvel habitat, mais ne peut pas modifier le commentaire -->
-        <?php if ($_SESSION['role'] === 'administrateur') : ?>
-            <label for="name">Nom de l'habitat :</label>
-            <input type="text" class="form-control" name="name" id="name" required><br>
+            <!-- Image pour carrousel -->
+            <label for="image">Image pour carrousel :</label>
+            <input type="file" class="form-control" name="image" id="image"><br>
 
-            <label for="description">Description :</label>
-            <textarea class="form-control" name="description" id="description" required></textarea><br>
-
-            <label for="image">Image carrousel :</label>
-            <input type="file" class="form-control" name="image" id="image" required><br>
-
-            <label for="image2">Image de présentation habitat :</label>
+            <!-- Image pour service -->
+            <label for="image2">Image pour service :</label>
             <input type="file" class="form-control" name="image2" id="image2"><br>
 
-            <label for="image3">Image carrousel secondaire :</label>
-            <input type="file" class="form-control" name="image3" id="image3"><br>
+            <!-- Durée -->
+            <label for="duree">Durée :</label>
+            <input type="text" class="form-control" name="duree" id="duree" placeholder="Durée du service"><br>
 
-            <label for="description_courte">Description courte :</label>
-            <textarea class="form-control" name="description_courte" id="description_courte"></textarea><br>
+            <!-- Tarifs -->
+            <label for="tarifs">Tarifs :</label>
+            <input type="text" class="form-control" name="tarifs" id="tarifs" placeholder="Tarifs du service"><br>
 
-            <!-- Affichage du commentaire pour l'administrateur mais il ne peut pas le modifier -->
-            <label>Commentaire du vétérinaire :</label>
-            <textarea class="form-control" readonly><?= htmlspecialchars($habitat['commentaire']); ?></textarea><br>
+            <!-- Horaires -->
+            <label for="horaires">Horaires :</label>
+            <input type="text" class="form-control" name="horaires" id="horaires" placeholder="Horaires du service"><br>
 
-        <?php endif; ?>
-
-        <!-- Bouton "Ajouter" : Il doit être placé à la fin -->
-        <button type="submit" class="btn btn-success w-100 mt-2">Ajouter</button>
-        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-    </form>
-
+            <!-- Bouton de soumission -->
+            <button type="submit" class="btn warning w-100 mt-2">Ajouter</button>
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+        </form>
     </div>
 </section>
 
-<?php $script = '<script src="/assets/javascript/habitat.js"></script>'; ?>
+<!-- Script pour gérer l'affichage du champ "Nouvelle catégorie" -->
+<?php $script = '<script src="/assets/javascript/modifServ.js"></script>'; ?>
+
+
 

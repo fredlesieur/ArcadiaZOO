@@ -17,3 +17,4 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialiser au chargement de la page
     toggleNewCategoryField();
 });
+

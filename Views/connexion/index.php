@@ -4,6 +4,7 @@
     <div class="container d-flex justify-content-center my-5">
         <div class="container p-4 col-md-6 w-100">
             <h2 class="text-center mb-3">Formulaire de connexion</h2>
+            <p>(Uniquement pour les employés)</p>
             <form action="/connexion/login" method="POST">
                 <div class="mb-3 text-center">
                     <label for="email" class="form-label fw-bold">Email</label>
