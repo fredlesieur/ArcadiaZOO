@@ -1,5 +1,3 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">'; ?>
-
 <h1 class="container-fluid banner pt-5 pb-5 mb-0">LES HABITATS</h1>
 
 <!-- Carrousel Section -->

@@ -1,5 +1,3 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">'; ?>
-
 <h1 class="container-fluid banner pt-5 pb-5">Modifier un Habitat</h1>
 <section class="colorSection">
     <div class="container my-5">

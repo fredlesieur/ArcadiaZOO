@@ -1,7 +1,4 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/habitats.css">'; ?>
-
-
-    <?php if ($_SESSION['role'] === 'veterinaire'): ?>
+<?php if ($_SESSION['role'] === 'veterinaire'): ?>
         Ajouter un commentaire
     <?php else: ?>
         Ajouter un Habitat
