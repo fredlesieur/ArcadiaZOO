@@ -13,7 +13,10 @@ class ContactController extends Controller
     public function index() {
         // Récupération des horaires (MongoDB)
         try {
-            $mongoClient = new MongoClient(getenv('MONGO_URI'));//("mongodb://localhost:27017");
+            $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
+                'ssl' => true,
+                'tlsAllowInvalidCertificates' => true
+            ]);//("mongodb://localhost:27017");
             $db = $mongoClient->arcadia;
             $horairesCollection = $db->horaires;
 
@@ -38,7 +41,11 @@ class ContactController extends Controller
     public function addHoraire() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                $mongoClient = new MongoClient("mongodb://localhost:27017");
+                $mongoClient = new MongoClient($_ENV['MONGO_URI'], [], [
+                    'ssl' => true,
+                    'tlsAllowInvalidCertificates' => true
+                ]);
+                
                 $db = $mongoClient->arcadia;
                 $horairesCollection = $db->horaires;
 
@@ -63,7 +70,11 @@ class ContactController extends Controller
     }
 
     public function editHoraire($id) {
-        $mongoClient = new MongoClient($_ENV['MONGO_URI']);
+        $mongoClient = new MongoClient($_ENV['MONGO_URI'], [], [
+            'ssl' => true,
+            'tlsAllowInvalidCertificates' => true
+        ]);
+        
         $db = $mongoClient->arcadia;
         $horairesCollection = $db->horaires;
 
@@ -94,7 +105,11 @@ class ContactController extends Controller
     // Afficher la liste des horaires
     public function listHoraires() {
         try {
-            $mongoClient = new MongoClient("mongodb://localhost:27017");
+            $mongoClient = new MongoClient($_ENV['MONGO_URI'], [], [
+                'ssl' => true,
+                'tlsAllowInvalidCertificates' => true
+            ]);
+            
             $db = $mongoClient->arcadia;
             $horairesCollection = $db->horaires;
 
@@ -113,7 +128,11 @@ class ContactController extends Controller
     }
 
     public function deleteHoraire($id) {
-        $mongoClient = new MongoClient("mongodb://localhost:27017");
+        $mongoClient = new MongoClient($_ENV['MONGO_URI'], [], [
+            'ssl' => true,
+            'tlsAllowInvalidCertificates' => true
+        ]);
+        
         $db = $mongoClient->arcadia;
         $horairesCollection = $db->horaires;
 
