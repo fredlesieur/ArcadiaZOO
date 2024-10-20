@@ -10,6 +10,7 @@ use MongoDB\BSON\ObjectId;
 
 class ContactController extends Controller
 {
+    // Fonction index
     public function index() {
         try {
             // Connexion à MongoDB sur Heroku
@@ -39,10 +40,11 @@ class ContactController extends Controller
         $this->render("contact/index", compact("horaires", "coordonnees"));
     }
 
+    // Fonction pour ajouter un horaire
     public function addHoraire() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
+                $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
                     'ssl' => true,
                     'tlsAllowInvalidCertificates' => true
                 ]);
@@ -67,11 +69,12 @@ class ContactController extends Controller
         }
 
         // Afficher le formulaire pour ajouter un nouvel horaire
-        $this->render('contact/add_horaire');  // Mise à jour du nom de la vue
+        $this->render('contact/add_horaire');
     }
 
+    // Fonction pour éditer un horaire
     public function editHoraire($id) {
-        $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
+        $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
             'ssl' => true,
             'tlsAllowInvalidCertificates' => true
         ]);
@@ -101,12 +104,13 @@ class ContactController extends Controller
         }
 
         // Passer l'horaire à la vue pour modification
-        $this->render('contact/edit_horaire', compact('horaire'));  // Mise à jour du nom de la vue
+        $this->render('contact/edit_horaire', compact('horaire'));
     }
+
     // Afficher la liste des horaires
     public function listHoraires() {
         try {
-            $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
+            $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
                 'ssl' => true,
                 'tlsAllowInvalidCertificates' => true
             ]);
@@ -128,8 +132,9 @@ class ContactController extends Controller
         $this->render('contact/liste_horaires', compact('horaires'));
     }
 
+    // Supprimer un horaire
     public function deleteHoraire($id) {
-        $mongoClient = new MongoClient(getenv('MONGO_URI'), [], [
+        $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
             'ssl' => true,
             'tlsAllowInvalidCertificates' => true
         ]);
@@ -149,6 +154,7 @@ class ContactController extends Controller
         exit();
     }
 
+    // Envoyer un e-mail
     public function sendMail() {
         $message = '';
 
@@ -167,16 +173,16 @@ class ContactController extends Controller
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'woody91420@gmail.com'; // Ton adresse Gmail
-                $mail->Password = 'dmcyedgxthefavup'; // Ton mot de passe d'application Gmail
+                $mail->Username = 'tonemail@gmail.com'; 
+                $mail->Password = 'tonpassword'; 
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
                 // Destinataire
                 $mail->setFrom($email, $nom . ' ' . $prenom);
-                $mail->addAddress('fred.lesieur@hotmail.fr'); // Adresse où tu veux recevoir le message
+                $mail->addAddress('tonautremail@gmail.com');
 
-                // Contenu de l'email
+                // Contenu de l'e-mail
                 $mail->isHTML(true);
                 $mail->Subject = 'Nouveau message de contact';
                 $mail->Body    = "
@@ -188,7 +194,7 @@ class ContactController extends Controller
                     <p>{$messageContent}</p>
                 ";
 
-                // Envoi de l'email
+                // Envoi de l'e-mail
                 $mail->send();
                 $message = 'Votre message a été envoyé avec succès.';
             } catch (Exception $e) {
