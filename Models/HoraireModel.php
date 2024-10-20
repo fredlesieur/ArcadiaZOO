@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Models;
-
+use MongoDB\Client;
 class HoraireModel extends Model
 {
     public $id;
     public $saison;
     public $semaine;
     public $week_end;
+    
+    private $collection;
 
     public function __construct() {
-        $this->table = "horaire_zoo";
+        $mongoClient = new Client(getenv('MONGO_URI')); 
+        $db = $mongoClient->arcadia; 
+        $this->collection = $db->horaires; 
     }
 
     /**
@@ -89,6 +93,26 @@ class HoraireModel extends Model
     public function setWeek_end($week_end)
     {
         $this->week_end = $week_end;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of collection
+     */ 
+    public function getCollection()
+    {
+        return $this->collection;
+    }
+
+    /**
+     * Set the value of collection
+     *
+     * @return  self
+     */ 
+    public function setCollection($collection)
+    {
+        $this->collection = $collection;
 
         return $this;
     }
