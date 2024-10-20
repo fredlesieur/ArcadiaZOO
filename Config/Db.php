@@ -1,5 +1,4 @@
 <?php
-
 namespace App\config;
 
 use PDO;
@@ -8,16 +7,28 @@ class Db extends PDO {
 
     private static $instance;
 
-    // Constructeur pour initialiser la connexion à la base de données
     private function __construct()
     {
-        $dsn = 'mysql:host=localhost;dbname=arcadia';
-        parent::__construct($dsn, 'root', 'root');
+        // Vérification des variables d'environnement pour la production
+        $host = getenv('DB_HOST');
+        $dbName = getenv('DB_NAME');
+        $user = getenv('DB_USER');
+        $pass = getenv('DB_PASS');
+
+        // Si les variables d'environnement ne sont pas définies, utiliser les valeurs par défaut pour le développement local
+        if ($host === false || $dbName === false || $user === false || $pass === false) {
+            $host = 'localhost';
+            $dbName = 'arcadia';
+            $user = 'root';
+            $pass = 'root';
+        }
+
+        $dsn = "mysql:host=$host;dbname=$dbName";
+        parent::__construct($dsn, $user, $pass);
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    // Singleton
     public static function getInstance(): self 
     {
         if (self::$instance === null) {
@@ -26,3 +37,4 @@ class Db extends PDO {
         return self::$instance;
     }
 }
+
