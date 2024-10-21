@@ -165,7 +165,7 @@
                                         <div class="card-body text-center overflow-auto">
                                             <h4 class="card-title"><?= htmlspecialchars($avis['pseudo'], ENT_QUOTES, 'UTF-8'); ?></h4>
                                             <p class="card-text long-text"><?= htmlspecialchars($avis['comment'], ENT_QUOTES, 'UTF-8'); ?></p>
-                                            <div>
+                                            <div class="d-flex justify-content-center">
                                                 <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
                                             </div>
                                         </div>
@@ -236,9 +236,5 @@
 </div>
 
 </section>
-<?php
-
-
-$script = '<script src="/assets/javascript/boutonTexte.js"></script>';
-?>
+<?php $script = '<script src="/assets/javascript/boutonTexte.js"></script>';?>
 

@@ -76,7 +76,10 @@
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($service['name']); ?></h5>
-                                        <p class="card-text"><?= htmlspecialchars($service['description']); ?></p>
+                                        <p class="card-text long-text"><?= htmlspecialchars($service['description']); ?></p>
+                                        <div class="d-flex justify-content-center">
+                                            <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
+                                        </div>
                                         <p class="card-text"><?= htmlspecialchars($service['tarifs']); ?></p>
                                         <p class="card-text"><?= htmlspecialchars($service['horaires']); ?></p>
                                     </div>
@@ -84,7 +87,10 @@
                                     <!-- Texte au-dessus, image en-dessous pour les services impairs -->
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($service['name']); ?></h5>
-                                        <p class="card-text"><?= htmlspecialchars($service['description']); ?></p>
+                                        <p class="card-text long-text"><?= htmlspecialchars($service['description']); ?></p>
+                                        <div class="d-flex justify-content-center">
+                                            <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
+                                        </div>
                                         <p class="card-text"><?= htmlspecialchars($service['tarifs']); ?></p>
                                         <p class="card-text"><?= htmlspecialchars($service['horaires']); ?></p>
                                     </div>
@@ -102,7 +108,7 @@
 <?php else: ?>
     <p>Aucun service disponible pour l'instant.</p>
 <?php endif; ?>
-
+<?php $script = '<script src="/assets/javascript/boutonTexte.js"></script>';?>
 
 
 

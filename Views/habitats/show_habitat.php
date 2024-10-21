@@ -44,8 +44,10 @@
        
         <h2 class="text-center"><?= htmlspecialchars($habitat['name']); ?></h2><br>
 
-        <p class="text-center w-50 m-auto"><?= htmlspecialchars($habitat['description']); ?></p><br>
-        
+        <p class="text-center long-text w-50 m-auto"><?= htmlspecialchars($habitat['description']); ?></p><br>
+        <div class="d-flex justify-content-center">
+            <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
+        </div>
 <div class="separator"></div>
 
 <!-- Liste des animaux de l'habitat-->
@@ -73,3 +75,4 @@
         <p>Informations sur l'habitat non disponibles.</p>
     <?php endif; ?>
 </section>
+<?php $script = '<script src="/assets/javascript/boutonTexte.js"></script>';?>
