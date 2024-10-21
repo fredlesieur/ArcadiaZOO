@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const baseUrl = window.location.origin;
     const imagesJaguar = [
-        'assets/images/jaquar1.jpg',
-        'assets/images/jaquar2.jpg',
-        'assets/images/jaquar3.jpg',
-        'assets/images/jaquar4.jpg',
-        'assets/images/jaquar5.jpg',
-        'assets/images/jaquar6.jpg',
-        'assets/images/jaquar7.jpg',
-        'assets/images/jaquar8.jpg'
+        `${baseUrl}/assets/images/jaquar1.jpg`,
+        `${baseUrl}/assets/images/jaquar2.jpg`,
+        `${baseUrl}/assets/images/jaquar3.jpg`,
+        `${baseUrl}/assets/images/jaquar4.jpg`,
+        `${baseUrl}/assets/images/jaquar5.jpg`,
+        `${baseUrl}/assets/images/jaquar6.jpg`,
+        `${baseUrl}/assets/images/jaquar7.jpg`,
+        `${baseUrl}/assets/images/jaquar8.jpg`
     ];
-
     let animationIntervals = [];
 
     function handleJaguarAnimation() {
