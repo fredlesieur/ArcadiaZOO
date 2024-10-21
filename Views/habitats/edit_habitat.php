@@ -4,6 +4,9 @@
     <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'administrateur') : ?>
         <form action="/habitats/editHabitat/<?= $habitat['id'] ?>" method="post" enctype="multipart/form-data">
         <label for="commentaire">Commentaire vétérinaire :</label>
+        <label for="name">Nom de l'habitat :</label>
+            <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars($habitat['name']) ?>" required><br>
+
             <textarea class="form-control" name="commentaire" id="commentaire"><?= htmlspecialchars($habitat['commentaire']) ?></textarea><br>
 
             <button type="submit" class="btn btn-warning w-100 mt-2">Modifier</button>
