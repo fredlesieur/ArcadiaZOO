@@ -18,10 +18,12 @@ class ContactModel extends MongoDb
     public function findAll()
     {
         // Récupérer tous les horaires
-        $horaires = [];
-        foreach ($this->collection->find() as $horaire) {
-            $horaires[] = (array) $horaire;
-        }
-        return $horaires;
+        $options = [
+            'typeMap' => [
+                'root' => 'object',  // Return documents as objects
+                'document' => 'object'
+            ]
+        ];
+        return $this->collection->find([], $options)->toArray();
     } 
 }

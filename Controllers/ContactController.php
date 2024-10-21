@@ -13,7 +13,7 @@ class ContactController extends Controller
 
     public function index() {
         try {
-            // Utiliser la classe MongoConnection pour la connexion à MongoDB
+            // Utiliser la classe MongoDb pour la connexion à MongoDB
             $mongo = new ContactModel();
             $horaires = $mongo->findAll();
 
@@ -34,8 +34,8 @@ class ContactController extends Controller
     public function addHoraire() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                // Utiliser la classe MongoConnection
-                $mongo = new MongoConnection();
+                // Utiliser la classe MongoDb
+                $mongo = new MongoDb();
                 $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
 
                 // Créer un nouvel horaire
@@ -60,7 +60,7 @@ class ContactController extends Controller
 
     // Fonction pour éditer un horaire
     public function editHoraire($id) {
-        $mongo = new MongoConnection();
+        $mongo = new MongoDb();
         $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
 
         // Récupérer l'horaire à modifier
@@ -91,7 +91,7 @@ class ContactController extends Controller
     // Afficher la liste des horaires
     public function listHoraires() {
         try {
-            $mongo = new MongoConnection();
+            $mongo = new MongoDb();
             $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
 
             // Récupérer tous les horaires
@@ -110,7 +110,7 @@ class ContactController extends Controller
 
     // Supprimer un horaire
     public function deleteHoraire($id) {
-        $mongo = new MongoConnection();
+        $mongo = new MongoDb();
         $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
 
         try {
