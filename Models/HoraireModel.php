@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Config\MongoDb;
+use MongoDB\BSON\ObjectId;
 class HoraireModel extends MongoDb
 {
     private $collection;
@@ -25,14 +26,13 @@ class HoraireModel extends MongoDb
 
     public function find($id)
     {
-        $filter = ['_id' => new ObjectId($id)];
         $options = [
             'typeMap' => [
                 'root' => 'array',  // Return documents as objects
                 'document' => 'array'
             ]
         ];
-        return $this->collection->findOne($filter, $options);
+        return $this->collection->findOne(['_id' => new ObjectId($id)]);
     }
 
     public function add_horaire($saison, $semaine, $week_end)

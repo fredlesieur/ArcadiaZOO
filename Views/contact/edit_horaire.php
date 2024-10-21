@@ -3,13 +3,13 @@
     <div class="container my-5">
 <form action="/contact/editHoraire/<?= $horaire['_id']; ?>" method="POST">
     <label for="saison">Saison</label>
-    <input type="text" name="saison" id="saison" value="<?= htmlspecialchars($horaire['saison']); ?>" required>
+    <input type="text" name="saison" id="saison" value="<?= $horaire['saison']; ?>" required>
 
     <label for="semaine">Semaine</label>
-    <input type="text" name="semaine" id="semaine" value="<?= htmlspecialchars($horaire['semaine']); ?>" required>
+    <input type="text" name="semaine" id="semaine" value="<?= $horaire['semaine']; ?>" required>
 
     <label for="week_end">Week-end</label>
-    <input type="text" name="week_end" id="week_end" value="<?= htmlspecialchars($horaire['week_end']); ?>" required>
+    <input type="text" name="week_end" id="week_end" value="<?= $horaire['week_end']; ?>" required>
 
     <button type="submit" class="btn warning w-100 mt-2">Modifier</button>
     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">

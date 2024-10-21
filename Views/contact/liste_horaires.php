@@ -27,10 +27,10 @@
                 <td><?= htmlspecialchars($horaire['week_end']); ?></td>
                 <td>
 
-                    <a href="/contact/editHoraire/<?= (string)$horaire['_id']; ?>" class="btn warning">Modifier</a>
+                    <a href="/contact/editHoraire/<?= $horaire['_id']; ?>" class="btn warning">Modifier</a>
 
                     <!-- Bouton de suppression avec confirmation -->
-                    <a href="/contact/deleteHoraire/<?= (string)$horaire['_id']; ?>" class="btn danger"
+                    <a href="/contact/deleteHoraire/<?= $horaire['_id']; ?>" class="btn danger"
                         onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet horaire ?');">
                         Supprimer
                     </a>
