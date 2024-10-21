@@ -28,7 +28,7 @@
 <!-- Présentation du zoo -->
 <section class="colorSection2 p-3 p-lg-4 p-xl-5">
     <h2>Présentation du zoo</h2>
-    <p class="long-text d-none p-1 mx-auto">
+    <p class="long-text p-1 mx-auto">
 
         Bienvenue au Zoo Arcadia, un lieu d'émerveillement et de découverte niché près de la forêt de Brocéliande, en Bretagne, depuis 1960. Engagé dans une démarche écologique et durable, notre zoo se distingue par son respect de l’environnement et ses efforts pour la préservation de la biodiversité. Le bien-être des animaux et l'épanouissement de la nature sont au cœur de notre mission.
 
