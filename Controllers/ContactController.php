@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\CoordonneeModel;
 use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
-use MongoDB\Client as MongoClient;
+use App\Models\ContactModel;
 use MongoDB\BSON\ObjectId;
 
 class ContactController extends Controller
@@ -13,50 +13,30 @@ class ContactController extends Controller
 
     public function index() {
         try {
-            // Connexion à MongoDB sur Heroku
-            $mongoClient = new MongoClient("mongodb://localhost:27017");/* (getenv('MONGO_URI'), [
-                'ssl' => true,
-                'tlsAllowInvalidCertificates' => true,
-                'tlsAllowInvalidHostnames' => true
-            ]); */
-            $db = $mongoClient->arcadia;
-            echo "Connexion à MongoDB réussie<br>"; // Message de succès
-    
-            // Récupérer les horaires
-            $horairesCollection = $db->horaires;
-            $horaires = [];
-            $count = 0; // Compteur pour vérifier le nombre d'horaires récupérés
-            foreach ($horairesCollection->find() as $horaire) {
-                $horaires[] = (array) $horaire;
-                $count++;
-            }
-            echo "Horaires récupérés : " . $count . "<br>"; // Affiche le nombre d'horaires récupérés
+            // Utiliser la classe MongoConnection pour la connexion à MongoDB
+            $mongo = new ContactModel();
+            $horaires = $mongo->findAll();
+
         } catch (Exception $e) {
             echo "Erreur MongoDB : " . $e->getMessage() . "<br>";
             echo "Trace de l'erreur : " . $e->getTraceAsString();
         }
-    
+
         // Récupération des coordonnées (MySQL)
         $CoordonneeModel = new CoordonneeModel;
         $coordonnees = $CoordonneeModel->findAll();
-    
+
         // Passer les horaires et les coordonnées à la vue
         $this->render("contact/index", compact("horaires", "coordonnees"));
     }
-    
-    
 
     // Fonction pour ajouter un horaire
     public function addHoraire() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
-                    'ssl' => true,
-                    'tlsAllowInvalidCertificates' => true
-                ]);
-                
-                $db = $mongoClient->arcadia;
-                $horairesCollection = $db->horaires;
+                // Utiliser la classe MongoConnection
+                $mongo = new MongoConnection();
+                $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
 
                 // Créer un nouvel horaire
                 $data = [
@@ -80,13 +60,8 @@ class ContactController extends Controller
 
     // Fonction pour éditer un horaire
     public function editHoraire($id) {
-        $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
-            'ssl' => true,
-            'tlsAllowInvalidCertificates' => true
-        ]);
-        
-        $db = $mongoClient->arcadia;
-        $horairesCollection = $db->horaires;
+        $mongo = new MongoConnection();
+        $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
 
         // Récupérer l'horaire à modifier
         $horaire = $horairesCollection->findOne(['_id' => new ObjectId($id)]);
@@ -116,13 +91,8 @@ class ContactController extends Controller
     // Afficher la liste des horaires
     public function listHoraires() {
         try {
-            $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
-                'ssl' => true,
-                'tlsAllowInvalidCertificates' => true
-            ]);
-            
-            $db = $mongoClient->arcadia;
-            $horairesCollection = $db->horaires;
+            $mongo = new MongoConnection();
+            $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
 
             // Récupérer tous les horaires
             $horaires = [];
@@ -140,13 +110,8 @@ class ContactController extends Controller
 
     // Supprimer un horaire
     public function deleteHoraire($id) {
-        $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
-            'ssl' => true,
-            'tlsAllowInvalidCertificates' => true
-        ]);
-        
-        $db = $mongoClient->arcadia;
-        $horairesCollection = $db->horaires;
+        $mongo = new MongoConnection();
+        $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
 
         try {
             // Supprimer l'horaire
@@ -160,7 +125,7 @@ class ContactController extends Controller
         exit();
     }
 
-    // Envoyer un e-mail
+    // Envoyer un e-mail via le formulaire de contact
     public function sendMail() {
         $message = '';
 
