@@ -1,119 +1,60 @@
 <?php
 
 namespace App\Models;
-use MongoDB\Client;
-class HoraireModel extends Model
+
+use App\Config\MongoDb;
+class HoraireModel extends MongoDb
 {
-    public $id;
-    public $saison;
-    public $semaine;
-    public $week_end;
-    
     private $collection;
 
     public function __construct() {
-        $mongoClient = new Client(getenv('MONGO_URI')); 
-        $db = $mongoClient->arcadia; 
-        $this->collection = $db->horaires; 
+        parent::__construct(); 
+        $this->collection = $this->getCollection('arcadia', 'horaires');
     }
 
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
+    public function findAll()
     {
-        return $this->id;
+        $options = [
+            'typeMap' => [
+                'root' => 'array',  // Return documents as objects
+                'document' => 'array'
+            ]
+        ];
+        return $this->collection->find([], $options)->toArray();
     }
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
+    public function find($id)
     {
-        $this->id = $id;
-
-        return $this;
+        $filter = ['_id' => new ObjectId($id)];
+        $options = [
+            'typeMap' => [
+                'root' => 'array',  // Return documents as objects
+                'document' => 'array'
+            ]
+        ];
+        return $this->collection->findOne($filter, $options);
     }
 
-    /**
-     * Get the value of saison
-     */ 
-    public function getSaison()
+    public function add_horaire($saison, $semaine, $week_end)
     {
-        return $this->saison;
+        $data = [
+            'saison' => $saison,
+            'semaine' => $semaine,
+            'week_end' => $week_end
+        ];
+        $this->collection->insertOne($data);
     }
 
-    /**
-     * Set the value of saison
-     *
-     * @return  self
-     */ 
-    public function setSaison($saison)
+    public function edit_horaire($id, $saison, $semaine, $week_end)
     {
-        $this->saison = $saison;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of semaine
-     */ 
-    public function getSemaine()
-    {
-        return $this->semaine;
-    }
-
-    /**
-     * Set the value of semaine
-     *
-     * @return  self
-     */ 
-    public function setSemaine($semaine)
-    {
-        $this->semaine = $semaine;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of week_end
-     */ 
-    public function getWeek_end()
-    {
-        return $this->week_end;
-    }
-
-    /**
-     * Set the value of week_end
-     *
-     * @return  self
-     */ 
-    public function setWeek_end($week_end)
-    {
-        $this->week_end = $week_end;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of collection
-     */ 
-    public function getCollection()
-    {
-        return $this->collection;
-    }
-
-    /**
-     * Set the value of collection
-     *
-     * @return  self
-     */ 
-    public function setCollection($collection)
-    {
-        $this->collection = $collection;
-
-        return $this;
+        $filter = ['_id' => new ObjectId($id)];
+        $update = [
+            '$set' => [
+                'saison' => $saison,
+                'semaine' => $semaine,
+                'week_end' => $week_end
+            ]
+        ];
+        $this->collection->updateOne($filter, $update);
     }
 }

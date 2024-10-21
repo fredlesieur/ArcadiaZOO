@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\CoordonneeModel;
 use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
-use App\Models\ContactModel;
+use App\Models\HoraireModel;
 use MongoDB\BSON\ObjectId;
 
 class ContactController extends Controller
@@ -14,7 +14,7 @@ class ContactController extends Controller
     public function index() {
         try {
             // Utiliser la classe MongoDb pour la connexion à MongoDB
-            $mongo = new ContactModel();
+            $mongo = new HoraireModel();
             $horaires = $mongo->findAll();
 
         } catch (Exception $e) {
@@ -35,17 +35,14 @@ class ContactController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 // Utiliser la classe MongoDb
-                $mongo = new MongoDb();
-                $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
+                $mongo = new HoraireModel();
 
                 // Créer un nouvel horaire
-                $data = [
-                    'saison' => $_POST['saison'],
-                    'semaine' => $_POST['semaine'],
-                    'week_end' => $_POST['week_end']
-                ];
+                $saison = $_POST['saison'];
+                $semaine = $_POST['semaine'];
+                $week_end = $_POST['week_end'];
 
-                $horairesCollection->insertOne($data);
+                $mongo->add_horaire($saison, $semaine, $week_end);
                 $_SESSION['success'] = "L'horaire a été ajouté avec succès.";
                 header("Location: /contact/index");
                 exit();
@@ -60,22 +57,21 @@ class ContactController extends Controller
 
     // Fonction pour éditer un horaire
     public function editHoraire($id) {
-        $mongo = new MongoDb();
-        $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
+
+        $mongo = new HoraireModel();
 
         // Récupérer l'horaire à modifier
-        $horaire = $horairesCollection->findOne(['_id' => new ObjectId($id)]);
+        $horaire = $mongo->find($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                $data = [
-                    'saison' => $_POST['saison'],
-                    'semaine' => $_POST['semaine'],
-                    'week_end' => $_POST['week_end']
-                ];
+                    $id = $_POST['id'];
+                    $saison = $_POST['saison'];
+                    $semaine = $_POST['semaine'];
+                    $week_end = $_POST['week_end'];
 
                 // Mettre à jour l'horaire
-                $horairesCollection->updateOne(['_id' => new ObjectId($id)], ['$set' => $data]);
+                $horaire->edit_horaire($id, $saison, $semaine, $week_end);
                 $_SESSION['success'] = "L'horaire a été mis à jour avec succès.";
                 header("Location: /contact/index");
                 exit();
@@ -91,14 +87,9 @@ class ContactController extends Controller
     // Afficher la liste des horaires
     public function listHoraires() {
         try {
-            $mongo = new MongoDb();
-            $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
-
-            // Récupérer tous les horaires
-            $horaires = [];
-            foreach ($horairesCollection->find() as $horaire) {
-                $horaires[] = (array) $horaire;
-            }
+            $mongo = new HoraireModel();
+            $horaires = $mongo->findAll();
+            
         } catch (Exception $e) {
             echo "Erreur MongoDB : " . $e->getMessage();
             return;
