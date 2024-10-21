@@ -9,26 +9,12 @@ class Db extends PDO {
 
     private function __construct()
     {
-        // Vérification des variables d'environnement pour la production
-        $host = getenv('DB_HOST');
-        $dbName = getenv('DB_NAME');
-        $user = getenv('DB_USER');
-        $pass = getenv('DB_PASS');
-
-        // Si les variables d'environnement ne sont pas définies, utiliser les valeurs par défaut pour le développement local
-        if ($host === false || $dbName === false || $user === false || $pass === false) {
-            $host = 'localhost';
-            $dbName = 'arcadia';
-            $user = 'root';
-            $pass = 'root';
-        }
-
-        $dsn = "mysql:host=$host;dbname=$dbName";
-        parent::__construct($dsn, $user, $pass);
+        $dsn = 'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'];
+        parent::__construct($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS']);
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-
+    
     public static function getInstance(): self 
     {
         if (self::$instance === null) {
