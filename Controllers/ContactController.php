@@ -14,7 +14,7 @@ class ContactController extends Controller
     public function index() {
         try {
             // Connexion à MongoDB sur Heroku
-            $mongoClient = new MongoClient(getenv('MONGO_URI'), [
+            $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
                 'ssl' => true,
                 'tlsAllowInvalidCertificates' => true,
                 'tlsAllowInvalidHostnames' => true
