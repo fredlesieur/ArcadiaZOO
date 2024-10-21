@@ -22,7 +22,7 @@ class MongoDb
     {
         try {
             // Connect to MongoDB Atlas via the URI
-            return new Client($_ENV['MONGODB_URI']);
+            return new Client($_ENV['MONGO_URI']);
         } catch (\Exception $e) {
             // Lance une exception au lieu de terminer le script
             throw new \RuntimeException("Erreur de connexion à MongoDB : " . $e->getMessage());

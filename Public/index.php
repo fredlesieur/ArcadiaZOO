@@ -4,9 +4,9 @@ use App\Autoloader;
 use App\Config\Main;
 use Dotenv\Dotenv;
 
-/* ini_set('display_errors', 1);
+ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL); */
+error_reporting(E_ALL); 
 
 // Définir la constante ROOT pour la racine du projet
 define('ROOT', dirname(__DIR__));
