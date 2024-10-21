@@ -57,4 +57,12 @@ class HoraireModel extends MongoDb
         ];
         $this->collection->updateOne($filter, $update);
     }
+    public function delete_horaire($id)
+    {
+        $filter = ['_id' => new ObjectId($id)];
+        $this->collection->deleteOne($filter);
+    }
+
+
+
 }

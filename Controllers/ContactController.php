@@ -101,19 +101,19 @@ class ContactController extends Controller
 
     // Supprimer un horaire
     public function deleteHoraire($id) {
-        $mongo = new MongoDb();
-        $horairesCollection = $mongo->getCollection('arcadia', 'horaires');
-
         try {
-            // Supprimer l'horaire
-            $horairesCollection->deleteOne(['_id' => new ObjectId($id)]);
+            // Utiliser la classe MongoDb pour la connexion à MongoDB
+            $mongo = new HoraireModel();
+            
+            // Supprimer l'horaire correspondant à l'ID
+            $mongo->delete_horaire($id);
+            
             $_SESSION['success'] = "L'horaire a été supprimé avec succès.";
+            header("Location: /contact/index");
+            exit();
         } catch (Exception $e) {
             echo "Erreur MongoDB : " . $e->getMessage();
         }
-
-        header("Location: /contact/index");
-        exit();
     }
 
     // Envoyer un e-mail via le formulaire de contact
