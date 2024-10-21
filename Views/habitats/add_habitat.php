@@ -49,13 +49,13 @@
             <textarea class="form-control" name="description" id="description" required></textarea><br>
 
             <label for="image">Image carrousel :</label>
-            <input type="file" class="form-control" name="image" id="image" required><br>
+            <input type="file" class="form-control" name="image" id="image" loading="lazy" required><br>
 
             <label for="image2">Image de présentation habitat :</label>
-            <input type="file" class="form-control" name="image2" id="image2"><br>
+            <input type="file" class="form-control" name="image2" id="image2" loading="lazy"><br>
 
             <label for="image3">Image carrousel secondaire :</label>
-            <input type="file" class="form-control" name="image3" id="image3"><br>
+            <input type="file" class="form-control" name="image3" id="image3" loading="lazy"><br>
 
             <label for="description_courte">Description courte :</label>
             <textarea class="form-control" name="description_courte" id="description_courte"></textarea><br>

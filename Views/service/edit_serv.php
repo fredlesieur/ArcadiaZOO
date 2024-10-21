@@ -26,10 +26,10 @@
             </div>
 
             <label for="image">Image pour carrousel :</label>
-            <input type="file" class="form-control" name="image" id="image"><br>
+            <input type="file" class="form-control" name="image" id="image" loading="lazy"><br>
 
             <label for="image2">Image pour service :</label>
-            <input type="file" class="form-control" name="image2" id="image2"><br>
+            <input type="file" class="form-control" name="image2" id="image2" loading="lazy"><br>
 
             <label for="duree">Durée :</label>
             <input type="text" class="form-control" name="duree" id="duree" value="<?= htmlspecialchars($service['duree']) ?>"><br>

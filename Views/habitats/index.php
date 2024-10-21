@@ -35,7 +35,7 @@
             foreach ($allImages as $index => $image): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($image['src']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($image['alt']) ?>">
+                        <img src="/assets/images/<?= htmlspecialchars($image['src']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($image['alt']) ?>" loading="lazy">
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -63,7 +63,7 @@
             <?php if ($index % 2 == 0): ?>
                 <!-- Image à gauche, bouton + nom à droite -->
                 <div class="col-lg-6 d-flex justify-content-center">
-                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
                 </div>
                 <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                     <h2 class="mb-3 title"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
@@ -76,17 +76,13 @@
                     <a href="/habitats/showHabitat/<?= $habitat['id']; ?>" class="btn btn-primary w-50 py-4">Découvrir les animaux : <?= htmlspecialchars(ucwords($habitat["name"])); ?></a>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-center">
-                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
                 </div>
             <?php endif; ?>
         </div>
     </div>
 </section>
 
-<!-- Animation du jaguar pour séparer les catégories -->
-<div class="jaguar-container my-2">
-    <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
-</div>
 <?php endforeach; ?>
 
-<?php $script = '<script src="/assets/javascript/jaguar.js"></script>'; ?>
+

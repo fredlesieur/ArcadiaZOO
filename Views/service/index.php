@@ -8,7 +8,7 @@
                 <?php foreach ($services as $index => $service): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>">
+                            <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -46,7 +46,7 @@
                             <div class="card border rounded shadow-sm hours">
                                 <?php if ($index % 2 == 0): ?>
                                     <!-- Image au-dessus, texte en-dessous pour les services pairs -->
-                                    <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>">
+                                    <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($service['name']); ?></h5>
                                         <p class="card-text"><?= htmlspecialchars($service['description']); ?></p>
@@ -61,7 +61,7 @@
                                         <p class="card-text"><?= htmlspecialchars($service['tarifs']); ?></p>
                                         <p class="card-text"><?= htmlspecialchars($service['horaires']); ?></p>
                                     </div>
-                                    <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>">
+                                    <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -70,10 +70,6 @@
             </div>
         </section>
 
-        <!-- Animation du jaguar pour séparer les catégories -->
-        <div class="jaguar-container my-2" style="background-color: #fff; padding: 20px;">
-            <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
-        </div>
     <?php endforeach; ?>
 <?php else: ?>
     <p>Aucun service disponible pour l'instant.</p>
@@ -81,5 +77,5 @@
 
 <!-- Inclusion du script JavaScript pour l'animation du jaguar -->
 <?php $script = '<script src="/assets/javascript/modifServ.js"></script>'; ?>
-<?php $script .= '<script src="/assets/javascript/jaguar.js"></script>'; ?>
+
 

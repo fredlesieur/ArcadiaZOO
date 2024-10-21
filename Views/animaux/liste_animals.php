@@ -32,7 +32,7 @@
                                 <td><?= htmlspecialchars($animal['age']); ?> ans</td>
                                 <td><?= htmlspecialchars($animal['race']); ?></td>
                                 <td><?= isset($animal['habitat_name']) ? htmlspecialchars($animal['habitat_name']) : 'Non défini'; ?></td>
-                                <td><img src="/assets/images/<?= htmlspecialchars($animal['image']); ?>" alt="<?= htmlspecialchars($animal['nom']); ?>" width="100"></td>
+                                <td><img src="/assets/images/<?= htmlspecialchars($animal['image']); ?>" alt="<?= htmlspecialchars($animal['nom']); ?>" width="100" loading="lazy"></td>
                                 <td><?= htmlspecialchars($animal['views']); ?></td> <!-- Affichage du compteur de vues -->
                                 <td>
                                     <!-- Bouton de modification -->

@@ -9,7 +9,7 @@
             <?php foreach ($animaux as $index => $animal): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 img-fluid3" alt="<?= htmlspecialchars($animal['nom']) ?>">
+                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 img-fluid3" alt="<?= htmlspecialchars($animal['nom']) ?>" loading="lazy">
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -53,11 +53,6 @@
     </div>
 </section>
 
-<!-- Animation separation -->
-<div class="jaguar-container">
-    <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
-</div>
-
 <!-- Liste des habitats --> 
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
@@ -76,12 +71,12 @@
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-center">
-                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
                                 </div>
                             <?php else: ?>
                                 <!-- Image au-dessus, texte en-dessous pour les éléments impairs -->
                                 <div class="col-12 d-flex justify-content-center">
-                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($habitat['name']) ?>"loading="lazy">
                                 </div>
                                 <div class="col-12">
                                     <div class="card-body text-center">
@@ -104,11 +99,6 @@
     </div>
 </section>
 
-<!-- Animation separation -->
-<div class="jaguar-container">
-        <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
-    </div>
-
 <!-- Liste des services -->
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
@@ -128,12 +118,12 @@
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-center">
-                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($accueil['name']) ?>">
+                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($accueil['name']) ?>" loading="lazy">
                             </div>
                         <?php else: ?>
                             <!-- Image au-dessus, texte en-dessous pour les éléments impairs -->
                             <div class="col-12 d-flex justify-content-center">
-                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($accueil['name']) ?>">
+                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($accueil['name']) ?>" loading="lazy">
                             </div>
                             <div class="col-12">
                                 <div class="card-body text-center">
@@ -155,18 +145,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-</section>
-<!-- Animation separation -->
-    <div class="jaguar-container">
-        <img class="jaguar" src="/assets/images/jaquar1.jpg" alt="Jaguar en course">
-    </div>
 
 <!-- Avis des visiteurs -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
@@ -255,8 +233,6 @@
 </div>
 
 <?php
-$script = '<script src="/assets/javascript/jaguar.js"></script>';
-$script .= '<script src="/assets/javascript/accueil.js"></script>';
-echo $script;
+$script = '<script src="/assets/javascript/accueil.js"></script>';
 ?>
 

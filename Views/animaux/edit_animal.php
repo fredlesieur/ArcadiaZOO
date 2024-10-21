@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="image">Image</label>
+                    <label for="image" loading="lazy">Image</label>
                     <input type="file" name="image" id="image" class="form-control">
                 </div>
 

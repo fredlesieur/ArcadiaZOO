@@ -1,0 +1,97 @@
+[33maa6129b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m ok jaguar
+[33m0cc0449[m rajout name habitat
+[33mcf614d4[m modif de l upload image
+[33m34ddd34[m chemin normal remis
+[33m01333e2[m changement de dir dans model
+[33mb9e2170[m ok
+[33m66b1aa4[m ok
+[33mc43c929[m ok
+[33m1b2aaca[m ok
+[33m7de2c46[m ok
+[33m5ae4f9d[m ok
+[33m4b58fc3[m ok
+[33m6bb2a75[m ok
+[33m01699d0[m ok
+[33m0b96661[m test
+[33m1d4f08d[m test
+[33m25b39aa[m tets
+[33m554fd79[m ok
+[33mcaaa014[m ok
+[33m3f26492[m ok
+[33m1cb5005[m[33m ([m[1;32mfeature/test-mongo-model[m[33m)[m ok
+[33m3569a79[m Fix MongoDB connection to use MONGO_URI
+[33mc37f354[m Check if .env file exists before loading
+[33mefbfa3c[m changed gitignore retired procfile
+[33med597cd[m Add Procfile to the project
+[33mee96cf1[m Remove vendor from version control
+[33m3627c50[m ok
+[33m75bc450[m projet terminé en vue de deploiement
+[33m156af36[m ok
+[33m00015da[m ok
+[33ma611cab[m ok
+[33m62518ca[m ok
+[33m4155fb8[m ok
+[33ma54dce7[m ok
+[33mb393416[m ok
+[33m1411034[m ok
+[33m319d970[m ok
+[33maaa6aaf[m ok
+[33m9affb4c[m ok
+[33mcc8aad1[m ok
+[33m5ef54e7[m ok
+[33md86ea16[m ok
+[33m4d5bbed[m ok
+[33m5671f60[m ok
+[33m129c731[m ok
+[33m67f21cc[m ok
+[33m2046556[m ok
+[33mdee9685[m ok
+[33m2e72f21[m changement
+[33m1b15f89[m ok
+[33ma03557d[m bug corrigé
+[33m791be7e[m ok
+[33mf27a47f[m ok
+[33m6488cca[m mettre a jours
+[33md9cbaf0[m ok
+[33md120fb0[m ok
+[33mf635b4f[m ok
+[33me977bf8[m ok
+[33m6f2425d[m nouvelle fonctionalité
+[33mf05f08f[m ok
+[33m195ef46[m ok
+[33mb571148[m ok
+[33m9016fac[m ok
+[33md957523[m ok ok c est bon
+[33mf1ecb2d[m nouveau changeùment
+[33mdee2035[m rapport employé ok en base
+[33m18173d2[m ok
+[33m633dd03[m valider
+[33m340d58b[m changement date et heure
+[33mde1ef9c[m ok
+[33m5d52f02[m mise a jours veterinaire
+[33m7159812[m modif
+[33mc9c49a2[m nouveau
+[33m800d141[m dfgqdfg
+[33mcad3a2d[m ok
+[33m8aa612f[m ok
+[33m4160c98[m Merge branch 'main' of https://github.com/fredlesieur/MVC
+[33mf6fdedb[m changement
+[33m5d8c6be[m ok
+[33m5c51924[m ok
+[33ma3ce205[m ok
+[33m7fa85d4[m ok
+[33mc93dad2[m propre
+[33mc121bd4[m ajustement veterinaire
+[33m09873da[m ok
+[33m7b601e7[m employe et admin ok
+[33mb5402e8[m add la connexion admin et son dashboard
+[33m6b13967[m push la connexion admin
+[33m27f3ba8[m ok
+[33m9b752ee[m push modif en galerie
+[33mac7c288[m nouveau push les animaux et les habiat arrive sur la page
+[33mf82137b[m recuperation des fichiers
+[33m35812f8[m recuparation
+[33m2fe179a[m push
+[33mad2d24c[m push
+[33m2669b35[m load modification files
+[33m2392189[m first commit
