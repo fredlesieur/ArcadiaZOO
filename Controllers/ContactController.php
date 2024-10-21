@@ -14,21 +14,23 @@ class ContactController extends Controller
     public function index() {
         try {
             // Connexion à MongoDB sur Heroku
-            $mongoClient = new MongoClient($_ENV['MONGO_URI'], [
+            $mongoClient = new MongoClient(getenv('MONGO_URI'), [
                 'ssl' => true,
                 'tlsAllowInvalidCertificates' => true,
                 'tlsAllowInvalidHostnames' => true
             ]);
             $db = $mongoClient->arcadia;
-            echo "Connexion à MongoDB réussie";
+            echo "Connexion à MongoDB réussie<br>"; // Message de succès
     
             // Récupérer les horaires
             $horairesCollection = $db->horaires;
             $horaires = [];
+            $count = 0; // Compteur pour vérifier le nombre d'horaires récupérés
             foreach ($horairesCollection->find() as $horaire) {
                 $horaires[] = (array) $horaire;
+                $count++;
             }
-            echo "Horaires récupérés avec succès"; // Ajoutez cette ligne
+            echo "Horaires récupérés : " . $count . "<br>"; // Affiche le nombre d'horaires récupérés
         } catch (Exception $e) {
             echo "Erreur MongoDB : " . $e->getMessage();
         }
@@ -40,6 +42,7 @@ class ContactController extends Controller
         // Passer les horaires et les coordonnées à la vue
         $this->render("contact/index", compact("horaires", "coordonnees"));
     }
+    
     
 
     // Fonction pour ajouter un horaire
