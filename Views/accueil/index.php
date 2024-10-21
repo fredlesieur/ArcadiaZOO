@@ -26,7 +26,7 @@
 </section>
 
 <!-- Présentation du zoo -->
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="colorSection2 p-3 p-lg-4 p-xl-5">
     <h2>Présentation du zoo</h2>
     <p id="presentation-text" class="d-none d-lg-block p-1 mx-auto">
 
@@ -60,7 +60,7 @@
         <h2 class="text-center mb-4">Les Habitats</h2>
             <?php foreach ($habitats as $index => $habitat): ?>
                 <div class="col-12 col-lg-6 mb-5">
-                    <div class="card homewhite h-100 shadow-sm">
+                    <div class="card colorBeige h-100 shadow-sm">
                         <div class="row no-gutters">
                             <?php if ($index % 2 == 0): ?>
                                 <!-- Texte au-dessus, image en-dessous pour les éléments pairs -->
@@ -101,13 +101,13 @@
 
 <!-- Liste des services -->
 
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="colorSection2 p-3 p-lg-4 p-xl-5">
        
 <div class="row custom-width">
     <h2 class="text-center mb-4">Les Services</h2>
         <?php foreach ($accueilModel as $index => $accueil): ?>
             <div class="col-12 col-lg-6 mb-5"> <!-- Chaque carte occupe 50% de la largeur (col-lg-6) -->
-                <div class="card homewhite h-100 shadow-sm">
+                <div class="card colorWhite h-100 shadow-sm">
                     <div class="row no-gutters">
                         <?php if ($index % 2 == 0): ?>
                             <!-- Texte au-dessus, image en-dessous pour les éléments pairs -->
@@ -161,7 +161,7 @@
                         <div class="row justify-content-center m-auto w-75">
                             <?php foreach ($avisGroup as $avis): ?>
                                 <div class="col-12 col-md-4 mb-3 mt-3">
-                                    <div class="card homewhite mb-3">
+                                    <div class="card colorBeige mb-3">
                                         <div class="card-body text-center overflow-auto">
                                             <h4 class="card-title"><?= htmlspecialchars($avis['pseudo'], ENT_QUOTES, 'UTF-8'); ?></h4>
                                             <p class="card-text"><?= htmlspecialchars($avis['comment'], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -190,7 +190,7 @@
 </section>
 
 <!-- formulaire pour laisser un avis -->
-<section>
+<section class="colorsection2">
     <div class="container d-flex justify-content-center my-5 custom-width">
         <div class="container p-4 ">
             <h2 class="text-center mb-3">Laisser un avis</h2>
@@ -222,7 +222,7 @@
             <?php endif; ?>
         </div>
     </div>
-</section>
+
 <!-- boutons direction page contact -->
 
 <div class="d-flex justify-content-center custom-gap p-3 p-lg-4 p-xl-5">
@@ -232,6 +232,7 @@
     </div>
 </div>
 
+</section>
 <?php
 $script = '<script src="/assets/javascript/accueil.js"></script>';
 ?>

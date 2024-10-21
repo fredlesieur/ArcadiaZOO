@@ -47,11 +47,15 @@ h5 {
     -webkit-text-stroke: 1px #492200;  
 }
 
-/* Fond de chaque section */
+
 .colorSection {
-    background-color: #FAF4ED;
-    padding: 2rem;
+    background-color: white;
 }
+
+.colorSection2 {
+    background-color: #FAF4ED;
+}
+
   
   /* Espacement pour séparer les sections */
   .space {
@@ -389,17 +393,29 @@ th, td{
 }
 
 .custom-width {
+    width:100%;
+    height: auto;
     max-width: 78rem; /* Limite la largeur maximale à 1000px */
     margin-left: auto; /* Centre horizontalement */
     margin-right: auto; /* Centre horizontalement */
 }
 
-
+.colorBeige {
+    background-color: #FAF4ED;
+}
+.colorWhite {
+    background-color: white !important;
+}
 .card {
     height: 100%; /* Assurez-vous que la carte prend toute la hauteur */
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Assure que le contenu de la carte est distribué uniformément */
+    border: 2px solid #492200;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out;
   }
   
   .card-img-top {
@@ -419,10 +435,6 @@ th, td{
     justify-content: center; /* Centre le texte verticalement dans la carte */
   }
 
-  /*fond blanc des cards de la page d'accueil*/
-  .homewhite {
-    background: white !important;
-  }
 
 /* responsive iframe */
 
