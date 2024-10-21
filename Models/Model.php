@@ -145,7 +145,7 @@ public function req(string $sql, array $attributs = null)
        $fileName = uniqid() . '_' . basename($file['name']);
        
        // Ajuste le chemin pour ton dossier correct
-       $targetDir = 'C:/formation_codage/MVC/Public/assets/images/'; // Chemin exact
+       $targetDir = '/Public/assets/images/'; // Chemin exact
        $targetFilePath = $targetDir . $fileName;
    
        // Vérifie si le répertoire cible existe, sinon le crée

@@ -14,11 +14,11 @@ class ContactController extends Controller
     public function index() {
         try {
             // Connexion à MongoDB sur Heroku
-            $mongoClient = new MongoClient(getenv('MONGO_URI'), [
+            $mongoClient = new MongoClient("mongodb://localhost:27017");/* (getenv('MONGO_URI'), [
                 'ssl' => true,
                 'tlsAllowInvalidCertificates' => true,
                 'tlsAllowInvalidHostnames' => true
-            ]);
+            ]); */
             $db = $mongoClient->arcadia;
             echo "Connexion à MongoDB réussie<br>"; // Message de succès
     
