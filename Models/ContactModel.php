@@ -23,5 +23,5 @@ class ContactModel extends MongoDb
             $horaires[] = (array) $horaire;
         }
         return $horaires;
-    }
+    } 
 }
