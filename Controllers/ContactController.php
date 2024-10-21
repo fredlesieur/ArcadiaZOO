@@ -10,7 +10,7 @@ use MongoDB\BSON\ObjectId;
 
 class ContactController extends Controller
 {
-    // Fonction index
+
     public function index() {
         try {
             // Connexion à MongoDB sur Heroku
