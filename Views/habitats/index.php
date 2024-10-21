@@ -27,10 +27,7 @@
                     ];
                 }
             }
-
-            // Mélange le tableau des images
-            shuffle($allImages);
-
+         
             // Affiche les images dans le carrousel 
             foreach ($allImages as $index => $image): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
@@ -55,34 +52,30 @@
 
 <!-- Liste des habitats avec disposition alternée (bouton à droite ou à gauche de l'image) -->
 <div class="space"></div>
-
-<?php foreach ($habitats as $index => $habitat): ?>
 <section class="colorSection p-3 p-lg-4 p-xl-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <?php if ($index % 2 == 0): ?>
-                <!-- Image à gauche, bouton + nom à droite -->
-                <div class="col-lg-6 d-flex justify-content-center">
-                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
-                </div>
-                <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-                    <h2 class="mb-3 title"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
-                    <a href="/habitats/showHabitat/<?= $habitat['id']; ?>" class="btn btn-primary w-50 py-4">Découvrir les animaux : <?= htmlspecialchars(ucwords($habitat["name"])); ?></a>
-                </div>
-            <?php else: ?>
-                <!-- Bouton + nom à gauche, image à droite -->
-                <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-                    <h2 class="mb-3 title"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
-                    <a href="/habitats/showHabitat/<?= $habitat['id']; ?>" class="btn btn-primary w-50 py-4">Découvrir les animaux : <?= htmlspecialchars(ucwords($habitat["name"])); ?></a>
-                </div>
-                <div class="col-lg-6 d-flex justify-content-center">
-                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
-                </div>
-            <?php endif; ?>
+    <?php foreach ($habitats as $index => $habitat): ?>
+        <div class="container">
+            <div class="row align-items-center reverse-order">
+                <?php if ($index % 2 == 0): ?>
+                    <!-- Image à gauche, texte à droite pour grands écrans -->
+                    <div class="col-lg-6 d-flex justify-content-center order-image-first">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
+                    </div>
+                    <div class="col-lg-6 colorSection2 p-4 d-flex flex-column justify-content-center align-items-center order-text-second">
+                        <h2 class="mb-3 title"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
+                        <a href="/habitats/showHabitat/<?= $habitat['id']; ?>" class="btn btn-primary w-50 py-4">Découvrir les animaux</a>
+                    </div>
+                <?php else: ?>
+                    <!-- Texte à gauche, image à droite pour grands écrans -->
+                    <div class="col-lg-6 colorSection2 p-4 d-flex flex-column justify-content-center align-items-center order-text-second">
+                        <h2 class="mb-3 title"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
+                        <a href="/habitats/showHabitat/<?= $habitat['id']; ?>" class="btn btn-primary w-50 py-4">Découvrir les animaux</a>
+                    </div>
+                    <div class="col-lg-6 d-flex justify-content-center order-image-first">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
 </section>
-
 <?php endforeach; ?>
-
-

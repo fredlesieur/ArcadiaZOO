@@ -28,7 +28,7 @@
 <!-- Présentation du zoo -->
 <section class="colorSection2 p-3 p-lg-4 p-xl-5">
     <h2>Présentation du zoo</h2>
-    <p id="presentation-text" class="d-none d-lg-block p-1 mx-auto">
+    <p class="long-text d-none p-1 mx-auto">
 
         Bienvenue au Zoo Arcadia, un lieu d'émerveillement et de découverte niché près de la forêt de Brocéliande, en Bretagne, depuis 1960. Engagé dans une démarche écologique et durable, notre zoo se distingue par son respect de l’environnement et ses efforts pour la préservation de la biodiversité. Le bien-être des animaux et l'épanouissement de la nature sont au cœur de notre mission.
 
@@ -49,7 +49,7 @@
         Venez vivre une expérience inoubliable au Zoo Arcadia, où la nature reprend ses droits et chaque visiteur devient un ambassadeur de la protection de notre planète.
     </p>
     <div class="d-flex justify-content-center">
-        <button id="show-text-btn" class="button d-lg-none">Afficher le texte</button>
+    <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
     </div>
 </section>
 
@@ -71,12 +71,12 @@
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-center">
-                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
+                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
                                 </div>
                             <?php else: ?>
                                 <!-- Image au-dessus, texte en-dessous pour les éléments impairs -->
                                 <div class="col-12 d-flex justify-content-center">
-                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($habitat['name']) ?>"loading="lazy">
+                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>"loading="lazy">
                                 </div>
                                 <div class="col-12">
                                     <div class="card-body text-center">
@@ -118,12 +118,12 @@
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-center">
-                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($accueil['name']) ?>" loading="lazy">
+                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($accueil['name']) ?>" loading="lazy">
                             </div>
                         <?php else: ?>
                             <!-- Image au-dessus, texte en-dessous pour les éléments impairs -->
                             <div class="col-12 d-flex justify-content-center">
-                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="custom-card" alt="<?= htmlspecialchars($accueil['name']) ?>" loading="lazy">
+                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($accueil['name']) ?>" loading="lazy">
                             </div>
                             <div class="col-12">
                                 <div class="card-body text-center">
@@ -164,7 +164,10 @@
                                     <div class="card colorBeige mb-3">
                                         <div class="card-body text-center overflow-auto">
                                             <h4 class="card-title"><?= htmlspecialchars($avis['pseudo'], ENT_QUOTES, 'UTF-8'); ?></h4>
-                                            <p class="card-text"><?= htmlspecialchars($avis['comment'], ENT_QUOTES, 'UTF-8'); ?></p>
+                                            <p class="card-text long-text"><?= htmlspecialchars($avis['comment'], ENT_QUOTES, 'UTF-8'); ?></p>
+                                            <div>
+                                                <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -234,6 +237,8 @@
 
 </section>
 <?php
-$script = '<script src="/assets/javascript/accueil.js"></script>';
+
+
+$script = '<script src="/assets/javascript/boutonTexte.js"></script>';
 ?>
 

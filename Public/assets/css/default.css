@@ -9,7 +9,7 @@
 /* typos générales */
 body, h1, h2, h3, h4, h5,  p, a, li {
     font-family: "Roboto", sans-serif;
-    color: #492200;
+    color:  rgba(53,35,2,1);
     text-align: center;
 }
 
@@ -24,27 +24,23 @@ h1 {
 
 h2 {
     font-size: 2rem;
-    color: #F8B941;
-    -webkit-text-stroke: 1px #492200;
+    color:   rgba(53,35,2,1);
+    font-weight:bold;
+    
 }
 
 h3 {
     font-size: 1.5rem;
-    color: #492200;
+    color:  rgba(53,35,2,1);
 }
 h5 {
     font-size: 1.25rem;
-    color: #492200;
+    color:  rgba(53,35,2,1);
 }
-.title {
-    font-size: 4rem;
-    color: #F8B941;
-    -webkit-text-stroke: 1px #492200;  
-}
+
 .title2 {
     font-size: 3rem;
-    color: #F8B941;
-    -webkit-text-stroke: 1px #492200;  
+    color:   rgba(53,35,2,1); 
 }
 
 
@@ -68,13 +64,13 @@ h5 {
   }
 /*formulaire et tableaux */
 .avi{
-    border:solid 2px #492200;
+    border:solid 2px  rgba(53,35,2,1);
     background-color: #FAF4ED;
 }
 
 form {
     background-color: #FAF4ED;
-    border: 2px solid #492200;
+    border: 2px solid  rgba(53,35,2,1);
     border-radius: 10px;
     padding: 2rem;
     margin: 2rem auto;
@@ -86,12 +82,12 @@ form {
 label {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
-    color: #492200;
+    color:  rgba(53,35,2,1);
     display: block;
     margin-bottom: 0.5rem;
 }
 .hours {
-    border: 2px solid #492200 !important; /* Couleur de la bordure */
+    border: 2px solid  rgba(53,35,2,1) !important; /* Couleur de la bordure */
     border-radius: 10px !important; /* Coins arrondis */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Ombre légère */
     padding: 20px !important; /* Espace intérieur */
@@ -99,8 +95,8 @@ label {
 input, select {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
-    color: #492200;
-    border: 2px solid #492200;
+    color:  rgba(53,35,2,1);
+    border: 2px solid  rgba(53,35,2,1);
     border-radius: 5px;
     padding: 0.5rem;
     width: 100%;
@@ -121,10 +117,10 @@ input, select {
 
 /* Styles des boutons */
 .button, .btn {
-    background-color: #492200;
-    color: #F8B941;
-    border: 2px solid #F8B941;
-    box-shadow: 5px 2px 10px #F8B941;
+    background-color:  #f5d6b3;
+    color: rgba(53,35,2,1);
+    border: 2px solid rgba(53,35,2,1);
+    box-shadow: 5px 2px 10px #FAF4ED;
     border-radius: 10px;
     padding: 8px;
     transition: background-color 0.3s, color 0.3s;
@@ -132,31 +128,16 @@ input, select {
 
 .button:hover, .btn:hover {
     background-color: #F8B941;
-    color: #492200;
-    border: 2px solid #492200;
-    box-shadow: 5px 2px 10px #492200;
-}
-/* BOUTONS GÉNÉRAUX */
-.btn, .button {
-    background-color: #492200;
-    color: #F8B941;
-    border: 2px solid #F8B941;
-    box-shadow: 5px 2px 10px #F8B941;
-    border-radius: 10px;
-    padding: 8px;
-    transition: background-color 0.3s, color 0.3s;
+    color:  rgba(53,35,2,1);
+    border: 2px solid  rgba(53,35,2,1);
+    box-shadow: 5px 2px 10px  rgba(53,35,2,1);
 }
 
-.btn:hover, .button:hover {
-    background-color: #F8B941;
-    color: #492200;
-    border: 2px solid #492200;
-    box-shadow: 5px 2px 10px #492200;
-}
+
 .success{
     background-color:#7AA95C ;
     color: white;
-    border: solid 2px #492200;
+    border: solid 2px  rgba(53,35,2,1);
     box-shadow: 5px 2px 10px #7aa80b;
     border-radius: 10px;
     padding: 10px;
@@ -166,7 +147,7 @@ input, select {
 .danger{
     background-color:#9e2f07 ;
     color: white;
-    border: solid 2px #492200;
+    border: solid 2px  rgba(53,35,2,1);
     box-shadow: 5px 2px 10px #621e05;
     border-radius: 10px;
     padding: 10px;
@@ -176,7 +157,7 @@ input, select {
 .warning{
     background-color:rgb(146, 109, 38)!important ;
     color: white;
-    border: solid 2px #492200;
+    border: solid 2px  rgba(53,35,2,1);
     box-shadow: 5px 2px 10px #b47705;
     border-radius: 10px;
     padding: 10px;
@@ -207,7 +188,7 @@ input, select {
 
 /* Styles de la barre de navigation */
 .navbar {
-    background: linear-gradient(90deg, rgba(155,101,7,1) 0%, rgba(53,35,2,1) 100%);
+    background:linear-gradient(90deg, rgb(92, 58, 1) 0%, rgba(53,35,2,1) 100%);
     padding: 1rem;
 }
 
@@ -249,13 +230,13 @@ input, select {
 
 /* Styles pour la bannière */
 .banner {
-    background: linear-gradient(90deg, rgba(248, 185, 65, 1) 0%, rgba(146, 109, 38, 1) 100%);
+    background: linear-gradient(90deg, #FAF4ED 0%, #f7d5af 100%);
     max-height: 13rem;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #492200;
+    color:  rgba(53,35,2,1);
     font-size: 2.5rem;
     font-family: "Risque", cursive;
 }
@@ -263,7 +244,7 @@ input, select {
 /* Styles du formulaire */
 .form-container {
     background-color: #FAF4ED;
-    border: 2px solid #492200;
+    border: 2px solid  rgba(53,35,2,1);
     border-radius: 10px;
     padding: 1.5rem;
     margin: 2rem auto;
@@ -275,7 +256,7 @@ input[type="email"]:hover,
 input[type="password"]:hover,
 textarea:hover,
 select:hover {
-    border-color: #492200; /* Change la couleur de la bordure au survol (hover) */
+    border-color:  rgba(53,35,2,1); /* Change la couleur de la bordure au survol (hover) */
     box-shadow: 0 0 5px rgba(61, 42, 0, 0.5); /* Ajoute un effet d'ombre */
     outline: none; /* Supprime le contour par défaut */
 }
@@ -283,7 +264,7 @@ select:hover {
 
 /* Cible l'élément select pour définir une couleur de fond de base */
 select {
-    background-color: #49220075; /* Couleur de fond du champ select */
+    background-color:  rgba(53,35,2,1)75; /* Couleur de fond du champ select */
     color: #FAF4ED; /* Couleur du texte dans le champ select */
 }
 
@@ -302,7 +283,7 @@ table th {
 th, td{
     text-align: center;
     vertical-align: middle;
-    color: #492200 !important;
+    color:  rgba(53,35,2,1) !important;
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     text-align: center;
@@ -327,12 +308,12 @@ th, td{
 }
 .dataTables_length select {
     background-color: #FFFFFF; /* Couleur de fond blanche */
-    color: #492200; /* Couleur du texte visible */
+    color:  rgba(53,35,2,1); /* Couleur du texte visible */
 }
 /* Carrousel des images */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: #492200;
+    background-color:  rgba(53,35,2,1);
     border-radius: 50%;
     width: 2.5rem;
     height: 2.5rem;
@@ -350,7 +331,7 @@ th, td{
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-width: 50rem;
+    max-width: 45rem;
     max-height: 38rem; 
     border-radius: 10px;
     
@@ -365,37 +346,30 @@ th, td{
     height: auto;
     object-fit: cover;
     max-width: 30rem; 
-    max-height: 30rem; 
-    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+    max-height: 30rem;
+    border-radius: 8rem; 
 }
 .img-fluid3 {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
-    max-width: 65rem;
-    max-height: 45rem;
-    border-radius: 15rem;
+    max-width: 55rem;
+    max-height: 35rem;
+    border-radius: 8rem;
 
    
 }
 .img-fluid4{
     width: 100%;
     height: 100%;
-    border-radius: 50px;
+    border-radius: 4rem;
     object-fit: cover;
-}
-/*accueil*/
-.custom-card {
-    height: 19rem; /* Hauteur fixe pour toutes les images */
-    width: 100%; /* Les images prennent toute la largeur du conteneur */
-    object-fit: cover; /* Assure que les images couvrent toute la zone sans être déformées */
-    border-radius: 10px; /* Coins arrondis pour un look plus moderne */
 }
 
 .custom-width {
     width:100%;
     height: auto;
-    max-width: 78rem; /* Limite la largeur maximale à 1000px */
+    max-width: 60rem; /* Limite la largeur maximale à 1000px */
     margin-left: auto; /* Centre horizontalement */
     margin-right: auto; /* Centre horizontalement */
 }
@@ -411,7 +385,7 @@ th, td{
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Assure que le contenu de la carte est distribué uniformément */
-    border: 2px solid #492200;
+    border: 2px solid  rgba(53,35,2,1);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 15px;
@@ -453,7 +427,7 @@ th, td{
 /* Footer styles */
 footer {
     width: 100%;
-    background: linear-gradient(90deg, rgba(155,101,7,1) 0%, rgba(53,35,2,1) 100%);
+    background: linear-gradient(90deg, rgb(92, 58, 1) 0%, rgba(53,35,2,1) 100%);
     padding: 1.5rem 0;
     color: #FAF4ED;
 }
@@ -491,33 +465,6 @@ footer {
     color: #FAF4ED;
 }
 
-/* Animation du jaguar */
-.jaguar {
-    width: 4rem;
-    height: 3rem;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    animation: moveRight 5s linear infinite;
-}
-
-@keyframes moveRight {
-    from {
-        left: 0;
-    }
-    to {
-        left: 100%;
-    }
-}
-
-/* Jaguar container */
-.jaguar-container {
-    position: relative;
-    height: 5rem;
-    margin-top: 20px;
-    background-color: white;
-}
 
 
   /* Ajustements pour les écrans plus grands */
@@ -551,28 +498,12 @@ footer {
         width: 80%; /* Ajuste à 80% pour tablette */
         height: 400px;
     }
+    .title {
+        font-size: 4rem;
+        color:   rgba(53,35,2,1);
+    }  
+   
 }
-/* Pour les écrans inférieurs ou égaux à 768px */
-@media (max-width: 768px) {
-    .jaguar {
-        width: 30%!important;
-        height: auto !important;
-        margin: 0 auto !important; 
-        position: static !important; 
-        transform: none !important;
-        animation: none !important; 
-    }
-
-    .jaguar-container {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        height: 6rem;
-        background-color: white !important;
-        margin: 0!important;
-    }
-}
-
 
 
 @media (min-width: 992px) {
@@ -584,4 +515,35 @@ footer {
         width: 60%; /* Ajuste à 60% pour desktop */
         height: 500px;
     }
+
+   
 }
+@media (max-width: 992px) {
+    /* Pour les petits écrans, toujours afficher l'image avant le texte */
+    .reverse-order {
+        display: flex;
+        flex-direction: column; /* Affichage en colonne */
+    }
+    .order-image-first {
+        order: 1; /* Image toujours en premier */
+    }
+    .order-text-second {
+        order: 2; /* Texte toujours en deuxième */
+    }
+    .reverse-order img {
+    width: 100%;         
+    max-width: 15rem;     
+    height: auto;
+    }
+
+    .long-text {
+        display: none; /* Masquer le texte par défaut */
+    }
+
+    /* Quand la classe show est ajoutée, on affiche le texte sur mobile */
+    .long-text.show {
+        display: block !important; /* Assure que le texte est visible */
+    }
+    }
+
+

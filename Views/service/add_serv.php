@@ -36,7 +36,7 @@
 
             <!-- Image pour service -->
             <label for="image2">Image pour service :</label>
-            <input type="file" class="form-control" name="image2" id="image2" loading="lazy"><br>
+            <input type="file" class="form-control" name="image2" id="image2" ><br>
 
             <!-- Durée -->
             <label for="duree">Durée :</label>

@@ -1,7 +1,7 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0">SERVICES</h1>
 
 <!-- Carrousel Section -->
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="colorSection2 p-3 p-lg-4 p-xl-5">
     <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <?php if (isset($services) && !empty($services)): ?>
@@ -32,21 +32,48 @@
 <!-- Vérifie s'il y a des services classés par catégorie -->
 <?php if (!empty($servicesByCategory)): ?>
     <?php foreach ($servicesByCategory as $category => $services): ?>
-        <section class="colorSection p-3 p-lg-4 p-xl-5">
+        <?php
+        // Définir les couleurs de fond et des cartes en fonction de la catégorie
+        switch ($category) {
+            case 'restaurant':
+                $sectionBgClass = 'colorWhite'; // Fond blanc pour restaurant
+                $cardBgClass = 'colorBeige';    // Cartes beige pour restaurant
+                break;
+            case 'train':
+                $sectionBgClass = 'colorBeige'; // Fond beige pour train
+                $cardBgClass = 'colorWhite';    // Cartes blanches pour train
+                break;
+            case 'visite':
+                $sectionBgClass = 'colorWhite'; // Fond bleu clair pour visite
+                $cardBgClass = 'colorBeige';        // Cartes blanches pour visite
+                break;
+            case 'spectacle':
+                $sectionBgClass = 'colorBeige'; // Fond gris clair pour spectacle
+                $cardBgClass = 'colorWhite';        // Cartes blanches pour spectacle
+                break;
+            default:
+                $sectionBgClass = 'colorWhite'; // Couleur par défaut
+                $cardBgClass = 'colorBeige';    // Couleur par défaut pour les cartes
+                break;
+        }
+        ?>
+        <section class="p-3 p-lg-4 p-xl-5 <?= $sectionBgClass; ?>"> <!-- Classe de background dynamique -->
             <!-- Affiche le nom de la catégorie à l'intérieur du bloc de services -->
             <div class="category-title">
                 <h2 class="text-center my-4"><?= htmlspecialchars(ucfirst($category)); ?></h2><br>
             </div>
 
             <!-- Affiche les services de cette catégorie -->
-            <div class="container">
+            <div class="container custom-width">
                 <div class="row justify-content-center"> <!-- Ligne centrée -->
                     <?php foreach ($services as $index => $service): ?>
                         <div class="col-12 col-md-6 mb-4 d-flex justify-content-center">
-                            <div class="card border rounded shadow-sm hours">
+                            <div class="card border rounded shadow-sm hours <?= $cardBgClass; ?>"> <!-- Classe de background pour les cartes -->
                                 <?php if ($index % 2 == 0): ?>
                                     <!-- Image au-dessus, texte en-dessous pour les services pairs -->
-                                    <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                                    <div class="d-flex justify-content-center">
+                                        <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                                    </div>
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($service['name']); ?></h5>
                                         <p class="card-text"><?= htmlspecialchars($service['description']); ?></p>
@@ -61,7 +88,9 @@
                                         <p class="card-text"><?= htmlspecialchars($service['tarifs']); ?></p>
                                         <p class="card-text"><?= htmlspecialchars($service['horaires']); ?></p>
                                     </div>
-                                    <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                                    <div class="d-flex justify-content-center">
+                                        <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -69,13 +98,11 @@
                 </div>
             </div>
         </section>
-
     <?php endforeach; ?>
 <?php else: ?>
     <p>Aucun service disponible pour l'instant.</p>
 <?php endif; ?>
 
-<!-- Inclusion du script JavaScript pour l'animation du jaguar -->
-<?php $script = '<script src="/assets/javascript/modifServ.js"></script>'; ?>
+
 
 
