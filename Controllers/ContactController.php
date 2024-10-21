@@ -32,7 +32,8 @@ class ContactController extends Controller
             }
             echo "Horaires récupérés : " . $count . "<br>"; // Affiche le nombre d'horaires récupérés
         } catch (Exception $e) {
-            echo "Erreur MongoDB : " . $e->getMessage();
+            echo "Erreur MongoDB : " . $e->getMessage() . "<br>";
+            echo "Trace de l'erreur : " . $e->getTraceAsString();
         }
     
         // Récupération des coordonnées (MySQL)
