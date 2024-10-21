@@ -56,33 +56,35 @@ class ContactController extends Controller
     }
 
     // Fonction pour éditer un horaire
-    public function editHoraire($id) {
+   // Fonction pour éditer un horaire
+public function editHoraire($id) {
 
-        $mongo = new HoraireModel();
+    $mongo = new HoraireModel(); // Instance du modèle Mongo
 
-        // Récupérer l'horaire à modifier
-        $horaire = $mongo->find($id);
+    // Récupérer l'horaire à modifier (ceci renvoie un document BSON)
+    $horaire = $mongo->find($id);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            try {
-                    $id = $_POST['id'];
-                    $saison = $_POST['saison'];
-                    $semaine = $_POST['semaine'];
-                    $week_end = $_POST['week_end'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        try {
+            // Récupérer les données du formulaire
+            $id = $_POST['id'];  // ID envoyé via un champ caché
+            $saison = $_POST['saison'];
+            $semaine = $_POST['semaine'];
+            $week_end = $_POST['week_end'];
 
-                // Mettre à jour l'horaire
-                $horaire->edit_horaire($id, $saison, $semaine, $week_end);
-                $_SESSION['success'] = "L'horaire a été mis à jour avec succès.";
-                header("Location: /contact/index");
-                exit();
-            } catch (Exception $e) {
-                echo "Erreur MongoDB : " . $e->getMessage();
-            }
+            // Utiliser le modèle pour mettre à jour l'horaire (ne pas appeler edit_horaire sur le document)
+            $mongo->edit_horaire($id, $saison, $semaine, $week_end);  // Appeler sur l'objet modèle $mongo
+            $_SESSION['success'] = "L'horaire a été mis à jour avec succès.";
+            header("Location: /contact/index");
+            exit();
+        } catch (Exception $e) {
+            echo "Erreur MongoDB : " . $e->getMessage();
         }
-
-        // Passer l'horaire à la vue pour modification
-        $this->render('contact/edit_horaire', compact('horaire'));
     }
+
+    // Passer l'horaire à la vue pour modification
+    $this->render('contact/edit_horaire', compact('horaire'));
+}
 
     // Afficher la liste des horaires
     public function listHoraires() {
