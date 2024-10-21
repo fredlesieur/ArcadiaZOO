@@ -20,8 +20,8 @@ class ContactModel extends MongoDb
         // Récupérer tous les horaires
         $options = [
             'typeMap' => [
-                'root' => 'object',  // Return documents as objects
-                'document' => 'object'
+                'root' => 'array',  // Return documents as objects
+                'document' => 'array'
             ]
         ];
         return $this->collection->find([], $options)->toArray();
