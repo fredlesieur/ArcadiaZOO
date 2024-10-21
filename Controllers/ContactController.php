@@ -21,24 +21,26 @@ class ContactController extends Controller
             ]);
             $db = $mongoClient->arcadia;
             echo "Connexion à MongoDB réussie";
-
+    
             // Récupérer les horaires
             $horairesCollection = $db->horaires;
             $horaires = [];
             foreach ($horairesCollection->find() as $horaire) {
                 $horaires[] = (array) $horaire;
             }
+            echo "Horaires récupérés avec succès"; // Ajoutez cette ligne
         } catch (Exception $e) {
             echo "Erreur MongoDB : " . $e->getMessage();
         }
-
+    
         // Récupération des coordonnées (MySQL)
         $CoordonneeModel = new CoordonneeModel;
         $coordonnees = $CoordonneeModel->findAll();
-
+    
         // Passer les horaires et les coordonnées à la vue
         $this->render("contact/index", compact("horaires", "coordonnees"));
     }
+    
 
     // Fonction pour ajouter un horaire
     public function addHoraire() {
