@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/default.css"> 
 
-    <title>Zoo Arcadia</title>
+    <title> ArcadiaZoo</title>
 </head>
 <body class="container-fluid p-3">
     <header>
@@ -63,13 +63,18 @@
             <div class="d-flex justify-content-between align-items-center first-line mb-3">
                 <a href="/"><img src="/assets/logo/logo.jpg" alt="Logo Zoo" class="logo"></a>
                 <div>
-                    <a href="https://instagram.com" target="_blank" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
-                    <a href="https://facebook.com" target="_blank" class="text-light mx-2"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="text-light mx-2" alt="instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="text-light mx-2" alt="facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="text-light mx-2" alt="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="text-light mx-2" alt="youtube"><i class="fab fa-youtube"></i></a>
+                   
                 </div>
             </div>
             <div class="second-line">
-                <p class="mb-0 text-white">&copy; Zoo Arcadia 2024</p>
-                <a href="/mentions-legales" class="text-light">Mentions légales</a>
+                <p class="mb-0 text-white">&copy; ArcadiaZOO 2024</p>
+                <a href="/footer/mentionsLegales" class="text-light m-1">Mentions légales</a>
+                <a href="/footer/rgpd" class="text-light m-1"> RGPD</a>
+                <a href="/footer/cgu" class="text-light m-1">CGU</a>
             </div>
         </div>
     </footer>

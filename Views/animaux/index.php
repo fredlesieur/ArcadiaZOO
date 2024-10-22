@@ -1,7 +1,7 @@
 <h1 class="container-fluid banner pt-5 pb-5"> LES ANIMAUX</h1>
 
 <section class="container p-3 p-lg-4 p-xl-5">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center pb-2">
         <div class="col-md-6 h-100">
             <div class="card h-100">
                 <img src="/assets/images/<?= $animal['animal_image'] ?>" class="card-img-top img-fluid2" alt="<?= $animal['animal_nom']; ?>" loading="lazy">
