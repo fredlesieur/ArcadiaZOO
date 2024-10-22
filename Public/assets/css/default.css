@@ -258,11 +258,7 @@ select:hover {
 }
    
 
-/* Cible l'élément select pour définir une couleur de fond de base */
-select {
-    background-color:  rgba(53,35,2,1)75; /* Couleur de fond du champ select */
-    color: #FAF4ED; /* Couleur du texte dans le champ select */
-}
+
 
 /* Centrer le texte dans toutes les cellules du tableau */
 table {
