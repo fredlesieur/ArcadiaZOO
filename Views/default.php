@@ -63,10 +63,10 @@
             <div class="d-flex justify-content-between align-items-center first-line mb-3">
                 <a href="/"><img src="/assets/logo/logo.jpg" alt="Logo Zoo" class="logo"></a>
                 <div>
-                    <a href="https://instagram.com" target="_blank" class="text-light mx-2" alt="instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://facebook.com" target="_blank" class="text-light mx-2" alt="facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="text-light mx-2" alt="twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://youtube.com" target="_blank" class="text-light mx-2" alt="youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="text-light mx-2" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="text-light mx-2" arial-label="facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="text-light mx-2" arial-label="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="text-light mx-2" arial-label="youtube"><i class="fab fa-youtube"></i></a>
                    
                 </div>
             </div>
