@@ -1,5 +1,3 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/animaux.css">'; ?>
-
 <h1 class="container-fluid banner pt-5 pb-5"> LES ANIMAUX</h1>
 
 <section class="container p-3 p-lg-4 p-xl-5">
@@ -33,4 +31,3 @@
         </div>
     </div>
 </section>
-<?php $script = '<script src="/assets/javascript/jaguar.js"></script>'; ?>

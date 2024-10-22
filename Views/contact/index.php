@@ -85,7 +85,3 @@
     </div>
   </div>
 </section>
-
-
-
-<?php $script = '<script src="/assets/javascript/jaguar.js"></script>'; ?>

@@ -1,5 +1,3 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/animaux.css">'; ?>
-
 <h1 class="banner pt-5 pb-5">Liste des animaux</h1>
 <section class="colorSection">
     <div class="container">

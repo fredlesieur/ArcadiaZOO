@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"> <!-- Pour le responsive -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/default.css"> 
-    <?php if(isset($link)){echo $link;} ?>
 
     <title>Zoo Arcadia</title>
 </head>
@@ -32,7 +31,7 @@
         <nav class="navbar navbar-expand-xl bg-light shadow-sm">
             <div class="container-fluid">
                 <a href="/" class="navbar-brand">
-                    <img class="logo" src="/assets/logo/logo.jpg" alt="logo" style="width: 5rem; height: auto;">
+                    <img class="logo" src="/assets/logo/logo.jpg" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
