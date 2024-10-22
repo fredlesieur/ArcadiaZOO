@@ -26,7 +26,6 @@ class ContactController extends Controller
         $CoordonneeModel = new CoordonneeModel;
         $coordonnees = $CoordonneeModel->findAll();
 
-        // Passer les horaires et les coordonnées à la vue
         $this->render("contact/index", compact("horaires", "coordonnees"));
     }
 
@@ -34,7 +33,7 @@ class ContactController extends Controller
     public function addHoraire() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                // Utiliser la classe MongoDb
+               
                 $mongo = new HoraireModel();
 
                 // Créer un nouvel horaire
@@ -51,15 +50,15 @@ class ContactController extends Controller
             }
         }
 
-        // Afficher le formulaire pour ajouter un nouvel horaire
+      
         $this->render('contact/add_horaire');
     }
 
-    // Fonction pour éditer un horaire
-   // Fonction pour éditer un horaire
+
+   // Fonction pour modifier un horaire
 public function editHoraire($id) {
 
-    $mongo = new HoraireModel(); // Instance du modèle Mongo
+    $mongo = new HoraireModel();
 
     // Récupérer l'horaire à modifier (ceci renvoie un document BSON)
     $horaire = $mongo->find($id);
@@ -82,11 +81,11 @@ public function editHoraire($id) {
         }
     }
 
-    // Passer l'horaire à la vue pour modification
+  
     $this->render('contact/edit_horaire', compact('horaire'));
 }
 
-    // Afficher la liste des horaires
+    // Fonction pour lister les horaires
     public function listHoraires() {
         try {
             $mongo = new HoraireModel();
@@ -97,17 +96,16 @@ public function editHoraire($id) {
             return;
         }
 
-        // Passer les horaires à la vue
         $this->render('contact/liste_horaires', compact('horaires'));
     }
 
-    // Supprimer un horaire
+ 
     public function deleteHoraire($id) {
         try {
-            // Utiliser la classe MongoDb pour la connexion à MongoDB
+            // Utilise la classe MongoDb pour la connexion à MongoDB
             $mongo = new HoraireModel();
             
-            // Supprimer l'horaire correspondant à l'ID
+            // Supprime l'horaire correspondant à l'ID
             $mongo->delete_horaire($id);
             
             $_SESSION['success'] = "L'horaire a été supprimé avec succès.";
@@ -119,6 +117,7 @@ public function editHoraire($id) {
     }
 
     // Envoyer un e-mail via le formulaire de contact
+  
     public function sendMail() {
         $message = '';
 
@@ -133,41 +132,50 @@ public function editHoraire($id) {
             $mail = new PHPMailer(true);
 
             try {
-                // Configuration du serveur SMTP
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'tonemail@gmail.com'; 
-                $mail->Password = 'tonpassword'; 
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+                // Utilisation de SMTP
+                $mail->isSMTP();  // Active SMTP pour PHPMailer
 
-                // Destinataire
-                $mail->setFrom($email, $nom . ' ' . $prenom);
-                $mail->addAddress('tonautremail@gmail.com');
+                // Configuration du serveur SMTP
+                $mail->Host = $_ENV['SMTP_HOST']; 
+                $mail->SMTPAuth = true;  
+                $mail->Username = $_ENV['SMTP_USER'];
+                $mail->Password = $_ENV['SMTP_PASS']; 
+                $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
+                $mail->Port = $_ENV['SMTP_PORT']; 
+
+                // Utiliser une adresse d'expéditeur différente
+                $mail->setFrom('noreply@arcadia.fr', 'Arcadia Contact');
+
+                // Pour repondre a l'utilisateur
+                $mail->addReplyTo($email, $nom . ' ' . $prenom);  // L'adresse de l'utilisateur
+
+                // Destinataire adresse de l employé de l'entreprise
+                $mail->addAddress('woody91420@gmail.com', 'Arcadia');
 
                 // Contenu de l'e-mail
-                $mail->isHTML(true);
-                $mail->Subject = 'Nouveau message de contact';
-                $mail->Body    = "
+                $mail->isHTML(true);  // Format HTML de l'e-mail
+                $mail->Subject = 'Nouveau message de contact';  // Sujet de l'e-mail
+                $mail->Body = "
                     <h3>Nouveau message de contact</h3>
                     <p><strong>Nom :</strong> {$nom}</p>
                     <p><strong>Prénom :</strong> {$prenom}</p>
                     <p><strong>Email :</strong> {$email}</p>
                     <p><strong>Message :</strong></p>
                     <p>{$messageContent}</p>
-                ";
+                ";  // Le corps de l'e-mail en HTML
 
                 // Envoi de l'e-mail
                 $mail->send();
                 $message = 'Votre message a été envoyé avec succès.';
             } catch (Exception $e) {
-                $message = "L'envoi du message a échoué. Erreur: {$mail->ErrorInfo}";
+                // Gestion des erreurs d'envoi
+                $message = "L'envoi du message a échoué. Erreur: " . $mail->ErrorInfo;
             }
         }
 
-        // Transmettre le message à la vue
-        $horaires = [];  // Passer les horaires vides si nécessaire
+        
+        $horaires = [];  
         $this->render('contact/index', compact('message', 'horaires'));
     }
 }
+
