@@ -1,5 +1,5 @@
 <!-- caroussel pour déposer les avis des visiteurs -->
-<h1 id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel"></h1>
+<h1 id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false"></h1>
   <div class="carousel-inner">
     <?php if (isset($Avis) && !empty($Avis)): ?>
         <?php 

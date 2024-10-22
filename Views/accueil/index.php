@@ -7,16 +7,17 @@
             <?php foreach ($animaux as $index => $animal): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
+                    <link rel="preload" href="/assets/images/<?= htmlspecialchars($animaux[0]['image']) ?>" as="image">
                         <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 img-fluid3" alt="<?= htmlspecialchars($animal['nom']) ?>" loading="lazy">
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-interval="false" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Précédent</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel"data-bs-interval="false" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Suivant</span>
         </button>
