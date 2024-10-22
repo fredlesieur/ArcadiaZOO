@@ -1,4 +1,4 @@
-<h1 class="banner pt-5 pb-5">Liste des habitats</h1>
+<h1 class="banner pt-5 pb-5">Liste des habitats</h1> 
 <section class="colorSection">
     <div class="container">
         <div class="table-responsive">
@@ -26,14 +26,16 @@
 
                             <?php if ($_SESSION['role'] !== 'employe'): ?>
                                 <td>
-                                    <!-- Bouton de modification -->
+                                    <!-- Bouton de modification disponible pour vétérinaires et administrateurs -->
                                     <a href="/habitats/editHabitat/<?= $habitat['id'] ?>" class="btn warning">Modifier</a>
 
-                                    <!-- Bouton de suppression avec confirmation -->
-                                    <a href="/habitats/deleteHabitat/<?= $habitat['id'] ?>" class="btn danger"
-                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?');">
-                                        Supprimer
-                                    </a>
+                                    <!-- Bouton de suppression uniquement disponible pour les administrateurs -->
+                                    <?php if ($_SESSION['role'] === 'administrateur'): ?>
+                                        <a href="/habitats/deleteHabitat/<?= $habitat['id'] ?>" class="btn danger"
+                                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?');">
+                                            Supprimer
+                                        </a>
+                                    <?php endif; ?>
                                 </td>
                             <?php endif; ?>
                         </tr>
@@ -43,4 +45,5 @@
         </div>
     </div>
 </section>
+
 
