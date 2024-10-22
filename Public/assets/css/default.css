@@ -319,12 +319,10 @@ th, td{
 }
 
 
-.carousel .img-fluid {
+.carousel {
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-width: 38rem;
-    max-height: 30rem; 
     border-radius: 10px;
     
 }

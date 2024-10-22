@@ -1,10 +1,10 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">ACCUEIL</h1>
 
 <!-- Carrousel Animaux -->
-<section class="colorSection p-3 p-lg-4 p-xl-5">
-    <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
+<section class="colorSection p-3 p-lg-4 p-xl-5 text-start">
+<div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
-            <?php foreach ($animaux as $index => $animal): ?>
+            <?php foreach (array_slice($animaux, 0, 9) as $index => $animal): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
                     <link rel="preload" href="/assets/images/<?= htmlspecialchars($animaux[0]['image']) ?>" as="image">
@@ -13,11 +13,11 @@
                 </div>
             <?php endforeach; ?>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-interval="false" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Précédent</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel"data-bs-interval="false" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Suivant</span>
         </button>
@@ -235,5 +235,5 @@
 </div>
 
 </section>
-<?php $script = '<script src="/assets/javascript/boutonTexte.js"></script>';?>
+<?php $script = '<script src="/assets/javascript/boutonTexte.js" defer></script>';?>
 

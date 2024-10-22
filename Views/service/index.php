@@ -2,7 +2,7 @@
 
 <!-- Carrousel Section -->
 <section class="colorSection2 p-3 p-lg-4 p-xl-5">
-    <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
             <?php if (isset($services) && !empty($services)): ?>
                 <?php foreach ($services as $index => $service): ?>
@@ -18,11 +18,11 @@
         </div>
 
         <!-- Boutons Précédent et Suivant -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev" data-bs-interval="false">
+        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Précédent</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next" data-bs-interval="false">
+        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Suivant</span>
         </button>

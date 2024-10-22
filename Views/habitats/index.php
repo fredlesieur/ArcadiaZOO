@@ -2,7 +2,7 @@
 
 <!-- Carrousel Section -->
 <section class="colorSection p-3 p-lg-4 p-xl-5">
-    <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
             <?php
             // Création d'un tableau contenant toutes les images
@@ -39,11 +39,11 @@
         </div>
 
         <!-- Boutons Précédent et Suivant -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#habitatCarousel" data-bs-slide="prev" data-bs-interval="false">
+        <button class="carousel-control-prev" type="button" data-bs-target="#habitatCarousel" data-bs-slide="prev" >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Précédent</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#habitatCarousel" data-bs-slide="next" data-bs-interval="false">
+        <button class="carousel-control-next" type="button" data-bs-target="#habitatCarousel" data-bs-slide="next" >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Suivant</span>
         </button>
