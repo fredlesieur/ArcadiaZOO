@@ -1,6 +1,6 @@
 <h1 class="container-fluid banner pt-5 pb-5">Modifier un compte utilisateur</h1>
 <section class="colorSection">
-<div class="container mx-auto p-4">
+    <div class="container mx-auto p-4">
         <form action="/connexion/editUser/<?= $users['id'] ?>" method="POST">
             <input type="hidden" name="id" value="<?= $users['id'] ?>">
 
@@ -15,11 +15,15 @@
             </div>
 
             <div class="mb-3">
-                <label for="role" class="form-label text-center">Rôle</label>
-                <select id="role" name="role" class="form-control" required>
-                    <option value="2" <?= $users['role_id'] == 2 ? 'selected' : ''; ?>>Vétérinaire</option>
-                    <option value="3" <?= $users['role_id'] == 3 ? 'selected' : ''; ?>>Employé</option>
-                </select>
+                <?php if ($users['role_id'] == 1): ?>
+                    <p><strong>Rôle :</strong> Administrateur (Non modifiable)</p>
+                <?php else: ?>
+                    <label for="role" class="form-label text-center">Rôle</label>
+                    <select id="role" name="role" class="form-control" required>
+                        <option value="2" <?= $users['role_id'] == 2 ? 'selected' : ''; ?>>Vétérinaire</option>
+                        <option value="3" <?= $users['role_id'] == 3 ? 'selected' : ''; ?>>Employé</option>
+                    </select>
+                <?php endif; ?>
             </div>
 
             <button type="submit" class="btn warning w-100 mt-2">Modifier le compte</button>

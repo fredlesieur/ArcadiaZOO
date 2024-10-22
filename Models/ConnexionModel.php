@@ -62,7 +62,13 @@ public function emailExists($email)
     $stmt = $this->req($sql, ['email' => $email]);
     return $stmt->fetchColumn() > 0;
 }
-
+public function adminExists()
+{
+    // Requête pour vérifier si un utilisateur avec role_id = 1 (Administrateur) existe
+    $sql = "SELECT COUNT(*) FROM users WHERE role_id = 1";
+    $stmt = $this->req($sql);
+    return $stmt->fetchColumn() > 0;
+}
     /**
      * Get the value of id
      */ 

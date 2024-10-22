@@ -20,16 +20,26 @@
                                 <td><?= htmlspecialchars($user['id']) ?></td>
                                 <td><?= htmlspecialchars($user['nom_prenom']) ?></td>
                                 <td><?= htmlspecialchars($user['email']) ?></td>
-                                <td><?= $user['role_id'] == 2 ? 'Vétérinaire' : 'Employé' ?></td>
                                 <td>
-                                    <!-- Bouton de modification -->
-                                    <a href="/connexion/editUser/<?= $user['id'] ?>" class="btn warning btn-sm">Modifier</a>
-
-                                    <!-- Bouton de suppression avec confirmation -->
-                                    <a href="/connexion/deleteUser/<?= $user['id'] ?>" class="btn danger btn-sm"
-                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
-                                        Supprimer
-                                    </a>
+                                    <?php
+                                    if ($user['role_id'] == 1) {
+                                        echo 'Administrateur';
+                                    } elseif ($user['role_id'] == 2) {
+                                        echo 'Vétérinaire';
+                                    } else {
+                                        echo 'Employé';
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <!-- Si l'utilisateur est administrateur, on ne permet pas la suppression -->
+                                    <?php if ($user['role_id'] != 1): ?>
+                                        <a href="/connexion/editUser/<?= $user['id'] ?>" class="btn warning btn-sm">Modifier</a>
+                                        <a href="/connexion/deleteUser/<?= $user['id'] ?>" class="btn danger btn-sm"
+                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                            Supprimer
+                                        </a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

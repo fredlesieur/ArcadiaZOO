@@ -64,80 +64,79 @@ class ConnexionController extends Controller
         exit;
     }
     public function addUser()
-    {
-        // Vérifier que la requête est bien de type POST
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $connexionModel = new ConnexionModel();
-        
-            // Vérifier que l'email est présent dans $_POST avant de l'utiliser
-            if (isset($_POST['email'])) {
-                // Vérifier si l'email existe déjà
-                if ($connexionModel->emailExists($_POST['email'])) {
-                    $_SESSION['error'] = "L'email est déjà utilisé.";
-                    header("Location: /connexion/addUser");
-                    exit();
-                }
-    
-                // Récupération et conversion du role_id
-                $roleId = (int)$_POST['role_id'];
-    
-                // Hacher le mot de passe
-                $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    
-                // Préparer les données envoyées via le formulaire sous forme de tableau
-                $data = [
-                    'nom_prenom' => $_POST['nom_prenom'],
-                    'email' => $_POST['email'],
-                    'password' => $passwordHash,
-                    'role_id' => $roleId
-                ];
-    
-                // Hydratation de l'objet avec les données du formulaire
-                $connexionModel->hydrate($data);
-    
-                // Insertion dans la base de données
-                $connexionModel->create();
-    
-                $_SESSION['success'] = "Le compte utilisateur a été créé avec succès.";
-                header("Location: /connexion/listUsers");
+{
+    // Vérifier que la requête est bien de type POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $connexionModel = new ConnexionModel();
+
+        // Vérifier que l'email est présent dans $_POST avant de l'utiliser
+        if (isset($_POST['email'])) {
+            // Vérifier si l'email existe déjà
+            if ($connexionModel->emailExists($_POST['email'])) {
+                $_SESSION['error'] = "L'email est déjà utilisé.";
+                header("Location: /connexion/addUser");
                 exit();
-            } else {
-                // Gérer le cas où l'email n'est pas présent dans $_POST
-                $_SESSION['error'] = "Le champ email est requis.";
             }
+
+            // Vérifier qu'il n'existe qu'un seul administrateur
+            if ($_POST['role_id'] == 1 && $connexionModel->adminExists()) {
+                $_SESSION['error'] = "Il ne peut y avoir qu'un seul administrateur.";
+                header("Location: /connexion/addUser");
+                exit();
+            }
+
+            // Hacher le mot de passe
+            $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+            // Préparer les données
+            $data = [
+                'nom_prenom' => $_POST['nom_prenom'],
+                'email' => $_POST['email'],
+                'password' => $passwordHash,
+                'role_id' => (int)$_POST['role_id']
+            ];
+
+            // Hydratation de l'objet avec les données du formulaire
+            $connexionModel->hydrate($data);
+
+            // Insertion dans la base de données
+            $connexionModel->create();
+
+            $_SESSION['success'] = "Le compte utilisateur a été créé avec succès.";
+            header("Location: /connexion/listUsers");
+            exit();
         }
-    
-        $title = "Créer un utilisateur";
-        $this->render('connexion/add_user', compact('title'));
     }
-    
-    
-    public function editUser($id)
+
+    $title = "Créer un utilisateur";
+    $this->render('connexion/add_user', compact('title'));
+}
+
+public function editUser($id)
 {
     $connexionModel = new ConnexionModel();
     $users = $connexionModel->find($id);
 
-    // Vérifier si la requête est de type POST pour traiter la soumission du formulaire
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // prépare les données envoyées via le formulaire sous forme de tableau
+        // Empêcher la modification du rôle administrateur
+        if ($users['role_id'] == 1) {
+            $_POST['role_id'] = 1;  // Forcer le rôle administrateur à rester inchangé
+        }
+
         $data = [
             'nom_prenom' => $_POST['nom_prenom'],
             'email' => $_POST['email'],
             'role_id' => $_POST['role']
         ];
-        // Hydratation de l'objet connexion avec les données du formulaire
-        $connexionModel->hydrate($data);
 
-        // Mettre à jour l'utilisateur
+        $connexionModel->hydrate($data);
         $connexionModel->update($id);
 
-        // Redirection après modification
         $_SESSION['success'] = "Utilisateur modifié avec succès.";
         header("Location: /connexion/listUsers");
-        exit;
+        exit();
     }
 
-    // Afficher le formulaire de modification
     $title = "Modifier un utilisateur";
     $this->render('connexion/edit_user', compact('users', 'title'));
 }
