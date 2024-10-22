@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Zoo Arcadia">
@@ -13,7 +14,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
-    
+
     <!-- Liens vers les polices Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Risque&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Risque&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
@@ -22,10 +23,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"> <!-- Pour le responsive -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/default.css"> 
+    <link rel="stylesheet" href="/assets/css/default.css">
 
     <title> ArcadiaZoo</title>
 </head>
+
 <body class="container-fluid p-3">
     <header>
         <nav class="navbar navbar-expand-xl bg-light shadow-sm">
@@ -63,13 +65,21 @@
             <div class="d-flex justify-content-between align-items-center first-line mb-3">
                 <a href="/"><img src="/assets/logo/logo.jpg" alt="Logo Zoo" class="logo"></a>
                 <div>
-                    <a href="https://instagram.com" target="_blank" class="text-light mx-2" aria-label="instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://facebook.com" target="_blank" class="text-light mx-2" arial-label="facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="text-light mx-2" arial-label="twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://youtube.com" target="_blank" class="text-light mx-2" arial-label="youtube"><i class="fab fa-youtube"></i></a>
-                   
+                    <a href="https://instagram.com" target="_blank" class="text-light mx-2" aria-label="Suivez-nous sur Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="text-light mx-2" aria-label="Suivez-nous sur Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="text-light mx-2" aria-label="Suivez-nous sur Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="text-light mx-2" aria-label="Regardez nos vidéos sur YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
                 </div>
             </div>
+
             <div class="second-line">
                 <p class="mb-0 text-white">&copy; ArcadiaZOO 2024</p>
                 <a href="/footer/mentionsLegales" class="text-light m-1">Mentions légales</a>
@@ -88,7 +98,9 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
-    <?php if (isset($script)) { echo $script; } ?>
+    <?php if (isset($script)) {
+        echo $script;
+    } ?>
 </body>
-</html>
 
+</html>
