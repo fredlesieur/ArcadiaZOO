@@ -1,5 +1,3 @@
-<?php $link = '<link rel="stylesheet" href="/assets/css/accueil.css">'; ?>
-
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">ACCUEIL</h1>
 
 <!-- Carrousel Animaux -->
