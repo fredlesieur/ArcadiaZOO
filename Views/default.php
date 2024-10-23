@@ -8,24 +8,26 @@
     <meta name="keywords" content="zoo, animaux, nature, parc, loisirs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Préchargement des polices -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Risque&display=swap" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Risque&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap" as="style">
+    <!-- Préchargement et liens vers les polices Google Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Risque&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap" as="style" onload="this.rel='stylesheet'">
 
+    <!-- Feuille de style Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 
-    <!-- Liens vers les polices Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Risque&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Risque&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- DataTables CSS avec chargement différé -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" media="print" onload="this.media='all'">
 
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"> <!-- Pour le responsive -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- FontAwesome avec chargement différé -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+
+    <!-- CSS local -->
     <link rel="stylesheet" href="/assets/css/default.css">
 
-    <title> ArcadiaZoo</title>
+    <title>ArcadiaZoo</title>
 </head>
 
 <body class="container-fluid p-3">
