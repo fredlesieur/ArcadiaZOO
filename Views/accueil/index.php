@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="card-body text-center">
-                                        <h3 class="card-title"><?= htmlspecialchars($habitat["name"]); ?></h3>
+                                        <h4 class="card-title"><?= htmlspecialchars($habitat["name"]); ?></h4>
                                         <p class="card-text"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
                                     </div>
                                 </div>
