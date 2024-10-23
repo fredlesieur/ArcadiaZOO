@@ -8,7 +8,7 @@
                 <?php foreach ($carousel as $index => $item): ?>
                     <div class="carousel-item text-center <?= $index === 0 ? 'active' : '' ?>">
                         <img src="/assets/images/<?= htmlspecialchars($item['image_path']) ?>" 
-                             class="d-block" 
+                             class="d-block mx-auto img-fluid" 
                              alt="<?= htmlspecialchars($item['alt_text']) ?>">
                     </div>
                 <?php endforeach; ?>
