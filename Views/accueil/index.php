@@ -1,14 +1,14 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">ACCUEIL</h1>
 
 <!-- Carrousel Animaux -->
-<section class="colorSection p-3 p-lg-4 p-xl-5 text-start">
+<section class="colorSection p-3 p-lg-4 p-xl-5 text-start ">
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <?php if (!empty($carousel)): ?>
                 <?php foreach ($carousel as $index => $item): ?>
-                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                    <div class="carousel-item text-center <?= $index === 0 ? 'active' : '' ?>">
                         <img src="/assets/images/<?= htmlspecialchars($item['image_path']) ?>" 
-                             class="d-block w-100 carousel-image" 
+                             class="d-block mx-auto" 
                              alt="<?= htmlspecialchars($item['alt_text']) ?>">
                     </div>
                 <?php endforeach; ?>
@@ -26,7 +26,6 @@
         </button>
     </div>
 </section>
-
 
 <!-- Présentation du zoo -->
 <section class="colorSection2 p-3 p-lg-4 p-xl-5">
