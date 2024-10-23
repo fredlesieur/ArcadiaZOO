@@ -1,7 +1,7 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">ACCUEIL</h1>
 
 <!-- Carrousel Animaux -->
-<section class="text-start mt-5">
+<section class="mt-5">
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <?php if (!empty($carousel)): ?>
