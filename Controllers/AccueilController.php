@@ -6,6 +6,7 @@ use App\Models\AnimalModel;
 use App\Models\HabitatsModel;
 use App\Models\AccueilModel;
 use App\Models\AvisModel;
+use App\Models\CarouselModel;
 use Exception;
 
 class AccueilController extends Controller
@@ -16,17 +17,17 @@ class AccueilController extends Controller
         $avisModel = new AvisModel();
         $Avis = $avisModel->getAllValidatedReviews();
 
-        $AnimalModel = new AnimalModel();
-        $animaux = $AnimalModel->findAll();
-
         $HabitatsModel = new HabitatsModel();
         $habitats = $HabitatsModel->findAll();
 
         $AccueilModel = new AccueilModel();
         $accueilModel = $AccueilModel->findAll();
 
+        $CarouselModel = new CarouselModel();
+        $carousel = $CarouselModel->findAllImages();
+
         // Affiche la page d'accueil avec les images d'animaux
-        $this->render("accueil/index", compact("animaux", "habitats", "accueilModel", "Avis"));
+        $this->render("accueil/index", compact("habitats", "accueilModel", "Avis" , "carousel"));
     }
 
     public function listAccueils()

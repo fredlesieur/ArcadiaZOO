@@ -2,27 +2,31 @@
 
 <!-- Carrousel Animaux -->
 <section class="colorSection p-3 p-lg-4 p-xl-5 text-start">
-<div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <?php foreach (array_slice($animaux, 0, 9) as $index => $animal): ?>
-                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                    <div class="d-flex justify-content-center align-items-center">
-                    <link rel="preload" href="/assets/images/<?= htmlspecialchars($animaux[0]['image']) ?>" as="image">
-                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 d-block img-fluid" alt="<?= htmlspecialchars($animal['nom']) ?>" loading="lazy">
+            <?php if (!empty($carousel)): ?>
+                <?php foreach ($carousel as $index => $item): ?>
+                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                        <img src="/assets/images/<?= htmlspecialchars($item['image_path']) ?>" 
+                             class="d-block w-100 carousel-image" 
+                             alt="<?= htmlspecialchars($item['alt_text']) ?>">
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Aucune image à afficher dans le carrousel.</p>
+            <?php endif; ?>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Précédent</span>
+            <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Suivant</span>
+            <span class="visually-hidden">Next</span>
         </button>
     </div>
 </section>
+
 
 <!-- Présentation du zoo -->
 <section class="colorSection2 p-3 p-lg-4 p-xl-5">
