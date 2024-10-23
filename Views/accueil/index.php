@@ -8,7 +8,7 @@
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
                     <link rel="preload" href="/assets/images/<?= htmlspecialchars($animaux[0]['image']) ?>" as="image">
-                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 img-fluid3" alt="<?= htmlspecialchars($animal['nom']) ?>" loading="lazy">
+                        <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="p-2 d-block img-fluid" alt="<?= htmlspecialchars($animal['nom']) ?>" loading="lazy">
                     </div>
                 </div>
             <?php endforeach; ?>
