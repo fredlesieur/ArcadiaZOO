@@ -1,14 +1,14 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">ACCUEIL</h1>
 
 <!-- Carrousel Animaux -->
-<section class="colorSection p-3 p-lg-4 p-xl-5 text-start">
+<section class="text-start mt-5">
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <?php if (!empty($carousel)): ?>
                 <?php foreach ($carousel as $index => $item): ?>
                     <div class="carousel-item text-center <?= $index === 0 ? 'active' : '' ?>">
                         <img src="/assets/images/<?= htmlspecialchars($item['image_path']) ?>" 
-                             class="d-block mx-auto" 
+                             class="d-block" 
                              alt="<?= htmlspecialchars($item['alt_text']) ?>">
                     </div>
                 <?php endforeach; ?>
@@ -28,7 +28,7 @@
 </section>
 
 <!-- Présentation du zoo -->
-<section class="colorSection2 p-3 p-lg-4 p-xl-5">
+<section class="colorSection2 mt-5">
     <h2>Présentation du zoo</h2>
     <p class="long-text p-1 mx-auto">
 
@@ -57,7 +57,7 @@
 
 <!-- Liste des habitats --> 
 
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="mt-5">
         <div class="row  custom-width">
         <h2 class="text-center mb-4">Les Habitats</h2>
             <?php foreach ($habitats as $index => $habitat): ?>
@@ -103,7 +103,7 @@
 
 <!-- Liste des services -->
 
-<section class="colorSection2 p-3 p-lg-4 p-xl-5">
+<section class="colorSection2 mt-5">
        
 <div class="row custom-width">
     <h2 class="text-center mb-4">Les Services</h2>
@@ -149,7 +149,7 @@
 </section>
 
 <!-- Avis des visiteurs -->
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="mt-5">
 
     <div id="carouselExampleSlidesOnly" class="carousel slide carousel-avis" data-bs-ride="carousel">
         <h2 class="text-center mb-3">Les avis des visiteurs</h2>
@@ -195,7 +195,7 @@
 </section>
 
 <!-- formulaire pour laisser un avis -->
-<section class="colorsection2">
+<section class="colorsection2 mt-5">
     <div class="container d-flex justify-content-center my-5 custom-width">
         <div class="container p-4 ">
             <h2 class="text-center mb-3">Laisser un avis</h2>

@@ -343,9 +343,7 @@ th, td{
 .colorBeige {
     background-color: #FAF4ED;
 }
-.colorWhite {
-    background-color: white !important;
-}
+
 .card {
     height: 100%; /* Assurez-vous que la carte prend toute la hauteur */
     display: flex;
