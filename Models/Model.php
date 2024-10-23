@@ -109,10 +109,10 @@ public function req(string $sql, array $attributs = null)
         } else {
             return $this->db->query($sql);
         }
-    } catch (\PDOException $e) {
-        // Afficher l'erreur SQL exacte
-        echo "Erreur SQL : " . $e->getMessage() . "<br>";
-        return false;
+    } catch (Exception $e) {
+        // Journalisez l'erreur dans un fichier
+        file_put_contents('error_log.txt', date('Y-m-d H:i:s') . ' - ' . $e->getMessage() . "\n", FILE_APPEND);
+        return false; // ou gérez l'erreur comme vous le souhaitez
     }
 }
 

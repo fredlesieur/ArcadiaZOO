@@ -21,7 +21,6 @@ class CarouselModel extends Model
 {
     // Requête SQL
     $sql = "SELECT item_name, image_path, alt_text FROM carousel_images";
-    echo "Requête SQL : " . $sql . "<br>";
 
     // Exécution de la requête avec req()
     $result = $this->req($sql);
