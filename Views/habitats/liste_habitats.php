@@ -1,6 +1,6 @@
 <h1 class="banner pt-5 pb-5">Liste des habitats</h1> 
 <section class="colorSection">
-    <div class="container">
+    <div class="container-fluid">
         <div class="table-responsive">
             <table class="datatable table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
