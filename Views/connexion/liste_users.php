@@ -1,3 +1,10 @@
+<?php if (isset($_SESSION['success'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success']; ?>
+    </div>
+    <?php unset($_SESSION['success']); // Effacer le message après l'affichage ?>
+<?php endif; ?>
+
 <h1 class="text-center banner pt-5 pb-5">Liste des utilisateurs</h1>
 <section class="colorSection">
     <div class="container">

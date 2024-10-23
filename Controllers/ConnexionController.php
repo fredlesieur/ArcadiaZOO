@@ -140,11 +140,11 @@ private function sendAccountCreationEmail($email, $nom_prenom)
         $mail->isHTML(true);
         $mail->Subject = 'Votre compte a été créé';
         $mail->Body = "
-            <h3>Bienvenue sur Arcadia</h3>
+            <h3>Bienvenue dans l'équipe de ArcadiaZOO</h3>
             <p>Bonjour {$nom_prenom},</p>
             <p>Votre compte a été créé avec succès.</p>
             <p>Votre identifiant est : <strong>{$email}</strong></p>
-            <p>Merci de vous connecter pour finaliser votre inscription.</p>
+            <p>Merci de vous rapprocher du Directeur du zoo pour obtenir votre mot de passe.</p>
         ";
 
         // Envoyer l'e-mail
