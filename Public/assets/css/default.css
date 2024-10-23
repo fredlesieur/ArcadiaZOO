@@ -325,9 +325,10 @@ th, td{
 }
 
 /* Classe pour ajuster les descriptions */
-.description {
-    max-width: 50rem;
+.presentation {
+    max-width: 60rem;
     margin: auto;
+    text-align: justify;
 }
 
 /* Ajustement des autres images pour qu'elles soient responsives et uniformes */
@@ -371,7 +372,9 @@ th, td{
     flex-direction: column;
     justify-content: center; /* Centre le texte verticalement dans la carte */
   }
-
+.card-text {
+    text-align: justify;
+}
 
 /* responsive iframe */
 

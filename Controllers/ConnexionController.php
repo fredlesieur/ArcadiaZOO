@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ConnexionModel;
+use Exception;
 
 class ConnexionController extends Controller
 {
@@ -102,7 +103,10 @@ class ConnexionController extends Controller
             // Insertion dans la base de données
             $connexionModel->create();
 
-            $_SESSION['success'] = "Le compte utilisateur a été créé avec succès.";
+            // Envoi de l'email à l'utilisateur
+            $this->sendAccountCreationEmail($data['email'], $data['nom_prenom']);
+
+            $_SESSION['success'] = "Le compte utilisateur a été créé avec succès et l'identifiant a été envoyé par email.";
             header("Location: /connexion/listUsers");
             exit();
         }
@@ -110,6 +114,45 @@ class ConnexionController extends Controller
 
     $title = "Créer un utilisateur";
     $this->render('connexion/add_user', compact('title'));
+}
+
+// Méthode pour envoyer l'email avec PHPMailer
+private function sendAccountCreationEmail($email, $nom_prenom)
+{
+    // Instanciation de PHPMailer
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+
+    try {
+        // Configuration SMTP
+        $mail->isSMTP();  
+        $mail->Host = $_ENV['SMTP_HOST'];
+        $mail->SMTPAuth = true;  
+        $mail->Username = $_ENV['SMTP_USER'];
+        $mail->Password = $_ENV['SMTP_PASS'];
+        $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
+        $mail->Port = $_ENV['SMTP_PORT'];
+
+        // Expéditeur et destinataire
+        $mail->setFrom('noreply@arcadia.fr', 'Arcadia');
+        $mail->addAddress($email, $nom_prenom);  // Envoyer l'email à l'utilisateur
+
+        // Contenu de l'e-mail
+        $mail->isHTML(true);
+        $mail->Subject = 'Votre compte a été créé';
+        $mail->Body = "
+            <h3>Bienvenue sur Arcadia</h3>
+            <p>Bonjour {$nom_prenom},</p>
+            <p>Votre compte a été créé avec succès.</p>
+            <p>Votre identifiant est : <strong>{$email}</strong></p>
+            <p>Merci de vous connecter pour finaliser votre inscription.</p>
+        ";
+
+        // Envoyer l'e-mail
+        $mail->send();
+    } catch (Exception $e) {
+        // Gestion des erreurs d'envoi d'e-mail
+        $_SESSION['error'] = "L'e-mail de confirmation n'a pas pu être envoyé. Erreur: " . $mail->ErrorInfo;
+    }
 }
 
 public function editUser($id)
