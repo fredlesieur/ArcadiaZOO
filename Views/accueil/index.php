@@ -115,7 +115,7 @@
                             <!-- Texte au-dessus, image en-dessous pour les éléments pairs -->
                             <div class="col-12">
                                 <div class="card-body text-center">
-                                    <h3 class="card-title"><?= htmlspecialchars($accueil["name"]); ?></h3>
+                                    <h4 class="card-title"><?= htmlspecialchars($accueil["name"]); ?></h4>
                                     <p class="card-text"><?= htmlspecialchars($accueil["description"]); ?></p>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="card-body text-center">
-                                    <h3 class="card-title"><?= htmlspecialchars($accueil["name"]); ?></h3>
+                                    <h4 class="card-title"><?= htmlspecialchars($accueil["name"]); ?></h4>
                                     <p class="card-text"><?= htmlspecialchars($accueil["description"]); ?></p>
                                 </div>
                             </div>
