@@ -11,24 +11,29 @@ use Exception;
 
 class AccueilController extends Controller
 {
-    public function index()
-    {   
-       
-        $avisModel = new AvisModel();
-        $Avis = $avisModel->getAllValidatedReviews();
+    private $avisModel;
+    private $habitatsModel;
+    private $accueilModel;
+    private $carouselModel;
 
-        $HabitatsModel = new HabitatsModel();
-        $habitats = $HabitatsModel->findAll();
-
-        $AccueilModel = new AccueilModel();
-        $accueilModel = $AccueilModel->findAll();
-
-        $CarouselModel = new CarouselModel();
-        $carousel = $CarouselModel->findAllImages();
-
-        // Affiche la page d'accueil avec les images d'animaux
-        $this->render("accueil/index", compact("habitats", "accueilModel", "Avis" , "carousel"));
+    public function __construct($avisModel = null, $habitatsModel = null, $accueilModel = null, $carouselModel = null)
+    {
+        $this->avisModel = $avisModel ?: new AvisModel();
+        $this->habitatsModel = $habitatsModel ?: new HabitatsModel();
+        $this->accueilModel = $accueilModel ?: new AccueilModel();
+        $this->carouselModel = $carouselModel ?: new CarouselModel();
     }
+
+    public function index()
+    {
+        $Avis = $this->avisModel->getAllValidatedReviews();
+        $habitats = $this->habitatsModel->findAll();
+        $accueilModel = $this->accueilModel->findAll();
+        $carousel = $this->carouselModel->findAllImages();
+
+        $this->render("accueil/index", compact("habitats", "accueilModel", "Avis", "carousel"));
+    }
+
 
     public function listAccueils()
     {

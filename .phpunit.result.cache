@@ -1,0 +1,1 @@
+{"version":1,"defects":{"AccueilTest::testIndex":5},"times":{"SimpleTest::testBasicFunctionality":0.005,"ControllerTest::testRender":0.005,"AccueilTest::testIndex":0.035}}
