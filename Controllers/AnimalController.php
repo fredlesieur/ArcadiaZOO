@@ -109,40 +109,22 @@ class AnimalController extends Controller {
         exit;
     }
     public function incrementViews($id)
-    {
-        header('Content-Type: application/json');
-    
-        // Valider l'ID
-        if (!is_numeric($id)) {
-            echo json_encode(['success' => false, 'message' => 'ID invalide']);
-            exit;
-        }
-    
-        // Vérifier le token CSRF
-        $data = json_decode(file_get_contents('php://input'), true);
-        $csrfToken = $data['csrf_token'] ?? '';
-    
-        // Ajouter des logs pour voir le token envoyé et celui en session
-        error_log("Token reçu : " . $csrfToken);
-        error_log("Token en session : " . $_SESSION['csrf_token']);
-    
-        if (!isset($_SESSION['csrf_token']) || $csrfToken !== $_SESSION['csrf_token']) {
-            echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
-            exit;
-        }
-    
-        $animalModel = new AnimalModel();
-    
-        // Appeler la méthode incrementViews pour mettre à jour le compteur de vues
-        $result = $animalModel->incrementViews((int)$id);
-    
-        // Vérifier la requête qui a été exécutée
-        if ($result) {
-            echo json_encode(['success' => true, 'message' => 'Compteur de vues mis à jour']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Échec de la mise à jour du compteur de vues']);
-        }
-    
+{
+    header('Content-Type: application/json');
+
+    if (!is_numeric($id)) {
+        echo json_encode(['success' => false, 'message' => 'ID invalide']);
         exit;
     }
+
+    $data = json_decode(file_get_contents('php://input'), true);
+    $csrfToken = $data['csrf_token'] ?? '';
+
+    if (!isset($_SESSION['csrf_token']) || $csrfToken !== $_SESSION['csrf_token']) {
+        echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
+        exit;
+    }
+
+    // Ton code pour incrémenter le compteur de vues
+}
 }
