@@ -112,26 +112,27 @@ class AnimalController extends Controller {
     {
         header('Content-Type: application/json');
     
-        // Vérifier le token CSRF
-        $csrfToken = json_decode(file_get_contents('php://input'))->csrf_token ?? '';
-    
-        if (!isset($_SESSION['csrf_token']) || $csrfToken !== $_SESSION['csrf_token']) {
-            echo json_encode(['success' => false, 'message' => 'Invalid CSRF token']);
-            exit;
-        }
-    
         // Valider l'ID
         if (!is_numeric($id)) {
             echo json_encode(['success' => false, 'message' => 'ID invalide']);
             exit;
         }
     
+        // Vérifier le token CSRF
+        $data = json_decode(file_get_contents('php://input'), true);
+        $csrfToken = $data['csrf_token'] ?? '';
+    
+        if (!isset($_SESSION['csrf_token']) || $csrfToken !== $_SESSION['csrf_token']) {
+            echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
+            exit;
+        }
+    
         $animalModel = new AnimalModel();
     
-        // Appele la méthode incrementViews de mon model pour mettre à jour le compteur de vues
+        // Appeler la méthode incrementViews pour mettre à jour le compteur de vues
         $result = $animalModel->incrementViews((int)$id);
     
-        // Vérifie la requête qui a été exécutée
+        // Vérifier la requête qui a été exécutée
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Compteur de vues mis à jour']);
         } else {

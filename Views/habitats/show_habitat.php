@@ -1,3 +1,6 @@
+<?php if (isset($_SESSION['csrf_token'])): ?>
+    <input type="hidden" id="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']); ?>">
+<?php endif; ?>
 <h1 class="container-fluid banner pt-5 pb-5 mb-0">HABITAT</h1>
 
 <!-- Carrousel Section -->
