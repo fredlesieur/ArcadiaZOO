@@ -5,7 +5,7 @@ document.querySelectorAll('a[href^="/animal/viewAnimal"]').forEach(button => {
     button.addEventListener('click', function(event) {
         event.preventDefault(); // Empêche la redirection immédiate
         const animalId = this.getAttribute('href').split('/').pop(); // Récupère l'ID de l'animal à partir de l'URL
-        console.log("ID de l'animal : ", animalId);
+        console.log("ID de l'animal : ", animalId); // <-- Ajoute cette ligne
 
         const animalLink = this.getAttribute('href'); // Récupère le lien de la fiche de l'animal
 
@@ -18,7 +18,7 @@ document.querySelectorAll('a[href^="/animal/viewAnimal"]').forEach(button => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Réponse serveur :', data);
+            console.log('Réponse serveur :', data); // <-- Ajoute cette ligne
             if (data.success) {
                 window.location.href = animalLink; // Redirection après l'incrémentation
             }
