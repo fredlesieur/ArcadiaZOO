@@ -23,7 +23,7 @@
 <h4 class="card-text text-center"><strong>Etat : <br> </strong> <?= isset($animal['etat']) ? ucfirst($animal['etat']) : 'Information non disponible'; ?></h4>
 <h4 class="card-text text-center"><strong>Nourritture préconisée : <br> </strong> <?= isset($animal['nourriture_preconisee']) ? ucfirst($animal['nourriture_preconisee']) : 'Information non disponible'; ?></h4>
 <h4 class="card-text text-center"><strong>Quantité préconisée : <br> </strong> <?= isset($animal['grammage_preconise']) ? ucfirst($animal['grammage_preconise']) : 'Information non disponible'; ?></h4>
-<h4 class="card-text text-center"><strong>Date de passage: <br> <?= isset($animal['date_passage']) ? date('d-m-Y', strtotime($animal['date_passage'])) : 'Date non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Date du rapport: <br> <?= isset($animal['date_passage']) ? date('d-m-Y', strtotime($animal['date_passage'])) : 'Date non disponible'; ?></h4>
 <h4 class="card-text text-center"><strong>Détail état : <br> </strong> <?= isset($animal['detail_etat']) ? ucfirst($animal['detail_etat']) : 'Information non disponible'; ?></h4>
 
                 </div>
