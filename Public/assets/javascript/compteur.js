@@ -9,26 +9,28 @@ document.querySelectorAll('a[href^="/animal/viewAnimal"]').forEach(button => {
 
         const animalLink = this.getAttribute('href'); // Récupère le lien de la fiche de l'animal
 
+        // Récupérer le token CSRF depuis le champ hidden
+        const csrfToken = document.querySelector('#csrf_token').value;
+
         // Envoi de la requête AJAX pour incrémenter le compteur de vues
         fetch(`/animal/incrementViews/${animalId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'CSRF-Token': csrfToken,  // Utilise le token CSRF dans les en-têtes
             }
         })
         .then(response => response.json())
         .then(data => {
             console.log('Réponse serveur :', data);
             if (data.success) {
-                // Pour l'instant, on ne redirige pas, on log juste un message pour voir les erreurs
                 console.log('Redirection vers la fiche de l\'animal après la mise à jour.');
-                // window.location.href = animalLink; <-- Ligne commentée temporairement pour empêcher la redirection
+                window.location.href = animalLink; // Redirection après mise à jour
             }
         })
         .catch(error => {
             console.error('Erreur lors de la mise à jour du compteur de vues', error);
-            // Pas de redirection en cas d'erreur pour qu'on puisse voir ce qu'il se passe
-            // window.location.href = animalLink; <-- Ligne commentée temporairement
         });
     });
 });
+

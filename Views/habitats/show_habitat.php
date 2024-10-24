@@ -38,24 +38,23 @@
         </button>
     </div>
 </section>
-<!-- descriptif de l' habitat -->
+
+<!-- Descriptif de l'habitat -->
 <section class="colorSection p-1 p-lg-2 p-xl-3">
     <?php if (isset($habitat)): ?>
-       
         <h2 class="text-center"><?= htmlspecialchars($habitat['name']); ?></h2><br>
 
         <p class="text-center long-text w-50 m-auto"><?= htmlspecialchars($habitat['description']); ?></p><br>
         <div class="d-flex justify-content-center">
             <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
         </div>
-<div class="separator"></div>
 
-<!-- Liste des animaux de l'habitat-->
+        <div class="separator"></div>
 
+        <!-- Liste des animaux de l'habitat -->
         <h2 class="mt-4">Les animaux de cet habitat</h2><br>
         <div class="row">
-
-    <?php if (!empty($animaux)): ?>
+            <?php if (!empty($animaux)): ?>
                 <?php foreach ($animaux as $animal): ?>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                         <div class="card">
@@ -74,6 +73,11 @@
     <?php else: ?>
         <p>Informations sur l'habitat non disponibles.</p>
     <?php endif; ?>
+
+    <!-- Champ caché pour le token CSRF -->
+    <input type="hidden" id="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 </section>
-<?php $script = '<script src="/assets/javascript/boutonTexte.js"></script>';?>
-<?php echo $script = '<script src="/assets/javascript/compteur.js"></script>'; ?>
+
+<!-- Lien vers les fichiers JavaScript -->
+<script src="/assets/javascript/boutonTexte.js"></script>
+<script src="/assets/javascript/compteur.js"></script>
