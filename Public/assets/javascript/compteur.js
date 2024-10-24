@@ -1,28 +1,31 @@
-document.querySelectorAll('.btn-info').forEach(card => {
-    card.addEventListener('click', function(event) {
-        event.preventDefault(); // Empêche la redirection immédiate
+console.log("compteur.js chargé");
 
-        const animalId = this.dataset.animalId;
-        const animalLink = this.querySelector('.button').getAttribute('href'); // Récupère le lien de la fiche de l'animal
+document.querySelectorAll('a[href^="/animal/viewAnimal"]').forEach(button => {
+    console.log("Bouton trouvé : ", button);
+    button.addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche la redirection immédiate
+        const animalId = this.getAttribute('href').split('/').pop(); // Récupère l'ID de l'animal à partir de l'URL
+        console.log("ID de l'animal : ", animalId);
+
+        const animalLink = this.getAttribute('href'); // Récupère le lien de la fiche de l'animal
 
         // Envoi de la requête AJAX pour incrémenter le compteur de vues
         fetch(`/animal/incrementViews/${animalId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id: animalId }),
+            }
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Compteur de vues mis à jour avec succès', data);
-            // Redirection vers la fiche de l'animal après mise à jour du compteur
-            window.location.href = animalLink;
+            console.log('Réponse serveur :', data);
+            if (data.success) {
+                window.location.href = animalLink; // Redirection après l'incrémentation
+            }
         })
         .catch(error => {
             console.error('Erreur lors de la mise à jour du compteur de vues', error);
-            // En cas d'erreur, redirection vers la fiche de l'animal
-            window.location.href = animalLink;
+            window.location.href = animalLink; // Redirection même en cas d'erreur
         });
     });
 });
