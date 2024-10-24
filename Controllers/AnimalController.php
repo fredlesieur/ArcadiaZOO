@@ -122,6 +122,10 @@ class AnimalController extends Controller {
         $data = json_decode(file_get_contents('php://input'), true);
         $csrfToken = $data['csrf_token'] ?? '';
     
+        // Ajouter des logs pour voir le token envoyé et celui en session
+        error_log("Token reçu : " . $csrfToken);
+        error_log("Token en session : " . $_SESSION['csrf_token']);
+    
         if (!isset($_SESSION['csrf_token']) || $csrfToken !== $_SESSION['csrf_token']) {
             echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
             exit;
@@ -141,5 +145,4 @@ class AnimalController extends Controller {
     
         exit;
     }
-    
 }

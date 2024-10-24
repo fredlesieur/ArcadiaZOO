@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // Récupérer le token CSRF depuis le champ hidden dans la page
             const csrfToken = document.querySelector('#csrf_token').value;
+            console.log("Token CSRF trouvé : ", csrfToken);
 
             // Envoi de la requête AJAX pour incrémenter le compteur de vues
             fetch(`/animal/incrementViews/${animalId}`, {
@@ -37,5 +38,3 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 });
-
-
