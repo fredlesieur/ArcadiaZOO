@@ -110,6 +110,7 @@ class AnimalController extends Controller {
     }
     public function incrementViews($id)
 {
+    error_log('Token CSRF reçu : ' . $_POST['csrf_token']);
     header('Content-Type: application/json');
 
     if (!is_numeric($id)) {
