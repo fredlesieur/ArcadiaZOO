@@ -108,24 +108,21 @@ class AnimalController extends Controller {
         header("Location: /animal/listAnimals");
         exit;
     }
-    public function incrementViews($id)
-{
-    error_log('Token CSRF reçu : ' . $_POST['csrf_token']);
-    header('Content-Type: application/json');
-
-    if (!is_numeric($id)) {
-        echo json_encode(['success' => false, 'message' => 'ID invalide']);
-        exit;
+    public function incrementViews($animalId)
+    {
+        // Log du token CSRF reçu
+        error_log('Token CSRF reçu : ' . $_POST['csrf_token']);
+    
+        // Vérification du token CSRF
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            error_log('Erreur CSRF : token invalide ou manquant');
+            http_response_code(403);
+            echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
+            return;
+        }
+    
+        // Logique d'incrémentation du compteur de vues
+        // ...
     }
-
-    $data = json_decode(file_get_contents('php://input'), true);
-    $csrfToken = $data['csrf_token'] ?? '';
-
-    if (!isset($_SESSION['csrf_token']) || $csrfToken !== $_SESSION['csrf_token']) {
-        echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
-        exit;
-    }
-
-    // Ton code pour incrémenter le compteur de vues
-}
+    
 }

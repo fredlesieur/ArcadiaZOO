@@ -1,22 +1,22 @@
-window.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('a[href^="/animal/viewAnimal"]').forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault(); // Empêche la redirection immédiate
 
-            const animalId = this.getAttribute('href').split('/').pop(); // Récupère l'ID de l'animal à partir de l'URL
+            const animalId = this.getAttribute('href').split('/').pop(); // Récupère l'ID de l'animal
             const animalLink = this.getAttribute('href'); // Récupère le lien de la fiche de l'animal
 
             // Récupérer le token CSRF depuis le champ hidden dans la page
             const csrfToken = document.querySelector('#csrf_token').value;
 
-            console.log("ID de l'animal :", animalId);
-            console.log("Token CSRF trouvé :", csrfToken);
+            console.log("ID de l'animal : ", animalId);
+            console.log("Token CSRF trouvé : ", csrfToken);
 
             // Envoi de la requête AJAX pour incrémenter le compteur de vues
             fetch(`/animal/incrementViews/${animalId}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     csrf_token: csrfToken // Envoi du token CSRF dans le corps de la requête
@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (data.success) {
                     window.location.href = animalLink; // Redirection après mise à jour
                 } else {
-                    console.error('Erreur côté serveur:', data.message);
+                    console.error('Erreur côté serveur :', data.message);
                 }
             })
             .catch(error => {
