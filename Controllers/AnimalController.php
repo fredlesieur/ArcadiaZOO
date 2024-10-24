@@ -109,29 +109,27 @@ class AnimalController extends Controller {
         exit;
     }
     public function incrementViews($id)
-{
-    header('Content-Type: application/json');
-
-    // Valider l'ID
-    if (!is_numeric($id)) {
-        echo json_encode(['success' => false, 'message' => 'ID invalide']);
+    {
+        header('Content-Type: application/json');
+    
+        if (!is_numeric($id)) {
+            error_log("ID invalide : $id");
+            echo json_encode(['success' => false, 'message' => 'ID invalide']);
+            exit;
+        }
+    
+        $animalModel = new AnimalModel();
+        $result = $animalModel->incrementViews((int)$id);
+    
+        if ($result) {
+            error_log("Compteur mis à jour pour l'animal avec ID : $id");
+            echo json_encode(['success' => true, 'message' => 'Compteur de vues mis à jour']);
+        } else {
+            error_log("Échec de la mise à jour du compteur pour l'animal avec ID : $id");
+            echo json_encode(['success' => false, 'message' => 'Échec de la mise à jour du compteur de vues']);
+        }
+    
         exit;
     }
-
-    $animalModel = new AnimalModel();
-
-    // Appele la méthode incrementViews de mon model pour mettre à jour le compteur de vues
-    $result = $animalModel->incrementViews((int)$id);
-
-    // Vérifie la requête qui a été exécutée
-    if ($result) {
-        echo json_encode(['success' => true, 'message' => 'Compteur de vues mis à jour']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Échec de la mise à jour du compteur de vues']);
-    }
-
-    exit;
-}
-
-
+    
 }

@@ -11,7 +11,6 @@ document.querySelectorAll('.animal-card').forEach(card => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id: animalId }),
         })
         .then(response => response.json())
         .then(data => {

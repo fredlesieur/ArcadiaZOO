@@ -18,7 +18,7 @@
                         <th>Race</th>
                         <th>Habitat</th>
                         <th>Image</th>
-                        <th>Vues</th> <!-- Nouvelle colonne pour le compteur de vues -->
+                        <th>Vues</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@
                                 <td><?= htmlspecialchars($animal['race']); ?></td>
                                 <td><?= isset($animal['habitat_name']) ? htmlspecialchars($animal['habitat_name']) : 'Non défini'; ?></td>
                                 <td><img src="/assets/images/<?= htmlspecialchars($animal['image']); ?>" alt="<?= htmlspecialchars($animal['nom']); ?>" width="100" loading="lazy"></td>
-                                <td><?= htmlspecialchars($animal['views']); ?></td> <!-- Affichage du compteur de vues -->
+                                <td><?= htmlspecialchars($animal['views']); ?></td>
                                 <td>
                                     <!-- Bouton de modification -->
                                     <a href="/animal/editAnimal/<?= $animal['id']; ?>" class="btn warning">Modifier</a>
