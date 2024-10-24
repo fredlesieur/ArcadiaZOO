@@ -20,15 +20,12 @@ document.querySelectorAll('.btn-info').forEach(button => {
                 window.location.href = animalLink;
             } else {
                 console.error('Erreur lors de la mise à jour du compteur de vues', data.message);
-                // Redirection vers la fiche de l'animal même en cas d'erreur
                 window.location.href = animalLink;
             }
         })
         .catch(error => {
             console.error('Erreur lors de la mise à jour du compteur de vues', error);
-            // Redirection vers la fiche de l'animal en cas d'erreur réseau
             window.location.href = animalLink;
         });
     });
 });
-
