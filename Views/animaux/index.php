@@ -19,12 +19,12 @@
             <div class="card">
                 <div class="card-body">
                 <h3 class="card-title text-center">Rapport Vétérinaire </h3>
-<h4 class="card-text text-center"><strong>Rapport de : </strong> <?= isset($animal['user_nom_prenom']) ? ucfirst($animal['user_nom_prenom']) : 'Information non disponible'; ?></h4>
-<h4 class="card-text text-center"><strong>Etat : </strong> <?= isset($animal['etat']) ? ucfirst($animal['etat']) : 'Information non disponible'; ?></h4>
-<h4 class="card-text text-center"><strong>Nourritture préconisée : </strong> <?= isset($animal['nourriture_preconisee']) ? ucfirst($animal['nourriture_preconisee']) : 'Information non disponible'; ?></h4>
-<h4 class="card-text text-center"><strong>Quantité préconisée : </strong> <?= isset($animal['grammage_preconise']) ? ucfirst($animal['grammage_preconise']) : 'Information non disponible'; ?></h4>
-<h4 class="card-text text-center"><strong>Date et Heure : <?= isset($animal['date_passage']) ? date('d-m-Y', strtotime($animal['date_passage'])) : 'Date non disponible'; ?></h4>
-<h4 class="card-text text-center"><strong>Détail état : </strong> <?= isset($animal['detail_etat']) ? ucfirst($animal['detail_etat']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Rapport de : <br> </strong> <?= isset($animal['user_nom_prenom']) ? ucfirst($animal['user_nom_prenom']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Etat : <br> </strong> <?= isset($animal['etat']) ? ucfirst($animal['etat']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Nourritture préconisée : <br> </strong> <?= isset($animal['nourriture_preconisee']) ? ucfirst($animal['nourriture_preconisee']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Quantité préconisée : <br> </strong> <?= isset($animal['grammage_preconise']) ? ucfirst($animal['grammage_preconise']) : 'Information non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Date et Heure : <br> <?= isset($animal['date_passage']) ? date('d-m-Y', strtotime($animal['date_passage'])) : 'Date non disponible'; ?></h4>
+<h4 class="card-text text-center"><strong>Détail état : <br> </strong> <?= isset($animal['detail_etat']) ? ucfirst($animal['detail_etat']) : 'Information non disponible'; ?></h4>
 
                 </div>
             </div>
