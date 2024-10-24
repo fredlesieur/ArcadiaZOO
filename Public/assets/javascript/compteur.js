@@ -16,9 +16,11 @@ document.querySelectorAll('a[href^="/animal/viewAnimal"]').forEach(button => {
         fetch(`/animal/incrementViews/${animalId}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'CSRF-Token': csrfToken,  // Utilise le token CSRF dans les en-têtes
-            }
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                csrf_token: csrfToken,  // Envoi du token CSRF dans le corps de la requête
+            })
         })
         .then(response => response.json())
         .then(data => {
@@ -33,4 +35,5 @@ document.querySelectorAll('a[href^="/animal/viewAnimal"]').forEach(button => {
         });
     });
 });
+
 
