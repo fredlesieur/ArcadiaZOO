@@ -1,9 +1,9 @@
-document.querySelectorAll('.animal-card').forEach(card => {
-    card.addEventListener('click', function(event) {
+document.querySelectorAll('.btn-info').forEach(button => {
+    button.addEventListener('click', function(event) {
         event.preventDefault(); // Empêche la redirection immédiate
 
-        const animalId = this.dataset.animalId;
-        const animalLink = this.querySelector('.button').getAttribute('href'); // Récupère le lien de la fiche de l'animal
+        const animalId = this.getAttribute('href').split('/').pop(); // Récupère l'ID de l'animal à partir de l'URL
+        const animalLink = this.getAttribute('href'); // Récupère le lien de la fiche de l'animal
 
         // Envoi de la requête AJAX pour incrémenter le compteur de vues
         fetch(`/animal/incrementViews/${animalId}`, {
@@ -31,3 +31,4 @@ document.querySelectorAll('.animal-card').forEach(card => {
         });
     });
 });
+

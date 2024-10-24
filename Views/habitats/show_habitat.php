@@ -76,3 +76,4 @@
     <?php endif; ?>
 </section>
 <?php $script = '<script src="/assets/javascript/boutonTexte.js"></script>';?>
+<?php echo $script = '<script src="/assets/javascript/compteur.js"></script>'; ?>

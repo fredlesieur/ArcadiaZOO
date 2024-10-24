@@ -4,7 +4,7 @@
 
         <?php if ($_SESSION['role'] === 'administrateur') : ?>
             <form action="/animal/editAnimal/<?= $animaux['id'] ?>" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= htmlspecialchars($animaux['id']); ?>">
+                <input type="hidden" name="id" id="id" value="<?= htmlspecialchars($animaux['id']); ?>">
 
                 <div class="mb-3">
                     <label for="nom">Nom :</label>
