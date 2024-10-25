@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const animalId = button.getAttribute("href").split("/").pop();
             const csrfToken = document.getElementById("csrf_token").value;
 
-            fetch(`/api/incrementViews`, {
+            fetch(`/animal/incrementViews`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

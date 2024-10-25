@@ -28,6 +28,7 @@ class AnimalController extends Controller {
 
     public function incrementViews()
     {
+        // Récupérer l'ID depuis le corps de la requête JSON
         $input = json_decode(file_get_contents('php://input'), true);
         $id = $input['id'] ?? null;
 
@@ -35,14 +36,14 @@ class AnimalController extends Controller {
             $animalModel = new AnimalModel();
             $animalModel->incrementViews($id);
 
-            // Répond avec un message de succès
+            // Répond avec un message de succès en JSON
             echo json_encode(['success' => true]);
         } else {
             // Renvoyer une réponse JSON en cas d'erreur
-            echo json_encode(['success' => false, 'message' => 'ID invalide ou CSRF token invalide']);
+            echo json_encode(['success' => false, 'message' => 'ID invalide ou non fourni']);
         }
     }
-
+}
     public function addAnimal()
 {
     $animalModel = new AnimalModel();
