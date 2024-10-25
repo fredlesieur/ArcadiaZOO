@@ -2,6 +2,7 @@
 
 <section class="container p-3 p-lg-4 p-xl-5">
     <div class="row justify-content-center pb-2">
+    <input type="hidden" id="animalId" value="<?= htmlspecialchars($animal['id']); ?>">
         <div class="col-md-6 h-100">
             <div class="card h-100">
                 <img src="/assets/images/<?= isset($animal['animal_image']) ? htmlspecialchars($animal['animal_image']) : 'default.jpg'; ?>" 
