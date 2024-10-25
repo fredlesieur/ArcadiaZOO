@@ -1,19 +1,17 @@
-console.log("Fichier compteur.js chargé avec succès.");
-
 document.addEventListener("DOMContentLoaded", function () {
+    // Détecte si l'ID de l'animal est présent sur la page
     const animalIdElement = document.getElementById("animalId");
-    console.log("Incrémentation pour l'ID animal : ", animalIdElement ? animalIdElement.value : "Aucun ID détecté");
-
+    
     if (animalIdElement) {
         const animalId = animalIdElement.value;
+        console.log("Incrémentation pour l'ID animal : ", animalId);
 
-       // Ajoute un log pour chaque appel fetch
-        console.log("Appel à l'incrémentation de vue pour l'ID :", animalId);
+        // Effectue un appel fetch pour incrémenter les vues
         fetch(`/animal/incrementViews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-Token": document.getElementById("csrf_token").value
+                "X-CSRF-Token": document.getElementById("csrf_token").value // Assure la protection CSRF
             },
             body: JSON.stringify({ id: animalId })
         })
@@ -26,5 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
         .catch(error => console.error("Erreur:", error));
+    } else {
+        console.log("Aucun ID animal détecté");
     }
 });
