@@ -18,17 +18,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({ id: animalId })
             })
-            .then(response => response.json())
+            .then(response => response.text()) // Change de .json() à .text() pour voir le contenu complet
             .then(data => {
-                if (data.success) {
-                    window.location.href = button.getAttribute("href");
-                } else {
-                    console.error("Erreur d'incrémentation du compteur de vues.");
-                    alert("Erreur d'incrémentation.");
+                console.log("Réponse du serveur :", data);  // Afficher la réponse brute
+                try {
+                    const jsonData = JSON.parse(data);  // Tenter de parser en JSON
+                    if (jsonData.success) {
+                        window.location.href = button.getAttribute("href");
+                    } else {
+                        console.error("Erreur d'incrémentation du compteur de vues.");
+                        alert("Erreur d'incrémentation.");
+                    }
+                } catch (e) {
+                    console.error("Erreur lors du parsing JSON :", e);
                 }
             })
             .catch(error => {
-                console.error("Erreur de requête : ", error);
+                console.error("Erreur de requête :", error);
                 alert("Une erreur s'est produite. Veuillez réessayer.");
             });
         });
