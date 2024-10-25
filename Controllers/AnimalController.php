@@ -8,21 +8,22 @@ use App\Models\HabitatsModel;
 class AnimalController extends Controller {
 
     public function viewAnimal($id)
-    {
-        $animalModel = new AnimalModel();
+{
+    $animalModel = new AnimalModel();
 
-        // Incrémente le compteur de vues
+    // Vérifier si l'ID est valide avant d'incrémenter les vues
+    $animal = $animalModel->find($id);
+
+    if ($animal) {
+        // Incrémenter le compteur de vues
         $animalModel->incrementViews($id);
 
-        // Récupère les informations de l'animal
-        $animal = $animalModel->find($id);
-
-        if ($animal) {
-            $this->render('animaux/index', compact('animal'));
-        } else {
-            echo "Animal non trouvé.";
-        }
+        // Rendre la vue de l'animal
+        $this->render('animaux/index', compact('animal'));
+    } else {
+        echo "Animal non trouvé.";
     }
+}
 
     // AnimalController.php
 
