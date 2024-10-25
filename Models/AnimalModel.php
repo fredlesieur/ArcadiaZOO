@@ -11,6 +11,8 @@ class AnimalModel extends Model
     protected $image;
     protected $id_habitats;
 
+    protected $table = 'animaux';
+
     public function __construct() {
         $this->table = "animaux";
     }
@@ -50,11 +52,14 @@ class AnimalModel extends Model
 }
 
 // requete SQL pour incrémenter le nombre de vues de l'animal correspondant
-public function incrementViews(int $id)
-{
-    return $this->req("UPDATE {$this->table} SET views = views + 1 WHERE id = ?", [$id]);
-}
 
+
+    public function incrementViews($id)
+    {
+        $this->req("UPDATE {$this->table} SET views = views + 1 WHERE id = ?", [$id]);
+    }
+
+    
     // Getters
     public function getId() {
         return $this->id;

@@ -1,45 +1,30 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelectorAll('a[href^="/animal/viewAnimal"]').forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault(); // Empêche la redirection immédiate
+document.addEventListener("DOMContentLoaded", function () {
+    const viewButtons = document.querySelectorAll(".btn-info");
 
-            const animalId = this.getAttribute('href').split('/').pop(); // Récupère l'ID de l'animal
-            const animalLink = this.getAttribute('href'); // Récupère le lien de la fiche de l'animal
+    viewButtons.forEach((button) => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
 
-            // Récupérer le token CSRF depuis le champ hidden dans la page
-            const csrfToken = document.querySelector('#csrf_token').value;
+            const animalId = button.getAttribute("href").split("/").pop();
+            const csrfToken = document.getElementById("csrf_token").value;
 
-            console.log("ID de l'animal : ", animalId);
-            console.log("Token CSRF trouvé : ", csrfToken);
-
-            // Envoi de la requête AJAX pour incrémenter le compteur de vues
-            fetch(`/animal/incrementViews/${animalId}`, {
-                method: 'POST',
+            fetch(`/api/incrementViews`, {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json",
+                    "X-CSRF-Token": csrfToken
                 },
-                body: JSON.stringify({
-                    csrf_token: csrfToken // Envoi du token CSRF dans le corps de la requête
-                })
+                body: JSON.stringify({ id: animalId })
             })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Erreur dans la requête : ' + response.status);
-                }
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log('Réponse serveur :', data);
                 if (data.success) {
-                    window.location.href = animalLink; // Redirection après mise à jour
+                    window.location.href = button.getAttribute("href");
                 } else {
-                    console.error('Erreur côté serveur :', data.message);
+                    console.error("Erreur d'incrémentation du compteur de vues.");
                 }
             })
-            .catch(error => {
-                console.error('Erreur lors de la mise à jour du compteur de vues', error);
-            });
+            .catch(error => console.error("Erreur de requête : ", error));
         });
     });
 });

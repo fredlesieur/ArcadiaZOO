@@ -64,7 +64,7 @@
                             <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid4" alt="<?= htmlspecialchars($animal['nom']); ?>" loading="lazy">
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= htmlspecialchars(ucwords($animal['nom'])); ?></h5>
-                                <a href="/animal/viewAnimal/<?= $animal['id'] ?>" class="btn btn-info">Voir la fiche</a>
+                                <a href="/animal/viewAnimal/<?= $animal['id'] ?>" class="btn btn-info">Voir la fiche de l'animal</a>
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,7 @@
         <p>Informations sur l'habitat non disponibles.</p>
     <?php endif; ?>
 
-    <!-- Champ caché pour le token CSRF -->
-    <input type="hidden" id="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+
 </section>
 
 <!-- Lien vers les fichiers JavaScript -->

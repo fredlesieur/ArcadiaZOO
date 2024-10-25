@@ -7,14 +7,39 @@ use App\Models\HabitatsModel;
 
 class AnimalController extends Controller {
 
-    public function viewAnimal($id) {
+    public function viewAnimal($id)
+    {
         $animalModel = new AnimalModel();
-        $animal = $animalModel->getRapportByAnimalId($id);
+
+        // Incrémente le compteur de vues
+        $animalModel->incrementViews($id);
+
+        // Récupère les informations de l'animal
+        $animal = $animalModel->find($id);
 
         if ($animal) {
             $this->render('animaux/index', compact('animal'));
         } else {
             echo "Animal non trouvé.";
+        }
+    }
+
+    // AnimalController.php
+
+    public function incrementViews()
+    {
+        // Récupère les données de la requête POST
+        $input = json_decode(file_get_contents('php://input'), true);
+        $id = $input['id'] ?? null;
+    
+        if ($id) {
+            $animalModel = new AnimalModel();
+            $animalModel->incrementViews($id);
+    
+            // Répond avec un message de succès
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'ID invalide ou non fourni']);
         }
     }
 
@@ -108,21 +133,6 @@ class AnimalController extends Controller {
         header("Location: /animal/listAnimals");
         exit;
     }
-    public function incrementViews($animalId)
-    {
-        // Log du token CSRF reçu
-        error_log('Token CSRF reçu : ' . $_POST['csrf_token']);
     
-        // Vérification du token CSRF
-        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-            error_log('Erreur CSRF : token invalide ou manquant');
-            http_response_code(403);
-            echo json_encode(['success' => false, 'message' => 'Invalid CSRF token.']);
-            return;
-        }
-    
-        // Logique d'incrémentation du compteur de vues
-        // ...
-    }
     
 }
