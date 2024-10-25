@@ -9,12 +9,14 @@ class Main
     public function start()
     {
         // Démarrage de la session
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-        // creation de token CSRF
+        // Création de token CSRF s'il n'existe pas déjà
         if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
 
         // Retirer le trailing slash de l'URL si présent
         $uri = $_SERVER['REQUEST_URI'];
@@ -36,20 +38,22 @@ class Main
             exit();
         }
 
-         // Vérification du token CSRF et nettoyage des données POST si la requête est de type POST
-         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $csrfToken = $_POST['csrf_token'] ?? '';
+        // Vérification du token CSRF et nettoyage des données POST si la requête est de type POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupérer le token CSRF à partir du corps de la requête (formulaires) ou des en-têtes HTTP (requêtes AJAX)
+            $csrfToken = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+            
+            // Appel à la méthode pour vérifier le token CSRF
             $this->checkCsrfToken($csrfToken);
 
-            // Nettoyage des données POST
+            // Nettoyage des données POST pour les requêtes classiques (formulaires)
             $_POST = $this->sanitizeFormData($_POST);
         }
-
 
         // Gestion des paramètres d'URL
         $params = isset($_GET['p']) ? explode('/', $_GET['p']) : [];
 
-        // vérifie Si des paramètres sont présents dans l'URL
+        // Vérifie si des paramètres sont présents dans l'URL
         if (!empty($params[0])) {
             // Récupération du contrôleur à instancier
             $controllerName = ucfirst(array_shift($params)) . 'Controller'; // Le nom du contrôleur
@@ -93,7 +97,6 @@ class Main
         }
     }
 
-
     // Nettoyage des données POST
     private function sanitizeFormData(array $data)
     {
@@ -116,12 +119,9 @@ class Main
     }
 
     // Gestion des erreurs 404
-
     private function error404($message)
     {
         http_response_code(404);
         echo $message;
     }
 }
-
-

@@ -1,3 +1,5 @@
+// compteur.js
+
 document.addEventListener("DOMContentLoaded", function () {
     const viewButtons = document.querySelectorAll(".btn-info");
 
@@ -22,9 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.href = button.getAttribute("href");
                 } else {
                     console.error("Erreur d'incrémentation du compteur de vues.");
+                    alert("Erreur d'incrémentation.");
                 }
             })
-            .catch(error => console.error("Erreur de requête : ", error));
+            .catch(error => {
+                console.error("Erreur de requête : ", error);
+                alert("Une erreur s'est produite. Veuillez réessayer.");
+            });
         });
     });
 });
