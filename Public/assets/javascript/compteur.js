@@ -1,24 +1,17 @@
-// compteur.js
 document.addEventListener("DOMContentLoaded", function () {
-    // Variable de contrôle pour éviter les appels multiples
-    let viewIncremented = false;
-
-    // Détecte si l'ID de l'animal est présent sur la page
     const animalIdElement = document.getElementById("animalId");
+    console.log("Incrémentation pour l'ID animal : ", animalIdElement ? animalIdElement.value : "Aucun ID détecté");
 
-    if (animalIdElement && !viewIncremented) {
+    if (animalIdElement) {
         const animalId = animalIdElement.value;
-        console.log("Incrémentation pour l'ID animal : ", animalId);
 
-        // Marquer l'incrémentation comme effectuée
-        viewIncremented = true;
-
-        // Effectue un appel fetch pour incrémenter les vues
-        fetch(`/animal/incrementViews`, {
+        // Ajoute un log pour chaque appel fetch
+        console.log("Appel à l'incrémentation de vue pour l'ID :", animalId);
+       /*  fetch(`/animal/incrementViews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-Token": document.getElementById("csrf_token").value // Assure la protection CSRF
+                "X-CSRF-Token": document.getElementById("csrf_token").value
             },
             body: JSON.stringify({ id: animalId })
         })
@@ -31,5 +24,5 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
         .catch(error => console.error("Erreur:", error));
-    }
+    } */
 });
