@@ -51,7 +51,6 @@ class AnimalModel extends Model
     public function incrementViews($id)
     {
         $this->req("UPDATE {$this->table} SET views = views + 1 WHERE id = ?", [$id]);
-        file_put_contents('increment.log', "Incrémentation de l'animal avec l'ID: $id à ".date('Y-m-d H:i:s')."\n", FILE_APPEND);
 
     }
     
