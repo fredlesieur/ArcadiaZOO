@@ -18,7 +18,7 @@ class AnimalController extends Controller {
         $animal = $animalModel->find($id);
     
         // Vérification : Si l'animal est trouvé, on l'affiche, sinon message d'erreur
-        if ($animal) {
+        if (is_array($animal)) {
             // Ajout temporaire pour tester les données récupérées
             var_dump($animal); // Tu peux retirer cette ligne après le test
             $this->render('animaux/index', compact('animal'));
