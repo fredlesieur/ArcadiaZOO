@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Détecte si l'ID de l'animal est présent sur la page
     const animalIdElement = document.getElementById("animalId");
+    console.log("Incrémentation pour l'ID animal : ", animalId);
 
     if (animalIdElement) {
         const animalId = animalIdElement.value;
