@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     viewButtons.forEach((button) => {
         button.addEventListener("click", function (event) {
             event.preventDefault();
+            
+            console.log("Clic sur le bouton pour incrémenter la vue");
 
             const animalId = button.getAttribute("href").split("/").pop();
             const csrfToken = document.getElementById("csrf_token").value;
