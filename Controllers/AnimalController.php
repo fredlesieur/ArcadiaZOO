@@ -27,9 +27,6 @@ class AnimalController extends Controller {
 
     public function incrementViews()
     {
-        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-        header("Cache-Control: post-check=0, pre-check=0", false);
-        header("Pragma: no-cache");
 
         // Récupérer l'ID depuis le corps de la requête JSON
         $input = json_decode(file_get_contents('php://input'), true);
@@ -38,7 +35,6 @@ class AnimalController extends Controller {
         if ($id) {
             $animalModel = new AnimalModel();
             $animalModel->incrementViews($id);
-            error_log("Incrémentation des vues pour l'animal ID : " . $id);
             // Répond avec un message de succès en JSON
             echo json_encode(['success' => true]);
         } else {
