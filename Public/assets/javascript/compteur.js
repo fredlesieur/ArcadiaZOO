@@ -1,3 +1,5 @@
+console.log("Fichier compteur.js chargé avec succès.");
+
 document.addEventListener("DOMContentLoaded", function () {
     const animalIdElement = document.getElementById("animalId");
     console.log("Incrémentation pour l'ID animal : ", animalIdElement ? animalIdElement.value : "Aucun ID détecté");
@@ -5,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (animalIdElement) {
         const animalId = animalIdElement.value;
 
-        // Ajoute un log pour chaque appel fetch
+       // Ajoute un log pour chaque appel fetch
         console.log("Appel à l'incrémentation de vue pour l'ID :", animalId);
-       /*  fetch(`/animal/incrementViews`, {
+        fetch(`/animal/incrementViews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -24,5 +26,5 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
         .catch(error => console.error("Erreur:", error));
-    } */
+    }
 });
