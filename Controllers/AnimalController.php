@@ -43,7 +43,7 @@ class AnimalController extends Controller {
             echo json_encode(['success' => false, 'message' => 'ID invalide ou non fourni']);
         }
     }
-}
+
     public function addAnimal()
 {
     $animalModel = new AnimalModel();
