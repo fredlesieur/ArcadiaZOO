@@ -10,15 +10,17 @@ class AnimalController extends Controller {
     public function viewAnimal($id)
     {
         $animalModel = new AnimalModel();
-        
-        // Récupère l'animal avant d'incrémenter les vues
+    
+        // Incrémente le compteur de vues
+        // $animalModel->incrementViews($id);
+    
+        // Récupère les informations de l'animal après l'incrémentation
         $animal = $animalModel->find($id);
     
+        // Vérification : Si l'animal est trouvé, on l'affiche, sinon message d'erreur
         if ($animal) {
-            // Incrémenter les vues uniquement si l'animal est trouvé
-            $animalModel->incrementViews($id);
-    
-            // Rendre la vue de l'animal
+            // Ajout temporaire pour tester les données récupérées
+            var_dump($animal); // Tu peux retirer cette ligne après le test
             $this->render('animaux/index', compact('animal'));
         } else {
             echo "Animal non trouvé.";
