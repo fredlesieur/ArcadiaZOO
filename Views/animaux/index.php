@@ -4,19 +4,19 @@
     <div class="row justify-content-center pb-2">
         <div class="col-md-6 h-100">
             <div class="card h-100">
-                <img src="/assets/images/<?= isset($animal['animal_image']) ? htmlspecialchars($animal['animal_image']) : 'default.jpg'; ?>" 
+                <img src="/assets/images/<?= isset($animal['image']) ? htmlspecialchars($animal['image']) : 'default.jpg'; ?>" 
                      class="card-img-top img-fluid2" 
-                     alt="<?= isset($animal['animal_nom']) ? htmlspecialchars($animal['animal_nom']) : 'Nom inconnu'; ?>" 
+                     alt="<?= isset($animal['nom']) ? htmlspecialchars($animal['nom']) : 'Nom inconnu'; ?>" 
                      loading="lazy">
                 <div class="card-body">
                     <h3 class="card-title text-center">
-                        <?= isset($animal['animal_nom']) ? ucfirst(htmlspecialchars($animal['animal_nom'])) : 'Nom inconnu'; ?>
+                        <?= isset($animal['nom']) ? ucfirst(htmlspecialchars($animal['nom'])) : 'Nom inconnu'; ?>
                     </h3>
                     <h4 class="card-text text-center"><strong>Âge : </strong> 
-                        <?= isset($animal['animal_age']) ? htmlspecialchars($animal['animal_age']) . ' ans' : 'Âge inconnu'; ?>
+                        <?= isset($animal['age']) ? htmlspecialchars($animal['age']) . ' ans' : 'Âge inconnu'; ?>
                     </h4>
                     <h4 class="card-text text-center"><strong>Race : </strong> 
-                        <?= isset($animal['animal_race']) ? ucfirst(htmlspecialchars($animal['animal_race'])) : 'Race inconnue'; ?>
+                        <?= isset($animal['race']) ? ucfirst(htmlspecialchars($animal['race'])) : 'Race inconnue'; ?>
                     </h4>
                     <h4 class="card-text text-center"><strong>Habitat : </strong> 
                         <?= isset($animal['animal_habitat']) ? ucfirst(htmlspecialchars($animal['animal_habitat'])) : 'Habitat inconnu'; ?>
