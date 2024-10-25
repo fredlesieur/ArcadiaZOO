@@ -13,17 +13,14 @@ class AnimalModel extends Model
 
     protected $table = 'animaux';
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->table = "animaux";
     }
 
-    //requete SQL pour récupérer les animaux par ordre alphabetique
-    public function findAllOrderedByName() {
-        $sql = "SELECT * FROM animaux ORDER BY nom ASC";
-        return $this->req($sql)->fetchAll();
-    }
-    //requete SQL pour récupérer les rapports par animal et les informations de l'animal et l'utilisateur
-    public function getRapportByAnimalId($id) {
+    // Récupérer les rapports par animal et les informations de l'animal et de l'utilisateur
+    public function getRapportByAnimalId($id)
+    {
         $sql = "SELECT rv.*, 
                        a.nom AS animal_nom, 
                        a.image AS animal_image, 
@@ -35,30 +32,26 @@ class AnimalModel extends Model
                 LEFT JOIN rapports rv ON rv.animal_id = a.id
                 LEFT JOIN habitats h ON a.id_habitats = h.id
                 LEFT JOIN users u ON rv.user_id = u.id
-                WHERE a.id = :id"; 
-    
+                WHERE a.id = :id";
+
         $stmt = $this->req($sql, ['id' => $id]);
-        $result = $stmt->fetch();
-        
-        return $result;
+        return $stmt->fetch(\PDO::FETCH_ASSOC); // Utilisation de FETCH_ASSOC pour retourner un tableau associatif
     }
-    //requete SQL pour récupérer les animaux avec leur habitat
+
+    // Récupérer tous les animaux avec leur habitat
     public function findAllWithHabitats()
-{
-    $sql = "SELECT a.*, h.name AS habitat_name
-            FROM animaux a
-            LEFT JOIN habitats h ON a.id_habitats = h.id";
-    return $this->req($sql)->fetchAll();
-}
+    {
+        $sql = "SELECT a.*, h.name AS habitat_name
+                FROM animaux a
+                LEFT JOIN habitats h ON a.id_habitats = h.id";
+        return $this->req($sql)->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
-// requete SQL pour incrémenter le nombre de vues de l'animal correspondant
-
-
+    // Incrémenter le nombre de vues pour un animal
     public function incrementViews($id)
     {
         $this->req("UPDATE {$this->table} SET views = views + 1 WHERE id = ?", [$id]);
     }
-
     
     // Getters
     public function getId() {

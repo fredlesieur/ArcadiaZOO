@@ -11,23 +11,19 @@ class AnimalController extends Controller {
     {
         $animalModel = new AnimalModel();
     
-        // Incrémente le compteur de vues
-        // $animalModel->incrementViews($id);
+        // Incrémente le compteur de vues pour cet animal
+        $animalModel->incrementViews($id);
     
         // Récupère les informations de l'animal après l'incrémentation
-        $animal = $animalModel->find($id);
+        $animal = $animalModel->getRapportByAnimalId($id);
     
-        // Vérification : Si l'animal est trouvé, on l'affiche, sinon message d'erreur
-        if (is_array($animal)) {
-            // Ajout temporaire pour tester les données récupérées
-            var_dump($animal); // Tu peux retirer cette ligne après le test
+        // Si l'animal est trouvé, on l'affiche
+        if ($animal) {
             $this->render('animaux/index', compact('animal'));
         } else {
             echo "Animal non trouvé.";
         }
     }
-
-    // AnimalController.php
 
     public function incrementViews()
     {
@@ -48,47 +44,43 @@ class AnimalController extends Controller {
     }
 
     public function addAnimal()
-{
-    $animalModel = new AnimalModel();
-    $animaux = $animalModel->findAll();
-    $habitatModel = new HabitatsModel();
-    $habitats = $habitatModel->findAll();
+    {
+        $animalModel = new AnimalModel();
+        $habitatModel = new HabitatsModel();
+        $animaux = $animalModel->findAll();
+        $habitats = $habitatModel->findAll();
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'nom' => $_POST['nom'],
+                'age' => $_POST['age'],
+                'race' => $_POST['race'],
+                'id_habitats' => $_POST['id_habitat']
+            ];
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-        $data = [
-            'nom' => $_POST['nom'],
-            'age' => $_POST['age'],
-            'race' => $_POST['race'],
-            'id_habitats' => $_POST['id_habitat']
-        ];
-
-        if (!empty($_FILES['image']['name'])) {
-    
-            $uploadedImage = $animalModel->uploadImage($_FILES['image']);
-            if ($uploadedImage) {
-                echo "Téléchargement réussi !<br>";
-                $data['image'] = $uploadedImage;
-            } else {
-                echo "Erreur lors du téléchargement de l'image.<br>";
+            if (!empty($_FILES['image']['name'])) {
+                $uploadedImage = $animalModel->uploadImage($_FILES['image']);
+                if ($uploadedImage) {
+                    $data['image'] = $uploadedImage;
+                } else {
+                    echo "Erreur lors du téléchargement de l'image.";
+                }
             }
+
+            $animalModel->hydrate($data);
+            $animalModel->create();
+
+            $_SESSION['success'] = "L'animal a été créé avec succès.";
+            header("Location: /animal/listAnimals");
+            exit();
         }
 
-        $animalModel->hydrate($data);
-        $animalModel->create();
-
-        $_SESSION['success'] = "L'animal a été créé avec succès.";
-        header("Location: /animal/listAnimals");
-        exit();
+        $title = "Créer un animal";
+        $this->render('animaux/add_animal', compact('title', 'habitats', 'animaux'));
     }
 
-    $title = "Créer un animal";
-    $this->render('animaux/add_animal', compact('title', 'habitats', 'animaux'));
-}
-
-
-    public function editAnimal($id) {
+    public function editAnimal($id)
+    {
         $animalModel = new AnimalModel();
         $habitatModel = new HabitatsModel();
         $animaux = $animalModel->find($id);
@@ -101,11 +93,11 @@ class AnimalController extends Controller {
                 'race' => $_POST['race'],
                 'id_habitats' => $_POST['id_habitats']
             ];
-             // Utilisation de la fonction d'upload pour mettre à jour l'image
+
             if (!empty($_FILES['image']['name'])) {
                 $data['image'] = $animalModel->uploadImage($_FILES['image'], 'assets/images/');
             }
-    
+
             $animalModel->hydrate($data);
             $animalModel->update($id);
 
@@ -117,26 +109,28 @@ class AnimalController extends Controller {
         $this->render('animaux/edit_animal', compact('animaux', 'habitats', 'title'));
     }
 
-    public function listAnimals() {
+    public function listAnimals()
+    {
         $animalModel = new AnimalModel();
-        $animaux = $animalModel->findAllWithHabitats(); // Récupérer tous les animaux avec leurs habitats
+        $animaux = $animalModel->findAllWithHabitats();
 
         $title = "Liste des animaux";
         $this->render('animaux/liste_animals', compact('animaux', 'title'));
     }
 
-    public function deleteAnimal($id) {
+    public function deleteAnimal($id)
+    {
         $animalModel = new AnimalModel();
         $animal = $animalModel->find($id);
+
         if ($animal) {
             $animalModel->delete($id);
             $_SESSION['success'] = "L'animal a été supprimé avec succès.";
         } else {
             $_SESSION['error'] = "L'animal que vous essayez de supprimer n'existe pas.";
         }
+
         header("Location: /animal/listAnimals");
         exit;
     }
-    
-    
 }
