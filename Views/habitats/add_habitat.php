@@ -6,20 +6,7 @@
 
 
 
-    <!-- Afficher les messages d'erreur et de succès -->
-    <?php if (!empty($_SESSION['error'])): ?>
-        <div class="alert alert-danger">
-            <?= $_SESSION['error']; ?>
-        </div>
-        <?php unset($_SESSION['error']); ?>
-    <?php endif; ?>
-
-    <?php if (!empty($_SESSION['success'])): ?>
-        <div class="alert alert-success">
-            <?= $_SESSION['success']; ?>
-        </div>
-        <?php unset($_SESSION['success']); ?>
-    <?php endif; ?>
+   
     <h1 class="container-fluid banner pt-5 pb-5"></h1>
 <section class="colorSection">
     <div class="container my-5">

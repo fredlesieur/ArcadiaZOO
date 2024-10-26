@@ -50,6 +50,7 @@ class RapportController extends Controller
             }
 
             $rapportModel->create();
+            $_SESSION['success'] = "Rapport ajouté avec succès.";
             header('Location: /rapport/liste_rapports');
             exit();
         }
@@ -93,6 +94,7 @@ class RapportController extends Controller
 
             $rapportModel->hydrate($data);
             $rapportModel->update($id);
+            $_SESSION['success'] = "Rapport modifié avec succès.";
             header('Location: /rapport/liste_rapports');
             exit();
         }

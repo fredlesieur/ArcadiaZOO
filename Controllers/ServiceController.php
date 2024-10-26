@@ -133,7 +133,7 @@ class ServiceController extends Controller
     
             // Mettre à jour le service
             $servModel->update($id);
-            $_SESSION['success'] = "Élément ajouté avec succès a la page service.";
+            $_SESSION['success'] = "Élément modifié avec succès a la page service.";
             header("Location: /service/listservices");
             exit();
             // Redirection après modification

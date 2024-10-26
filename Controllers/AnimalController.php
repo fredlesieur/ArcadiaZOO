@@ -100,7 +100,7 @@ class AnimalController extends Controller {
 
             $animalModel->hydrate($data);
             $animalModel->update($id);
-
+            $_SESSION['success'] = "animal modifié avec succès.";
             header("Location: /animal/listAnimals");
             exit;
         }

@@ -150,6 +150,7 @@ class HabitatsController extends Controller
             $habitatModel->update($id);
     
             // Redirection après modification
+            $_SESSION['success'] = "habitat modifié avec succès.";
             header("Location: /habitats/listHabitats");
             exit;
         }

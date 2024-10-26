@@ -1,3 +1,9 @@
+<?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['success']; ?>
+                <?php unset($_SESSION['success']); ?> <!-- Supprime le message après affichage -->
+            </div>
+        <?php endif; ?>
 <h1 class="banner pt-5 pb-5">Liste des habitats</h1> 
 <section class="colorSection">
     <div class="container-fluid">
