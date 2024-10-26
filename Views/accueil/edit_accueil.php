@@ -1,11 +1,6 @@
 <h1 class="container-fluid banner pt-5 pb-5">Modifier un élément de l'accueil</h1>
  <!-- Vérifier s'il y a des messages de succès ou d'erreur -->
- <?php if (isset($_SESSION['success'])): ?>
-            <div class="alert alert-success">
-                <?= $_SESSION['success']; ?>
-                <?php unset($_SESSION['success']); ?> <!-- Supprime le message après affichage -->
-            </div>
-        <?php endif; ?>
+
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <form action="/accueil/editAccueil/<?= $accueil['id'] ?>" method="POST" enctype="multipart/form-data">
