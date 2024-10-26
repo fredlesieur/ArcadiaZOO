@@ -68,10 +68,12 @@ class ServiceController extends Controller
                 }
             }
     
+           
             // Hydrate le modèle et enregistre le service dans la base de données
             $serviceModel->hydrate($data);
             $serviceModel->create();
-            header("Location: /service/listServices");
+            $_SESSION['success'] = "Élément ajouté avec succès à l'accueil.";
+            header("Location: /service/listservices");
             exit();
         }
     
@@ -131,10 +133,11 @@ class ServiceController extends Controller
     
             // Mettre à jour le service
             $servModel->update($id);
-    
-            // Redirection après modification
+            $_SESSION['success'] = "Élément ajouté avec succès à l'accueil.";
             header("Location: /service/listservices");
-            exit;
+            exit();
+            // Redirection après modification
+           
         }
     
         // Afficher le formulaire de modification avec toutes les catégories

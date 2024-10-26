@@ -30,6 +30,13 @@
     <?php endif; ?>
   </div>
 </h1>
+ <!-- Vérifier s'il y a des messages de succès ou d'erreur -->
+ <?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['success']; ?>
+                <?php unset($_SESSION['success']); ?> <!-- Supprime le message après affichage -->
+            </div>
+        <?php endif; ?>
 
 <!-- formulaire pour soumettre un avis-->
 <div class="container d-flex justify-content-center my-5">

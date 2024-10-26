@@ -1,5 +1,13 @@
 <h1 class="container-fluid banner pt-5 pb-5">Modifier un Habitat</h1>
 <section class="colorSection">
+     <!-- Vérifier s'il y a des messages de succès ou d'erreur -->
+     <?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['success']; ?>
+                <?php unset($_SESSION['success']); ?> <!-- Supprime le message après affichage -->
+            </div>
+        <?php endif; ?>
+
     <div class="container my-5">
     <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'administrateur') : ?>
         <form action="/habitats/editHabitat/<?= $habitat['id'] ?>" method="post" enctype="multipart/form-data">

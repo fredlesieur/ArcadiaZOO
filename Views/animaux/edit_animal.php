@@ -1,6 +1,13 @@
 <h1 class="container-fluid banner pt-5 pb-5">Modifier un animal</h1>
 <section class="colorSection">
     <div class="container mx-auto p-4">
+ <!-- Vérifier s'il y a des messages de succès ou d'erreur -->
+ <?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['success']; ?>
+                <?php unset($_SESSION['success']); ?> <!-- Supprime le message après affichage -->
+            </div>
+        <?php endif; ?>
 
         <?php if ($_SESSION['role'] === 'administrateur') : ?>
             <form action="/animal/editAnimal/<?= $animaux['id'] ?>" method="post" enctype="multipart/form-data">
