@@ -9,7 +9,7 @@ class AvisController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-            var_dump($_POST); // Vérifie les données envoyées
+           
             $avisModel = new AvisModel();
             $data = [
                 'pseudo' => $_POST['pseudo'] ?? '',
