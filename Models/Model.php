@@ -4,7 +4,6 @@ namespace App\Models;
 use App\Config\Db;
 use Exception;
 use Cloudinary\Cloudinary;
-
 class Model extends Db
 {
     //Table de la base de données
@@ -174,8 +173,7 @@ public function req(string $sql, array $attributs = null)
    
    public function uploadImageToCloudinary(array $file)
    {
-       
-       // Code existant pour gérer l'upload
+       // Vérifie si le fichier a bien été uploadé
        if (!isset($file['tmp_name']) || $file['error'] != 0) {
            echo "Erreur : Fichier non téléchargé ou problème lors du transfert.<br>";
            return false;
@@ -184,22 +182,24 @@ public function req(string $sql, array $attributs = null)
        // Initialise Cloudinary
        $cloudinary = new Cloudinary([
            'cloud' => [
-               'cloud_name' => $_ENV('CLOUDINARY_CLOUD_NAME'),
-               'api_key'    => $_ENV('CLOUDINARY_API_KEY'),
-               'api_secret' => $_ENV('CLOUDINARY_API_SECRET'),
+               'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
+               'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
+               'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
            ],
        ]);
    
        try {
+           // Envoie le fichier sur Cloudinary
            $uploadResult = $cloudinary->uploadApi()->upload($file['tmp_name'], [
-               'folder' => 'arcadia-zoo',
+               'folder' => 'arcadia-zoo', // Nom du dossier sur Cloudinary
            ]);
    
+           // Retourne l'URL sécurisée de l'image
            return $uploadResult['secure_url'];
        } catch (Exception $e) {
            echo "Erreur lors de l'upload vers Cloudinary : " . $e->getMessage() . "<br>";
            return false;
        }
-   }
+   } 
    
 }
