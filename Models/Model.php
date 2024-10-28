@@ -173,11 +173,17 @@ public function req(string $sql, array $attributs = null)
    
    public function uploadImageToCloudinary(array $file)
    {
-       // Vérifie si le fichier a bien été uploadé
+       // Étape 1 : Vérification de l'upload du fichier
        if (!isset($file['tmp_name']) || $file['error'] != 0) {
-           echo "Erreur : Fichier non téléchargé ou problème lors du transfert.<br>";
+           error_log("Erreur : Fichier non téléchargé ou problème lors du transfert.");
            return false;
        }
+   
+       // Étape 2 : Vérification des variables d'environnement
+       error_log("Debug : Vérification des variables d'environnement Cloudinary...");
+       error_log("CLOUD_NAME : " . $_ENV['CLOUDINARY_CLOUD_NAME']);
+       error_log("API_KEY : " . $_ENV['CLOUDINARY_API_KEY']);
+       error_log("API_SECRET : " . $_ENV['CLOUDINARY_API_SECRET']);
    
        // Initialise Cloudinary
        $cloudinary = new Cloudinary([
@@ -188,18 +194,23 @@ public function req(string $sql, array $attributs = null)
            ],
        ]);
    
+       // Étape 3 : Tentative d'upload vers Cloudinary
        try {
-           // Envoie le fichier sur Cloudinary
+           error_log("Debug : Tentative d'upload de l'image vers Cloudinary...");
+           
            $uploadResult = $cloudinary->uploadApi()->upload($file['tmp_name'], [
-               'folder' => 'arcadia-zoo', // Nom du dossier sur Cloudinary
+               'folder' => 'arcadia-zoo',
            ]);
+           
+           error_log("Debug : Upload réussi. URL de l'image : " . $uploadResult['secure_url']);
    
-           // Retourne l'URL sécurisée de l'image
+           // Retourne l'URL de l'image
            return $uploadResult['secure_url'];
        } catch (Exception $e) {
-           echo "Erreur lors de l'upload vers Cloudinary : " . $e->getMessage() . "<br>";
+           error_log("Erreur lors de l'upload vers Cloudinary : " . $e->getMessage());
            return false;
        }
-   } 
+   }
+   
    
 }
