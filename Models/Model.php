@@ -138,7 +138,7 @@ class Model extends Db
         return $this;
     }
 
-    public function uploadImage(array $file, string $directory = 'assets/images/')
+    /* public function uploadImage(array $file, string $directory = 'assets/images/')
     {
         // Vérifie si le fichier a bien été uploadé
         if (!isset($file['tmp_name']) || $file['error'] != 0) {
@@ -175,7 +175,7 @@ class Model extends Db
             var_dump($file);
             return false;
         }
-    }
+    } */
 
     public function uploadImageToCloudinary(array $file)
     {
@@ -187,9 +187,9 @@ class Model extends Db
         // Configuration Cloudinary
         Configuration::instance([
             'cloud' => [
-                'cloud_name' => $_ENV['cloud_name'],
-                'api_key'    => $_ENV['api_key'],
-                'api_secret' => $_ENV['api_secret'],
+                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
+                'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
+                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
             ],
             'url' => [
                 'secure' => true
@@ -198,12 +198,13 @@ class Model extends Db
     
         try {
             // Upload de l'image
-            $uploadResult = (new UploadApi())->upload($file['tmp_name'], [
+            $uploadResult = $this->cloudinary->uploadApi()->upload($file['tmp_name'], [
                 'folder' => 'arcadia-zoo',
             ]);
     
             // Vérifie que l'URL est bien obtenue
-            error_log("URL retournée par Cloudinary : " . $uploadResult['secure_url']);
+            error_log("Début de l'upload avec Cloudinary.");
+            error_log(print_r($uploadResult, true));
             return $uploadResult['secure_url'];
         } catch (Exception $e) {
             // Journalise l'erreur en cas d'échec d'upload
