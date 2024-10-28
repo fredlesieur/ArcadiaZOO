@@ -183,33 +183,31 @@ class Model extends Db
             echo "Erreur : Fichier non téléchargé ou problème lors du transfert.<br>";
             return false;
         }
-
-        // Configure Cloudinary en utilisant la variable d'environnement CLOUDINARY_URL
+    
+        // Configuration Cloudinary
         Configuration::instance([
             'cloud' => [
-                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
-                'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
-                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
+                'cloud_name' => $_ENV['cloud_name'],
+                'api_key'    => $_ENV['api_key'],
+                'api_secret' => $_ENV['api_secret'],
             ],
             'url' => [
-                'secure' => true // Utiliser les URLs sécurisées
+                'secure' => true
             ]
         ]);
-
-        // Vérification de la configuration de Cloudinary dans les logs Heroku
-        error_log("Cloudinary Cloud Name: " . Configuration::instance()->cloud->cloudName);
-        error_log("Cloudinary API Key: " . Configuration::instance()->cloud->apiKey);
-
+    
         try {
             // Upload de l'image
             $uploadResult = (new UploadApi())->upload($file['tmp_name'], [
-                'folder' => 'arcadia-zoo',  // Dossier sur Cloudinary pour organiser les images
+                'folder' => 'arcadia-zoo',
             ]);
-
-            // Retourne l'URL sécurisée de l'image uploadée
+    
+            // Vérifie que l'URL est bien obtenue
+            error_log("URL retournée par Cloudinary : " . $uploadResult['secure_url']);
             return $uploadResult['secure_url'];
         } catch (Exception $e) {
-            // Affiche l'erreur en cas d'échec d'upload
+            // Journalise l'erreur en cas d'échec d'upload
+            error_log("Erreur lors de l'upload vers Cloudinary : " . $e->getMessage());
             echo "Erreur lors de l'upload vers Cloudinary : " . $e->getMessage() . "<br>";
             return false;
         }
