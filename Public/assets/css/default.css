@@ -7,6 +7,9 @@
 }
 
 /* typos générales */
+body {
+    overflow-x: hidden;
+}
 body, h1, h2, h3, h4, h5,  p, a, li {
     font-family: "Roboto", sans-serif;
     color:  rgba(53,35,2,1);
@@ -302,8 +305,7 @@ th, td{
     background-color: #FFFFFF; /* Couleur de fond blanche */
     color:  rgba(53,35,2,1); /* Couleur du texte visible */
 }
-/* Carrousel des images */
-/* Carrousel des images */
+/* Carrousel */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: rgba(53, 35, 2, 1);
@@ -321,9 +323,22 @@ th, td{
 
 .carousel {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 40px;
+}
+.carousel-inner {
+    width: 100%; 
+    overflow: hidden; 
 }
 
+.habitat-container {
+    max-width: 65rem;
+    margin: 0 auto;
+
+}
+.container-fluid, .container {
+    padding-left: 0;
+    padding-right: 0;
+}
 /* Classe pour ajuster les descriptions */
 .presentation {
     max-width: 60rem;
@@ -483,7 +498,29 @@ footer {
         margin-left: auto; /* Centre horizontalement */
         margin-right: auto; /* Centre horizontalement */
     }
-   
+
+    .habitat-image {
+        margin-bottom: 0;
+    }
+
+    .habitat-content {
+        padding-left: 2rem; /* Ajouter de l’espace entre texte et image */
+    }
+
+    .row-spacing {
+        margin-bottom: 5rem; /* Plus d'espace entre les sections */
+    }
+}
+
+/* Espacement sur Mobile */
+.habitat-image {
+    margin-bottom: 1rem;
+}
+
+/* Alignement du titre sur mobile */
+.habitat-title {
+    margin-bottom: 1rem;
+
 }
 @media (min-width: 992px) {
     .navbar-nav .nav-link {
@@ -498,22 +535,7 @@ footer {
    
 }
 @media (max-width: 992px) {
-    /* Pour les petits écrans, toujours afficher l'image avant le texte */
-    .reverse-order {
-        display: flex;
-        flex-direction: column; /* Affichage en colonne */
-    }
-    .order-image-first {
-        order: 1; /* Image toujours en premier */
-    }
-    .order-text-second {
-        order: 2; /* Texte toujours en deuxième */
-    }
-    .reverse-order img {
-    width: 100%;         
-    max-width: 15rem;     
-    height: auto;
-    }
+    
 
     .long-text {
         display: none; /* Masquer le texte par défaut */
