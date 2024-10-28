@@ -173,44 +173,27 @@ public function req(string $sql, array $attributs = null)
    
    public function uploadImageToCloudinary(array $file)
    {
-       // Étape 1 : Vérification de l'upload du fichier
        if (!isset($file['tmp_name']) || $file['error'] != 0) {
-           error_log("Erreur : Fichier non téléchargé ou problème lors du transfert.");
+           echo "Erreur : Fichier non téléchargé ou problème lors du transfert.<br>";
            return false;
        }
    
-       // Étape 2 : Vérification des variables d'environnement
-       error_log("Debug : Vérification des variables d'environnement Cloudinary...");
-       error_log("CLOUD_NAME : " . $_ENV['CLOUDINARY_CLOUD_NAME']);
-       error_log("API_KEY : " . $_ENV['CLOUDINARY_API_KEY']);
-       error_log("API_SECRET : " . $_ENV['CLOUDINARY_API_SECRET']);
+       // Initialise Cloudinary en utilisant la variable d'environnement CLOUDINARY_URL
+       $cloudinary = new Cloudinary();
    
-       // Initialise Cloudinary
-       $cloudinary = new Cloudinary([
-           'cloud' => [
-               'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
-               'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
-               'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
-           ],
-       ]);
-   
-       // Étape 3 : Tentative d'upload vers Cloudinary
        try {
-           error_log("Debug : Tentative d'upload de l'image vers Cloudinary...");
-           
+           // Upload de l'image
            $uploadResult = $cloudinary->uploadApi()->upload($file['tmp_name'], [
                'folder' => 'arcadia-zoo',
            ]);
-           
-           error_log("Debug : Upload réussi. URL de l'image : " . $uploadResult['secure_url']);
    
-           // Retourne l'URL de l'image
            return $uploadResult['secure_url'];
        } catch (Exception $e) {
-           error_log("Erreur lors de l'upload vers Cloudinary : " . $e->getMessage());
+           echo "Erreur lors de l'upload vers Cloudinary : " . $e->getMessage() . "<br>";
            return false;
        }
    }
+   
    
    
 }
