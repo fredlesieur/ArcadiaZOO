@@ -60,11 +60,13 @@ class AnimalController extends Controller {
             if (!empty($_FILES['image']['name'])) {
                 $uploadedImage = $animalModel->uploadImageToCloudinary($_FILES['image']);
                 if ($uploadedImage) {
+                    echo "Image uploadée avec succès : " . $uploadedImage; // Ligne pour le débogage
                     $data['image'] = $uploadedImage;
                 } else {
                     echo "Erreur lors du téléchargement de l'image.";
                 }
             }
+            
 
             $animalModel->hydrate($data);
             $animalModel->create();
