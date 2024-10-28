@@ -2,7 +2,7 @@
 
 <!-- Carrousel Animaux -->
 <section class="mt-5">
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
             <?php if (!empty($carousel)): ?>
                 <?php foreach ($carousel as $index => $item): ?>

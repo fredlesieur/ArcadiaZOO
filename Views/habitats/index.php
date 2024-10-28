@@ -1,38 +1,13 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0">LES HABITATS</h1>
 
 <!-- Carrousel Section -->
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="mt-5">
     <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
-            <?php
-            // Création d'un tableau contenant toutes les images
-            $allImages = [];
-            foreach ($habitats as $habitat) {
-                if (!empty($habitat['image'])) {
-                    $allImages[] = [
-                        'src' => $habitat['image'],
-                        'alt' => $habitat['name']
-                    ];
-                }
-                if (!empty($habitat['image2'])) {
-                    $allImages[] = [
-                        'src' => $habitat['image2'],
-                        'alt' => $habitat['name']
-                    ];
-                }
-                if (!empty($habitat['image3'])) {
-                    $allImages[] = [
-                        'src' => $habitat['image3'],
-                        'alt' => $habitat['name']
-                    ];
-                }
-            }
-         
-            // Affiche les images dans le carrousel 
-            foreach ($allImages as $index => $image): ?>
+            <?php foreach ($habitats as $habitat): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($image['src']) ?>" class="img-fluid3 p-2" alt="<?= htmlspecialchars($image['alt']) ?>" loading="lazy">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid d-block mx-auto" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
                     </div>
                 </div>
             <?php endforeach; ?>
