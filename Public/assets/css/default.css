@@ -510,6 +510,11 @@ footer {
     .row-spacing {
         margin-bottom: 5rem; /* Plus d'espace entre les sections */
     }
+    .carousel-image {
+        width: 912px;  /* Largeur fixe pour les écrans plus larges */
+        height: 608px; /* Hauteur fixe pour les écrans plus larges */
+        object-fit: cover; /* Couvre l'élément sans déformer l'image */
+    }
 }
 
 /* Espacement sur Mobile */
