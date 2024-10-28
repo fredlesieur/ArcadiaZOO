@@ -174,6 +174,13 @@ public function req(string $sql, array $attributs = null)
    
    public function uploadImageToCloudinary(array $file)
    {
+       // Test temporaire pour vérifier les variables d'environnement
+       echo "Cloud Name: " . getenv('CLOUDINARY_CLOUD_NAME') . "<br>";
+       echo "API Key: " . getenv('CLOUDINARY_API_KEY') . "<br>";
+       echo "API Secret: " . getenv('CLOUDINARY_API_SECRET') . "<br>";
+       exit; // Ajoute cet exit pour interrompre le script ici temporairement
+   
+       // Code existant pour gérer l'upload
        if (!isset($file['tmp_name']) || $file['error'] != 0) {
            echo "Erreur : Fichier non téléchargé ou problème lors du transfert.<br>";
            return false;
