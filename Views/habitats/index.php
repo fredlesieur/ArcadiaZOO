@@ -4,10 +4,13 @@
 <section class="mt-5">
     <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
-            <?php foreach ($habitats as $habitat): ?>
+        <?php if (!empty($habitats)): ?>   
+            <?php foreach ($habitats as $index=> $habitat): ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid d-block mx-auto" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>"
+                         class="img-fluid d-block mx-auto" alt="<?= htmlspecialchars($habitat['name']) ?>" 
+                         loading="lazy">
                     </div>
                 </div>
             <?php endforeach; ?>
