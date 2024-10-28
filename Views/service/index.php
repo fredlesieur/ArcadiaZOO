@@ -75,24 +75,24 @@
                                         <img src="/assets/images/<?= htmlspecialchars($service['image2'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= htmlspecialchars($service['name']); ?></h5>
-                                        <p class="card-text long-text"><?= htmlspecialchars($service['description']); ?></p>
+                                        <h5 class="card-title text-center"><?= htmlspecialchars($service['name']); ?></h5>
+                                        <p class="card-text long-text text-center"><?= htmlspecialchars($service['description']); ?></p>
                                         <div class="d-flex justify-content-center">
                                             <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
                                         </div>
-                                        <p class="card-text"><?= htmlspecialchars($service['tarifs']); ?></p>
-                                        <p class="card-text"><?= htmlspecialchars($service['horaires']); ?></p>
+                                        <p class="card-text text-center"><?= htmlspecialchars($service['tarifs']); ?></p>
+                                        <p class="card-text text-center"><?= htmlspecialchars($service['horaires']); ?></p>
                                     </div>
                                 <?php else: ?>
                                     <!-- Texte au-dessus, image en-dessous pour les services impairs -->
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= htmlspecialchars($service['name']); ?></h5>
-                                        <p class="card-text long-text"><?= htmlspecialchars($service['description']); ?></p>
+                                        <h5 class="card-title text-center"><?= htmlspecialchars($service['name']); ?></h5>
+                                        <p class="card-text long-text text-center"><?= htmlspecialchars($service['description']); ?></p>
                                         <div class="d-flex justify-content-center">
                                             <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
                                         </div>
-                                        <p class="card-text"><?= htmlspecialchars($service['tarifs']); ?></p>
-                                        <p class="card-text"><?= htmlspecialchars($service['horaires']); ?></p>
+                                        <p class="card-text text-center"><?= htmlspecialchars($service['tarifs']); ?></p>
+                                        <p class="card-text text-center"><?= htmlspecialchars($service['horaires']); ?></p>
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <img src="/assets/images/<?= htmlspecialchars($service['image2'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">

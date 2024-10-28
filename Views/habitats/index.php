@@ -59,7 +59,7 @@
                 <?php if ($index % 2 == 0): ?>
                     <!-- Image à gauche, texte à droite pour grands écrans -->
                     <div class="col-lg-6 d-flex justify-content-center order-image-first">
-                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image2']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
                     </div>
                     <div class="col-lg-6 colorSection2 p-4 d-flex flex-column justify-content-center align-items-center order-text-second">
                         <h2 class="mb-3 title"><?= htmlspecialchars(ucwords($habitat["name"])); ?></h2>
@@ -72,7 +72,7 @@
                         <a href="/habitats/showHabitat/<?= $habitat['id']; ?>" class="btn btn-primary w-50 py-4">Découvrir les animaux</a>
                     </div>
                     <div class="col-lg-6 d-flex justify-content-center order-image-first">
-                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
+                        <img src="/assets/images/<?= htmlspecialchars($habitat['image2']) ?>" class="img-fluid p-2" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
                     </div>
                 <?php endif; ?>
             </div>
