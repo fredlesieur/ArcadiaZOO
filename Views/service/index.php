@@ -72,7 +72,7 @@
                                 <?php if ($index % 2 == 0): ?>
                                     <!-- Image au-dessus, texte en-dessous pour les services pairs -->
                                     <div class="d-flex justify-content-center">
-                                        <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                                        <img src="/assets/images/<?= htmlspecialchars($service['image2'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($service['name']); ?></h5>
@@ -95,7 +95,7 @@
                                         <p class="card-text"><?= htmlspecialchars($service['horaires']); ?></p>
                                     </div>
                                     <div class="d-flex justify-content-center">
-                                        <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                                        <img src="/assets/images/<?= htmlspecialchars($service['image2'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                                     </div>
                                 <?php endif; ?>
                             </div>
