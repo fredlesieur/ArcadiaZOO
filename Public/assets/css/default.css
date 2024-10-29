@@ -50,8 +50,13 @@ h5 {
 .colorSection2 {
     background-color: #FAF4ED;
 }
-
-  
+.hours {
+    border: 2px solid  rgba(53,35,2,1) !important; 
+    border-radius: 10px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    padding: 20px !important;
+    background-color: white !important; 
+}  
   /* Espacement pour séparer les sections */
   .space {
     height: 2rem;
@@ -85,13 +90,7 @@ label {
     display: block;
     margin-bottom: 0.5rem;
 }
-.hours {
-    border: 2px solid  rgba(53,35,2,1) !important; /* Couleur de la bordure */
-    border-radius: 10px !important; /* Coins arrondis */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Ombre légère */
-    padding: 20px !important; /* Espace intérieur */
-    background-color: white;
-}
+
 input, select {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
