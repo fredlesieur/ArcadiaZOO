@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AnimalModel;
 use App\Models\HabitatsModel;
+
 class AnimalController extends Controller {
 
     public function viewAnimal($id)
@@ -58,15 +59,13 @@ class AnimalController extends Controller {
             ];
 
             if (!empty($_FILES['image']['name'])) {
-                $uploadedImage = $animalModel->uploadImageToCloudinary($_FILES['image']);
+                $uploadedImage = $animalModel->uploadImage($_FILES['image']);
                 if ($uploadedImage) {
-                    echo "Image uploadée avec succès : " . $uploadedImage; // Ligne pour le débogage
                     $data['image'] = $uploadedImage;
                 } else {
                     echo "Erreur lors du téléchargement de l'image.";
                 }
             }
-            
 
             $animalModel->hydrate($data);
             $animalModel->create();
