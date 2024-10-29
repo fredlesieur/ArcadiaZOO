@@ -13,28 +13,27 @@ class Model extends Db
     protected $table;
 
     // Instance de DB
-    private $db;
+    protected $db;
     protected $cloudinary;
 
     public function __construct($db)
     {
         $this->db = $db;
 
-        // Configuration Cloudinary
+        // Configuration Cloudinary directement avec les noms en minuscules
         Configuration::instance([
             'cloud' => [
-                'cloud_name' => getenv('cloud_name') ?: $_ENV['cloud_name'],
-                'api_key'    => getenv('api_key') ?: $_ENV['api_key'],
-                'api_secret' => getenv('api_secret') ?: $_ENV['api_secret'],
+                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
+                'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
+                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
             ],
             'url' => [
                 'secure' => true
             ]
         ]);
 
-        $this->cloudinary = new Cloudinary();
+        $this->cloudinary = new UploadApi();
     }
-
     public function findAll()
     {
         $query = $this->req("SELECT * FROM {$this->table}");
@@ -170,12 +169,25 @@ class Model extends Db
             echo "Erreur : Fichier non téléchargé ou problème lors du transfert.<br>";
             return false;
         }
-    
+
+        // Configure Cloudinary en utilisant la variable d'environnement CLOUDINARY_URL
+        Configuration::instance([
+            'cloud' => [
+                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
+                'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
+                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
+            ],
+            'url' => [
+                'secure' => true // Utiliser les URLs sécurisées
+            ]
+        ]);
+
         try {
-            $uploadResult = $this->cloudinary->uploadApi()->upload($file['tmp_name'], [
-                'folder' => 'arcadia-zoo',
+            // Upload de l'image
+            $uploadResult = (new UploadApi())->upload($file['tmp_name'], [
+                'folder' => 'arcadia-zoo',  // Dossier sur Cloudinary pour organiser les images
             ]);
-    
+
             error_log("URL retournée par Cloudinary : " . $uploadResult['secure_url']);
             return $uploadResult['secure_url'];
         } catch (Exception $e) {
