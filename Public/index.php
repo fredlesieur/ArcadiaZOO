@@ -4,7 +4,7 @@ use App\Autoloader;
 use App\Config\Main;
 use Dotenv\Dotenv;
 
- ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL); 
 

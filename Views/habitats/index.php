@@ -1,8 +1,8 @@
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">LES HABITATS</h1>
 
 <!-- Carrousel Section -->
-<section class="mt-5">
-    <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+<section class="colorSection2 mt-5">
+    <div id="habitatCarousel " class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
             <?php if (!empty($habitats)): ?>
                 <?php foreach ($habitats as $index => $habitat): ?>
