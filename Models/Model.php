@@ -3,32 +3,26 @@ namespace App\Models;
 
 use App\Config\Db;
 use Exception;
-use Cloudinary\Cloudinary;
 use Cloudinary\Configuration\Configuration;
 use Cloudinary\Api\Upload\UploadApi;
 
 class Model extends Db
 {
-    //Table de la base de données
     protected $table;
-
-    //Instance de DB
     private $db;
-    protected $cloudinary;
 
     public function __construct($db)
     {
         $this->db = $db;
-        
-        // Initialisation de Cloudinary avec les variables d'environnement
-        $this->cloudinary = new Cloudinary([
+
+        Configuration::instance([
             'cloud' => [
-                'cloud_name' => getenv('cloud_name'),
-                'api_key'    => getenv('api_key'),
-                'api_secret' => getenv('api_secret'),
+                'cloud_name' => $_ENV['cloud_name'],
+                'api_key'    => $_ENV['api_key'],
+                'api_secret' => $_ENV['api_secret'],
             ],
             'url' => [
-                'secure' => true,
+                'secure' => true
             ]
         ]);
     }
@@ -48,8 +42,9 @@ class Model extends Db
             $champs[] = "$champ = ?";
             $valeurs[] = $valeur;
         }
+        
         $liste_champs = implode(' AND ', $champs);
-        return $this->req('SELECT * FROM ' . $this->table . ' WHERE ' . $liste_champs, $valeurs)->fetchAll();
+        return $this->req("SELECT * FROM {$this->table} WHERE {$liste_champs}", $valeurs)->fetchAll();
     }
 
     public function find(int $id)
@@ -64,7 +59,7 @@ class Model extends Db
         $valeurs = [];
 
         foreach ($this as $champ => $valeur) {
-            if ($valeur != null && $champ != 'db' && $champ != 'table') {
+            if ($valeur !== null && $champ != 'db' && $champ != 'table') {
                 $champs[] = $champ;
                 $inter[] = "?";
                 $valeurs[] = $valeur;
@@ -74,7 +69,7 @@ class Model extends Db
         $liste_champs = implode(', ', $champs);
         $liste_inter = implode(', ', $inter);
 
-        return $this->req('INSERT INTO ' . $this->table . ' (' . $liste_champs . ') VALUES(' . $liste_inter . ')', $valeurs);
+        return $this->req("INSERT INTO {$this->table} ({$liste_champs}) VALUES({$liste_inter})", $valeurs);
     }
 
     public function update(int $id)
@@ -88,10 +83,11 @@ class Model extends Db
                 $valeurs[] = $valeur;
             }
         }
+        
         $valeurs[] = $id;
         $listChamps = implode(', ', $champs);
 
-        return $this->req('UPDATE ' . $this->table . ' SET ' . $listChamps . ' WHERE id = ?', $valeurs);
+        return $this->req("UPDATE {$this->table} SET {$listChamps} WHERE id = ?", $valeurs);
     }
 
     public function delete(int $id)
@@ -117,50 +113,6 @@ class Model extends Db
         }
     }
 
-    public function hydrate(array $donnees)
-    {
-        foreach ($donnees as $key => $value) {
-            $setter = 'set' . ucfirst($key);
-
-            if (method_exists($this, $setter)) {
-                $this->$setter($value);
-            }
-        }
-        return $this;
-    }
-
-    public function uploadImage(array $file, string $directory = 'assets/images/')
-    {
-        if (!isset($file['tmp_name']) || $file['error'] != 0) {
-            echo "Erreur : Fichier non téléchargé ou problème lors du transfert.<br>";
-            var_dump($file);
-            return false;
-        }
-
-        $fileName = uniqid() . '_' . basename($file['name']);
-        $targetDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/images/';
-        $targetFilePath = $targetDir . $fileName;
-
-        if (!is_dir($targetDir)) {
-            echo "Création du répertoire cible : " . $targetDir . "<br>";
-            if (!mkdir($targetDir, 0755, true)) {
-                echo "Erreur lors de la création du répertoire.<br>";
-                return false;
-            }
-        } else {
-            echo "Le répertoire existe déjà : " . $targetDir . "<br>";
-        }
-
-        if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
-            echo "Fichier déplacé avec succès vers : " . $targetFilePath . "<br>";
-            return $fileName;
-        } else {
-            echo "Erreur lors du déplacement du fichier.<br>";
-            var_dump($file);
-            return false;
-        }
-    }
-
     public function uploadImageToCloudinary(array $file)
     {
         if (!isset($file['tmp_name']) || $file['error'] != 0) {
@@ -169,12 +121,16 @@ class Model extends Db
         }
 
         try {
-            $uploadResult = $this->cloudinary->uploadApi()->upload($file['tmp_name'], [
+            $uploadResult = (new UploadApi())->upload($file['tmp_name'], [
                 'folder' => 'arcadia-zoo',
             ]);
-
-            error_log("URL retournée par Cloudinary : " . $uploadResult['secure_url']);
-            return $uploadResult['secure_url'];
+            
+            if (isset($uploadResult['secure_url'])) {
+                return $uploadResult['secure_url'];
+            } else {
+                echo "Erreur : URL non retournée par Cloudinary.<br>";
+                return false;
+            }
         } catch (Exception $e) {
             error_log("Erreur lors de l'upload vers Cloudinary : " . $e->getMessage());
             echo "Erreur lors de l'upload vers Cloudinary : " . $e->getMessage() . "<br>";
@@ -182,3 +138,4 @@ class Model extends Db
         }
     }
 }
+
