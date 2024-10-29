@@ -35,7 +35,7 @@
 
 <div class="separator"></div>
 
-<section class="colorSection p-3 p-lg-4 p-xl-5">
+<section class="colorSection2 p-3 p-lg-4 p-xl-5">
   <div class="container">
       <h2 class="text-center">Nos horaires</h2><br>
 
