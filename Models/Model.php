@@ -9,31 +9,30 @@ use Cloudinary\Api\Upload\UploadApi;
 
 class Model extends Db
 {
-    // Table de la base de données
+    //Table de la base de données
     protected $table;
 
-    // Instance de DB
-    protected $db;
+    //Instance de DB
+    private $db;
     protected $cloudinary;
 
     public function __construct($db)
     {
         $this->db = $db;
-
-        // Configuration Cloudinary directement avec les noms en minuscules
-        Configuration::instance([
+        
+        // Initialisation de Cloudinary avec les variables d'environnement
+        $this->cloudinary = new Cloudinary([
             'cloud' => [
-                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
-                'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
-                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
+                'cloud_name' => getenv('cloud_name'),
+                'api_key'    => getenv('api_key'),
+                'api_secret' => getenv('api_secret'),
             ],
             'url' => [
-                'secure' => true
+                'secure' => true,
             ]
         ]);
-
-        $this->cloudinary = new UploadApi();
     }
+
     public function findAll()
     {
         $query = $this->req("SELECT * FROM {$this->table}");
@@ -49,14 +48,13 @@ class Model extends Db
             $champs[] = "$champ = ?";
             $valeurs[] = $valeur;
         }
-        
         $liste_champs = implode(' AND ', $champs);
         return $this->req('SELECT * FROM ' . $this->table . ' WHERE ' . $liste_champs, $valeurs)->fetchAll();
     }
 
     public function find(int $id)
     {
-        return $this->req("SELECT * FROM {$this->table} WHERE id = $id ")->fetch();
+        return $this->req("SELECT * FROM {$this->table} WHERE id = ?", [$id])->fetch();
     }
 
     public function create()
@@ -131,7 +129,6 @@ class Model extends Db
         return $this;
     }
 
-    // Fonction d'upload d'image en local
     public function uploadImage(array $file, string $directory = 'assets/images/')
     {
         if (!isset($file['tmp_name']) || $file['error'] != 0) {
@@ -150,6 +147,8 @@ class Model extends Db
                 echo "Erreur lors de la création du répertoire.<br>";
                 return false;
             }
+        } else {
+            echo "Le répertoire existe déjà : " . $targetDir . "<br>";
         }
 
         if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
@@ -162,7 +161,6 @@ class Model extends Db
         }
     }
 
-    // Fonction d'upload d'image vers Cloudinary
     public function uploadImageToCloudinary(array $file)
     {
         if (!isset($file['tmp_name']) || $file['error'] != 0) {
@@ -170,22 +168,9 @@ class Model extends Db
             return false;
         }
 
-        // Configure Cloudinary en utilisant la variable d'environnement CLOUDINARY_URL
-        Configuration::instance([
-            'cloud' => [
-                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
-                'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
-                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
-            ],
-            'url' => [
-                'secure' => true // Utiliser les URLs sécurisées
-            ]
-        ]);
-
         try {
-            // Upload de l'image
-            $uploadResult = (new UploadApi())->upload($file['tmp_name'], [
-                'folder' => 'arcadia-zoo',  // Dossier sur Cloudinary pour organiser les images
+            $uploadResult = $this->cloudinary->uploadApi()->upload($file['tmp_name'], [
+                'folder' => 'arcadia-zoo',
             ]);
 
             error_log("URL retournée par Cloudinary : " . $uploadResult['secure_url']);
