@@ -9,10 +9,10 @@ use Cloudinary\Api\Upload\UploadApi;
 
 class Model extends Db
 {
-    //Table de la base de données
+    // Table de la base de données
     protected $table;
 
-    //Instance de DB
+    // Instance de DB
     private $db;
     protected $cloudinary;
 
@@ -20,18 +20,18 @@ class Model extends Db
     {
         $this->db = $db;
 
-        // Initialisation de Cloudinary
+        // Configuration Cloudinary
         Configuration::instance([
             'cloud' => [
-                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
-                'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
-                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
+                'cloud_name' => getenv('cloud_name') ?: $_ENV['cloud_name'],
+                'api_key'    => getenv('api_key') ?: $_ENV['api_key'],
+                'api_secret' => getenv('api_secret') ?: $_ENV['api_secret'],
             ],
             'url' => [
                 'secure' => true
             ]
         ]);
-        
+
         $this->cloudinary = new Cloudinary();
     }
 
