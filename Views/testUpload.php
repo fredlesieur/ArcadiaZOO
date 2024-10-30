@@ -1,4 +1,3 @@
-
 <h1>Résultat de l'Upload</h1>
 
 <?php if (isset($uploadResult['error'])): ?>
