@@ -24,12 +24,8 @@ class CloudinaryModel
         try {
             $timestamp = time();
     
-            // Utilisation de http_build_query pour créer la chaîne de signature
-            $params = [
-                'folder' => 'test_folder',
-                'timestamp' => $timestamp
-            ];
-            $signatureString = http_build_query($params, '', '&');
+            // Construction manuelle de la chaîne de signature pour éviter tout remplacement
+            $signatureString = 'folder=test_folder' . chr(38) . 'timestamp=' . $timestamp;
     
             // Log de débogage pour vérifier la chaîne de signature
             error_log("Chaîne de signature avant hachage : " . $signatureString);
