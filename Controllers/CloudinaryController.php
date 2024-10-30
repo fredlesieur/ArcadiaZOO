@@ -62,5 +62,5 @@ class CloudinaryController extends Controller
         return json_decode($response, true);
     }
 }
-}
+
 
