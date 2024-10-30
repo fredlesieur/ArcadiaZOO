@@ -9,16 +9,18 @@ class CloudinaryModel
     private $cloudinary;
 
     public function __construct()
-    {
-        // Configuration Cloudinary avec les variables d’environnement
-        $this->cloudinary = new Cloudinary([
-            'cloud' => [
-                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'] ?? $_ENV['cloud_name'],
-                'api_key'    => $_ENV['CLOUDINARY_API_KEY'] ?? $_ENV['api_key'],
-                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'] ?? $_ENV['api_secret']
-            ]
-        ]);
-    }
+{
+    // Debug temporaire pour vérifier la valeur de cloud_name
+    error_log("Cloud Name: " . $_ENV['cloud_name']);
+
+    $this->cloudinary = new Cloudinary([
+        'cloud' => [
+            'cloud_name' => $_ENV['cloud_name'],
+            'api_key'    => $_ENV['api_key'],
+            'api_secret' => $_ENV['api_secret']
+        ]
+    ]);
+}
 
     public function uploadImage($imagePath)
     {
