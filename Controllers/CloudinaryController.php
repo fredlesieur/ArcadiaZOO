@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\CloudinaryModel;
@@ -16,7 +17,6 @@ class CloudinaryController extends Controller
     public function testUpload()
     {
         // Chemin vers une image de test dans le dossier assets/images
-     
         $imagePath = ROOT . '/Public/assets/images/aigle.webp';
 
         // Appel de la fonction d'upload via le modèle
