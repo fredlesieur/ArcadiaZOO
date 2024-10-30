@@ -2,7 +2,7 @@
 
 <?php if (isset($uploadResult['error'])): ?>
     <div style="color: red;">
-        <strong>Erreur :</strong> <?php echo htmlspecialchars($uploadResult['error']); ?>
+        <strong>Erreur :</strong> <?php echo htmlspecialchars($uploadResult['error']['message']); ?>
     </div>
 <?php else: ?>
     <div style="color: green;">
