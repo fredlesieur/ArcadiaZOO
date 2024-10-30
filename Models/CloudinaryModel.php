@@ -31,7 +31,7 @@ class CloudinaryModel
 
         // Correction : génération de la signature en format de chaîne valide
         $dataToSign = "folder=test_folder&timestamp=$timestamp";
-        $signature = hash_hmac('sha1', $dataToSign, $_ENV['api_secret']);
+        $signature = hash_hmac('sha256', $dataToSign, $_ENV['api_secret']);  // Utilisation de SHA-256
 
         // Ajout de la signature et de l'API Key dans les paramètres
         $params['signature'] = $signature;
