@@ -31,11 +31,11 @@ class CloudinaryModel
 
         // Correction : génération de la signature en format de chaîne valide
         $dataToSign = "folder=test_folder&timestamp=$timestamp";
-        $signature = hash_hmac('sha1', $dataToSign, $_ENV['CLOUDINARY_API_SECRET']);
+        $signature = hash_hmac('sha1', $dataToSign, $_ENV['api_secret']);
 
         // Ajout de la signature et de l'API Key dans les paramètres
         $params['signature'] = $signature;
-        $params['api_key'] = $_ENV['CLOUDINARY_API_KEY'];
+        $params['api_key'] = $_ENV['api_key'];
 
         $result = $this->cloudinary->uploadApi()->upload($imagePath, $params);
         return $result;
