@@ -24,19 +24,23 @@ class CloudinaryModel
         try {
             $timestamp = time();
     
-            // Chaîne de signature sans problème de caractères spéciaux
-            $signatureString = "folder=test_folder&timestamp=" . $timestamp;
+            // Utilisation de http_build_query pour créer la chaîne de signature
+            $params = [
+                'folder' => 'test_folder',
+                'timestamp' => $timestamp
+            ];
+            $signatureString = http_build_query($params, '', '&');
     
-            // Vérification de la chaîne de signature avant le hachage
-            error_log("Chaîne de signature : " . $signatureString);
+            // Log de débogage pour vérifier la chaîne de signature
+            error_log("Chaîne de signature avant hachage : " . $signatureString);
     
-            // Génération de la signature en utilisant la clé correcte de $_ENV
+            // Génération de la signature
             $signature = hash_hmac('sha256', $signatureString, $_ENV['api_secret']);
     
-            // Vérification de la signature générée pour le débogage
+            // Log de débogage pour vérifier la signature
             error_log("Signature générée : " . $signature);
     
-            // Téléchargement avec les paramètres générés
+            // Envoi de la requête à Cloudinary
             $result = $this->cloudinary->uploadApi()->upload($imagePath, [
                 'folder'    => 'test_folder',
                 'timestamp' => $timestamp,
@@ -49,5 +53,6 @@ class CloudinaryModel
             return ['error' => $e->getMessage()];
         }
     }
+    
     
 }
