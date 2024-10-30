@@ -23,14 +23,25 @@ class CloudinaryModel
     {
         try {
             $timestamp = time();
-            // Assurez-vous d'utiliser le caractère & pour concaténer folder et timestamp
-            $signature = hash_hmac('sha256', "folder=test_folder&timestamp=$timestamp", $_ENV['CLOUDINARY_API_SECRET']);
     
+            // Chaîne de signature sans problème de caractères spéciaux
+            $signatureString = "folder=test_folder&timestamp=" . $timestamp;
+    
+            // Vérification de la chaîne de signature avant le hachage
+            error_log("Chaîne de signature : " . $signatureString);
+    
+            // Génération de la signature en utilisant la clé correcte de $_ENV
+            $signature = hash_hmac('sha256', $signatureString, $_ENV['api_secret']);
+    
+            // Vérification de la signature générée pour le débogage
+            error_log("Signature générée : " . $signature);
+    
+            // Téléchargement avec les paramètres générés
             $result = $this->cloudinary->uploadApi()->upload($imagePath, [
-                'folder' => 'test_folder',
+                'folder'    => 'test_folder',
                 'timestamp' => $timestamp,
                 'signature' => $signature,
-                'api_key' => $_ENV['CLOUDINARY_API_KEY']
+                'api_key'   => $_ENV['api_key']
             ]);
     
             return $result;
