@@ -30,5 +30,11 @@ class CloudinaryModel
             return ['error' => $e->getMessage()];
         }
     }
+    public function testEnv()
+{
+    echo 'Cloud Name: ' . getenv('cloud_name') . '<br>';
+    echo 'API Key: ' . getenv('api_key') . '<br>';
+    echo 'API Secret: ' . getenv('api_secret') . '<br>';
+}
 }
 
