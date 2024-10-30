@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="author" content="Zoo Arcadia">
     <meta name="description" content="Zoo Arcadia, le zoo de tous les animaux">
@@ -21,8 +22,12 @@
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"> <!-- Pour le responsive -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- CSS personnalisé -->
     <link rel="stylesheet" href="/assets/css/default.css">
 
     <title> ArcadiaZoo</title>
@@ -30,6 +35,7 @@
 
 <body class="container-fluid p-3">
     <header>
+        <!-- navbar -->
         <nav class="navbar navbar-expand-xl bg-light shadow-sm">
             <div class="container-fluid">
                 <a href="/" class="navbar-brand">
@@ -59,7 +65,7 @@
     <main id="main-page" class="w-auto mt-4">
         <?= $contenu ?>
     </main>
-
+<!-- footer -->
     <footer class="bg-dark text-light text-center py-3">
         <div class="footer">
             <div class="d-flex justify-content-between align-items-center first-line mb-3">
@@ -81,7 +87,7 @@
             </div>
 
             <div class="second-line">
-                <p class="mb-0 text-white">&copy; ArcadiaZOO 2024</p>
+                <p class="mb-0 text-white">&copy; - ArcadiaZOO 2024 - Lesieur Frédéric -</p>
                 <a href="/footer/mentionsLegales" class="text-light m-1">Mentions légales</a>
                 <a href="/footer/rgpd" class="text-light m-1"> RGPD</a>
                 <a href="/footer/cgu" class="text-light m-1">CGU</a>

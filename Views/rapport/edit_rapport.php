@@ -1,8 +1,8 @@
 <?php
 // Définir le fuseau horaire de la France
 date_default_timezone_set('Europe/Paris');
-$currentDate = date('Y-m-d');
-$currentDateTime = date('Y-m-d\TH:i');
+$currentDate = date('d-m-Y');
+$currentDateTime = date('d-m-Y\TH:i');
 ?>
 
 <h1 class="container-fluid banner pt-5 pb-5">Modifier le rapport</h1>
@@ -32,7 +32,7 @@ $currentDateTime = date('Y-m-d\TH:i');
                 <input type="text" name="grammage_preconise" id="grammage_preconise" value="<?= htmlspecialchars($rapport['grammage_preconise'] ?? ''); ?>"><br>
 
                 <label for="date_passage">Date de passage :</label>
-                <input type="date" name="date_passage" id="date_passage" value="<?= isset($rapport['date_passage']) ? date('Y-m-d', strtotime($rapport['date_passage'])) : $currentDate; ?>"><br>
+                <input type="date" name="date_passage" id="date_passage" value="<?= isset($rapport['date_passage']) ? date('d-m-Y', strtotime($rapport['date_passage'])) : $currentDate; ?>"><br>
 
                 <label for="detail_etat">Détail état :</label>
                 <input type="text" name="detail_etat" id="detail_etat" value="<?= htmlspecialchars($rapport['detail_etat'] ?? ''); ?>"><br>
@@ -41,7 +41,7 @@ $currentDateTime = date('Y-m-d\TH:i');
             <!-- Champs pour les employés -->
             <?php if ($_SESSION['role'] === 'employe'): ?>
                 <label for="date_heure">Date et heure passage :</label>
-                <input type="datetime-local" name="date_heure" id="date_heure" value="<?= isset($rapport['date_heure']) ? date('Y-m-d\TH:i', strtotime($rapport['date_heure'])) : $currentDateTime; ?>"><br>
+                <input type="datetime-local" name="date_heure" id="date_heure" value="<?= isset($rapport['date_heure']) ? date('d-m-Y\TH:i', strtotime($rapport['date_heure'])) : $currentDateTime; ?>"><br>
 
                 <label for="nourriture_donnee">Nourriture donnée :</label>
                 <input type="text" name="nourriture_donnee" id="nourriture_donnee" value="<?= htmlspecialchars($rapport['nourriture_donnee'] ?? ''); ?>"><br>

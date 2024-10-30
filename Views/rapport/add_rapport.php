@@ -1,8 +1,8 @@
 <?php
 // Définir le fuseau horaire de la France
 date_default_timezone_set('Europe/Paris');
-$currentDate = date('Y-m-d');
-$currentDateTime = date('Y-m-d\TH:i');
+$currentDate = date('d-m-Y');
+$currentDateTime = date('d-m-Y\TH:i');
 ?>
 
 <h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">Ajouter un rapport</h1>
