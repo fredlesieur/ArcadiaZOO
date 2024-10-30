@@ -1,45 +1,35 @@
 <?php
 
-namespace App\Models;
+namespace App\Controllers;
 
-use Cloudinary\Cloudinary;
+use App\Models\CloudinaryModel;
 
-class CloudinaryModel
+class CloudinaryController extends Controller
 {
-    private $cloudinary;
+    private $cloudinaryModel;
 
     public function __construct()
     {
-        // Configuration Cloudinary
-        $this->cloudinary = new Cloudinary([
-            'cloud' => [
-                'cloud_name' => getenv('cloud_name'),
-                'api_key'    => getenv('api_key'),
-                'api_secret' => getenv('api_secret')
-            ]
-        ]);
+        // Initialisation du modèle Cloudinary
+        $this->cloudinaryModel = new CloudinaryModel();
     }
 
-    public function uploadImage($imagePath)
+    public function testUpload()
     {
-        $timestamp = time();
-        $params_to_sign = "folder=test_folder&timestamp=" . $timestamp;
+        // Chemin vers une image de test dans le dossier assets/images
+        $imagePath = ROOT . '/Public/assets/images/aigle.webp';
 
-        // Génération de la signature
-        $signature = hash_hmac("sha256", $params_to_sign, getenv('api_secret'));
+        // Appel de la fonction d'upload via le modèle
+        $uploadResult = $this->cloudinaryModel->uploadImage($imagePath);
 
-        // Tentative d'upload avec les paramètres corrects
-        try {
-            $result = $this->cloudinary->uploadApi()->upload($imagePath, [
-                'folder'    => 'test_folder',
-                'timestamp' => $timestamp,
-                'signature' => $signature,
-                'api_key'   => getenv('api_key')
-            ]);
-
-            return $result;
-        } catch (\Exception $e) {
-            return ['error' => $e->getMessage()];
-        }
+        // Appel de la méthode render en passant les données directement
+        $this->render("testCloudinary", ["uploadResult" => $uploadResult]);
     }
+    public function testEnv()
+{
+    echo 'Cloud Name: ' . getenv('cloud_name') . '<br>';
+    echo 'API Key: ' . getenv('api_key') . '<br>';
+    echo 'API Secret: ' . getenv('api_secret') . '<br>';
+
+}
 }
