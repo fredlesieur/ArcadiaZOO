@@ -11,20 +11,23 @@ class CloudinaryModel
 
     public function __construct()
     {
-        // Initialisation de Cloudinary avec `cloudinary_url`
-        $this->cloudinary = new Cloudinary($_ENV['cloudinary_url']);
+        $this->cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => $_ENV['cloud_name'],
+                'api_key'    => $_ENV['api_key'],
+                'api_secret' => $_ENV['api_secret']
+            ]
+        ]);
     }
 
     public function uploadImage($imagePath)
     {
         try {
-            // Ajout du timestamp pour générer une signature valide
-            $timestamp = time();
-
-            $result = $this->cloudinary->uploadApi()->upload($imagePath, [
+            $options = [
                 'folder' => 'test_folder',
-                'timestamp' => $timestamp
-            ]);
+                'timestamp' => time()  // Ajout correct du timestamp
+            ];
+            $result = $this->cloudinary->uploadApi()->upload($imagePath, $options);
             return $result;
         } catch (Exception $e) {
             return ['error' => $e->getMessage()];
