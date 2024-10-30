@@ -20,23 +20,23 @@ class CloudinaryModel
     }
 
     public function uploadImage($imagePath)
-{
-    try {
-        $timestamp = time();
-        // Utilisation correcte de & dans la chaîne de signature
-        $stringToSign = 'folder=test_folder&timestamp=' . $timestamp;
-        $signature = hash_hmac('sha256', $stringToSign, $_ENV['api_secret']);
-
-        $result = $this->cloudinary->uploadApi()->upload($imagePath, [
-            'folder'     => 'test_folder',
-            'timestamp'  => $timestamp,
-            'signature'  => $signature,
-            'api_key'    => $_ENV['api_key']
-        ]);
-
-        return $result;
-    } catch (Exception $e) {
-        return ['error' => $e->getMessage()];
+    {
+        try {
+            $timestamp = time();
+            // Assurez-vous d'utiliser le caractère & pour concaténer folder et timestamp
+            $signature = hash_hmac('sha256', "folder=test_folder&timestamp=$timestamp", $_ENV['CLOUDINARY_API_SECRET']);
+    
+            $result = $this->cloudinary->uploadApi()->upload($imagePath, [
+                'folder' => 'test_folder',
+                'timestamp' => $timestamp,
+                'signature' => $signature,
+                'api_key' => $_ENV['CLOUDINARY_API_KEY']
+            ]);
+    
+            return $result;
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
     }
-}
+    
 }
