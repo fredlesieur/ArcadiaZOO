@@ -21,16 +21,27 @@ class CloudinaryModel
     }
 
     public function uploadImage($imagePath)
-    {
-        try {
-            $options = [
-                'folder' => 'test_folder',
-                'timestamp' => time()  // Ajout correct du timestamp
-            ];
-            $result = $this->cloudinary->uploadApi()->upload($imagePath, $options);
-            return $result;
-        } catch (Exception $e) {
-            return ['error' => $e->getMessage()];
-        }
+{
+    try {
+        $timestamp = time();  // Assurez-vous que le timestamp est bien généré
+        $params = [
+            'folder' => 'test_folder',
+            'timestamp' => $timestamp,
+        ];
+
+        // Correction : génération de la signature en format de chaîne valide
+        $dataToSign = "folder=test_folder&timestamp=$timestamp";
+        $signature = hash_hmac('sha1', $dataToSign, $_ENV['CLOUDINARY_API_SECRET']);
+
+        // Ajout de la signature et de l'API Key dans les paramètres
+        $params['signature'] = $signature;
+        $params['api_key'] = $_ENV['CLOUDINARY_API_KEY'];
+
+        $result = $this->cloudinary->uploadApi()->upload($imagePath, $params);
+        return $result;
+    } catch (Exception $e) {
+        return ['error' => $e->getMessage()];
     }
+}
+
 }
