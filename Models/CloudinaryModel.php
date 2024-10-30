@@ -20,44 +20,22 @@ class CloudinaryModel
     }
 
     public function uploadImage($imagePath)
-{
-    try {
+    {
         $timestamp = time();
-
-        // Création d'un tableau pour éviter toute substitution
         $params = [
             'folder' => 'test_folder',
             'timestamp' => $timestamp
         ];
-
-        // Reconstitution manuelle de la chaîne de signature en utilisant http_build_query
+    
+        // Chaîne de signature pour tester l'encodage
         $signatureString = implode('&', [
             'folder=' . $params['folder'],
             'timestamp=' . $params['timestamp']
         ]);
-
-        // Log pour vérifier la chaîne avant le hachage
-        error_log("Chaîne de signature avant hachage : " . $signatureString);
-
-        // Génération de la signature
-        $signature = hash_hmac('sha256', $signatureString, $_ENV['api_secret']);
-
-        // Log pour vérifier la signature générée
-        error_log("Signature générée : " . $signature);
-
-        // Envoi de la requête à Cloudinary
-        $result = $this->cloudinary->uploadApi()->upload($imagePath, [
-            'folder'    => 'test_folder',
-            'timestamp' => $timestamp,
-            'signature' => $signature,
-            'api_key'   => $_ENV['api_key']
-        ]);
-
-        return $result;
-    } catch (Exception $e) {
-        return ['error' => $e->getMessage()];
-    }
+    
+        // Log pour afficher la chaîne et voir si `&` se transforme en `×`
+        error_log("Chaîne de signature pour test : " . $signatureString);
+ 
 }
 
-    
 }
