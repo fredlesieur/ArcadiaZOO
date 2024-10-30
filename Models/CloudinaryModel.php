@@ -18,24 +18,19 @@ class CloudinaryModel
             ]
         ]);
     }
-
     public function uploadImage($imagePath)
     {
-        $timestamp = time();
-        $params = [
-            'folder' => 'test_folder',
-            'timestamp' => $timestamp
-        ];
+        try {
+            // Téléchargement direct avec Cloudinary, sans génération manuelle de signature
+            $result = $this->cloudinary->uploadApi()->upload($imagePath, [
+                'folder' => 'test_folder'
+            ]);
     
-        // Chaîne de signature pour tester l'encodage
-        $signatureString = implode('&', [
-            'folder=' . $params['folder'],
-            'timestamp=' . $params['timestamp']
-        ]);
+            return $result;
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
     
-        // Log pour afficher la chaîne et voir si `&` se transforme en `×`
-        error_log("Chaîne de signature pour test : " . $signatureString);
- 
-}
 
 }
