@@ -1,6 +1,8 @@
 <?php
+namespace App\Models;
 
 use Cloudinary\Cloudinary;
+use Exception;
 
 class CloudinaryModel
 {
@@ -8,19 +10,29 @@ class CloudinaryModel
 
     public function __construct()
     {
-        // Initialisation de la connexion à Cloudinary
+        // Configuration Cloudinary avec les variables d’environnement
         $this->cloudinary = new Cloudinary([
             'cloud' => [
-                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'],
-                'api_key'    => $_ENV['CLOUDINARY_API_KEY'],
-                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'],
-            ],
+                'cloud_name' => $_ENV['CLOUDINARY_CLOUD_NAME'] ?? $_ENV['cloud_name'],
+                'api_key'    => $_ENV['CLOUDINARY_API_KEY'] ?? $_ENV['api_key'],
+                'api_secret' => $_ENV['CLOUDINARY_API_SECRET'] ?? $_ENV['api_secret']
+            ]
         ]);
     }
 
-    // Fonction pour uploader une image sur Cloudinary
-    public function uploadImage($filePath)
+    public function uploadImage($imagePath)
     {
-        return $this->cloudinary->uploadApi()->upload($filePath);
+        try {
+           
+            // Upload de l'image dans le dossier 'test_folder'
+            $result = $this->cloudinary->uploadApi()->upload($imagePath, [
+                'folder' => 'test_folder',
+           
+            ]);
+
+            return $result;
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
     }
 }
