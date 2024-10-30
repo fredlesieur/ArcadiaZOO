@@ -20,17 +20,17 @@ class CloudinaryModel
         ]);
     }
 
-    public function uploadImage($imagePath)
+    public function uploadImage($imageUrl)
     {
         $timestamp = time();
 
-        // Création de la chaîne de signature manuellement
+        // Création de la chaîne de signature
         $string_to_sign = "folder=test_folder&timestamp=" . $timestamp;
         $signature = hash_hmac("sha256", $string_to_sign, getenv('api_secret'));
 
         // Tentative d'upload avec les paramètres corrects
         try {
-            $result = $this->cloudinary->uploadApi()->upload($imagePath, [
+            $result = $this->cloudinary->uploadApi()->upload($imageUrl, [
                 'folder'    => 'test_folder',
                 'timestamp' => $timestamp,
                 'signature' => $signature,
@@ -43,3 +43,4 @@ class CloudinaryModel
         }
     }
 }
+
