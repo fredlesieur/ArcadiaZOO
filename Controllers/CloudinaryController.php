@@ -31,6 +31,5 @@ class CloudinaryController extends Controller
     echo 'API Key: ' . getenv('api_key') . '<br>';
     echo 'API Secret: ' . getenv('api_secret') . '<br>';
 
-     $this->render("testCloudinary");
 }
 }
