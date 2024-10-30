@@ -9,11 +9,12 @@ class CloudinaryModel
 
     public function __construct()
     {
+        // Initialisation du SDK Cloudinary avec les variables d'environnement
         $this->cloudinary = new Cloudinary([
             'cloud' => [
-                'cloud_name' => $_ENV['cloud_name'],
-                'api_key'    => $_ENV['api_key'],
-                'api_secret' => $_ENV['api_secret']
+                'cloud_name' => getenv('cloud_name'),
+                'api_key'    => getenv('api_key'),
+                'api_secret' => getenv('api_secret')
             ]
         ]);
     }
@@ -21,15 +22,9 @@ class CloudinaryModel
     public function uploadImage($imagePath)
     {
         try {
-            $timestamp = time();
-            $signatureString = "folder=test_folder&timestamp={$timestamp}";
-            $signature = hash_hmac('sha256', $signatureString, $_ENV['api_secret']);
-
+            // Upload d'image sans signature manuelle
             $result = $this->cloudinary->uploadApi()->upload($imagePath, [
-                'folder' => 'test_folder',
-                'timestamp' => $timestamp,
-                'signature' => $signature,
-                'api_key' => $_ENV['api_key']
+                'folder' => 'test_folder'
             ]);
 
             return $result;
