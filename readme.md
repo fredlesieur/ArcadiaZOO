@@ -18,13 +18,13 @@ Une API RESTful pour gérer les informations d'un zoo, y compris les animaux, le
 
 Avant d'exécuter cette API, assurez-vous d'avoir installé les éléments suivants :
 
-- **FrontEnd**
+**FrontEnd**
 
 - HTML pour la structure des pages
 - CSS et Bootstrap pour le style des pages
 - JavaScript pour les fonctionnalités côté client, y compris les requêtes `fetch` pour l’API
 
--**Backend**
+**Backend**
 
 - PHP version 8.3
 - Git pour cloner le projet et gérer le contrôle de version
