@@ -141,10 +141,12 @@ Ouvrez votre navigateur et accédez à l'API à l'adresse  :(http://localhost:80
 heroku login
 heroku create "nom""
 git push heroku main
-Configurez les variables d’environnement dans le panneau Heroku pour les connecter aux services MySQL, MongoDB, et Cloudinary.
+
 ```
+Configurez les variables d’environnement dans le panneau Heroku pour les connecter aux services MySQL, MongoDB, et Cloudinary.
 
 Application en ligne : [https://arcadia-zoo-fl-52fd2cbf29c6.herokuapp.com/]
+
 
 ## Auteurs:
 
