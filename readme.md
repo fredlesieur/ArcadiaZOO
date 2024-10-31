@@ -148,8 +148,8 @@ Application en ligne : [https://arcadia-zoo-fl-52fd2cbf29c6.herokuapp.com/]
 
 ## Auteurs:
 
-LESIEUR Frédéric 2024 – Créateur de l’API
-et la contribution de Yoahn 
+- LESIEUR Frédéric 2024 – Créateur de l’API
+- Et la contribution de Yoahn alias yohanGPT
 
 
 
