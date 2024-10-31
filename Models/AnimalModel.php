@@ -53,7 +53,15 @@ class AnimalModel extends Model
         $this->req("UPDATE {$this->table} SET views = views + 1 WHERE id = ?", [$id]);
 
     }
-    
+
+    // Récupérer les animaux par ordre alphabétique
+    public function findAllOrderedByName()
+{
+    $query = $this->req("SELECT * FROM {$this->table} ORDER BY nom ASC");
+    return $query->fetchAll();
+}
+
+
     // Getters
     public function getId() {
         return $this->id;
