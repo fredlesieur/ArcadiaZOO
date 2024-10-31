@@ -1,5 +1,5 @@
 <?php
-$apiSecret = 'KlK2br2jEW5fPke9mz-3ZNhlVWg'; // Remplacez par votre clé secrète
+$apiSecret = "KlK2br2jEW5fPke9mz-3ZNhlVWg";
 
 // Paramètres de l'upload
 $timestamp = time();
