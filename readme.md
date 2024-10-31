@@ -109,12 +109,12 @@ db.horaires.insertMany([
 
 Quelques exemples :
 
-GET /animaux : Récupérer tous les animaux
-POST /animaux : Ajouter un nouvel animal (administrateur)
-GET /habitats : Récupérer tous les habitats
-POST /horaires : Ajouter un nouvel horaire (administrateur)
-GET /services : Récupérer tous les services
-POST /rapports : Ajouter un rapport (employés et vétérinaires)
+- GET /animaux : Récupérer tous les animaux
+- POST /animaux : Ajouter un nouvel animal (administrateur)
+- GET /habitats : Récupérer tous les habitats
+- POST /horaires : Ajouter un nouvel horaire (administrateur)
+- GET /services : Récupérer tous les services
+- POST /rapports : Ajouter un rapport (employés et vétérinaires)
 
 
 ## Déploiement local et heroku
@@ -127,7 +127,7 @@ Pour lancer l'API en local, vous pouvez utiliser le serveur intégré de PHP ave
 
 ou configurez MAMP pour pointer vers le répertoire **public** de votre projet.
 
-Ouvrez votre navigateur et accédez à l'API à l'adresse  : [http://localhost:8000](http://localhost:8000).
+Ouvrez votre navigateur et accédez à l'API à l'adresse  :(http://localhost:8000).
 
 2. Déployer l'API sur HEROKU
 
