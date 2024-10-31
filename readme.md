@@ -145,6 +145,10 @@ Configurez les variables d’environnement dans le panneau Heroku pour les conne
 
 Application en ligne : [https://arcadia-zoo-fl-52fd2cbf29c6.herokuapp.com/]
 
+## Auteurs:
+
+LESIEUR Frédéric 2024 – Créateur de l’API
+et la contribution de Yoahn 
 
 
 
