@@ -35,6 +35,7 @@ Avant d'exécuter cette API, assurez-vous d'avoir installé les éléments suiva
 - MongoDB pour gérer les horaires et les données NoSQL
 - Cloudinary pour la gestion des images (CRUD des images)
 - PHPUnit pour les tests unitaires
+- Dotenv pour les variables d'environnement
 
 ## Installation
 
