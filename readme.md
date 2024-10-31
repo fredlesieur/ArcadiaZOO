@@ -105,6 +105,11 @@ db.horaires.insertMany([
   { saison: "...", semaine: "...", week_end: "..." }
 ])
 ```
+### Importer les bases de données SQL
+
+- ouvrir le dossier database/template-sql-arcadia.sql
+- suivre les instructions.
+
 ## Utilisation de l'API
 
 Quelques exemples :
