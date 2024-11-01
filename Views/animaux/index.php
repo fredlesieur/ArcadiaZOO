@@ -5,7 +5,7 @@
     <input type="hidden" id="animalId" value="<?= $animal['id']; ?>">
         <div class="col-md-6 h-100">
             <div class="card h-100">
-                <img src="/assets/images/<?= isset($animal['animal_image']) ? htmlspecialchars($animal['animal_image']) : 'default.jpg'; ?>" 
+                <img src="<?= isset($animal['animal_image']) ? htmlspecialchars($animal['animal_image']) : 'default.jpg'; ?>" 
                      class="card-img-top img-fluid2" 
                      alt="<?= isset($animal['animal_nom']) ? htmlspecialchars($animal['animal_nom']) : 'Nom inconnu'; ?>" 
                      loading="lazy">
