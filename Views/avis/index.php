@@ -8,7 +8,7 @@
         $activeClass = 'active'; // activation de la premiere feuille
         foreach ($avisChunks as $avisGroup): ?>
           <div class="carousel-item <?= $activeClass; ?>">
-            <div class="row justify-content-center m-auto w-100">
+            <div class="row justify-content-center m-auto cardWidth">
               <?php foreach ($avisGroup as $avis): ?>
                 <div class="col-12 col-md-4 mb-3"> 
                   <div class="card text-bg-light mb-3">

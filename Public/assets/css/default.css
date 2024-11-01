@@ -394,7 +394,10 @@ th, td{
 .card-text {
     text-align: justify;
 }
+.cardWidth{
 
+    width:100% !important
+}
 /* responsive iframe */
 
 .iframe-container {
