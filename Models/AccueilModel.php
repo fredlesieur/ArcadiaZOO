@@ -29,7 +29,7 @@ class AccueilModel extends Model
     public function updateAccueil($id, $name, $description, $image)
     {
         return $this->req(
-            "UPDATE " . $this->table . " SET id = :id, name = :name, description = :description, image = :image WHERE id = :id",
+            "UPDATE " . $this->table . " SET name = :name, description = :description, image = :image WHERE id = :id",
             [
                 'id' => $id,
                 'name' => $name,

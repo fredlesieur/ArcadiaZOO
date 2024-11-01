@@ -6,11 +6,11 @@
     <form action="/accueil/editAccueil/<?= $accueil['id'] ?>" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="name" class="form-label">Nom</label>
-            <input type="text" name="name" id="name" class="form-control" value="<?= htmlspecialchars($accueil['name']) ?>" required>
+            <input type="text" name="name" id="name" class="form-control" value="<?= $accueil['name'] ?>" required>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea name="description" id="description" class="form-control" required><?= htmlspecialchars($accueil['description']) ?></textarea>
+            <textarea name="description" id="description" class="form-control" required><?= $accueil['description'] ?></textarea>
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>
