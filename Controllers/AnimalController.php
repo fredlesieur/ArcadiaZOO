@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AnimalModel;
 use App\Models\HabitatsModel;
-
+use App\Config\CloudinaryService;
 class AnimalController extends Controller {
 
     public function viewAnimal($id)
@@ -49,6 +49,7 @@ class AnimalController extends Controller {
         $habitatModel = new HabitatsModel();
         $animaux = $animalModel->findAll();
         $habitats = $habitatModel->findAll();
+        $cloudinaryService = new CloudinaryService();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
@@ -58,14 +59,15 @@ class AnimalController extends Controller {
                 'id_habitats' => $_POST['id_habitat']
             ];
 
-            if (!empty($_FILES['image']['name'])) {
-                $uploadedImage = $animalModel->uploadImage($_FILES['image']);
-                if ($uploadedImage) {
-                    $data['image'] = $uploadedImage;
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
+                if ($fileUrl) {
+                    $image = $fileUrl;
                 } else {
-                    echo "Erreur lors du téléchargement de l'image.";
+                    $error = "Erreur lors de l'upload de l'image.";
                 }
             }
+            
 
             $animalModel->hydrate($data);
             $animalModel->create();
