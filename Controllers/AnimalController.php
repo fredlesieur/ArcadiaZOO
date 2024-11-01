@@ -63,18 +63,18 @@ class AnimalController extends Controller {
                 $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
                 if ($fileUrl) {
                     $image = $fileUrl;
+                    if ($animalModel->create($nom, $age, $race, $image, $id_habitats)) {
+                        $_SESSION['success'] = "L'animal a été créé avec succès.";
+                        header("Location: /animal/listAnimals");
+                        exit();
+                    } else {
+                        $error = "Erreur lors de l'ajout de l'animal.";
+                    }
                 } else {
                     $error = "Erreur lors de l'upload de l'image.";
-                }
+                } 
             }
-            
 
-          
-            $animalModel->create($nom, $age, $race, $image, $id_habitats);
-
-            $_SESSION['success'] = "L'animal a été créé avec succès.";
-            header("Location: /animal/listAnimals");
-            exit();
         }
 
         $title = "Créer un animal";

@@ -8,11 +8,10 @@ class CloudinaryService
 {
     private $cloudinary;
 
-    /**
-     * Initializes the CloudinaryService instance.
-     *
-     * Sets up the Cloudinary connection using environment variables.
+    /*
+      initialise la connexion à Cloudinary en utilisant les variables d'environnement. 
      */
+
     public function __construct()
     {
         $this->cloudinary = new Cloudinary([
@@ -25,16 +24,15 @@ class CloudinaryService
     }
 
     /**
-     * Uploads a file to Cloudinary.
+     * Envoie un fichier vers Cloudinary.
      *
-     * @param string $file The file to upload.
-     * @return string|false Returns the secure URL of the uploaded image, or false on failure.
+        * @param string $file Le chemin du fichier à envoyer.
      */
     public function uploadFile($file)
     {
         try {
             $result = $this->cloudinary->uploadApi()->upload($file, [
-                'folder' => 'images/'
+                'folder' => 'habitats/'
             ]);
             return $result['secure_url'];
         } catch (\Exception $e) {
@@ -43,11 +41,9 @@ class CloudinaryService
         }
     }
 
-    /**
-     * Deletes a file from Cloudinary by its public ID.
+    /* efface un fichier de Cloudinary.
      *
-     * @param string $publicId The public ID of the file to delete.
-     * @return bool Returns true if the file was deleted, false otherwise.
+     * @param string $publicId L'identifiant public du fichier à supprimer.
      */
     public function deleteFile($publicId)
     {
@@ -60,3 +56,5 @@ class CloudinaryService
         }
     }
 }
+
+
