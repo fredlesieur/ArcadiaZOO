@@ -87,24 +87,32 @@ class AnimalController extends Controller {
         $habitatModel = new HabitatsModel();
         $animaux = $animalModel->find($id);
         $habitats = $habitatModel->findAll();
+        $cloudinaryService = new CloudinaryService();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'nom' => $_POST['nom'],
-                'age' => $_POST['age'],
-                'race' => $_POST['race'],
-                'id_habitats' => $_POST['id_habitats']
-            ];
+                $id = $_POST['id'];
+                $nom = $_POST['nom'];
+                $age = $_POST['age'];
+                $race = $_POST['race'];
+                $id_habitats = $_POST['id_habitat'];
 
-            if (!empty($_FILES['image']['name'])) {
-                $data['image'] = $animalModel->uploadImage($_FILES['image'], 'assets/images/');
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                $image = $_FILES['image'];
+                $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
+                if ($fileUrl) {
+                    $image = $fileUrl;
+                    if ($animalModel->updateAnimal($id, $nom, $age, $race, $image, $id_habitats)) {
+                        $_SESSION['success'] = "L'animal a été modifié avec succès.";
+                        header("Location: /animal/listAnimals");
+                        exit();
+                    } else {
+                        $error = "Erreur lors de la modification de l'animal.";
+                    }
+                } else {
+                    $error = "Erreur lors de l'upload de l'image.";
+                } 
             }
 
-            $animalModel->hydrate($data);
-            $animalModel->update($id);
-            $_SESSION['success'] = "animal modifié avec succès.";
-            header("Location: /animal/listAnimals");
-            exit;
         }
 
         $title = "Modifier un animal";

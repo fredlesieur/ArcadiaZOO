@@ -74,8 +74,23 @@ class AnimalModel extends Model
             ]
         );
     }
-
-    // Getters
+public function updateAnimal($id, $nom, $age, $race, $image, $id_habitats)
+    {
+        return $this->req(
+            "UPDATE " . $this->table . " SET nom = :nom, age = :age, race = :race, image = :image, id_habitats = :id_habitat WHERE id = :id",
+            [
+                'id' => $id,
+                'nom' => $nom,
+                'age' => $age,
+                'race' => $race,
+                'image' => $image,
+                'id_habitat' => $id_habitats
+            ]
+        );
+    }
+ 
+    
+            // Getters
     public function getId()
     {
         return $this->id;
