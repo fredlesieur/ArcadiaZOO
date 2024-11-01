@@ -4,23 +4,15 @@
         <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'administrateur') : ?>
             <form action="/habitats/editHabitat/<?= $habitat['id'] ?>" method="post" enctype="multipart/form-data">
                 
-                <label for="id_habitat">Sélectionner un habitat :</label>
-                <select name="id_habitat" id="id_habitat" class="form-control" required>
-                    <option value="">-- Sélectionner un habitat --</option>
-                    <?php foreach ($allHabitats as $habitatOption): ?>
-                        <option value="<?= $habitatOption['id']; ?>" <?= $habitatOption['id'] == $habitat['id'] ? 'selected' : ''; ?>>
-                            <?= htmlspecialchars($habitatOption['name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select><br>
+                <!-- Affichage du nom de l'habitat sans menu déroulant -->
+                <label for="name">Nom de l'habitat :</label>
+                <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars($habitat['name']) ?>" required><br>
 
+                <!-- Commentaire pour les vétérinaires et administrateurs -->
                 <label for="commentaire">Commentaire vétérinaire :</label>
                 <textarea class="form-control" name="commentaire" id="commentaire"><?= htmlspecialchars($habitat['commentaire']) ?></textarea><br>
 
                 <?php if ($_SESSION['role'] === 'administrateur') : ?>
-                    <label for="name">Nom de l'habitat :</label>
-                    <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars($habitat['name']) ?>" required><br>
-
                     <label for="description">Description :</label>
                     <textarea class="form-control" name="description" id="description" required><?= htmlspecialchars($habitat['description']) ?></textarea><br>
 
@@ -36,6 +28,7 @@
                     <label for="image3">Image3 habitat :</label>
                     <input type="file" class="form-control" name="image3" id="image3"><br>
 
+                    <!-- Champ caché pour user_id -->
                     <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>">
                 <?php endif; ?>
 
@@ -45,5 +38,6 @@
         <?php endif; ?>
     </div>
 </section>
+
 
 
