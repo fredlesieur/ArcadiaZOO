@@ -1,10 +1,9 @@
 <?php if ($_SESSION['role'] === 'veterinaire'): ?>
-        Ajouter un commentaire
-    <?php else: ?>
-        Ajouter un Habitat
-    <?php endif; ?>
+    <h1>Ajouter un commentaire</h1>
+<?php else: ?>
+    <h1>Ajouter un Habitat</h1>
+<?php endif; ?>
 
-    <h1 class="container-fluid banner pt-5 pb-5"></h1>
 <section class="colorSection">
     <div class="container my-5">
     <form action="/habitats/addHabitat" method="post" enctype="multipart/form-data">
@@ -32,24 +31,30 @@
             <label for="description">Description :</label>
             <textarea class="form-control" name="description" id="description" required></textarea><br>
 
+            <label for="description_courte">Description courte :</label>
+            <textarea class="form-control" name="description_courte" id="description_courte"></textarea><br>
+
             <label for="image">Image carrousel :</label>
             <input type="file" class="form-control" name="image" id="image" loading="lazy" required><br>
 
-            <label for="image2">Image de présentation habitat :</label>
+            <label for="image2">Image2 caroussel :</label>
             <input type="file" class="form-control" name="image2" id="image2" loading="lazy"><br>
 
-            <label for="image3">Image carrousel secondaire :</label>
+            <label for="image3">Image3 habitat :</label>
             <input type="file" class="form-control" name="image3" id="image3" loading="lazy"><br>
 
-            <label for="description_courte">Description courte :</label>
-            <textarea class="form-control" name="description_courte" id="description_courte"></textarea><br>
+            <label for="commentaire">Commentaire sur l'habitat :</label>
+            <textarea class="form-control" name="commentaire" id="commentaire"></textarea><br>
+
+            <!-- Champ caché pour l'user_id -->
+            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>">
         <?php endif; ?>
 
         <button type="submit" class="btn btn-success w-100 mt-2">Ajouter</button>
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     </form>
-
     </div>
 </section>
+
 
 
