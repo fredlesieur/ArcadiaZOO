@@ -21,9 +21,9 @@
                     <?php if (!empty($services)): ?>
                         <?php foreach ($services as $service): ?>
                             <tr>
-                                <td><?= htmlspecialchars($service['name']); ?></td>
-                                <td><?= htmlspecialchars($service['categorie']); ?></td>
-                                <td><img src="/assets/images/<?= htmlspecialchars($service['image']); ?>" alt="<?= htmlspecialchars($service['name']); ?>" width="100"></td>
+                                <td><?= $service['name']; ?></td>
+                                <td><?= $service['categorie']; ?></td>
+                                <td><img src="<?= $service['image']; ?>" alt="<?= $service['name']; ?>" width="100"></td>
                                 <td>
                                     <a href="/service/editServ/<?= $service['id']; ?>" class="btn warning mx-2">Modifier</a>
                                     <a href="/service/deleteServ/<?= $service['id']; ?>" class="btn danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?')">Supprimer</a>
