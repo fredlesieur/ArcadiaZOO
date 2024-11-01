@@ -26,9 +26,9 @@
                     <?php if (!empty($animaux)): ?>
                         <?php foreach ($animaux as $animal): ?>
                             <tr>
-                                <td><?= htmlspecialchars($animal['nom']); ?></td>
-                                <td><?= htmlspecialchars($animal['age']); ?> ans</td>
-                                <td><?= htmlspecialchars($animal['race']); ?></td>
+                                <td><?= htmlspecialchars($animal['nom'] ?? '') ?></td>
+                                <td><?= htmlspecialchars($animal['age'] ?? 'Non défini') ?> ans</td>
+                                <td><?= htmlspecialchars($animal['race'] ?? 'Non défini') ?></td>
                                 <td><?= isset($animal['habitat_name']) ? htmlspecialchars($animal['habitat_name']) : 'Non défini'; ?></td>
                                 <td><img src="/assets/images/<?= htmlspecialchars($animal['image']); ?>" alt="<?= htmlspecialchars($animal['nom']); ?>" width="100" loading="lazy"></td>
                                 <td><?= htmlspecialchars($animal['views']); ?></td>
@@ -54,4 +54,4 @@
     </div>
 </section>
 
-<?php $script = '<script src="/assets/javascript/filtreAnimaux.js"></script>';?>
+<?php $script = '<script src="/assets/javascript/filtreAnimaux.js"></script>'; ?>
