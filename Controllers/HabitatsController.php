@@ -75,31 +75,73 @@ class HabitatsController extends Controller
     
     public function editHabitat($id)
     {
-        $habitatsModel = new HabitatsModel();
-        $habitat = $habitatsModel->find($id);
-        $allHabitats = $habitatsModel->findAll(); // Récupère tous les habitats pour le menu déroulant
+        $habitatModel = new HabitatsModel();
+        $habitat = $habitatModel->find($id);
         $cloudinaryService = new CloudinaryService();
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupérer les données du formulaire
             $name = $_POST['name'];
-            $description = $_POST['description'];
-            $description_courte = $_POST['description_courte'];
             $commentaire = $_POST['commentaire'];
             $user_id = $_SESSION['user_id'];
     
-            $image = !empty($_FILES['image']['name']) ? $cloudinaryService->uploadFile($_FILES['image']['tmp_name']) : $habitat['image'];
-            $image2 = !empty($_FILES['image2']['name']) ? $cloudinaryService->uploadFile($_FILES['image2']['tmp_name']) : $habitat['image2'];
-            $image3 = !empty($_FILES['image3']['name']) ? $cloudinaryService->uploadFile($_FILES['image3']['tmp_name']) : $habitat['image3'];
+            // Si l'utilisateur est administrateur, récupérer également les descriptions
+            if ($_SESSION['role'] === 'administrateur') {
+                $description = $_POST['description'];
+                $description_courte = $_POST['description_courte'];
+            } else {
+                // Si l'utilisateur est vétérinaire, garder les descriptions actuelles
+                $description = $habitat['description'];
+                $description_courte = $habitat['description_courte'];
+            }
     
-            $habitatsModel->updateHabitat($id, $name, $description, $description_courte, $commentaire, $user_id, $image, $image2, $image3);
-            $_SESSION['success'] = "L'habitat a été modifié avec succès.";
-            header("Location: /habitats/listHabitats");
-            exit();
+            // Gestion de l'upload des images
+            $image = $habitat['image'];
+            $image2 = $habitat['image2'];
+            $image3 = $habitat['image3'];
+    
+            if (!empty($_FILES['image']['name'])) {
+                $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
+                if ($fileUrl) {
+                    $image = $fileUrl;
+                } else {
+                    echo "Erreur lors du téléchargement de l'image.<br>";
+                }
+            }
+    
+            if (!empty($_FILES['image2']['name'])) {
+                $fileUrl = $cloudinaryService->uploadFile($_FILES['image2']['tmp_name']);
+                if ($fileUrl) {
+                    $image2 = $fileUrl;
+                } else {
+                    echo "Erreur lors du téléchargement de l'image.<br>";
+                }
+            }
+    
+            if (!empty($_FILES['image3']['name'])) {
+                $fileUrl = $cloudinaryService->uploadFile($_FILES['image3']['tmp_name']);
+                if ($fileUrl) {
+                    $image3 = $fileUrl;
+                } else {
+                    echo "Erreur lors du téléchargement de l'image.<br>";
+                }
+            }
+    
+            // Mettre à jour l'habitat dans la base de données
+            if ($habitatModel->updateHabitat($id, $name, $description, $description_courte, $commentaire, $user_id, $image, $image2, $image3)) {
+                $_SESSION['success'] = "L'habitat a été modifié avec succès.";
+                header("Location: /habitats/listHabitats");
+                exit();
+            } else {
+                $_SESSION['error'] = "Erreur lors de la modification de l'habitat.";
+            }
         }
     
+        // Afficher le formulaire de modification
         $title = "Modifier l'habitat";
-        $this->render('habitats/edit_habitat', compact('habitat', 'title', 'allHabitats'));
+        $this->render('habitats/edit_habitat', compact('habitat', 'title'));
     }
+    
     
     public function listHabitats()
 {
