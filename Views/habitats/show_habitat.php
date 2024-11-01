@@ -62,7 +62,7 @@
                 <?php foreach ($animaux as $animal): ?>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                         <div class="card">
-                            <img src="/assets/images/<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid4" alt="<?= htmlspecialchars($animal['nom']); ?>" loading="lazy">
+                            <img src="<?= htmlspecialchars($animal['image']) ?>" class="card-img-top img-fluid4" alt="<?= htmlspecialchars($animal['nom']); ?>" loading="lazy">
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= htmlspecialchars(ucwords($animal['nom'])); ?></h5>
                                 <input type="hidden" id="animalId" value="<?= htmlspecialchars($animal['id']); ?>">
