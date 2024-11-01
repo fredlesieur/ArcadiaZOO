@@ -36,38 +36,42 @@ class HabitatsModel extends Model
                 JOIN users u ON h.user_id = u.id";  // Associer l'ID du vétérinaire
         return $this->req($sql)->fetchAll();
     }
-public function createHabitat($name, $description, $image, $image2, $image3, $commentaire, $user_id)
+    public function createHabitat($name, $description, $description_courte, $user_id, $image, $image2, $image3)
     {
         return $this->req(
-            "INSERT INTO " . $this->table . " (name, description, image, image2, image3 commentaire, user_id)
-             VALUES (:name, :description, :image, :image2, :image3 :commentaire, :user_id)",
+            "INSERT INTO " . $this->table . " (name, description, description_courte, user_id, image, image2, image3)
+             VALUES (:name, :description, :description_courte, :user_id, :image, :image2, :image3)",
             [
                 'name' => $name,
                 'description' => $description,
+                'description_courte' => $description_courte,
+                'user_id' => $user_id,
                 'image' => $image,
                 'image2' => $image2,
-                'image3' => $image3,
-                'commentaire' => $commentaire,
-                'user_id' => $user_id
+                'image3' => $image3
             ]
         );
     }
+    
 
-public function updateHabitat($id, $name, $description, $image, $image2, $image3, $commentaire)
+    public function updateHabitat($id, $name, $description, $description_courte, $user_id, $image, $image2, $image3)
     {
         return $this->req(
-            "UPDATE " . $this->table . " SET name = :name, description = :description, image = :image, image2 = :image2, image3 = :image3, commentaire = :commentaire WHERE id = :id",
+            "UPDATE " . $this->table . " SET name = :name, description = :description, description_courte = :description_courte, 
+                    user_id = :user_id, image = :image, image2 = :image2, image3 = :image3 WHERE id = :id",
             [
                 'id' => $id,
                 'name' => $name,
                 'description' => $description,
+                'description_courte' => $description_courte,
+                'user_id' => $user_id,
                 'image' => $image,
                 'image2' => $image2,
-                'image3' => $image3,
-                'commentaire' => $commentaire
+                'image3' => $image3
             ]
         );
     }
+    
     public function getName() {
         return $this->name;
     }
