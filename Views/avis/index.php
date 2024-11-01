@@ -1,6 +1,6 @@
 <!-- caroussel pour déposer les avis des visiteurs -->
 <h1 id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000"></h1>
-  <div class="carousel-inner">
+  <div class="carousel-inner w-100">
     <?php if (isset($Avis) && !empty($Avis)): ?>
         <?php 
         // spération de la table avis par lot de 3 avec array_chunk par pages

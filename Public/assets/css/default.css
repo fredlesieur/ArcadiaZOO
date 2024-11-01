@@ -519,10 +519,7 @@ footer {
         height: 608px; /* Hauteur fixe pour les écrans plus larges */
         object-fit: cover; /* Couvre l'élément sans déformer l'image */
     }
-    .card {
-        height: 25rem; /* Fixe une hauteur uniforme pour toutes les images */
-        width:20%;
-    }
+    
 }
 
 /* Espacement sur Mobile */
