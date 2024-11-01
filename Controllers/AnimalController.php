@@ -60,7 +60,8 @@ class AnimalController extends Controller {
             ];
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-                $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
+                $image = $_FILES['image'];
+                $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
                 if ($fileUrl) {
                     $image = $fileUrl;
                 } else {

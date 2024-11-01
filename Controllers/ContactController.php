@@ -57,7 +57,7 @@ class ContactController extends Controller
 
    // Fonction pour modifier un horaire
 public function editHoraire($id) {
-
+-
     $mongo = new HoraireModel();
 
     // Récupérer l'horaire à modifier (ceci renvoie un document BSON)
