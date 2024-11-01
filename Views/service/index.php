@@ -1,19 +1,20 @@
-<h1 class="container-fluid banner pt-5 pb-5 mb-0">SERVICES</h1>
+<h1 class="container-fluid banner pt-5 pb-5 mb-0 text-center">SERVICES</h1>
 
 <!-- Carrousel Section -->
-<section class="colorSection2 p-3 p-lg-4 p-xl-5">
+<section class="colorSection2 mt-5">
     <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
         <div class="carousel-inner">
             <?php if (isset($services) && !empty($services)): ?>
                 <?php foreach ($services as $index => $service): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8') ?>" class="img-fluid3 p-2 carousel-image" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                            <img src="/assets/images/<?= htmlspecialchars($service['image']) ?>"
+                             class="img-fluid d-block mx-auto" 
+                             alt="<?= htmlspecialchars($service['name']) ?>" 
+                             loading="lazy">
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <p>Aucun service disponible.</p>
             <?php endif; ?>
         </div>
 

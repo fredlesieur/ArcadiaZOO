@@ -326,7 +326,10 @@ th, td{
     border-radius: 40px;
 }
 .carousel-inner {
-    width: 100%; 
+    max-width: 57rem; 
+    max-height: 38rem;
+    margin-left:auto;
+    margin-right:auto;
     overflow: hidden; 
 }
 
