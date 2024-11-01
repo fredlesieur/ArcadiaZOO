@@ -29,9 +29,9 @@
                                 <td><?= $animal['nom']; ?></td>
                                 <td><?= $animal['age']; ?> ans</td>
                                 <td><?= $animal['race']; ?></td>
-                                <td><?= isset($animal['habitat_name']) ? htmlspecialchars($animal['habitat_name']) : 'Non défini'; ?></td>
-                                <td><img src="<?= $animal['image']; ?>" alt="<?= htmlspecialchars($animal['nom']); ?>" width="100" loading="lazy"></td>
-                                <td><?= htmlspecialchars($animal['views']); ?></td>
+                                <td><?= isset($animal['habitat_name']) ? $animal['habitat_name'] : 'Non défini'; ?></td>
+                                <td><img src="<?= $animal['image']; ?>" alt="<?= $animal['nom']; ?>" width="100" loading="lazy"></td>
+                                <td><?= $animal['views']; ?></td>
                                 <td>
                                     <!-- Bouton de modification -->
                                     <a href="/animal/editAnimal/<?= $animal['id']; ?>" class="btn warning">Modifier</a>

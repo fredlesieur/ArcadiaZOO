@@ -51,38 +51,55 @@ class AnimalModel extends Model
     public function incrementViews($id)
     {
         $this->req("UPDATE {$this->table} SET views = views + 1 WHERE id = ?", [$id]);
-
     }
 
     // Récupérer les animaux par ordre alphabétique
     public function findAllOrderedByName()
-{
-    $query = $this->req("SELECT * FROM {$this->table} ORDER BY nom ASC");
-    return $query->fetchAll();
-}
+    {
+        $query = $this->req("SELECT * FROM {$this->table} ORDER BY nom ASC");
+        return $query->fetchAll();
+    }
 
+    public function createAnimal($nom, $age, $race, $image, $id_habitats)
+    {
+        return $this->req(
+            "INSERT INTO " . $this->table . " (nom, age, race, image, id_habitats)
+             VALUES (:nom, :age, :race, :image, :id_habitat)",
+            [
+                'nom' => $nom,
+                'age' => $age,
+                'race' => $race,
+                'image' => $image,
+                'id_habitat' => $id_habitats
+            ]
+        );
+    }
 
     // Getters
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getNom() {
+    public function getNom()
+    {
         return $this->nom;
     }
 
-    public function getAge() {
+    public function getAge()
+    {
         return $this->age;
     }
 
-    public function getImage() {
+    public function getImage()
+    {
         return $this->image;
     }
     public function getRace()
     {
         return $this->race;
     }
-    
+
 
     public function getId_habitats()
     {
@@ -90,19 +107,23 @@ class AnimalModel extends Model
     }
 
     // Setters
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function setNom($nom) {
+    public function setNom($nom)
+    {
         $this->nom = $nom;
     }
 
-    public function setAge($age) {
+    public function setAge($age)
+    {
         $this->age = $age;
     }
 
-    public function setImage($image) {
+    public function setImage($image)
+    {
         $this->image = $image;
     }
     public function setId_habitats($id_habitats)
@@ -111,8 +132,8 @@ class AnimalModel extends Model
 
         return $this;
     }
-   
-    
+
+
     public function setRace($race)
     {
         $this->race = $race;
