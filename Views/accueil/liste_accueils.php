@@ -20,9 +20,9 @@
                 <tbody>
                     <?php foreach ($accueils as $accueil): ?>
                         <tr>
-                            <td><?= htmlspecialchars($accueil['name']) ?></td>
-                            <td><?= htmlspecialchars($accueil['description']) ?></td>
-                            <td><img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" width="100" alt="Image de l'accueil"></td>
+                            <td><?= $accueil['name'] ?></td>
+                            <td><?= $accueil['description'] ?></td>
+                            <td><img src="<?= $accueil['image'] ?>" width="100" alt="Image de l'accueil"></td>
                             <td>
                                 <a href="/accueil/editAccueil/<?= $accueil['id'] ?>" class="btn warning">Modifier</a>
                                 <a href="/accueil/deleteAccueil/<?= $accueil['id'] ?>" class="btn danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">Supprimer</a>

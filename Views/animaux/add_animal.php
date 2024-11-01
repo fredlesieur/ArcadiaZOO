@@ -22,7 +22,7 @@
                 <select name="id_habitat" id="id_habitat" required>
                     <option value="">Sélectionner un habitat</option>
                     <?php foreach ($habitats as $habitat): ?>
-                        <option value="<?= htmlspecialchars($habitat['id']); ?>"><?= htmlspecialchars($habitat['name']); ?></option>
+                        <option value="<?= $habitat['id']; ?>"><?= $habitat['name']; ?></option>
                     <?php endforeach; ?>
                 </select><br>
 

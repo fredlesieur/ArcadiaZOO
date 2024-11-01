@@ -7,9 +7,9 @@
             <?php if (!empty($carousel)): ?>
                 <?php foreach ($carousel as $index => $item): ?>
                     <div class="carousel-item text-center <?= $index === 0 ? 'active' : '' ?>">
-                        <img src="/assets/images/<?= htmlspecialchars($item['image_path']) ?>" 
+                        <img src=" <?= $item['image_path'] ?>" 
                              class="d-block mx-auto img-fluid" 
-                             alt="<?= htmlspecialchars($item['alt_text']) ?>" 
+                             alt="<?= $item['alt_text'] ?>" 
                              loading="lazy">
                     </div>
                 <?php endforeach; ?>
@@ -74,17 +74,17 @@
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-center">
-                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>" loading="lazy">
+                                    <img src="<?= $habitat['image'] ?>" class="card-img-top img-fluid" alt="<?= $habitat['name'] ?>" loading="lazy">
                                 </div>
                             <?php else: ?>
                                 <!-- Image au-dessus, texte en-dessous pour les éléments impairs -->
                                 <div class="col-12 d-flex justify-content-center">
-                                    <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($habitat['name']) ?>"loading="lazy">
+                                    <img src="<?= $habitat['image'] ?>" class="card-img-top img-fluid" alt="<?= $habitat['name'] ?>"loading="lazy">
                                 </div>
                                 <div class="col-12">
                                     <div class="card-body text-center">
-                                        <h4 class="card-title"><?= htmlspecialchars($habitat["name"]); ?></h4>
-                                        <p class="card-text"><?= htmlspecialchars($habitat["description_courte"]); ?></p>
+                                        <h4 class="card-title"><?= $habitat["name"]; ?></h4>
+                                        <p class="card-text"><?= $habitat["description_courte"]; ?></p>
                                     </div>
                                 </div>
                             <?php endif; ?>
@@ -116,22 +116,22 @@
                             <!-- Texte au-dessus, image en-dessous pour les éléments pairs -->
                             <div class="col-12">
                                 <div class="card-body text-center">
-                                    <h4 class="card-title"><?= htmlspecialchars($accueil["name"]); ?></h4>
-                                    <p class="card-text"><?= htmlspecialchars($accueil["description"]); ?></p>
+                                    <h4 class="card-title"><?= $accueil["name"]; ?></h4>
+                                    <p class="card-text"><?= $accueil["description"]; ?></p>
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-center">
-                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($accueil['name']) ?>" loading="lazy">
+                                <img src="<?= $accueil['image'] ?>" class="card-img-top img-fluid" alt="<?= $accueil['name'] ?>" loading="lazy">
                             </div>
                         <?php else: ?>
                             <!-- Image au-dessus, texte en-dessous pour les éléments impairs -->
                             <div class="col-12 d-flex justify-content-center">
-                                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($accueil['name']) ?>" loading="lazy">
+                                <img src="<?= $accueil['image'] ?>" class="card-img-top img-fluid" alt="<?= $accueil['name'] ?>" loading="lazy">
                             </div>
                             <div class="col-12">
                                 <div class="card-body text-center">
-                                    <h4 class="card-title"><?= htmlspecialchars($accueil["name"]); ?></h4>
-                                    <p class="card-text"><?= htmlspecialchars($accueil["description"]); ?></p>
+                                    <h4 class="card-title"><?= $accueil["name"]; ?></h4>
+                                    <p class="card-text"><?= $accueil["description"]; ?></p>
                                 </div>
                             </div>
                         <?php endif; ?>

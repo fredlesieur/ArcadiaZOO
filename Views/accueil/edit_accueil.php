@@ -16,7 +16,7 @@
             <label for="image" class="form-label">Image</label>
             <input type="file" name="image" id="image" class="form-control">
             <?php if (!empty($accueil['image'])): ?>
-                <img src="/assets/images/<?= htmlspecialchars($accueil['image']) ?>" width="100" alt="Image actuelle">
+                <img src="<?= $accueil['image'] ?>" width="100" alt="Image actuelle">
             <?php endif; ?>
         </div>
         <button type="submit" class="btn warning">Modifier</button>

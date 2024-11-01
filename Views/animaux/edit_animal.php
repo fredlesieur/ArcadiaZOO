@@ -4,21 +4,21 @@
  
         <?php if ($_SESSION['role'] === 'administrateur') : ?>
             <form action="/animal/editAnimal/<?= $animaux['id'] ?>" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" id="id" value="<?= htmlspecialchars($animaux['id']); ?>">
+                <input type="hidden" name="id" id="id" value="<?= $animaux['id']; ?>">
 
                 <div class="mb-3">
                     <label for="nom">Nom :</label>
-                    <input type="text" name="nom" id="nom" class="form-control" value="<?= htmlspecialchars($animaux['nom']); ?>">
+                    <input type="text" name="nom" id="nom" class="form-control" value="<?= $animaux['nom']; ?>">
                 </div>
 
                 <div class="mb-3">
                     <label for="age">Âge :</label>
-                    <input type="number" name="age" id="age" class="form-control" value="<?= htmlspecialchars($animaux['age']); ?>"> ans
+                    <input type="number" name="age" id="age" class="form-control" value="<?= $animaux['age']; ?>"> ans
                 </div>
 
                 <div class="mb-3">
                     <label for="race">Race :</label>
-                    <input type="text" name="race" id="race" class="form-control" value="<?= htmlspecialchars($animaux['race']); ?>">
+                    <input type="text" name="race" id="race" class="form-control" value="<?= $animaux['race']; ?>">
                 </div>
 
                 <div class="mb-3">
@@ -31,7 +31,7 @@
                     <select name="id_habitats" id="id_habitats" class="form-control">
                         <?php foreach ($habitats as $habitat): ?>
                             <option value="<?= $habitat['id'] ?>" <?= $animaux['id_habitats'] == $habitat['id'] ? 'selected' : '' ?>>
-                                <?= htmlspecialchars($habitat['name']); ?>
+                                <?= $habitat['name']; ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
