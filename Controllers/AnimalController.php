@@ -52,12 +52,11 @@ class AnimalController extends Controller {
         $cloudinaryService = new CloudinaryService();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'nom' => $_POST['nom'],
-                'age' => $_POST['age'],
-                'race' => $_POST['race'],
-                'id_habitats' => $_POST['id_habitat']
-            ];
+            
+                $nom = $_POST['nom'];
+                $age = $_POST['age'];
+                $race = $_POST['race'];
+                $id_habitats = $_POST['id_habitat'];
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
                 $image = $_FILES['image'];
@@ -70,8 +69,8 @@ class AnimalController extends Controller {
             }
             
 
-            $animalModel->hydrate($data);
-            $animalModel->create();
+          
+            $animalModel->create($nom, $age, $race, $image, $id_habitats);
 
             $_SESSION['success'] = "L'animal a été créé avec succès.";
             header("Location: /animal/listAnimals");
