@@ -44,73 +44,74 @@ class AccueilController extends Controller
     }
 
     public function addAccueil()
-    {
-        $accueilModel = new AccueilModel();
+{
+    $accueilModel = new AccueilModel();
     $cloudinaryService = new CloudinaryService();
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $name = $_POST['name'];
-                $description = $_POST['description'];
-    
-            // Vérification et téléchargement de l'image
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-                $image = $_FILES['image'];
-                $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
-                if ($fileUrl) {
-                    $image = $fileUrl;
-                    if ($accueilModel->createAccueil($name, $description, $image)) {
-                        $_SESSION['success'] = "L'animal a été modifié avec succès.";
-                        header("Location: /accueil/listAccueils");
-                        exit();
-                    } else {
-                        $error = "Erreur lors de la modification de l'animal.";
-                    }
-                } else {
-                    $error = "Erreur lors de l'upload de l'image.";
-                } 
-            }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $image = null; // Initialisation de l'image
 
+        // Vérification et téléchargement de l'image
+        if (!empty($_FILES['image']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
+            if ($fileUrl) {
+                $image = $fileUrl;
+            } else {
+                $error = "Erreur lors de l'upload de l'image.";
+            }
         }
-    
-        $title = "Ajouter un élément à l'accueil";
-        $this->render('accueil/add_accueil', compact('title'));
+
+        // Insertion dans la base de données
+        if ($accueilModel->createAccueil($name, $description, $image)) {
+            $_SESSION['success'] = "L'élément a été ajouté avec succès.";
+            header("Location: /accueil/listAccueils");
+            exit();
+        } else {
+            $error = "Erreur lors de la création de l'élément.";
+        }
     }
-    
-    public function editAccueil($id)
-    {
-        $accueilModel = new AccueilModel();
-        $accueil = $accueilModel->find($id);
-        $cloudinaryService = new CloudinaryService();
-    
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $id = $_POST['id'];
-                $name = $_POST['name'];
-                $description = $_POST['description'];
+
+    $title = "Ajouter un élément à l'accueil";
+    $this->render('accueil/add_accueil', compact('title', 'error'));
+}
 
     
-                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-                    $image = $_FILES['image'];
-                    $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
-                    if ($fileUrl) {
-                        $image = $fileUrl;
-                        if ($accueilModel->updateAccueil($id, $name, $description, $image)) {
-                            $_SESSION['success'] = "L'accueil a été modifié avec succès.";
-                            header("Location: /accueil/listAccueils");
-                            exit();
-                        } else {
-                            $error = "Erreur lors de la modification de l'accueil.";
-                        }
-                    } else {
-                        $error = "Erreur lors de l'upload de l'image.";
-                    } 
-                }
-    
+public function editAccueil($id)
+{
+    $accueilModel = new AccueilModel();
+    $accueil = $accueilModel->find($id);
+    $cloudinaryService = new CloudinaryService();
+    $image = $accueil['image']; // Initialisation de l'image avec celle existante
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+
+        // Vérification et téléchargement de l'image
+        if (!empty($_FILES['image']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
+            if ($fileUrl) {
+                $image = $fileUrl;
+            } else {
+                $error = "Erreur lors de l'upload de l'image.";
             }
-    
-        $title = "Modifier un élément de l'accueil";
-        $this->render('accueil/edit_accueil', compact('accueil', 'title'));
+        }
+
+        // Mise à jour dans la base de données
+        if ($accueilModel->updateAccueil($id, $name, $description, $image)) {
+            $_SESSION['success'] = "L'élément de l'accueil a été modifié avec succès.";
+            header("Location: /accueil/listAccueils");
+            exit();
+        } else {
+            $error = "Erreur lors de la modification de l'accueil.";
+        }
     }
-    
+
+    $title = "Modifier un élément de l'accueil";
+    $this->render('accueil/edit_accueil', compact('accueil', 'title', 'error'));
+}
 
     public function deleteAccueil($id)
     {
