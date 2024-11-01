@@ -1,6 +1,6 @@
 <!-- caroussel pour déposer les avis des visiteurs -->
 <h1 id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000"></h1>
-  <div class="carousel-inner2 ">
+  <div class="carousel-inner ">
     <?php if (isset($Avis) && !empty($Avis)): ?>
         <?php 
         // spération de la table avis par lot de 3 avec array_chunk par pages
@@ -8,7 +8,7 @@
         $activeClass = 'active'; // activation de la premiere feuille
         foreach ($avisChunks as $avisGroup): ?>
           <div class="carousel-item <?= $activeClass; ?>">
-            <div class="row justify-content-center m-auto w-75">
+            <div class="row justify-content-center m-auto w-100">
               <?php foreach ($avisGroup as $avis): ?>
                 <div class="col-12 col-md-4 mb-3"> 
                   <div class="card text-bg-light mb-3">
