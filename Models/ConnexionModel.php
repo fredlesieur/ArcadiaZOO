@@ -34,7 +34,6 @@ public function createAdmin($nom_prenom, $email, $password, $role_id)
     return $query;
 }
 
-
 public function findUserByEmail($email)
 {
     // On utilise la méthode req pour faire une jointure avec la table roles

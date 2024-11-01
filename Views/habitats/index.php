@@ -8,9 +8,9 @@
                 <?php foreach ($habitats as $index => $habitat): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>"
+                            <img src="<?= $habitat['image'] ?>"
                                  class="img-fluid d-block mx-auto"
-                                 alt="<?= htmlspecialchars($habitat['name']) ?>" 
+                                 alt="<?= $habitat['name'] ?>" 
                                  loading="lazy">
                         </div>
                     </div>
@@ -45,9 +45,9 @@
 
                 <!-- Image -->
                 <div class="col-md-6 d-flex justify-content-center">
-                    <img src="/assets/images/<?= htmlspecialchars($habitat['image2']) ?>" 
+                    <img src="<?= $habitat['image2'] ?>" 
                          class="img-fluid habitat-image" 
-                         alt="<?= htmlspecialchars($habitat['name']) ?>" 
+                         alt="<?= $habitat['name'] ?>" 
                          loading="lazy">
                 </div>
 

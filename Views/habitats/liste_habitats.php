@@ -28,7 +28,7 @@
                             <td><?= htmlspecialchars($habitat['name']); ?></td>
                             <td><?= htmlspecialchars($habitat['description_courte']); ?></td>
                             <td><?= htmlspecialchars($habitat['commentaire']); ?></td>
-                            <td><img src="/assets/images/<?= htmlspecialchars($habitat['image']); ?>" width="100" alt="Image de l'habitat" loading="lazy"></td>
+                            <td><img src="<?= htmlspecialchars($habitat['image']); ?>" width="100" alt="Image de l'habitat" loading="lazy"></td>
 
                             <?php if ($_SESSION['role'] !== 'employe'): ?>
                                 <td>

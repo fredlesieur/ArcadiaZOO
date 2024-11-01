@@ -36,7 +36,34 @@ class HabitatsModel extends Model
                 JOIN users u ON h.user_id = u.id";  // Associer l'ID du vétérinaire
         return $this->req($sql)->fetchAll();
     }
+public function createHabitat($name, $description, $image, $commentaire, $user_id)
+    {
+        return $this->req(
+            "INSERT INTO " . $this->table . " (name, description, image, commentaire, user_id)
+             VALUES (:name, :description, :image, :commentaire, :user_id)",
+            [
+                'name' => $name,
+                'description' => $description,
+                'image' => $image,
+                'commentaire' => $commentaire,
+                'user_id' => $user_id
+            ]
+        );
+    }
 
+public function updateHabitat($id, $name, $description, $image, $commentaire)
+    {
+        return $this->req(
+            "UPDATE " . $this->table . " SET name = :name, description = :description, image = :image, image2 = :image2, image3 = :image3, commentaire = :commentaire WHERE id = :id",
+            [
+                'id' => $id,
+                'name' => $name,
+                'description' => $description,
+                'image' => $image,
+                'commentaire' => $commentaire
+            ]
+        );
+    }
     public function getName() {
         return $this->name;
     }

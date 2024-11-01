@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AnimalModel;
 use App\Models\HabitatsModel;
+use App\Config\CloudinaryService;
 
 class HabitatsController extends Controller
 {
@@ -37,16 +38,16 @@ class HabitatsController extends Controller
 
    public function addHabitat()
 {
-    $habitatModel = new HabitatsModel();
-    $habitats = $habitatModel->findAll(); // Récupère tous les habitats
-
+    $habitatsModel = new HabitatsModel();
+    $habitats = $habitatsModel->findAll(); // Récupère tous les habitats
+    $cloudinaryService = new CloudinaryService();
     // Initialisation de la variable $habitat (pour éviter les erreurs dans la vue)
     $habitat = null;
 
     // Si c'est un vétérinaire, on vérifie si un habitat est sélectionné et on récupère ses données
     if ($_SESSION['role'] === 'veterinaire' && !empty($_POST['id_habitat'])) {
         $id_habitat = $_POST['id_habitat'];
-        $habitat = $habitatModel->find($id_habitat); // Récupère l'habitat sélectionné
+        $habitat = $habitatsModel->find($id_habitat); // Récupère l'habitat sélectionné
     }
 
     // Traitement des requêtes POST pour l'ajout d'habitat ou de commentaire
@@ -63,8 +64,8 @@ class HabitatsController extends Controller
 
             // Ajouter le commentaire si aucun n'existe
             $commentaire = $_POST['commentaire'];
-            $habitatModel->hydrate(['commentaire' => $commentaire]);
-            $habitatModel->update($id_habitat);
+            $habitatsModel->hydrate(['commentaire' => $commentaire]);
+            $habitatsModel->update($id_habitat);
 
             $_SESSION['success'] = "Commentaire ajouté avec succès.";
             header("Location: /habitats/listHabitats");
@@ -74,7 +75,7 @@ class HabitatsController extends Controller
         // Si c'est un administrateur qui soumet le formulaire
         if ($_SESSION['role'] === 'administrateur') {
             $name = $_POST['name'];
-            $existingHabitat = $habitatModel->findBy(['name' => $name]);
+            $existingHabitat = $habitatsModel->findBy(['name' => $name]);
 
             // Si un habitat avec ce nom existe déjà, empêcher la création
             if (!empty($existingHabitat)) {
@@ -84,79 +85,68 @@ class HabitatsController extends Controller
             }
 
             // Ajouter un nouvel habitat
-            $data = [
-                'name' => $name,
-                'description' => $_POST['description'],
-                'description_courte' => $_POST['description_courte'],
-                'user_id' => $_SESSION['user_id']
-            ];
+            
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+                $description_courte = $_POST['description_courte'];
+                $user_id = $_SESSION['user_id'];
 
-            // Gestion des images
-            if (!empty($_FILES['image']['name'])) {
-                $data['image'] = $habitatModel->uploadImage($_FILES['image']);
+                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                    $image = $_FILES['image'];
+                    $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
+                    if ($fileUrl) {
+                        $image = $fileUrl;
+                        if ($habitatsModel->createHabitat($name, $description, $description_courte, $user_id, $image)) {
+                            $_SESSION['success'] = "L'animal a été ajouté avec succès.";
+                            header("Location: /habitats/listHabitats");
+                            exit();
+                        } else {
+                            $error = "Erreur lors de l'ajout de l'animal.";
+                        }
+                    } else {
+                        $error = "Erreur lors de l'upload de l'image.";
+                    } 
+                }
             }
-            if (!empty($_FILES['image2']['name'])) {
-                $data['image2'] = $habitatModel->uploadImage($_FILES['image2']);
-            }
-            if (!empty($_FILES['image3']['name'])) {
-                $data['image3'] = $habitatModel->uploadImage($_FILES['image3']);
-            }
-
-            // Hydrater et créer l'habitat
-            $habitatModel->hydrate($data);
-            $habitatModel->create();
-
-            $_SESSION['success'] = "Habitat ajouté avec succès.";
-            header("Location: /habitats/listHabitats");
-            exit();
         }
-    }
-
-    // Rendre la vue avec les habitats et l'habitat sélectionné (si applicable)
+         // Rendre la vue avec les habitats et l'habitat sélectionné (si applicable)
     $this->render('habitats/add_habitat', compact('habitats', 'habitat'));
-}
-
+    }
     public function editHabitat($id)
     {
         $habitatModel = new HabitatsModel();
         $habitat= $habitatModel->find($id);
+        $cloudinaryService = new CloudinaryService();
     
         // Vérifier si la requête est de type POST pour traiter la soumission du formulaire
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // prépare les données envoyées via le formulaire sous forme de tableau
-            $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-                'description_courte' => $_POST['description_courte'],
-                'commentaire' => $_POST['commentaire'],
-                'user_id' => $_POST['user_id']
-            ];
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $description_courte = $_POST['description_courte'];
+            $user_id = $_SESSION['user_id'];
 
-            // Utilisation de la fonction d'upload pour chaque image pour les mettre à jour
-        if (!empty($_FILES['image']['name'])) {
-            $data['image'] = $habitatModel->uploadImage($_FILES['image'], 'assets/images/');
-        }
-        if (!empty($_FILES['image2']['name'])) {
-            $data['image2'] = $habitatModel->uploadImage($_FILES['image2'], 'assets/images/');
-        }
-        if (!empty($_FILES['image3']['name'])) {
-            $data['image3'] = $habitatModel->uploadImage($_FILES['image3'], 'assets/images/');
-        }
-
-            // Hydratation de l'objet connexion avec les données du formulaire
-            $habitatModel->hydrate($data);
-    
-            // Mettre à jour l'habitat
-            $habitatModel->update($id);
-    
-            // Redirection après modification
-            $_SESSION['success'] = "habitat modifié avec succès.";
-            header("Location: /habitats/listHabitats");
-            exit;
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                $image = $_FILES['image'];
+                $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
+                if ($fileUrl) {
+                    $image = $fileUrl;
+                    if ($habitatModel->updateHabitat($id, $name, $description, $description_courte, $user_id, $image)) {
+                        $_SESSION['success'] = "L'animal a été modifié avec succès.";
+                        header("Location: /habitats/listHabitats");
+                        exit();
+                    } else {
+                        $error = "Erreur lors de la modification de l'habitat.";
+                    }
+                } else {
+                    $error = "Erreur lors de l'upload de l'image.";
+                } 
+            }
         }
     
         // Afficher le formulaire de modification
-        $title = "Modifier un habitat";
+        $title = "Modifier l'habitat";
         $this->render('habitats/edit_habitat', compact('habitat', 'title'));
     }
 

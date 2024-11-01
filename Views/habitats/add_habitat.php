@@ -4,9 +4,6 @@
         Ajouter un Habitat
     <?php endif; ?>
 
-
-
-   
     <h1 class="container-fluid banner pt-5 pb-5"></h1>
 <section class="colorSection">
     <div class="container my-5">
@@ -18,7 +15,7 @@
             <select name="id_habitat" id="id_habitat" required>
                 <option value="">Sélectionner un habitat</option>
                 <?php foreach ($habitats as $habitatOption): ?>
-                    <option value="<?= htmlspecialchars($habitatOption['id']); ?>"><?= htmlspecialchars($habitatOption['name']); ?></option>
+                    <option value="<?= $habitatOption['id']; ?>"><?= $habitatOption['name']; ?></option>
                 <?php endforeach; ?>
             </select><br>
 

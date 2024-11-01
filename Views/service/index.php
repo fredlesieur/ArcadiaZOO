@@ -8,7 +8,7 @@
                 <?php foreach ($services as $index => $service): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($service['image']) ?>"
+                            <img src="<?=$service['image'] ?>"
                              class="img-fluid d-block mx-auto" 
                              alt="<?= htmlspecialchars($service['name']) ?>" 
                              loading="lazy">
@@ -73,7 +73,7 @@
                                 <?php if ($index % 2 == 0): ?>
                                     <!-- Image au-dessus, texte en-dessous pour les services pairs -->
                                     <div class="d-flex justify-content-center">
-                                        <img src="/assets/images/<?= htmlspecialchars($service['image2'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                                        <img src="<?= $service['image2'] ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title text-center"><?= htmlspecialchars($service['name']); ?></h5>
@@ -96,7 +96,7 @@
                                         <p class="card-text text-center"><?= htmlspecialchars($service['horaires']); ?></p>
                                     </div>
                                     <div class="d-flex justify-content-center">
-                                        <img src="/assets/images/<?= htmlspecialchars($service['image2'], ENT_QUOTES, 'UTF-8') ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                                        <img src=" <?= $service['image2'] ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                                     </div>
                                 <?php endif; ?>
                             </div>

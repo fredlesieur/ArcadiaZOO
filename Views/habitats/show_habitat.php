@@ -10,20 +10,20 @@
             <?php if (isset($habitat)): ?>
                 <div class="carousel-item active">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="/assets/images/<?= htmlspecialchars($habitat['image']) ?>" class="img-fluid p-2 carousel-image" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                        <img src="<?= $habitat['image'] ?>" class="img-fluid p-2 carousel-image" alt="<?= htmlspecialchars($habitat['name']) ?>">
                     </div>
                 </div>
                 <?php if (!empty($habitat['image2'])): ?>
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($habitat['image2']) ?>" class="img-fluid p-2 carousel-image" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                            <img src="<?= $habitat['image2'] ?>" class="img-fluid p-2 carousel-image" alt="<?= htmlspecialchars($habitat['name']) ?>">
                         </div>
                     </div>
                 <?php endif; ?>
                 <?php if (!empty($habitat['image3'])): ?>
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="/assets/images/<?= htmlspecialchars($habitat['image3']) ?>" class="img-fluid p-2 carousel-image" alt="<?= htmlspecialchars($habitat['name']) ?>">
+                            <img src="<?= $habitat['image3'] ?>" class="img-fluid p-2 carousel-image" alt="<?= htmlspecialchars($habitat['name']) ?>">
                         </div>
                     </div>
                 <?php endif; ?>
