@@ -6,18 +6,18 @@
                 
                 <!-- Affichage du nom de l'habitat sans menu déroulant -->
                 <label for="name">Nom de l'habitat :</label>
-                <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars($habitat['name']) ?>" required><br>
+                <input type="text" class="form-control" name="name" id="name" value="<?= $habitat['name'] ?>" required><br>
 
                 <!-- Commentaire pour les vétérinaires et administrateurs -->
                 <label for="commentaire">Commentaire vétérinaire :</label>
-                <textarea class="form-control" name="commentaire" id="commentaire"><?= htmlspecialchars($habitat['commentaire']) ?></textarea><br>
+                <textarea class="form-control" name="commentaire" id="commentaire"><?= $habitat['commentaire'] ?></textarea><br>
 
                 <?php if ($_SESSION['role'] === 'administrateur') : ?>
                     <label for="description">Description :</label>
-                    <textarea class="form-control" name="description" id="description" required><?= htmlspecialchars($habitat['description']) ?></textarea><br>
+                    <textarea class="form-control" name="description" id="description" required><?= $habitat['description'] ?></textarea><br>
 
                     <label for="description_courte">Description courte :</label>
-                    <textarea class="form-control" name="description_courte" id="description_courte"><?= htmlspecialchars($habitat['description_courte']) ?></textarea><br>
+                    <textarea class="form-control" name="description_courte" id="description_courte"><?= $habitat['description_courte'] ?></textarea><br>
 
                     <label for="image">Image carousel :</label>
                     <input type="file" class="form-control" name="image" id="image"><br>
