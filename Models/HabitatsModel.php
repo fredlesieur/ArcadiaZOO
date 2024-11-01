@@ -36,22 +36,24 @@ class HabitatsModel extends Model
                 JOIN users u ON h.user_id = u.id";  // Associer l'ID du vétérinaire
         return $this->req($sql)->fetchAll();
     }
-public function createHabitat($name, $description, $image, $commentaire, $user_id)
+public function createHabitat($name, $description, $image, $image2, $image3, $commentaire, $user_id)
     {
         return $this->req(
-            "INSERT INTO " . $this->table . " (name, description, image, commentaire, user_id)
-             VALUES (:name, :description, :image, :commentaire, :user_id)",
+            "INSERT INTO " . $this->table . " (name, description, image, image2, image3 commentaire, user_id)
+             VALUES (:name, :description, :image, :image2, :image3 :commentaire, :user_id)",
             [
                 'name' => $name,
                 'description' => $description,
                 'image' => $image,
+                'image2' => $image2,
+                'image3' => $image3,
                 'commentaire' => $commentaire,
                 'user_id' => $user_id
             ]
         );
     }
 
-public function updateHabitat($id, $name, $description, $image, $commentaire)
+public function updateHabitat($id, $name, $description, $image, $image2, $image3, $commentaire)
     {
         return $this->req(
             "UPDATE " . $this->table . " SET name = :name, description = :description, image = :image, image2 = :image2, image3 = :image3, commentaire = :commentaire WHERE id = :id",
@@ -60,6 +62,8 @@ public function updateHabitat($id, $name, $description, $image, $commentaire)
                 'name' => $name,
                 'description' => $description,
                 'image' => $image,
+                'image2' => $image2,
+                'image3' => $image3,
                 'commentaire' => $commentaire
             ]
         );

@@ -83,7 +83,7 @@ class HabitatsController extends Controller
                 header("Location: /habitats/addHabitat");
                 exit();
             }
-
+        }
             // Ajouter un nouvel habitat
             
                 $name = $_POST['name'];
@@ -91,27 +91,49 @@ class HabitatsController extends Controller
                 $description_courte = $_POST['description_courte'];
                 $user_id = $_SESSION['user_id'];
 
-                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-                    $image = $_FILES['image'];
-                    $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
-                    if ($fileUrl) {
-                        $image = $fileUrl;
-                        if ($habitatsModel->createHabitat($name, $description, $description_courte, $user_id, $image)) {
-                            $_SESSION['success'] = "L'animal a été ajouté avec succès.";
-                            header("Location: /habitats/listHabitats");
-                            exit();
-                        } else {
-                            $error = "Erreur lors de l'ajout de l'animal.";
-                        }
-                    } else {
-                        $error = "Erreur lors de l'upload de l'image.";
-                    } 
-                }
+                $image = null;
+                $image2 = null;
+                $image3 = null;
+
+                 if (!empty($_FILES['image']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
+            if ($fileUrl) {
+                $image = $fileUrl;
+            } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
             }
         }
+
+        if (!empty($_FILES['image2']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image2']['tmp_name']);
+            if ($fileUrl) {
+                $image2 = $fileUrl;
+            } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
+            }
+        }
+
+        if (!empty($_FILES['image3']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image3']['tmp_name']);
+            if ($fileUrl) {
+                $image3 = $fileUrl;
+            } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
+            }
+        }
+
+        if ($habitatsModel->createHabitat($name, $description, $description_courte, $user_id, $image, $image2, $image3)) {
+            $_SESSION['success'] = "L'habitat a été ajouté avec succès.";
+            header("Location: /habitats/listHabitats");
+            exit();
+        } else {
+            $_SESSION['error'] = "Erreur lors de l'ajout du service.";
+        }
+    }
          // Rendre la vue avec les habitats et l'habitat sélectionné (si applicable)
     $this->render('habitats/add_habitat', compact('habitats', 'habitat'));
     }
+
     public function editHabitat($id)
     {
         $habitatModel = new HabitatsModel();
@@ -127,23 +149,44 @@ class HabitatsController extends Controller
             $description_courte = $_POST['description_courte'];
             $user_id = $_SESSION['user_id'];
 
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-                $image = $_FILES['image'];
-                $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
+            $image = $habitat['image'];
+            $image2 = $habitat['image2'];
+            $image3 = $habitat['image3'];
+
+            if (!empty($_FILES['image']['name'])) {
+                $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
                 if ($fileUrl) {
-                    $image = $fileUrl;
-                    if ($habitatModel->updateHabitat($id, $name, $description, $description_courte, $user_id, $image)) {
-                        $_SESSION['success'] = "L'animal a été modifié avec succès.";
+                $image = $fileUrl;
+                } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
+                }
+            }
+
+            if (!empty($_FILES['image2']['name'])) {
+                $fileUrl = $cloudinaryService->uploadFile($_FILES['image2']['tmp_name']);
+                if ($fileUrl) {
+                $image2 = $fileUrl;
+                } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
+                }
+            }
+
+            if (!empty($_FILES['image3']['name'])) {
+                $fileUrl = $cloudinaryService->uploadFile($_FILES['image3']['tmp_name']);
+                if ($fileUrl) {
+                $image3 = $fileUrl;
+                } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
+                }
+            }
+                    if ($habitatModel->updateHabitat($id, $name, $description, $description_courte, $user_id, $image, $image2, $image3)) {
+                        $_SESSION['success'] = "L'habitat a été modifié avec succès.";
                         header("Location: /habitats/listHabitats");
                         exit();
                     } else {
-                        $error = "Erreur lors de la modification de l'habitat.";
+                        $_SESSION['error'] = "Erreur lors de la modification du service.";
                     }
-                } else {
-                    $error = "Erreur lors de l'upload de l'image.";
-                } 
-            }
-        }
+                }
     
         // Afficher le formulaire de modification
         $title = "Modifier l'habitat";
