@@ -364,6 +364,7 @@ th, td{
 }
 
 .card {
+    width: 100% ;
     height: 100%; /* Assurez-vous que la carte prend toute la hauteur */
     display: flex;
     flex-direction: column;
@@ -517,6 +518,10 @@ footer {
         width: 912px;  /* Largeur fixe pour les écrans plus larges */
         height: 608px; /* Hauteur fixe pour les écrans plus larges */
         object-fit: cover; /* Couvre l'élément sans déformer l'image */
+    }
+    .card {
+        height: 25rem; /* Fixe une hauteur uniforme pour toutes les images */
+        width:20%;
     }
 }
 

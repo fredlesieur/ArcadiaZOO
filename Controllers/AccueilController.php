@@ -94,7 +94,7 @@ class AccueilController extends Controller
                     if ($fileUrl) {
                         $image = $fileUrl;
                         if ($accueilModel->updateAccueil($id, $name, $description, $image)) {
-                            $_SESSION['success'] = "L'animal a été modifié avec succès.";
+                            $_SESSION['success'] = "L'accueil a été modifié avec succès.";
                             header("Location: /accueil/listAccueils");
                             exit();
                         } else {
