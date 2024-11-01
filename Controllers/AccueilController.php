@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Controllers;
-
-use App\Models\AnimalModel;
+use App\Config\CloudinaryService;
 use App\Models\HabitatsModel;
 use App\Models\AccueilModel;
 use App\Models\AvisModel;
@@ -47,28 +46,30 @@ class AccueilController extends Controller
     public function addAccueil()
     {
         $accueilModel = new AccueilModel();
-    
+    $cloudinaryService = new CloudinaryService();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-            ];
+                $name = $_POST['name'];
+                $description = $_POST['description'];
     
             // Vérification et téléchargement de l'image
-            if (!empty($_FILES['image']['name'])) {
-                try {
-                    $data['image'] = $accueilModel->uploadImage($_FILES['image'], 'assets/images/');
-                } catch (Exception $e) {
-                    $_SESSION['error'] = "Erreur lors du téléchargement de l'image : " . $e->getMessage();
-                }
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                $image = $_FILES['image'];
+                $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
+                if ($fileUrl) {
+                    $image = $fileUrl;
+                    if ($accueilModel->createAccueil($name, $description, $image)) {
+                        $_SESSION['success'] = "L'animal a été modifié avec succès.";
+                        header("Location: /accueil/listAccueils");
+                        exit();
+                    } else {
+                        $error = "Erreur lors de la modification de l'animal.";
+                    }
+                } else {
+                    $error = "Erreur lors de l'upload de l'image.";
+                } 
             }
-    
-            $accueilModel->hydrate($data);
-            $accueilModel->create();
-    
-            $_SESSION['success'] = "Élément ajouté avec succès à l'accueil.";
-            header("Location: /accueil/listAccueils");
-            exit();
+
         }
     
         $title = "Ajouter un élément à l'accueil";
@@ -79,29 +80,32 @@ class AccueilController extends Controller
     {
         $accueilModel = new AccueilModel();
         $accueil = $accueilModel->find($id);
+        $cloudinaryService = new CloudinaryService();
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-            ];
+                $id = $_POST['id'];
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+
     
-            // Vérification et téléchargement de l'image
-            if (!empty($_FILES['image']['name'])) {
-                try {
-                    $data['image'] = $accueilModel->uploadImage($_FILES['image'], 'assets/images/');
-                } catch (Exception $e) {
-                    $_SESSION['error'] = "Erreur lors du téléchargement de l'image : " . $e->getMessage();
+                if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                    $image = $_FILES['image'];
+                    $fileUrl = $cloudinaryService->uploadFile($image['tmp_name']);
+                    if ($fileUrl) {
+                        $image = $fileUrl;
+                        if ($accueilModel->updateAccueil($id, $name, $description, $image)) {
+                            $_SESSION['success'] = "L'animal a été modifié avec succès.";
+                            header("Location: /accueil/listAccueils");
+                            exit();
+                        } else {
+                            $error = "Erreur lors de la modification de l'accueil.";
+                        }
+                    } else {
+                        $error = "Erreur lors de l'upload de l'image.";
+                    } 
                 }
+    
             }
-    
-            $accueilModel->hydrate($data);
-            $accueilModel->update($id);
-    
-            $_SESSION['success'] = "Élément modifié avec succès.";
-            header("Location: /accueil/listAccueils");
-            exit();
-        }
     
         $title = "Modifier un élément de l'accueil";
         $this->render('accueil/edit_accueil', compact('accueil', 'title'));

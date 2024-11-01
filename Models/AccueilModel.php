@@ -13,6 +13,31 @@ class AccueilModel extends Model
         $this->table = "accueil";
     }
 
+    public function createAccueil($name, $description, $image)
+     {
+        return $this->req(
+            "INSERT INTO " . $this->table . " (name, description, image)
+             VALUES (:name, :description, :image)",
+            [
+                'name' => $name,
+                'description' => $description,
+                'image' => $image
+            ]
+    );
+    }
+
+    public function updateAccueil($id, $name, $description, $image)
+    {
+        return $this->req(
+            "UPDATE " . $this->table . " SET name = :name, description = :description, image = :image WHERE id = :id",
+            [
+                'id' => $id,
+                'name' => $name,
+                'description' => $description,
+                'image' => $image
+            ]
+        );
+    }
     /**
      * Get the value of id
      */ 
