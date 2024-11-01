@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\ServiceModel;
+use App\Config\CloudinaryService;
 
 class ServiceController extends Controller
 {
@@ -23,127 +24,127 @@ class ServiceController extends Controller
     }
 
     public function addServ()
-    {
-        $serviceModel = new ServiceModel();
-        $categories = $serviceModel->getUniqueCategories(); // Récupère les catégories existantes
-        
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Vérifie si une catégorie est bien sélectionnée ou si une nouvelle catégorie est créée
-            $categories = !empty($_POST['categorie']) && $_POST['categorie'] !== 'autre'
-                ? $_POST['categorie'] // Utiliser la catégorie sélectionnée si elle est définie et différente de "autre"
-                : (!empty($_POST['new-category']) ? $_POST['new-category'] : null); // Utiliser la nouvelle catégorie si elle est définie
-    
-            // Si aucune catégorie n'a été définie, on génère une erreur
-            if (!$categories) {
-                $_SESSION['error'] = "Vous devez sélectionner une catégorie ou en créer une nouvelle.";
-                header("Location: /service/addServ");
-                exit();
-            }
-    
-            // Préparer les données envoyées via le formulaire
-            $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-                'categorie' => $categories,
-                'duree' => $_POST['duree'],
-                'tarifs' => $_POST['tarifs'],
-                'horaires' => $_POST['horaires']
-            ];
-    
-            // Gestion de l'upload des images
-            if (!empty($_FILES['image']['name'])) {
-                $uploadedImage = $serviceModel->uploadImage($_FILES['image']);
-                if ($uploadedImage) {
-                    $data['image'] = $uploadedImage;
-                } else {
-                    echo "Erreur lors du téléchargement de l'image.<br>";
-                }
-            }
-            if (!empty($_FILES['image2']['name'])) {
-                $uploadedImage = $serviceModel->uploadImage($_FILES['image2']);
-                if ($uploadedImage) {
-                    $data['image2'] = $uploadedImage;
-                } else {
-                    echo "Erreur lors du téléchargement de l'image.<br>";
-                }
-            }
-    
-           
-            // Hydrate le modèle et enregistre le service dans la base de données
-            $serviceModel->hydrate($data);
-            $serviceModel->create();
-            $_SESSION['success'] = "Élément ajouté avec succès à la page service.";
-            header("Location: /service/listservices");
+{
+    $serviceModel = new ServiceModel();
+    $cloudinaryService = new CloudinaryService();
+    $categories = $serviceModel->getUniqueCategories();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Vérifie la catégorie sélectionnée ou nouvelle
+        $categorie = !empty($_POST['categorie']) && $_POST['categorie'] !== 'autre'
+            ? $_POST['categorie']
+            : (!empty($_POST['new-category']) ? $_POST['new-category'] : null);
+
+        if (!$categorie) {
+            $_SESSION['error'] = "Vous devez sélectionner une catégorie ou en créer une nouvelle.";
+            header("Location: /service/addServ");
             exit();
         }
-    
-        $title = "Ajouter un service";
-        $this->render('service/add_serv', compact('title', 'categories'));
-    }
-    
-    public function editServ($id)
-    {
-        $servModel = new ServiceModel();
-        $service = $servModel->find($id);
-    
-        // Récupérer toutes les catégories existantes pour les afficher dans le menu déroulant
-        $allCategories = $servModel->getAllCategories();
-    
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Vérifie si une nouvelle catégorie a été fournie ou si une catégorie existante est sélectionnée
-            $categorie = !empty($_POST['new-category']) ? $_POST['new-category'] : $_POST['categorie'];
-    
-            // Si aucune catégorie n'est sélectionnée, affiche une erreur
-            if (empty($categorie)) {
-                $_SESSION['error'] = "Vous devez sélectionner une catégorie ou en créer une nouvelle.";
-                header("Location: /service/editServ/" . $id);
-                exit();
+
+        // Préparation des données à insérer
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $duree = $_POST['duree'];
+        $tarifs = $_POST['tarifs'];
+        $horaires = $_POST['horaires'];
+
+        // Gestion de l'upload des images via Cloudinary
+        $image = null;
+        $image2 = null;
+
+        if (!empty($_FILES['image']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
+            if ($fileUrl) {
+                $image = $fileUrl;
+            } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
             }
-    
-            // Prépare les données envoyées via le formulaire sous forme de tableau
-            $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-                'categorie' => $categorie,
-                'duree' => $_POST['duree'],
-                'tarifs' => $_POST['tarifs'],
-                'horaires' => $_POST['horaires']
-            ];
-    
-            // Gestion de l'upload des images
-            if (!empty($_FILES['image']['name'])) {
-                $uploadedImage = $servModel->uploadImage($_FILES['image']);
-                if ($uploadedImage) {
-                    $data['image'] = $uploadedImage;
-                } else {
-                    echo "Erreur lors du téléchargement de l'image.<br>";
-                }
+        }
+
+        if (!empty($_FILES['image2']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image2']['tmp_name']);
+            if ($fileUrl) {
+                $image2 = $fileUrl;
+            } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
             }
-            if (!empty($_FILES['image2']['name'])) {
-                $uploadedImage = $servModel->uploadImage($_FILES['image2']);
-                if ($uploadedImage) {
-                    $data['image2'] = $uploadedImage;
-                } else {
-                    echo "Erreur lors du téléchargement de l'image.<br>";
-                }
-            }
-    
-            // Hydratation de l'objet service avec les données du formulaire
-            $servModel->hydrate($data);
-    
-            // Mettre à jour le service
-            $servModel->update($id);
-            $_SESSION['success'] = "Élément modifié avec succès a la page service.";
+        }
+
+        // Insertion dans la base de données
+        if ($serviceModel->createService($name, $description, $categorie, $duree, $tarifs, $horaires, $image, $image2)) {
+            $_SESSION['success'] = "Service ajouté avec succès.";
             header("Location: /service/listservices");
             exit();
-            // Redirection après modification
-           
+        } else {
+            $_SESSION['error'] = "Erreur lors de l'ajout du service.";
         }
-    
-        // Afficher le formulaire de modification avec toutes les catégories
-        $title = "Modifier un service";
-        $this->render('service/edit_serv', compact('service', 'allCategories', 'title'));
     }
+
+    $title = "Ajouter un service";
+    $this->render('service/add_serv', compact('title', 'categories'));
+}
+
+    
+public function editServ($id)
+{
+    $serviceModel = new ServiceModel();
+    $service = $serviceModel->find($id);
+    $allCategories = $serviceModel->getAllCategories();
+    $cloudinaryService = new CloudinaryService();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Vérifie la catégorie sélectionnée ou nouvelle
+        $categorie = !empty($_POST['new-category']) ? $_POST['new-category'] : $_POST['categorie'];
+
+        if (empty($categorie)) {
+            $_SESSION['error'] = "Vous devez sélectionner une catégorie ou en créer une nouvelle.";
+            header("Location: /service/editServ/" . $id);
+            exit();
+        }
+
+        // Préparation des données pour la mise à jour
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $duree = $_POST['duree'];
+        $tarifs = $_POST['tarifs'];
+        $horaires = $_POST['horaires'];
+
+        // Gestion de l'upload des images via Cloudinary
+        $image = $service['image'];
+        $image2 = $service['image2'];
+
+        if (!empty($_FILES['image']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image']['tmp_name']);
+            if ($fileUrl) {
+                $image = $fileUrl;
+            } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
+            }
+        }
+
+        if (!empty($_FILES['image2']['name'])) {
+            $fileUrl = $cloudinaryService->uploadFile($_FILES['image2']['tmp_name']);
+            if ($fileUrl) {
+                $image2 = $fileUrl;
+            } else {
+                echo "Erreur lors du téléchargement de l'image.<br>";
+            }
+        }
+
+        // Mise à jour dans la base de données
+        if ($serviceModel->updateService($id, $name, $description, $categorie, $duree, $tarifs, $horaires, $image, $image2)) {
+            $_SESSION['success'] = "Service modifié avec succès.";
+            header("Location: /service/listservices");
+            exit();
+        } else {
+            $_SESSION['error'] = "Erreur lors de la modification du service.";
+        }
+    }
+
+    $title = "Modifier un service";
+    $this->render('service/edit_serv', compact('service', 'allCategories', 'title'));
+}
+
     
 
     public function listservices()

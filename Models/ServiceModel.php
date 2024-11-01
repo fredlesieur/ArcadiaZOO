@@ -36,6 +36,43 @@ class ServiceModel extends Model
         $result = $this->req($sql)->fetchAll();
         return array_column($result, 'categorie');
     }
+    public function createService($name, $description, $categorie, $duree, $tarifs, $horaires, $image, $image2) 
+    {
+        return $this->req(
+         "INSERT INTO " .$this->table . " (name, description, categorie, duree, tarifs, horaires, image, image2)
+                VALUES (:name, :description, :categorie, :duree, :tarifs, :horaires, :image, :image2)",
+    
+      [
+            'name' => $name,
+            'description' => $description,
+            'categorie' => $categorie,
+            'duree' => $duree,
+            'tarifs' => $tarifs,
+            'horaires' => $horaires,
+            'image' => $image,
+            'image2' => $image2
+        ]
+    );
+    }
+    public function updateService($id, $name, $description, $categorie, $duree, $tarifs, $horaires, $image, $image2)
+{
+    return $this->req( 
+        "UPDATE " . $this->table . " SET name = :name, description = :description, categorie = :categorie, 
+                duree = :duree, tarifs = :tarifs, horaires = :horaires, 
+                image = :image, image2 = :image2 WHERE id = :id",
+        [
+            'id' => $id,
+            'name' => $name,
+            'description' => $description,
+            'categorie' => $categorie,
+            'duree' => $duree,
+            'tarifs' => $tarifs,
+            'horaires' => $horaires,
+            'image' => $image,
+            'image2' => $image2
+        ]
+    );
+}
 
     // Getters
     public function getId() {
