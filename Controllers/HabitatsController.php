@@ -122,7 +122,7 @@ class HabitatsController extends Controller
             }
         }
 
-        if ($habitatsModel->createHabitat($name, $description, $description_courte, $user_id, $image, $image2, $image3)) {
+        if ($habitatsModel->createHabitat($name, $description, $description_courte, $image, $image2, $image3, $user_id)) {
             $_SESSION['success'] = "L'habitat a été ajouté avec succès.";
             header("Location: /habitats/listHabitats");
             exit();
@@ -179,7 +179,7 @@ class HabitatsController extends Controller
                 echo "Erreur lors du téléchargement de l'image.<br>";
                 }
             }
-                    if ($habitatModel->updateHabitat($id, $name, $description, $description_courte, $user_id, $image, $image2, $image3)) {
+                    if ($habitatModel->updateHabitat($id, $name, $description, $description_courte, $image, $image2, $image3, $user_id)) {
                         $_SESSION['success'] = "L'habitat a été modifié avec succès.";
                         header("Location: /habitats/listHabitats");
                         exit();

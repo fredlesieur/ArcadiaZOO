@@ -36,38 +36,40 @@ class HabitatsModel extends Model
                 JOIN users u ON h.user_id = u.id";  // Associer l'ID du vétérinaire
         return $this->req($sql)->fetchAll();
     }
-    public function createHabitat($name, $description, $description_courte, $user_id, $image, $image2, $image3)
+    public function createHabitat($name, $description, $description_courte, $commentaire, $user_id, $image, $image2, $image3)
     {
         return $this->req(
-            "INSERT INTO " . $this->table . " (name, description, description_courte, user_id, image, image2, image3)
-             VALUES (:name, :description, :description_courte, :user_id, :image, :image2, :image3)",
+            "INSERT INTO " . $this->table . " (name, description, description_courte, commentaire, user_id, image, image2, image3)
+             VALUES (:name, :description, :description_courte, :commentaire, :user_id, :image, :image2, :image3)",
             [
                 'name' => $name,
                 'description' => $description,
                 'description_courte' => $description_courte,
-                'user_id' => $user_id,
+                'commentaire' => $commentaire,
                 'image' => $image,
                 'image2' => $image2,
-                'image3' => $image3
+                'image3' => $image3,
+                'user_id' => $user_id,
             ]
         );
     }
     
 
-    public function updateHabitat($id, $name, $description, $description_courte, $user_id, $image, $image2, $image3)
+    public function updateHabitat($id, $name, $description, $description_courte, $commentaire, $user_id, $image, $image2, $image3)
     {
         return $this->req(
-            "UPDATE " . $this->table . " SET name = :name, description = :description, description_courte = :description_courte, 
+            "UPDATE " . $this->table . " SET name = :name, description = :description, description_courte = :description_courte, commentaire = :commentaire, 
                     user_id = :user_id, image = :image, image2 = :image2, image3 = :image3 WHERE id = :id",
             [
                 'id' => $id,
                 'name' => $name,
                 'description' => $description,
                 'description_courte' => $description_courte,
-                'user_id' => $user_id,
+                'commentaire' => $commentaire,
                 'image' => $image,
                 'image2' => $image2,
-                'image3' => $image3
+                'image3' => $image3,
+                'user_id' => $user_id,
             ]
         );
     }
