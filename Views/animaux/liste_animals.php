@@ -26,11 +26,11 @@
                     <?php if (!empty($animaux)): ?>
                         <?php foreach ($animaux as $animal): ?>
                             <tr>
-                                <td><?= htmlspecialchars($animal['nom']); ?></td>
-                                <td><?= htmlspecialchars($animal['age']); ?> ans</td>
-                                <td><?= htmlspecialchars($animal['race']); ?></td>
+                                <td><?= $animal['nom']; ?></td>
+                                <td><?= $animal['age']; ?> ans</td>
+                                <td><?= $animal['race']; ?></td>
                                 <td><?= isset($animal['habitat_name']) ? htmlspecialchars($animal['habitat_name']) : 'Non défini'; ?></td>
-                                <td><img src="<?= htmlspecialchars($animal['image']); ?>" alt="<?= htmlspecialchars($animal['nom']); ?>" width="100" loading="lazy"></td>
+                                <td><img src="<?= $animal['image']; ?>" alt="<?= htmlspecialchars($animal['nom']); ?>" width="100" loading="lazy"></td>
                                 <td><?= htmlspecialchars($animal['views']); ?></td>
                                 <td>
                                     <!-- Bouton de modification -->
