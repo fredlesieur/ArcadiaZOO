@@ -74,6 +74,17 @@ class HabitatsModel extends Model
         );
     }
     
+    public function updateCommentaire($id_habitat, $commentaire)
+{
+    return $this->req(
+        "UPDATE " . $this->table . " SET commentaire = :commentaire WHERE id = :id",
+        [
+            'id' => $id_habitat,
+            'commentaire' => $commentaire,
+        ]
+    );
+}
+
     public function getName() {
         return $this->name;
     }
