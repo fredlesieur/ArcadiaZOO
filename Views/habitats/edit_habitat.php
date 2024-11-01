@@ -21,17 +21,21 @@
             <label for="description">Description :</label>
             <textarea class="form-control" name="description" id="description" required><?= htmlspecialchars($habitat['description']) ?></textarea><br>
 
-            <label for="image">Image principale :</label>
-            <input type="file" class="form-control" name="image" id="image"><br>
-
-            <label for="image2">Image supplémentaire :</label>
-            <input type="file" class="form-control" name="image2" id="image2"><br>
-
-            <label for="image3">Image secondaire :</label>
-            <input type="file" class="form-control" name="image3" id="image3"><br>
-
             <label for="description_courte">Description courte :</label>
             <textarea class="form-control" name="description_courte" id="description_courte"><?= htmlspecialchars($habitat['description_courte']) ?></textarea><br>
+
+            <label for="image">Image carousel :</label>
+            <input type="file" class="form-control" name="image" id="image"><br>
+
+            <label for="image2">Image2 carousel :</label>
+            <input type="file" class="form-control" name="image2" id="image2"><br>
+
+            <label for="image3">Image3 habitat :</label>
+            <input type="file" class="form-control" name="image3" id="image3"><br>
+
+
+            <!-- Champ caché pour l'user_id -->
+            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>">
             
             <button type="submit" class="btn warning w-100 mt-2">Modifier</button>
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
