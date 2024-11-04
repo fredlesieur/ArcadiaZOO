@@ -10,9 +10,9 @@
 body {
     overflow-x: hidden;
 }
-body, h1, h2, h3, h4, h5,  p, a, li {
+body, h1, h2, h3, h4, h5, p, a, li {
     font-family: "Roboto", sans-serif;
-    color:  rgba(53,35,2,1);
+    color: rgba(53,35,2,1);
     text-align: center;
 }
 
@@ -27,21 +27,19 @@ h1 {
 
 h2 {
     font-size: 2rem;
-    color:   rgba(53,35,2,1);
-    font-weight:bold;
-    
+    color: rgba(53,35,2,1);
+    font-weight: bold;
 }
 
 h3 {
     font-size: 1.5rem;
-    color:  rgba(53,35,2,1);
+    color: rgba(53,35,2,1);
 }
+
 h5 {
     font-size: 1.25rem;
-    color:  rgba(53,35,2,1);
+    color: rgba(53,35,2,1);
 }
-
-
 
 .colorSection {
     background-color: white;
@@ -50,31 +48,34 @@ h5 {
 .colorSection2 {
     background-color: #FAF4ED;
 }
+
 .hours {
-    border: 2px solid  rgba(53,35,2,1) !important; 
+    border: 2px solid rgba(53,35,2,1) !important; 
     border-radius: 10px !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
     padding: 20px !important;
     background-color: white !important; 
-}  
-  /* Espacement pour séparer les sections */
-  .space {
+}
+
+/* Espacement pour séparer les sections */
+.space {
     height: 2rem;
-  }
-  .separator {
+}
+.separator {
     width: 100%;
     height: 3rem;
     background-color: white;
-  }
+}
+
 /*formulaire et tableaux */
-.avi{
-    border:solid 2px  rgba(53,35,2,1);
+.avi {
+    border: solid 2px rgba(53,35,2,1);
     background-color: #FAF4ED;
 }
 
 form {
     background-color: #FAF4ED;
-    border: 2px solid  rgba(53,35,2,1);
+    border: 2px solid rgba(53,35,2,1);
     border-radius: 10px;
     padding: 2rem;
     margin: 2rem auto;
@@ -86,7 +87,7 @@ form {
 label {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
-    color:  rgba(53,35,2,1);
+    color: rgba(53,35,2,1);
     display: block;
     margin-bottom: 0.5rem;
 }
@@ -94,14 +95,15 @@ label {
 input, select {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
-    color:  rgba(53,35,2,1);
-    border: 2px solid  rgba(53,35,2,1);
+    color: rgba(53,35,2,1);
+    border: 2px solid rgba(53,35,2,1);
     border-radius: 5px;
     padding: 0.5rem;
     width: 100%;
     margin-bottom: 1rem;
     background-color: white;
 }
+
 .input-group-text {
     display: flex;
     align-items: center;
@@ -111,12 +113,12 @@ input, select {
     padding: 0;
     background-color: #fff; 
     border: none;
-    border:1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Styles des boutons */
 .button, .btn {
-    background-color:  #f5d6b3;
+    background-color: #f5d6b3;
     color: rgba(53,35,2,1);
     border: 2px solid rgba(53,35,2,1);
     box-shadow: 5px 2px 10px #FAF4ED;
@@ -127,44 +129,43 @@ input, select {
 
 .button:hover, .btn:hover {
     background-color: #F8B941;
-    color:  rgba(53,35,2,1);
-    border: 2px solid  rgba(53,35,2,1);
-    box-shadow: 5px 2px 10px  rgba(53,35,2,1);
+    color: rgba(53,35,2,1);
+    border: 2px solid rgba(53,35,2,1);
+    box-shadow: 5px 2px 10px rgba(53,35,2,1);
 }
 
-
-.success{
-    background-color:#7AA95C ;
+.success {
+    background-color: #7AA95C;
     color: white;
-    border: solid 2px  rgba(53,35,2,1);
+    border: solid 2px rgba(53,35,2,1);
     box-shadow: 5px 2px 10px #7aa80b;
     border-radius: 10px;
     padding: 10px;
     width: 5rem;
-    
 }
-.danger{
-    background-color:#9e2f07 ;
+
+.danger {
+    background-color: #9e2f07;
     color: white;
-    border: solid 2px  rgba(53,35,2,1);
+    border: solid 2px rgba(53,35,2,1);
     box-shadow: 5px 2px 10px #621e05;
     border-radius: 10px;
     padding: 10px;
     width: 6rem;
-    
 }
-.warning{
-    background-color:rgb(146, 109, 38)!important ;
+
+.warning {
+    background-color: rgb(146, 109, 38) !important;
     color: white;
-    border: solid 2px  rgba(53,35,2,1);
+    border: solid 2px rgba(53,35,2,1);
     box-shadow: 5px 2px 10px #b47705;
     border-radius: 10px;
     padding: 10px;
-    width: 6rem;  
+    width: 6rem;
 }
 
-/* design des bouton de menu du bas*/
-.circle{
+/* design des bouton de menu du bas */
+.circle {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -172,22 +173,20 @@ input, select {
     width: 15rem; 
     height: 9rem;
     border: 0.3rem solid rgba(155,101,7,1);
-    border-radius:6rem;
+    border-radius: 6rem;
     background-color: #FAF4ED;
     text-align: center;
     padding: 20px;
-  
-  }
-  
+}
 
-/*oeil de mot de passe*/
+/* oeil de mot de passe */
 .togglePasswordIcon {
     font-size: 1.2rem;
 }
 
 /* Styles de la barre de navigation */
 .navbar {
-    background:linear-gradient(90deg, rgb(92, 58, 1) 0%, rgba(53,35,2,1) 100%);
+    background: linear-gradient(90deg, rgb(92, 58, 1) 0%, rgba(53,35,2,1) 100%);
     padding: 1rem;
 }
 
@@ -226,7 +225,6 @@ input, select {
     color: #F8B941;
 }
 
-
 /* Styles pour la bannière */
 .banner {
     background: linear-gradient(90deg, #FAF4ED 0%, #f7d5af 100%);
@@ -235,7 +233,7 @@ input, select {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color:  rgba(53,35,2,1);
+    color: rgba(53,35,2,1);
     font-size: 2.5rem;
     font-family: "Risque", cursive;
 }
@@ -243,68 +241,67 @@ input, select {
 /* Styles du formulaire */
 .form-container {
     background-color: #FAF4ED;
-    border: 2px solid  rgba(53,35,2,1);
+    border: 2px solid rgba(53,35,2,1);
     border-radius: 10px;
     padding: 1.5rem;
     margin: 2rem auto;
     max-width: 30rem;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
 }
+
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
 textarea:hover,
 select:hover {
-    border-color:  rgba(53,35,2,1); /* Change la couleur de la bordure au survol (hover) */
-    box-shadow: 0 0 5px rgba(61, 42, 0, 0.5); /* Ajoute un effet d'ombre */
-    outline: none; /* Supprime le contour par défaut */
+    border-color: rgba(53,35,2,1); 
+    box-shadow: 0 0 5px rgba(61, 42, 0, 0.5); 
+    outline: none;
 }
-   
-
-
 
 /* Centrer le texte dans toutes les cellules du tableau */
 table {
-    width: 100%; /* Ajuste le tableau pour occuper toute la largeur */
-    border-collapse: collapse; /* Supprime les espaces entre les cellules */
+    width: 100%; 
+    border-collapse: collapse; 
 }
-
 
 table th {
-    background-color: rgba(155,101,7,1) !important; /* Couleur de fond pour les en-têtes */
-    font-weight: bold; /* Met le texte des en-têtes en gras */
+    background-color: rgba(155,101,7,1) !important;
+    font-weight: bold;
     color: #ffffff !important;
 }
-th, td{
+
+th, td {
     text-align: center;
     vertical-align: middle;
-    color:  rgba(53,35,2,1) !important;
+    color: rgba(53,35,2,1) !important;
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
-    text-align: center;
     margin: 0 auto;
     padding: 10px;
 }
 
 .dataTables_filter {
-    text-align: center; /* Centre le bloc de recherche */
-    margin-bottom: 20px; /* Ajoute un espacement sous la barre de recherche */
+    text-align: center; 
+    margin-bottom: 20px;
 }
 
 .dataTables_filter label {
     width: 100%;
     display: flex;
-    justify-content: center; /* Centre le label */
+    justify-content: center;
 }
 
 .dataTables_filter input {
     display: inline-block;
-    width: auto; /* Ajuste la largeur du champ de recherche */
+    width: auto;
 }
+
 .dataTables_length select {
-    background-color: #FFFFFF; /* Couleur de fond blanche */
-    color:  rgba(53,35,2,1); /* Couleur du texte visible */
+    background-color: #FFFFFF;
+    color: rgba(53,35,2,1);
 }
+
 /* Carrousel */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -325,25 +322,29 @@ th, td{
     width: 100%;
     border-radius: 40px;
 }
+
 .carousel-inner {
-    max-width: 57rem; 
+    max-width: 57rem;
     max-height: 38rem;
-    margin-left:auto;
-    margin-right:auto;
-    overflow: hidden; 
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
 }
+
 .carousel-avis .carousel-item .card {
-    margin: 0 auto; /* Centre les cartes dans le carrousel */
+    margin: 0 auto;
 }
+
 .habitat-container {
     max-width: 65rem;
     margin: 0 auto;
-
 }
+
 .container-fluid, .container {
     padding-left: 0;
     padding-right: 0;
 }
+
 /* Classe pour ajuster les descriptions */
 .presentation {
     max-width: 60rem;
@@ -352,13 +353,12 @@ th, td{
 }
 
 /* Ajustement des autres images pour qu'elles soient responsives et uniformes */
-
 .custom-width {
-    width:100%;
+    width: 100%;
     height: auto;
-    max-width: 60rem; /* Limite la largeur maximale à 1000px */
-    margin-left: auto; /* Centre horizontalement */
-    margin-right: auto; /* Centre horizontalement */
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .colorBeige {
@@ -366,42 +366,43 @@ th, td{
 }
 
 .card {
-    width: 100% ;
-    height: 100%; /* Assurez-vous que la carte prend toute la hauteur */
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Assure que le contenu de la carte est distribué uniformément */
-    border: 2px solid  rgba(53,35,2,1);
+    justify-content: space-between;
+    border: 2px solid rgba(53,35,2,1);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 15px;
     transition: transform 0.2s ease-in-out;
-  }
-  
-  .card-img-top {
-    flex-grow: 1; /* L'image prend tout l'espace vertical disponible */
+}
+
+.card-img-top {
+    flex-grow: 1;
     width: 100%;
-    height: 25rem; /* Fixe une hauteur uniforme pour toutes les images */
-    object-fit: cover; /* S'assure que l'image remplit la zone sans déformation */
+    height: 25rem;
+    object-fit: cover;
     border-top-left-radius: 100px;
-    border-top-right-radius: 100px; 
-  }
-  
-  .card-body {
+    border-top-right-radius: 100px;
+}
+
+.card-body {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centre le texte verticalement dans la carte */
-  }
+    justify-content: center;
+}
+
 .card-text {
     text-align: justify;
 }
-.cardWidth{
 
-    width:100% !important
+.cardWidth {
+    width: 100% !important;
 }
-/* responsive iframe */
 
+/* responsive iframe */
 .iframe-container {
     width: 100%;
     height: 19rem;
@@ -455,12 +456,8 @@ footer {
     color: #FAF4ED;
 }
 
-
-
-  /* Ajustements pour les écrans plus grands */
+/* Responsive adjustments */
 @media (min-width: 768px) {
- 
-
     .banner {
         font-size: 2.5rem;
     }
@@ -484,28 +481,29 @@ footer {
     .navbar-nav .nav-link {
         font-size: 1.2rem; 
     }
+
     .iframe-container {
-        width: 80%; /* Ajuste à 80% pour tablette */
+        width: 80%;
         height: 400px;
     }
+
     .title {
         font-size: 4rem;
-        color:   rgba(53,35,2,1);
-    }  
-   .title2 {
-        font-size: 3rem;
-        color:   rgba(53,35,2,1); 
+        color: rgba(53,35,2,1);
     }
+
+    .title2 {
+        font-size: 3rem;
+        color: rgba(53,35,2,1); 
+    }
+
     .description {
         max-width: 50rem;
-        margin:auto;
+        margin: auto;
     }
+
     .custom-width {
-        width:100%;
-        height: auto;
-        max-width: 60rem; /* Limite la largeur maximale à 1000px */
-        margin-left: auto; /* Centre horizontalement */
-        margin-right: auto; /* Centre horizontalement */
+        max-width: 60rem;
     }
 
     .habitat-image {
@@ -513,94 +511,117 @@ footer {
     }
 
     .habitat-content {
-        padding-left: 2rem; /* Ajouter de l’espace entre texte et image */
+        padding-left: 2rem;
     }
 
     .row-spacing {
-        margin-bottom: 5rem; /* Plus d'espace entre les sections */
+        margin-bottom: 5rem;
     }
+
     .carousel-image {
-        width: 912px;  /* Largeur fixe pour les écrans plus larges */
-        height: 608px; /* Hauteur fixe pour les écrans plus larges */
-        object-fit: cover; /* Couvre l'élément sans déformer l'image */
+        width: 912px;
+        height: 608px;
+        object-fit: cover;
     }
-    
 }
 
-/* Espacement sur Mobile */
+/* Mobile spacing */
 .habitat-image {
     margin-bottom: 1rem;
 }
 
-/* Alignement du titre sur mobile */
 .habitat-title {
     margin-bottom: 1rem;
-
 }
+
 @media (min-width: 992px) {
     .navbar-nav .nav-link {
-        font-size: 1.4rem; 
+        font-size: 1.4rem;
     }
 
     .iframe-container {
-        width: 60%; /* Ajuste à 60% pour desktop */
+        width: 60%;
         height: 500px;
     }
-
-   
 }
+
 @media (max-width: 992px) {
-    
-
     .long-text {
-        display: none; /* Masquer le texte par défaut */
+        display: none;
     }
 
-    /* Quand la classe show est ajoutée, on affiche le texte sur mobile */
     .long-text.show {
-        display: block !important; /* Assure que le texte est visible */
+        display: block !important;
     }
+}
+
+@media (min-width: 1200px) {
+    .carousel-avis .carousel-inner {
+        max-width: 85rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-avis .carousel-inner {
+        max-width: 100%;
     }
 
+    .carousel-avis .carousel-item {
+        display: flex;
+        justify-content: center;
+        padding: 0 15px;
+    }
 
-    @media (min-width: 1200px) {
-        .carousel-avis .carousel-inner {
-            max-width: 85rem; /* Augmente la largeur pour écrans larges */
-            width: 100%; /* Prend toute la largeur possible */
-        }
+    .carousel-avis .card {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 10px;
     }
-    @media (max-width: 768px) {
-        .carousel-avis .carousel-inner {
-            max-width: 100%; /* Prend toute la largeur */
-        }
-    
-        .carousel-avis .carousel-item {
-            display: flex;
-            justify-content: center; /* Centre chaque avis */
-            padding: 0 15px; /* Ajoute un padding pour respirer */
-        }
-    
-        .carousel-avis .card {
-            width: 100%; /* Les cartes prennent toute la largeur */
-            max-width: 100%; /* Assure que la carte ne dépasse pas */
-            margin-bottom: 10px;
-        }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 10%;
     }
-    
-    /* Ajustement pour tablette */
-    @media (min-width: 768px) and (max-width: 992px) {
-        .carousel-avis .carousel-inner {
-            max-width: 80%; /* Réduit un peu la largeur */
-        }
-    
-        .carousel-avis .carousel-item {
-            display: flex;
-            justify-content: center;
-            padding: 0 15px;
-        }
-    
-        .carousel-avis .card {
-            width: 90%; /* Ajuste la largeur des cartes */
-            margin: 0 auto;
-        }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 1.5rem;
+        height: 1.5rem;
     }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .carousel-avis .carousel-inner {
+        max-width: 80%;
+    }
+
+    .carousel-avis .carousel-item {
+        display: flex;
+        justify-content: center;
+        padding: 0 15px;
+    }
+
+    .carousel-avis .card {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.carousel-avis .carousel-item.active,
+.carousel-avis .carousel-item-next,
+.carousel-avis .carousel-item-prev {
+    display: flex;
+    align-items: stretch;
+}
+
+.carousel-avis .card-body {
+    padding: 10px;
+}
+
+@media (min-width: 992px) {
+    .avis-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
