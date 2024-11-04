@@ -332,7 +332,9 @@ th, td{
     margin-right:auto;
     overflow: hidden; 
 }
-
+.carousel-avis .carousel-item .card {
+    margin: 0 auto; /* Centre les cartes dans le carrousel */
+}
 .habitat-container {
     max-width: 65rem;
     margin: 0 auto;
@@ -561,3 +563,9 @@ footer {
     }
 
 
+    @media (min-width: 1200px) {
+        .carousel-avis .carousel-inner {
+            max-width: 85rem; /* Augmente la largeur pour écrans larges */
+            width: 100%; /* Prend toute la largeur possible */
+        }
+    }
