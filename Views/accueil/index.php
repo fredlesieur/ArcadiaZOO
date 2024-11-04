@@ -151,21 +151,27 @@
 
 <!-- Avis des visiteurs -->
 <section class="mt-5">
-    <div id="carouselAvis" class="carousel slide carousel-avis" data-bs-ride="carousel">
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-avis" data-bs-ride="carousel">
         <h2 class="text-center mb-3">Les avis des visiteurs</h2>
         <div class="carousel-inner">
             <?php if (isset($Avis) && !empty($Avis)): ?>
                 <?php
-                $avisChunks = array_chunk($Avis, 3); // Diviser les avis par groupe de 3 pour le mode desktop
+                $avisChunks = array_chunk($Avis, 3);
                 $activeClass = 'active';
                 foreach ($avisChunks as $avisGroup): ?>
                     <div class="carousel-item <?= $activeClass; ?>">
-                        <div class="d-flex flex-wrap justify-content-center avis-container">
+                        <div class="row justify-content-center m-auto w-75">
                             <?php foreach ($avisGroup as $avis): ?>
-                                <div class="card avi m-2">
-                                    <div class="card-body text-center">
-                                        <h4 class="card-title"><?= htmlspecialchars($avis['pseudo'], ENT_QUOTES, 'UTF-8'); ?></h4>
-                                        <p class="card-text long-text"><?= htmlspecialchars($avis['comment'], ENT_QUOTES, 'UTF-8'); ?></p>
+                                <div class="col-12 col-md-4 mb-3 mt-3">
+                                    <div class="card colorBeige mb-3">
+                                        <div class="card-body text-center overflow-auto">
+                                            <h4 class="card-title"><?= htmlspecialchars($avis['pseudo'], ENT_QUOTES, 'UTF-8'); ?></h4>
+                                            <p class="card-text long-text"><?= htmlspecialchars($avis['comment'], ENT_QUOTES, 'UTF-8'); ?></p>
+                                            <div class="d-flex justify-content-center">
+                                                <button class="toggle-text-btn button d-lg-none">Afficher le texte</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -177,11 +183,12 @@
                 <p>Aucun avis pour le moment.</p>
             <?php endif; ?>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAvis" data-bs-slide="prev">
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Précédent</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselAvis" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Suivant</span>
         </button>
