@@ -569,3 +569,38 @@ footer {
             width: 100%; /* Prend toute la largeur possible */
         }
     }
+    @media (max-width: 768px) {
+        .carousel-avis .carousel-inner {
+            max-width: 100%; /* Prend toute la largeur */
+        }
+    
+        .carousel-avis .carousel-item {
+            display: flex;
+            justify-content: center; /* Centre chaque avis */
+            padding: 0 15px; /* Ajoute un padding pour respirer */
+        }
+    
+        .carousel-avis .card {
+            width: 100%; /* Les cartes prennent toute la largeur */
+            max-width: 100%; /* Assure que la carte ne dépasse pas */
+            margin-bottom: 10px;
+        }
+    }
+    
+    /* Ajustement pour tablette */
+    @media (min-width: 768px) and (max-width: 992px) {
+        .carousel-avis .carousel-inner {
+            max-width: 80%; /* Réduit un peu la largeur */
+        }
+    
+        .carousel-avis .carousel-item {
+            display: flex;
+            justify-content: center;
+            padding: 0 15px;
+        }
+    
+        .carousel-avis .card {
+            width: 90%; /* Ajuste la largeur des cartes */
+            margin: 0 auto;
+        }
+    }
