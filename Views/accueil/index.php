@@ -3,7 +3,7 @@
 <!-- Carrousel Animaux -->
 <section class="mt-5">
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-        <div class="carousel-inner">
+        <div class="carousel-inner widthCarousel">
             <?php if (!empty($carousel)): ?>
                 <?php foreach ($carousel as $index => $item): ?>
                     <div class="carousel-item text-center <?= $index === 0 ? 'active' : '' ?>">

@@ -3,7 +3,7 @@
 <!-- Carrousel Section -->
 <section class="colorSection2 mt-5">
     <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-        <div class="carousel-inner">
+        <div class="carousel-inner widthCarousel">
             <?php if (isset($services) && !empty($services)): ?>
                 <?php foreach ($services as $index => $service): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">

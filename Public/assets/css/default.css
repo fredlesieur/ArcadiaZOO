@@ -323,7 +323,7 @@ th, td {
     border-radius: 40px;
 }
 
-.carousel-inner {
+.widthCarousel {
     max-width: 57rem;
     max-height: 38rem;
     margin-left: auto;

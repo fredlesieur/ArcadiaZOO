@@ -6,7 +6,7 @@
 <!-- Carrousel Section -->
 <section class="colorSection pt-2 pt-lg-4 pt-xl-5">
     <div id="habitatCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-        <div class="carousel-inner">
+        <div class="carousel-inner widthCarousel">
             <?php if (isset($habitat)): ?>
                 <div class="carousel-item active">
                     <div class="d-flex justify-content-center align-items-center">
