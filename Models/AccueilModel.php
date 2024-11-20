@@ -14,22 +14,25 @@ class AccueilModel extends Model
     }
 
     public function createAccueil($name, $description, $image)
-     {
+    {
+        if (empty($name) || empty($description)) {
+            throw new \Exception("Les champs nom et description sont obligatoires.");
+        }
+
         return $this->req(
-            "INSERT INTO " . $this->table . " (name, description, image)
-             VALUES (:name, :description, :image)",
+            "INSERT INTO {$this->table} (name, description, image) VALUES (:name, :description, :image)",
             [
                 'name' => $name,
                 'description' => $description,
                 'image' => $image
             ]
-    );
+        );
     }
 
     public function updateAccueil($id, $name, $description, $image)
     {
         return $this->req(
-            "UPDATE " . $this->table . " SET name = :name, description = :description, image = :image WHERE id = :id",
+            "UPDATE {$this->table} SET name = :name, description = :description, image = :image WHERE id = :id",
             [
                 'id' => $id,
                 'name' => $name,
@@ -38,6 +41,7 @@ class AccueilModel extends Model
             ]
         );
     }
+
     /**
      * Get the value of id
      */ 

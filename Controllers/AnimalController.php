@@ -94,7 +94,7 @@ class AnimalController extends Controller {
                 $nom = $_POST['nom'];
                 $age = $_POST['age'];
                 $race = $_POST['race'];
-                $id_habitats = $_POST['id_habitat'];
+                $id_habitats = $_POST['id_habitats'];
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
                 $image = $_FILES['image'];

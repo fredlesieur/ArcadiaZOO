@@ -39,7 +39,7 @@ class CloudinaryService
             return $result['secure_url'];
         } catch (\Exception $e) {
             error_log("Cloudinary upload error: " . $e->getMessage());
-            return false;
+            throw new \Exception("une erreur est survenue lors de l'upload de l'image");
         }
     }
 
