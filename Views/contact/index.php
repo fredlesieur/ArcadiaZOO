@@ -4,7 +4,9 @@
         <?= $_SESSION['success']; ?>
         <?php unset($_SESSION['success']); ?>
     </div>
-<?php endif; ?><h1 class="container-fluid banner pt-5 pb-5 mb-0"> NOUS CONTACTER</h1>
+<?php endif; ?>
+
+<h1 class="container-fluid banner pt-5 pb-5 mb-0"> NOUS CONTACTER</h1>
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
     <div class="container mx-auto p-4">
