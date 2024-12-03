@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Config\MongoDb;
 use MongoDB\BSON\ObjectId;
+
 class HoraireModel extends MongoDb
 {
     private $collection;
@@ -24,16 +25,19 @@ class HoraireModel extends MongoDb
         return $this->collection->find([], $options)->toArray();
     }
 
-    public function find($id)
-    {
-        $options = [
-            'typeMap' => [
-                'root' => 'array',  // Return documents as objects
-                'document' => 'array'
-            ]
-        ];
-        return $this->collection->findOne(['_id' => new ObjectId($id)]);
-    }
+   public function find($id)
+{
+    $options = [
+        'typeMap' => [
+            'root' => 'array',  // Retourner le document sous forme de tableau (pas un objet)
+            'document' => 'array'
+        ]
+    ];
+
+    // Passer les options à la méthode findOne pour bien les prendre en compte
+    return $this->collection->findOne(['_id' => new ObjectId($id)], $options);
+}
+
 
     public function add_horaire($saison, $semaine, $week_end)
     {
