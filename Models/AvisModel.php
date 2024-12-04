@@ -38,6 +38,11 @@ class AvisModel extends Model
         return $this->req("DELETE FROM {$this->table} WHERE id = ?", [$id]);
     }
 
+    public function delete($id)
+    {
+        return $this->req("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+    }
+
     // Getters et setters pour les propriétés
     public function getId()
     {

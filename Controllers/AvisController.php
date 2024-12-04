@@ -51,4 +51,26 @@ class AvisController extends Controller
         header('Location: /avis/gererAvis');
         exit;
     }
+    public function listeAvis()
+    {
+        $avisModel = new AvisModel();
+        $Avis = $avisModel->getAllValidatedReviews(); // Récupère les avis validés
+        $this->render('avis/index', compact('Avis'));
+    }
+
+    public function deleteAvis($id)
+    {
+        $avisModel = new AvisModel();
+        $avis = $avisModel->find($id);
+
+        if ($avis) {
+            $avisModel->delete($id);
+            $_SESSION['success'] = "L'avis a été supprimé avec succès.";
+        } else {
+            $_SESSION['error'] = "L'avis que vous essayez de supprimer n'existe pas.";
+        }
+
+        header("Location: /avis/listAvis");
+        exit;
+    }
 }
