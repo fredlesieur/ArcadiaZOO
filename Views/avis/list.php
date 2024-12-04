@@ -12,15 +12,15 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($horaires as $horaire): ?>
+        <?php foreach ($avis as $a): ?>
             <tr>
-                <td><?= htmlspecialchars($horaire['pseudo']); ?></td>
-                <td><?= htmlspecialchars($horaire['comment']); ?></td>
-                <td><?= htmlspecialchars($horaire['valid']); ?></td>
+                <td><?= htmlspecialchars($a['pseudo']); ?></td>
+                <td><?= htmlspecialchars($a['comment']); ?></td>
+                <td><?= htmlspecialchars($a['valid']); ?></td>
                 <td>
 
                     <!-- Bouton de suppression avec confirmation -->
-                    <a href="/avis/delete/<?= $horaire['_id']; ?>" class="btn danger"
+                    <a href="/avis/delete/<?= $a['_id']; ?>" class="btn danger"
                         onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet horaire ?');">
                         Supprimer
                     </a>
