@@ -6,7 +6,7 @@ services:
       context: .
     container_name: php-mvc
     ports:
-      - "8080:80"  # Accéder à l'application via localhost:8080
+      - "8000:80"  # Accéder à l'application via localhost:8080
     env_file:
       - .env       # Charger les variables d'environnement
     depends_on:

@@ -51,12 +51,13 @@ class AvisController extends Controller
         header('Location: /avis/gererAvis');
         exit;
     }
-    public function listAvis()
+    public function listAvis() 
     {
         $avisModel = new AvisModel();
-        $Avis = $avisModel->getAllValidatedReviews(); // Récupère les avis validés
-        $this->render('avis/index', compact('Avis'));
+        $avis = $avisModel->findAll(); // Récupère les avis validés
+        $this->render('avis/list', compact('avis')); // Remplace 'Avis' par 'avis'
     }
+    
 
     public function deleteAvis($id)
     {
