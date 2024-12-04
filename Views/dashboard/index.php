@@ -20,7 +20,7 @@
                 <li><a class="btn button w-50 m-2" href="/contact/addHoraire">Créer un horaire</a></li>
             <?php elseif ($_SESSION['role'] && $_SESSION['role'] == 'employe'): ?>
                 <li><a class="btn button w-50 m-2" href="/avis/gererAvis">Gérer les Avis</a></li>
-                <li><a class="btn button w-50 m-2" href="/avis/list">Liste des services</a></li>
+                <li><a class="btn button w-50 m-2" href="/avis/listAvis">Liste des avis</a></li>
                 <li><a class="btn button w-50 m-2" href="/service/addServ">Créer un service</a></li>
                 <li><a class="btn button w-50 m-2" href="/service/listServices">Liste des services</a></li>
                 <li><a class="btn button w-50 m-2" href="/rapport/liste_rapports">Voir la liste des rapports </a></li>
