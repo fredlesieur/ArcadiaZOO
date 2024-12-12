@@ -72,5 +72,4 @@ $currentDateTime = date('d-m-Y\TH:i');
     </div>
 </section>
 
-<!-- Inclure le fichier JavaScript -->
 <?php $script = '<script src="/assets/javascript/champsPrerempli.js"></script>'; ?>

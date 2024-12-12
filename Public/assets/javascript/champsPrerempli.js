@@ -1,5 +1,5 @@
 document.getElementById('animal_id').addEventListener('change', function() {
-    var animalId = this.value;
+   let animalId = this.value;
     if (animalId) {
         // Envoi d'une requête AJAX pour récupérer le dernier rapport de l'animal
         fetch('/rapport/get_last_rapport/' + animalId)
