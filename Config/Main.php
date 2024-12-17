@@ -84,6 +84,8 @@ class Main
             $controller = new AccueilController();
             $controller->index();
         }
+        
+        $this->handlePostRequests();
     }
 
     // Vérification du token CSRF
@@ -124,4 +126,73 @@ class Main
         http_response_code(404);
         echo $message;
     }
+    
+    private function handleSubmitForm($data)
+    {
+        // Exemple de traitement
+        $name = htmlspecialchars($data['name'] ?? '');
+    
+        // Répondez avec un message JSON
+        echo json_encode([
+            'success' => true,
+            'message' => "Formulaire soumis avec le nom : $name"
+        ]);
+    }
+    
+    private function handleOtherAction($data)
+    {
+        // Traitement pour une autre action
+        echo json_encode([
+            'success' => true,
+            'message' => 'Autre action traitée avec succès'
+        ]);
+    }
+    
+    private function handlePostRequests()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Vérifiez si c'est une requête Fetch
+        $isFetchRequest = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+
+        // Si c'est une requête classique (non Fetch), continuez normalement
+        if (!$isFetchRequest) {
+            return;
+        }
+
+        // Récupérez les données du formulaire
+        $data = $_POST;
+
+        // Vérifiez le token CSRF
+        if (empty($data['csrf_token']) || $data['csrf_token'] !== $_SESSION['csrf_token']) {
+            http_response_code(403);
+            echo json_encode(['error' => 'Invalid CSRF token']);
+            exit();
+        }
+
+        // Routez la requête en fonction d'un paramètre 'action' dans le POST
+        if (isset($data['action'])) {
+            switch ($data['action']) {
+                case 'submit_form':
+                    $this->handleSubmitForm($data);
+                    break;
+
+                case 'other_action':
+                    $this->handleOtherAction($data);
+                    break;
+
+                default:
+                    http_response_code(404);
+                    echo json_encode(['error' => 'Action not found']);
+                    break;
+            }
+        } else {
+            http_response_code(400);
+            echo json_encode(['error' => 'No action specified']);
+        }
+
+        // Arrêtez l'exécution après avoir traité la requête Fetch
+        exit();
+    }
+}
+
 }

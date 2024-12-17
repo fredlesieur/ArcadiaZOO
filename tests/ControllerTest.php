@@ -4,7 +4,8 @@ use PHPUnit\Framework\TestCase;
 
 // Classe enfant temporaire qui hérite du contrôleur abstrait pour permettre l'instanciation
 class TestableController extends \App\Controllers\Controller {
-    // On ne modifie rien ici, c'est juste pour rendre la classe instanciable
+// On ne modifie rien ici, c'est juste pour rendre la classe instanciable
+
 }
 
 class ControllerTest extends TestCase
