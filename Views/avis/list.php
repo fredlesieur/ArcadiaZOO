@@ -19,7 +19,7 @@
                             <td><?= htmlspecialchars($a['valid']); ?></td>
                             <td>
                                 <!-- Bouton de suppression avec confirmation -->
-                                <a href="/avis/delete/<?=$a['id']; ?>" class="btn danger"
+                                <a href="/avis/deleteAvis/<?=$a['id']; ?>" class="btn danger"
                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet avis ?');">
                                     Supprimer
                                 </a>
