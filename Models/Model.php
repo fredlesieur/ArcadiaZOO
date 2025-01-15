@@ -97,7 +97,7 @@ public function delete(int $id)
 
 
 
-public function req(string $sql, array $attributs = null)
+public function req(string $sql, ?array $attributs = null)
 {
     $this->db = Db::getInstance();
 
