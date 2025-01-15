@@ -16,8 +16,8 @@ class ConnexionController extends Controller
 
     public function login(): void
 {
-    $email = $_POST['email'] ?? null;
-    $password = $_POST['mdp'] ?? null;
+    $email = strip_tags($_POST['email'] ?? null);
+    $password = strip_tags($_POST['mdp'] ?? null);
 
     // Modèle de connexion
     $connexionModel = new ConnexionModel();

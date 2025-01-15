@@ -15,5 +15,6 @@
 
     <button type="submit" class="btn sucess w-100 mt-2">Ajouter</button>
     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+    <input type="hidden" name="action" value="submit_form">
 </form>
 

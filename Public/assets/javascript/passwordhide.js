@@ -15,3 +15,15 @@ document.querySelectorAll('.togglePassword').forEach(function (toggleButton) {
         }
     });
 });
+
+document.querySelector('#loginForm').addEventListener('submit', function (e) {
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#mdp').value;
+
+    // Vérifier que les champs ne sont pas vides et que le mot de passe a au moins 8 caractères
+    if (!email || password.length < 5) {
+        e.preventDefault(); // Annuler l'envoi du formulaire
+        alert("L'email doit être valide et le mot de passe doit contenir au moins 5 caractères.");
+    }
+});
+
