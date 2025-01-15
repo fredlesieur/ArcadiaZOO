@@ -167,8 +167,13 @@ public function editHoraire($id) {
         $CoordonneeModel = new CoordonneeModel();
         $coordonnees = $CoordonneeModel->findAll();
     
-        // Charger les horaires si nécessaire
-        $horaires = [];
+        // Charger les horaires depuis MongoDB
+        try {
+            $mongo = new HoraireModel();
+            $horaires = $mongo->findAll();
+        } catch (Exception $e) {
+            $horaires = []; // En cas d'erreur, utiliser un tableau vide
+        }
     
         $this->render('contact/index', compact('message', 'coordonnees', 'horaires'));
     }
