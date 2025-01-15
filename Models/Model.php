@@ -110,9 +110,8 @@ public function req(string $sql, ?array $attributs = null)
             return $this->db->query($sql);
         }
     } catch (Exception $e) {
-        // Journalisez l'erreur dans un fichier
         file_put_contents('error_log.txt', date('Y-m-d H:i:s') . ' - ' . $e->getMessage() . "\n", FILE_APPEND);
-        return false; // ou gérez l'erreur comme vous le souhaitez
+        return false;
     }
 }
 
