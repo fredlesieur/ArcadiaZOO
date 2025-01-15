@@ -120,41 +120,33 @@ public function editHoraire($id) {
   
     public function sendMail() {
         $message = '';
-
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupérer les données du formulaire
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $email = $_POST['email'];
             $messageContent = $_POST['message'];
-
+    
             // Instanciation de PHPMailer
             $mail = new PHPMailer(true);
-
+    
             try {
-                // Utilisation de SMTP
-                $mail->isSMTP();  // Active SMTP pour PHPMailer
-
-                // Configuration du serveur SMTP
+                // Configuration SMTP
+                $mail->isSMTP();
                 $mail->Host = $_ENV['SMTP_HOST']; 
                 $mail->SMTPAuth = true;  
                 $mail->Username = $_ENV['SMTP_USER'];
                 $mail->Password = $_ENV['SMTP_PASS']; 
                 $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
                 $mail->Port = $_ENV['SMTP_PORT']; 
-
-                // Utiliser une adresse d'expéditeur différente
+    
                 $mail->setFrom('noreply@arcadia.fr', 'Arcadia Contact');
-
-                // Pour repondre a l'utilisateur
-                $mail->addReplyTo($email, $nom . ' ' . $prenom);  // L'adresse de l'utilisateur
-
-                // Destinataire adresse de l employé de l'entreprise
+                $mail->addReplyTo($email, $nom . ' ' . $prenom);
                 $mail->addAddress('woody91420@gmail.com', 'Arcadia');
-
-                // Contenu de l'e-mail
-                $mail->isHTML(true);  // Format HTML de l'e-mail
-                $mail->Subject = 'Nouveau message de contact';  // Sujet de l'e-mail
+    
+                $mail->isHTML(true);
+                $mail->Subject = 'Nouveau message de contact';
                 $mail->Body = "
                     <h3>Nouveau message de contact</h3>
                     <p><strong>Nom :</strong> {$nom}</p>
@@ -162,20 +154,24 @@ public function editHoraire($id) {
                     <p><strong>Email :</strong> {$email}</p>
                     <p><strong>Message :</strong></p>
                     <p>{$messageContent}</p>
-                ";  // Le corps de l'e-mail en HTML
-
-                // Envoi de l'e-mail
+                ";
+    
                 $mail->send();
                 $message = 'Votre message a été envoyé avec succès.';
             } catch (Exception $e) {
-                // Gestion des erreurs d'envoi
                 $message = "L'envoi du message a échoué. Erreur: " . $mail->ErrorInfo;
             }
         }
-
-        
-        $horaires = [];  
-        $this->render('contact/index', compact('message', 'horaires'));
+    
+        // Charger les coordonnées
+        $CoordonneeModel = new CoordonneeModel();
+        $coordonnees = $CoordonneeModel->findAll();
+    
+        // Charger les horaires si nécessaire
+        $horaires = [];
+    
+        $this->render('contact/index', compact('message', 'coordonnees', 'horaires'));
     }
+    
 }
 
