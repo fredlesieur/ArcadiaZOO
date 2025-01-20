@@ -10,7 +10,7 @@
                 <input type="text" name="nom" id="nom" required><br>
 
                 <label for="age">Âge :</label>
-                <input type="number" name="age" id="age" required> ans<br>
+                <input type="number" name="age" id="age" required><br>
 
                 <label for="race">Race :</label>
                 <input type="text" name="race" id="race" required><br>
