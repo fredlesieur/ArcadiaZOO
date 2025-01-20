@@ -111,7 +111,7 @@ db.horaires.insertMany([
 - ouvrir le dossier database/template-sql-arcadia.sql
 - suivre les instructions.
 
-## Utilisation de l'API
+## Utilisation de l'application
 
 Quelques exemples :
 
@@ -133,7 +133,16 @@ Pour lancer l'API en local, vous pouvez utiliser le serveur intégré de PHP ave
 
 ou configurez MAMP pour pointer vers le répertoire **public** de votre projet.
 
+Avant de lancer l'API , installer les dépendances du projet via composer 
+```bash
+composer install
+
+```
+Assurez-vous que les fichiers de configuration .env sont correctement configurés 
+avec les informations de connexion pour MySQL, MongoDB, PHPMailer, et Cloudinary.
+
 Ouvrez votre navigateur et accédez à l'API à l'adresse  :(http://localhost:8000).
+
 
 2. Déployer l'API sur HEROKU
 
@@ -143,9 +152,57 @@ heroku create "nom""
 git push heroku main
 
 ```
-Configurez les variables d’environnement dans le panneau Heroku pour les connecter aux services MySQL, MongoDB, et Cloudinary.
+Configurez les variables d’environnement dans le panneau Heroku pour les connecter aux services MySQL, MongoDB, PHPMailer et Cloudinary.
 
-Application en ligne : [https://arcadia-zoo-fl-52fd2cbf29c6.herokuapp.com/]
+MySQL
+
+```plaintext
+DATABASE_URL=mysql://username:password@host:port/database
+```
+MongoDB
+
+```plaintext
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database
+
+```
+PHPMailer
+
+```plaintext
+
+SMTP_HOST=smtp.mailtrap.io
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
+
+```
+Cloudinary
+
+```plaintext
+
+CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
+
+```
+
+Pour indiquer à Heroku comment démarrer votre application, créez un fichier Procfile à la racine de votre projet avec le contenu suivant :
+
+```plaintext
+
+web: heroku-php-apache2 public/
+
+```
+
+Vérifier les logs, pour diagnostiquer les problèmes potentiels après le déploiement, utilisez la commande suivante :
+
+```bash
+
+heroku logs --tail
+
+```
+Une fois le déploiement réussi, accédez à votre application en ligne via l’URL fournie par Heroku, par exemple
+https://arcadia-zoo-fl-52fd2cbf29c6.herokuapp.com/
+
+Tests en production
+Assurez-vous que toutes les fonctionnalités (base de données, envoi d’e-mails, gestion des médias) fonctionnent correctement.
+Testez les connexions sécurisées HTTPS fournies par Heroku.
 
 
 ## Auteurs:
