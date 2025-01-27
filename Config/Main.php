@@ -8,6 +8,14 @@ class Main
 {
     public function start()
     {
+        session_set_cookie_params([
+            'lifetime' => 0, // Durée de vie : jusqu'à la fermeture du navigateur
+            'path' => '/', // Accessible sur tout le site
+            'domain' => 'localhost', // Remplace par ton domaine en production
+            'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
+            'httponly' => true, // Empêche l'accès via JavaScript
+            'samesite' => 'Strict', // Protection contre les attaques CSRF
+        ]);
         // Démarrage de la session
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
