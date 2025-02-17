@@ -11,7 +11,7 @@ class Main
         session_set_cookie_params([
             'lifetime' => 0, // Durée de vie : jusqu'à la fermeture du navigateur
             'path' => '/', // Accessible sur tout le site
-            'domain' => 'localhost', // Remplace par ton domaine en production
+            'domain' => 'localhost', // Remplacer par le nom de domaine en production
             'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
             'httponly' => true, // Empêche l'accès via JavaScript
             'samesite' => 'Strict', // Protection contre les attaques CSRF
@@ -140,7 +140,7 @@ class Main
         // Exemple de traitement
         $name = htmlspecialchars($data['name'] ?? '');
     
-        // Répondez avec un message JSON
+        // Répondre avec un message JSON
         echo json_encode([
             'success' => true,
             'message' => "Formulaire soumis avec le nom : $name"
@@ -162,22 +162,22 @@ class Main
         // Vérifiez si c'est une requête Fetch
         $isFetchRequest = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
 
-        // Si c'est une requête classique (non Fetch), continuez normalement
+        // Si c'est une requête classique (non Fetch), continue normalement
         if (!$isFetchRequest) {
             return;
         }
 
-        // Récupérez les données du formulaire
+        // Récupere les données du formulaire
         $data = $_POST;
 
-        // Vérifiez le token CSRF
+        // Vérifie le token CSRF
         if (empty($data['csrf_token']) || $data['csrf_token'] !== $_SESSION['csrf_token']) {
             http_response_code(403);
             echo json_encode(['error' => 'Invalid CSRF token']);
             exit();
         }
 
-        // Routez la requête en fonction d'un paramètre 'action' dans le POST
+        // Route la requête en fonction d'un paramètre 'action' dans le POST
         if (isset($data['action'])) {
             switch ($data['action']) {
                 case 'submit_form':
@@ -198,7 +198,7 @@ class Main
             echo json_encode(['error' => 'No action specified']);
         }
 
-        // Arrêtez l'exécution après avoir traité la requête Fetch
+        // Arrête l'exécution après avoir traité la requête Fetch
         exit();
     }
 }
