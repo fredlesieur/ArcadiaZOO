@@ -44,3 +44,6 @@ EXPOSE 80
 
 # Lancer Apache en premier plan
 CMD ["apache2-foreground"]
+
+# lancer en production
+#ENTRYPOINT [ "executable" ]

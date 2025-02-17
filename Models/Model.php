@@ -131,6 +131,7 @@ public function req(string $sql, ?array $attributs = null)
     }
     return $this;
    }
+   
    public function uploadImage(array $file, string $directory = 'assets/images/')
    {
        // Vérifie si le fichier a bien été uploadé
@@ -169,7 +170,4 @@ public function req(string $sql, ?array $attributs = null)
            return false;
        }
    }
-   
-   
-   
 }

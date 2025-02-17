@@ -55,7 +55,7 @@ class AvisController extends Controller
     {
         $avisModel = new AvisModel();
         $avis = $avisModel->findAll(); // Récupère les avis validés
-        $this->render('avis/list', compact('avis')); // Remplace 'Avis' par 'avis'
+        $this->render('avis/list', compact('avis')); 
     }
     
 
