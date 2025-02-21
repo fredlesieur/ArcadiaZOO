@@ -97,23 +97,46 @@ public function delete(int $id)
 
 
 
+/**
+ * Exécute une requête SQL avec ou sans paramètres de manière sécurisée.
+ *
+ * @param string $sql La requête SQL à exécuter.
+ * @param array|null $attributs Un tableau contenant les valeurs à binder (optionnel).
+ * @return mixed Retourne un objet PDOStatement en cas de succès, sinon false en cas d'erreur.
+ */
 public function req(string $sql, ?array $attributs = null)
 {
+    // Récupération de l'instance unique de la connexion à la base de données (Singleton)
     $this->db = Db::getInstance();
 
     try {
+        // Si des attributs sont fournis (requête préparée avec paramètres)
         if ($attributs !== null) {
+            // Préparation de la requête SQL pour éviter les injections SQL
             $query = $this->db->prepare($sql);
+
+            // Exécution de la requête en liant les paramètres fournis
             $query->execute($attributs);
+
+            // Retourne l'objet PDOStatement contenant le résultat de la requête
             return $query;
         } else {
+            // Si aucune donnée n'est fournie, exécution directe de la requête SQL
             return $this->db->query($sql);
         }
     } catch (Exception $e) {
-        file_put_contents('error_log.txt', date('Y-m-d H:i:s') . ' - ' . $e->getMessage() . "\n", FILE_APPEND);
+        // En cas d'erreur, on enregistre le message d'erreur dans un fichier "error_log.txt"
+        file_put_contents(
+            'error_log.txt', 
+            date('Y-m-d H:i:s') . ' - ' . $e->getMessage() . "\n", 
+            FILE_APPEND
+        );
+
+        // Retourne false en cas d'échec
         return false;
     }
 }
+
 
 
    public function hydrate(array $donnees)

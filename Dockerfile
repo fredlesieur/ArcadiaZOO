@@ -45,5 +45,22 @@ EXPOSE 80
 # Lancer Apache en premier plan
 CMD ["apache2-foreground"]
 
-# lancer en production
+
+
+# lancer en production et plus de sécurité 
+# creation d un user plutot que de mettre en root et vérifié l'image
+# Utiliser une image PHP avec Apache
+#FROM php:8.3-apache
+
+# Créer un utilisateur non-root
+#RUN useradd -m -d /home/appuser -s /bin/bash appuser \
+    #&& chown -R appuser:appuser /var/www/html
+
+# Passer à l'utilisateur limité
+#USER appuser
+
+# Activer le mode production de PHP
+#RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 #ENTRYPOINT [ "executable" ]
+
