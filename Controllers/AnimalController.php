@@ -47,9 +47,10 @@ class AnimalController extends Controller {
     {
         $animalModel = new AnimalModel();
         $habitatModel = new HabitatsModel();
+        $cloudinaryService = new CloudinaryService();
+
         $animaux = $animalModel->findAll();
         $habitats = $habitatModel->findAll();
-        $cloudinaryService = new CloudinaryService();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
