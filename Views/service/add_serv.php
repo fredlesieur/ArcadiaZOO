@@ -2,7 +2,7 @@
  
 <section class="colorSection">
     <div class="container my-5">
-        <form action="/service/addServ" method="post" enctype="multipart/form-data">
+        <form action="/service/addServ" method="post" class="ajax" enctype="multipart/form-data">
 
             <!-- Nom du service -->
             <label for="name">Nom du service :</label>

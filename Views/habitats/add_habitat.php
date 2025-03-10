@@ -6,7 +6,7 @@
 
 <section class="colorSection">
     <div class="container my-5">
-        <form action="/habitats/addHabitat" method="post" enctype="multipart/form-data">
+        <form action="/habitats/addHabitat" method="post" class="ajax" enctype="multipart/form-data">
 
             <!-- Partie vétérinaire : Ajout d'un commentaire sur un habitat existant -->
             <?php if ($_SESSION['role'] === 'veterinaire') : ?>

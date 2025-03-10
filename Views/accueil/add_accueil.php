@@ -1,6 +1,6 @@
 <h1 class="container-fluid banner pt-5 pb-5">Ajouter un élément à l'accueil</h1>
 <section class="colorSection p-3 p-lg-4 p-xl-5">
-    <form action="/accueil/addAccueil" method="POST" enctype="multipart/form-data">
+    <form action="/accueil/addAccueil" method="POST" class="ajax" enctype="multipart/form-data">
   
         <div class="mb-3">
             <label for="name" class="form-label">Nom</label>

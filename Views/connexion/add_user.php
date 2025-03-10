@@ -18,7 +18,7 @@
 <section class="colorSection">
     <div class="container mx-auto p-4">
 
-        <form action="/connexion/addUser" method="POST">
+        <form action="/connexion/addUser" method="POST" class="ajax">
             <div class="mb-3">
                 <label for="nom_prenom" class="form-label text-center">
                     Nom et prénom de l'utilisateur

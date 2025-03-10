@@ -2,7 +2,7 @@
 <section class="colorSection">
     <div class="container my-5">
         <?php if ($_SESSION['role'] === 'veterinaire' || $_SESSION['role'] === 'administrateur') : ?>
-            <form action="/habitats/editHabitat/<?= $habitat['id'] ?>" method="post" enctype="multipart/form-data">
+            <form action="/habitats/editHabitat/<?= $habitat['id'] ?>" method="post" class="ajax" enctype="multipart/form-data">
                 
                 <!-- Affichage du nom de l'habitat sans menu déroulant -->
                 <label for="name">Nom de l'habitat :</label>

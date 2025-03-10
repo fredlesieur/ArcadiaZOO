@@ -8,7 +8,7 @@ $currentDateTime = date('d-m-Y\TH:i');
 <h1 class="container-fluid banner pt-5 pb-5">Modifier le rapport</h1>
 <section class="colorSection">
     <div class="mx-auto p-4">
-        <form action="/rapport/edit_rapport/<?= $rapport['id'] ?>" method="post">
+        <form action="/rapport/edit_rapport/<?= $rapport['id'] ?>" method="post" class="ajax">
             <label for="animal_id">Animal :</label>
             <select name="animal_id" id="animal_id">
                 <option value="">Sélectionnez un animal</option>

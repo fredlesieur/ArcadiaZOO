@@ -3,7 +3,7 @@
 <section class="colorSection">
     <div class="container my-5">
 
-<form action="/contact/addHoraire" method="post" enctype="multipart/form-data">
+<form action="/contact/addHoraire" method="post" class="ajax" enctype="multipart/form-data">
     <label for="saison">Saison :</label>
     <input type="text" id="saison" name="saison" required>
 

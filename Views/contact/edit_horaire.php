@@ -2,7 +2,7 @@
  
 <section class="colorSection">
     <div class="container my-5">
-        <form action="/contact/editHoraire/<?= $horaire['_id']; ?>" method="POST">
+        <form action="/contact/editHoraire/<?= $horaire['_id']; ?>" method="POST" class="ajax">
             <label for="saison">Saison</label>
             <input type="text" name="saison" id="saison" value="<?= htmlspecialchars($horaire['saison']); ?>" required>
 

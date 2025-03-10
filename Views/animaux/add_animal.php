@@ -4,7 +4,7 @@
     <section class="colorSection">
         <div class="mx-auto p-4">
  
-            <form action="/animal/addAnimal" method="post" enctype="multipart/form-data">
+            <form action="/animal/addAnimal" method="post" class="ajax" enctype="multipart/form-data">
 
                 <label for="nom">Nom :</label>
                 <input type="text" name="nom" id="nom" required><br>

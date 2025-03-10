@@ -3,7 +3,7 @@
     <div class="container mx-auto p-4">
  
         <?php if ($_SESSION['role'] === 'administrateur') : ?>
-            <form action="/animal/editAnimal/<?= $animaux['id'] ?>" method="post" enctype="multipart/form-data">
+            <form action="/animal/editAnimal/<?= $animaux['id'] ?>" method="post" class="ajax" enctype="multipart/form-data">
                 <input type="hidden" name="id" id="id" value="<?= $animaux['id']; ?>">
 
                 <div class="mb-3">

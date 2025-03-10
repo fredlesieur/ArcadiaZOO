@@ -17,7 +17,7 @@ $currentDateTime = date('d-m-Y\TH:i');
             <?php unset($_SESSION['message']); ?>
         <?php endif; ?>
 
-        <form action="/rapport/add_rapport" method="post">
+        <form action="/rapport/add_rapport" method="post" class="ajax">
             <label for="animal_id">Animal :</label>
             <select name="animal_id" id="animal_id" required>
                 <option value="">Sélectionnez un animal</option>

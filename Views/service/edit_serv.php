@@ -4,7 +4,7 @@
 
 <section class="colorSection">
     <div class="container my-5">
-        <form action="/service/editServ/<?= $service['id'] ?>" method="post" enctype="multipart/form-data">
+        <form action="/service/editServ/<?= $service['id'] ?>" method="post" class="ajax" enctype="multipart/form-data">
 
             <label for="name">Nom du service :</label>
             <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars($service['name']) ?>" required><br>

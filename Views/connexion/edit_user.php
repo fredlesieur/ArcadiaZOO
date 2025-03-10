@@ -2,7 +2,7 @@
  
 <section class="colorSection">
     <div class="container mx-auto p-4">
-        <form action="/connexion/editUser/<?= $users['id'] ?>" method="POST">
+        <form action="/connexion/editUser/<?= $users['id'] ?>" method="POST" class="ajax">
             <input type="hidden" name="id" value="<?= $users['id'] ?>">
 
             <div class="mb-3">

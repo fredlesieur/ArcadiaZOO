@@ -3,7 +3,7 @@
 
 
 <section class="colorSection p-3 p-lg-4 p-xl-5">
-    <form action="/accueil/editAccueil/<?= $accueil['id'] ?>" method="POST" enctype="multipart/form-data">
+    <form action="/accueil/editAccueil/<?= $accueil['id'] ?>" method="POST" class="ajax" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="name" class="form-label">Nom</label>
             <input type="text" name="name" id="name" class="form-control" value="<?= $accueil['name'] ?>" required>
