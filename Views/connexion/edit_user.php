@@ -26,6 +26,18 @@
                     </select>
                 <?php endif; ?>
             </div>
+            
+            <!-- Nouveau champ pour le mot de passe -->
+            <div class="mb-3">
+                <label for="password" class="form-label text-center">Nouveau mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+
+            <!-- Champ pour confirmer le mot de passe -->
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label text-center">Confirmer le nouveau mot de passe</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+            </div>
 
             <button type="submit" class="btn warning w-100 mt-2">Modifier le compte</button>
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">

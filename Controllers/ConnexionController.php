@@ -159,18 +159,33 @@ public function editUser($id)
 {
     $connexionModel = new ConnexionModel();
     $users = $connexionModel->find($id);
+    $title = "Modifier un utilisateur";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Empêcher la modification du rôle administrateur
         if ($users['role_id'] == 1) {
-            $_POST['role_id'] = 1;  // Forcer le rôle administrateur à rester inchangé
+            $_POST['role'] = 1;  // Forcer le rôle administrateur à rester inchangé
         }
 
+        // Préparer les données de base
         $data = [
             'nom_prenom' => $_POST['nom_prenom'],
-            'email' => $_POST['email'],
-            'role_id' => $_POST['role']
+            'email'      => $_POST['email'],
+            'role_id'    => $_POST['role']
         ];
+
+        // Vérifier si un nouveau mot de passe a été saisi
+        if (!empty($_POST['password'])) {
+            // Vérifier la confirmation du mot de passe
+            if ($_POST['password'] !== $_POST['confirm_password']) {
+                $_SESSION['error'] = "Les mots de passe ne correspondent pas.";
+                // On peut recharger le formulaire avec l'erreur affichée
+                $this->render('connexion/edit_user', compact('users', 'title'));
+                exit();
+            }
+            // Hacher le nouveau mot de passe et l'ajouter aux données
+            $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        }
 
         $connexionModel->hydrate($data);
         $connexionModel->update($id);
@@ -180,9 +195,9 @@ public function editUser($id)
         exit();
     }
 
-    $title = "Modifier un utilisateur";
     $this->render('connexion/edit_user', compact('users', 'title'));
 }
+
     public function deleteUser($id)
     {
         $connexionModel = new ConnexionModel();
